@@ -32,7 +32,7 @@ class ClassMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getAttributesMetadata()} instead.
      */
-    public $attributesMetadata = [];
+    public $attributesMetadata = array();
 
     /**
      * @var \ReflectionClass
@@ -106,9 +106,9 @@ class ClassMetadata implements ClassMetadataInterface
      */
     public function __sleep()
     {
-        return [
+        return array(
             'name',
             'attributesMetadata',
-        ];
+        );
     }
 }

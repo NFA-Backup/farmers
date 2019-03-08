@@ -24,10 +24,10 @@ use Symfony\Component\Serializer\Exception\RuntimeException;
  */
 class ChainEncoder implements EncoderInterface /*, ContextAwareEncoderInterface*/
 {
-    protected $encoders = [];
-    protected $encoderByFormat = [];
+    protected $encoders = array();
+    protected $encoderByFormat = array();
 
-    public function __construct(array $encoders = [])
+    public function __construct(array $encoders = array())
     {
         $this->encoders = $encoders;
     }
@@ -35,7 +35,7 @@ class ChainEncoder implements EncoderInterface /*, ContextAwareEncoderInterface*
     /**
      * {@inheritdoc}
      */
-    final public function encode($data, $format, array $context = [])
+    final public function encode($data, $format, array $context = array())
     {
         return $this->getEncoder($format, $context)->encode($data, $format, $context);
     }
@@ -43,9 +43,9 @@ class ChainEncoder implements EncoderInterface /*, ContextAwareEncoderInterface*
     /**
      * {@inheritdoc}
      */
-    public function supportsEncoding($format/*, array $context = []*/)
+    public function supportsEncoding($format/*, array $context = array()*/)
     {
-        $context = \func_num_args() > 1 ? func_get_arg(1) : [];
+        $context = \func_num_args() > 1 ? func_get_arg(1) : array();
 
         try {
             $this->getEncoder($format, $context);
@@ -64,9 +64,9 @@ class ChainEncoder implements EncoderInterface /*, ContextAwareEncoderInterface*
      *
      * @return bool
      */
-    public function needsNormalization($format/*, array $context = []*/)
+    public function needsNormalization($format/*, array $context = array()*/)
     {
-        $context = \func_num_args() > 1 ? func_get_arg(1) : [];
+        $context = \func_num_args() > 1 ? func_get_arg(1) : array();
         $encoder = $this->getEncoder($format, $context);
 
         if (!$encoder instanceof NormalizationAwareInterface) {

@@ -49,7 +49,7 @@ class PrototypeConfigurator extends AbstractServiceConfigurator
         $definition->setAutowired($defaults->isAutowired());
         $definition->setAutoconfigured($defaults->isAutoconfigured());
         $definition->setBindings($defaults->getBindings());
-        $definition->setChanges([]);
+        $definition->setChanges(array());
 
         $this->loader = $loader;
         $this->resource = $resource;

@@ -32,16 +32,16 @@ class File extends Constraint
     const TOO_LARGE_ERROR = 'df8637af-d466-48c6-a59d-e7126250a654';
     const INVALID_MIME_TYPE_ERROR = '744f00bc-4389-4c74-92de-9a43cde55534';
 
-    protected static $errorNames = [
+    protected static $errorNames = array(
         self::NOT_FOUND_ERROR => 'NOT_FOUND_ERROR',
         self::NOT_READABLE_ERROR => 'NOT_READABLE_ERROR',
         self::EMPTY_ERROR => 'EMPTY_ERROR',
         self::TOO_LARGE_ERROR => 'TOO_LARGE_ERROR',
         self::INVALID_MIME_TYPE_ERROR => 'INVALID_MIME_TYPE_ERROR',
-    ];
+    );
 
     public $binaryFormat;
-    public $mimeTypes = [];
+    public $mimeTypes = array();
     public $notFoundMessage = 'The file could not be found.';
     public $notReadableMessage = 'The file is not readable.';
     public $maxSizeMessage = 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.';
@@ -99,12 +99,12 @@ class File extends Constraint
 
     private function normalizeBinaryFormat($maxSize)
     {
-        $factors = [
+        $factors = array(
             'k' => 1000,
             'ki' => 1 << 10,
             'm' => 1000000,
             'mi' => 1 << 20,
-        ];
+        );
         if (ctype_digit((string) $maxSize)) {
             $this->maxSize = (int) $maxSize;
             $this->binaryFormat = null === $this->binaryFormat ? false : $this->binaryFormat;

@@ -39,7 +39,7 @@ class ExpressionValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Expression');
         }
 
-        $variables = [];
+        $variables = array();
         $variables['value'] = $value;
         $variables['this'] = $this->context->getObject();
 

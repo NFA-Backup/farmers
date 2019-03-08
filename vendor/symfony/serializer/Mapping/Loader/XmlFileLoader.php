@@ -110,7 +110,7 @@ class XmlFileLoader extends FileLoader
     private function getClassesFromXml()
     {
         $xml = $this->parseFile($this->file);
-        $classes = [];
+        $classes = array();
 
         foreach ($xml->class as $class) {
             $classes[(string) $class['name']] = $class;

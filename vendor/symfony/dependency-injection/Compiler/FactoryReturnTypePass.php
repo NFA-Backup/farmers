@@ -41,14 +41,14 @@ class FactoryReturnTypePass implements CompilerPassInterface
         if (!method_exists(\ReflectionMethod::class, 'getReturnType')) {
             return;
         }
-        $resolveClassPassChanges = null !== $this->resolveClassPass ? $this->resolveClassPass->getChanges() : [];
+        $resolveClassPassChanges = null !== $this->resolveClassPass ? $this->resolveClassPass->getChanges() : array();
 
         foreach ($container->getDefinitions() as $id => $definition) {
             $this->updateDefinition($container, $id, $definition, $resolveClassPassChanges);
         }
     }
 
-    private function updateDefinition(ContainerBuilder $container, $id, Definition $definition, array $resolveClassPassChanges, array $previous = [])
+    private function updateDefinition(ContainerBuilder $container, $id, Definition $definition, array $resolveClassPassChanges, array $previous = array())
     {
         // circular reference
         if (isset($previous[$id])) {

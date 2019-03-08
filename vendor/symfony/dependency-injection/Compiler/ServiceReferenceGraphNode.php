@@ -24,8 +24,8 @@ use Symfony\Component\DependencyInjection\Definition;
 class ServiceReferenceGraphNode
 {
     private $id;
-    private $inEdges = [];
-    private $outEdges = [];
+    private $inEdges = array();
+    private $outEdges = array();
     private $value;
 
     /**
@@ -113,6 +113,6 @@ class ServiceReferenceGraphNode
      */
     public function clear()
     {
-        $this->inEdges = $this->outEdges = [];
+        $this->inEdges = $this->outEdges = array();
     }
 }

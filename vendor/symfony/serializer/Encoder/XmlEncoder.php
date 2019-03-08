@@ -49,7 +49,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * {@inheritdoc}
      */
-    public function encode($data, $format, array $context = [])
+    public function encode($data, $format, array $context = array())
     {
         if ($data instanceof \DOMDocument) {
             return $data->saveXML();
@@ -75,7 +75,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * {@inheritdoc}
      */
-    public function decode($data, $format, array $context = [])
+    public function decode($data, $format, array $context = array())
     {
         if ('' === trim($data)) {
             throw new NotEncodableValueException('Invalid XML data, it can not be empty.');
@@ -111,7 +111,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
 
         if ($rootNode->hasChildNodes()) {
             $xpath = new \DOMXPath($dom);
-            $data = [];
+            $data = array();
             foreach ($xpath->query('namespace::*', $dom->documentElement) as $nsNode) {
                 $data['@'.$nsNode->nodeName] = $nsNode->nodeValue;
             }
@@ -129,7 +129,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
             return $rootNode->nodeValue;
         }
 
-        $data = [];
+        $data = array();
 
         foreach ($rootNode->attributes as $attrKey => $attr) {
             $data['@'.$attrKey] = $attr->nodeValue;
@@ -259,7 +259,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
      *
      * @return array|string
      */
-    private function parseXml(\DOMNode $node, array $context = [])
+    private function parseXml(\DOMNode $node, array $context = array())
     {
         $data = $this->parseXmlAttributes($node, $context);
 
@@ -293,13 +293,13 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
      *
      * @return array
      */
-    private function parseXmlAttributes(\DOMNode $node, array $context = [])
+    private function parseXmlAttributes(\DOMNode $node, array $context = array())
     {
         if (!$node->hasAttributes()) {
-            return [];
+            return array();
         }
 
-        $data = [];
+        $data = array();
         $typeCastAttributes = $this->resolveXmlTypeCastAttributes($context);
 
         foreach ($node->attributes as $attr) {
@@ -326,17 +326,17 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
      *
      * @return array|string
      */
-    private function parseXmlValue(\DOMNode $node, array $context = [])
+    private function parseXmlValue(\DOMNode $node, array $context = array())
     {
         if (!$node->hasChildNodes()) {
             return $node->nodeValue;
         }
 
-        if (1 === $node->childNodes->length && \in_array($node->firstChild->nodeType, [XML_TEXT_NODE, XML_CDATA_SECTION_NODE])) {
+        if (1 === $node->childNodes->length && \in_array($node->firstChild->nodeType, array(XML_TEXT_NODE, XML_CDATA_SECTION_NODE))) {
             return $node->firstChild->nodeValue;
         }
 
-        $value = [];
+        $value = array();
 
         foreach ($node->childNodes as $subnode) {
             if (XML_PI_NODE === $subnode->nodeType) {
@@ -396,7 +396,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
                         /*
                          * Create nodes to append to $parentNode based on the $key of this array
                          * Produces <xml><item>0</item><item>1</item></xml>
-                         * From ["item" => [0,1]];.
+                         * From array("item" => array(0,1));.
                          */
                         foreach ($data as $subData) {
                             $append = $this->appendNode($parentNode, $subData, $key);
@@ -513,7 +513,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
      *
      * @return string
      */
-    private function resolveXmlRootName(array $context = [])
+    private function resolveXmlRootName(array $context = array())
     {
         return isset($context['xml_root_node_name'])
             ? $context['xml_root_node_name']
@@ -527,7 +527,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
      *
      * @return bool
      */
-    private function resolveXmlTypeCastAttributes(array $context = [])
+    private function resolveXmlTypeCastAttributes(array $context = array())
     {
         return isset($context['xml_type_cast_attributes'])
             ? (bool) $context['xml_type_cast_attributes']
@@ -546,7 +546,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
         $document = new \DOMDocument();
 
         // Set an attribute on the DOM document specifying, as part of the XML declaration,
-        $xmlOptions = [
+        $xmlOptions = array(
             // nicely formats output with indentation and extra space
             'xml_format_output' => 'formatOutput',
             // the version number of the document
@@ -555,7 +555,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
             'xml_encoding' => 'encoding',
             // whether the document is standalone
             'xml_standalone' => 'xmlStandalone',
-        ];
+        );
         foreach ($xmlOptions as $xmlOption => $documentProperty) {
             if (isset($context[$xmlOption])) {
                 $document->$documentProperty = $context[$xmlOption];

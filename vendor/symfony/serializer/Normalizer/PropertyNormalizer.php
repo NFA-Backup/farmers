@@ -30,7 +30,7 @@ namespace Symfony\Component\Serializer\Normalizer;
  */
 class PropertyNormalizer extends AbstractObjectNormalizer
 {
-    private $cache = [];
+    private $cache = array();
 
     /**
      * {@inheritdoc}
@@ -74,7 +74,7 @@ class PropertyNormalizer extends AbstractObjectNormalizer
     /**
      * {@inheritdoc}
      */
-    protected function isAllowedAttribute($classOrObject, $attribute, $format = null, array $context = [])
+    protected function isAllowedAttribute($classOrObject, $attribute, $format = null, array $context = array())
     {
         if (!parent::isAllowedAttribute($classOrObject, $attribute, $format, $context)) {
             return false;
@@ -95,10 +95,10 @@ class PropertyNormalizer extends AbstractObjectNormalizer
     /**
      * {@inheritdoc}
      */
-    protected function extractAttributes($object, $format = null, array $context = [])
+    protected function extractAttributes($object, $format = null, array $context = array())
     {
         $reflectionObject = new \ReflectionObject($object);
-        $attributes = [];
+        $attributes = array();
 
         do {
             foreach ($reflectionObject->getProperties() as $property) {
@@ -116,7 +116,7 @@ class PropertyNormalizer extends AbstractObjectNormalizer
     /**
      * {@inheritdoc}
      */
-    protected function getAttributeValue($object, $attribute, $format = null, array $context = [])
+    protected function getAttributeValue($object, $attribute, $format = null, array $context = array())
     {
         try {
             $reflectionProperty = $this->getReflectionProperty($object, $attribute);
@@ -135,7 +135,7 @@ class PropertyNormalizer extends AbstractObjectNormalizer
     /**
      * {@inheritdoc}
      */
-    protected function setAttributeValue($object, $attribute, $value, $format = null, array $context = [])
+    protected function setAttributeValue($object, $attribute, $value, $format = null, array $context = array())
     {
         try {
             $reflectionProperty = $this->getReflectionProperty($object, $attribute);

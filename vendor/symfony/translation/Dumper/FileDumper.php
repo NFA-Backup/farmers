@@ -53,7 +53,7 @@ abstract class FileDumper implements DumperInterface
     /**
      * Sets backup flag.
      *
-     * @param bool $backup
+     * @param bool
      */
     public function setBackup($backup)
     {
@@ -63,9 +63,9 @@ abstract class FileDumper implements DumperInterface
     /**
      * {@inheritdoc}
      */
-    public function dump(MessageCatalogue $messages, $options = [])
+    public function dump(MessageCatalogue $messages, $options = array())
     {
-        if (!\array_key_exists('path', $options)) {
+        if (!array_key_exists('path', $options)) {
             throw new InvalidArgumentException('The file dumper needs a path option.');
         }
 
@@ -98,7 +98,7 @@ abstract class FileDumper implements DumperInterface
      *
      * @return string representation
      */
-    abstract public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = []);
+    abstract public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array());
 
     /**
      * Gets the file extension of the dumper.
@@ -117,10 +117,10 @@ abstract class FileDumper implements DumperInterface
      */
     private function getRelativePath($domain, $locale)
     {
-        return strtr($this->relativePathTemplate, [
+        return strtr($this->relativePathTemplate, array(
             '%domain%' => $domain,
             '%locale%' => $locale,
             '%extension%' => $this->getExtension(),
-        ]);
+        ));
     }
 }

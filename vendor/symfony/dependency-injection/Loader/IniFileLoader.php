@@ -32,7 +32,7 @@ class IniFileLoader extends FileLoader
 
         // first pass to catch parsing errors
         $result = parse_ini_file($path, true);
-        if (false === $result || [] === $result) {
+        if (false === $result || array() === $result) {
             throw new InvalidArgumentException(sprintf('The "%s" file is not valid.', $resource));
         }
 
@@ -70,9 +70,7 @@ class IniFileLoader extends FileLoader
     private function phpize($value)
     {
         // trim on the right as comments removal keep whitespaces
-        if ($value !== $v = rtrim($value)) {
-            $value = '""' === substr_replace($v, '', 1, -1) ? substr($v, 1, -1) : $v;
-        }
+        $value = rtrim($value);
         $lowercaseValue = strtolower($value);
 
         switch (true) {

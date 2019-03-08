@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
  */
 class ResolveClassPass implements CompilerPassInterface
 {
-    private $changes = [];
+    private $changes = array();
 
     /**
      * {@inheritdoc}
@@ -49,7 +49,7 @@ class ResolveClassPass implements CompilerPassInterface
     public function getChanges()
     {
         $changes = $this->changes;
-        $this->changes = [];
+        $this->changes = array();
 
         return $changes;
     }

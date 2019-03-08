@@ -25,7 +25,7 @@ class ServiceClosureArgument implements ArgumentInterface
 
     public function __construct(Reference $reference)
     {
-        $this->values = [$reference];
+        $this->values = array($reference);
     }
 
     /**
@@ -41,7 +41,7 @@ class ServiceClosureArgument implements ArgumentInterface
      */
     public function setValues(array $values)
     {
-        if ([0] !== array_keys($values) || !($values[0] instanceof Reference || null === $values[0])) {
+        if (array(0) !== array_keys($values) || !($values[0] instanceof Reference || null === $values[0])) {
             throw new InvalidArgumentException('A ServiceClosureArgument must hold one and only one Reference.');
         }
 

@@ -24,7 +24,7 @@ class JsonSerializableNormalizer extends AbstractNormalizer
     /**
      * {@inheritdoc}
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = array())
     {
         if ($this->isCircularReference($object, $context)) {
             return $this->handleCircularReference($object);
@@ -60,7 +60,7 @@ class JsonSerializableNormalizer extends AbstractNormalizer
     /**
      * {@inheritdoc}
      */
-    public function denormalize($data, $class, $format = null, array $context = [])
+    public function denormalize($data, $class, $format = null, array $context = array())
     {
         throw new LogicException(sprintf('Cannot denormalize with "%s".', \JsonSerializable::class));
     }

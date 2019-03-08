@@ -33,7 +33,7 @@ final class BoundArgument implements ArgumentInterface
      */
     public function getValues()
     {
-        return [$this->value, $this->identifier, $this->used];
+        return array($this->value, $this->identifier, $this->used);
     }
 
     /**

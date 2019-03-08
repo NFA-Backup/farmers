@@ -91,14 +91,14 @@ EOF
                 throw new RuntimeException('Please provide a filename or pipe file content to STDIN.');
             }
 
-            return $this->display($io, [$this->validate($stdin, $flags)]);
+            return $this->display($io, array($this->validate($stdin, $flags)));
         }
 
         if (!$this->isReadable($filename)) {
             throw new RuntimeException(sprintf('File or directory "%s" is not readable.', $filename));
         }
 
-        $filesInfo = [];
+        $filesInfo = array();
         foreach ($this->getFiles($filename) as $file) {
             $filesInfo[] = $this->validate(file_get_contents($file), $flags, $file);
         }
@@ -119,12 +119,12 @@ EOF
         try {
             $this->getParser()->parse($content, Yaml::PARSE_CONSTANT | $flags);
         } catch (ParseException $e) {
-            return ['file' => $file, 'line' => $e->getParsedLine(), 'valid' => false, 'message' => $e->getMessage()];
+            return array('file' => $file, 'line' => $e->getParsedLine(), 'valid' => false, 'message' => $e->getMessage());
         } finally {
             restore_error_handler();
         }
 
-        return ['file' => $file, 'valid' => true];
+        return array('file' => $file, 'valid' => true);
     }
 
     private function display(SymfonyStyle $io, array $files)
@@ -188,7 +188,7 @@ EOF
         }
 
         foreach ($this->getDirectoryIterator($fileOrDirectory) as $file) {
-            if (!\in_array($file->getExtension(), ['yml', 'yaml'])) {
+            if (!\in_array($file->getExtension(), array('yml', 'yaml'))) {
                 continue;
             }
 

@@ -32,7 +32,7 @@ class GenericMetadata implements MetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getConstraints()} and {@link findConstraints()} instead.
      */
-    public $constraints = [];
+    public $constraints = array();
 
     /**
      * @var array
@@ -41,7 +41,7 @@ class GenericMetadata implements MetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link findConstraints()} instead.
      */
-    public $constraintsByGroup = [];
+    public $constraintsByGroup = array();
 
     /**
      * The strategy for cascading objects.
@@ -80,12 +80,12 @@ class GenericMetadata implements MetadataInterface
      */
     public function __sleep()
     {
-        return [
+        return array(
             'constraints',
             'constraintsByGroup',
             'cascadingStrategy',
             'traversalStrategy',
-        ];
+        );
     }
 
     /**
@@ -95,8 +95,8 @@ class GenericMetadata implements MetadataInterface
     {
         $constraints = $this->constraints;
 
-        $this->constraints = [];
-        $this->constraintsByGroup = [];
+        $this->constraints = array();
+        $this->constraintsByGroup = array();
 
         foreach ($constraints as $constraint) {
             $this->addConstraint(clone $constraint);
@@ -122,7 +122,11 @@ class GenericMetadata implements MetadataInterface
     public function addConstraint(Constraint $constraint)
     {
         if ($constraint instanceof Traverse) {
-            throw new ConstraintDefinitionException(sprintf('The constraint "%s" can only be put on classes. Please use "Symfony\Component\Validator\Constraints\Valid" instead.', \get_class($constraint)));
+            throw new ConstraintDefinitionException(sprintf(
+                'The constraint "%s" can only be put on classes. Please use '.
+                '"Symfony\Component\Validator\Constraints\Valid" instead.',
+                \get_class($constraint)
+            ));
         }
 
         if ($constraint instanceof Valid && null === $constraint->groups) {
@@ -189,7 +193,7 @@ class GenericMetadata implements MetadataInterface
     {
         return isset($this->constraintsByGroup[$group])
             ? $this->constraintsByGroup[$group]
-            : [];
+            : array();
     }
 
     /**

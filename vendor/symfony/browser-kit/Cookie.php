@@ -22,7 +22,7 @@ class Cookie
      * Handles dates as defined by RFC 2616 section 3.3.1, and also some other
      * non-standard, but common formats.
      */
-    private static $dateFormats = [
+    private static $dateFormats = array(
         'D, d M Y H:i:s T',
         'D, d-M-y H:i:s T',
         'D, d-M-Y H:i:s T',
@@ -30,7 +30,7 @@ class Cookie
         'D, d-m-Y H:i:s T',
         'D M j G:i:s Y',
         'D M d H:i:s Y T',
-    ];
+    );
 
     protected $name;
     protected $value;
@@ -40,7 +40,6 @@ class Cookie
     protected $secure;
     protected $httponly;
     protected $rawValue;
-    private $samesite;
 
     /**
      * Sets a cookie.
@@ -53,9 +52,8 @@ class Cookie
      * @param bool        $secure       Indicates that the cookie should only be transmitted over a secure HTTPS connection from the client
      * @param bool        $httponly     The cookie httponly flag
      * @param bool        $encodedValue Whether the value is encoded or not
-     * @param string|null $samesite     The cookie samesite attribute
      */
-    public function __construct(string $name, ?string $value, string $expires = null, string $path = null, string $domain = '', bool $secure = false, bool $httponly = true, bool $encodedValue = false, string $samesite = null)
+    public function __construct($name, $value, $expires = null, $path = null, $domain = '', $secure = false, $httponly = true, $encodedValue = false)
     {
         if ($encodedValue) {
             $this->value = urldecode($value);
@@ -67,9 +65,8 @@ class Cookie
         $this->name = $name;
         $this->path = empty($path) ? '/' : $path;
         $this->domain = $domain;
-        $this->secure = $secure;
-        $this->httponly = $httponly;
-        $this->samesite = $samesite;
+        $this->secure = (bool) $secure;
+        $this->httponly = (bool) $httponly;
 
         if (null !== $expires) {
             $timestampAsDateTime = \DateTime::createFromFormat('U', $expires);
@@ -109,10 +106,6 @@ class Cookie
             $cookie .= '; httponly';
         }
 
-        if (null !== $this->samesite) {
-            $cookie .= '; samesite='.$this->samesite;
-        }
-
         return $cookie;
     }
 
@@ -136,7 +129,7 @@ class Cookie
 
         list($name, $value) = explode('=', array_shift($parts), 2);
 
-        $values = [
+        $values = array(
             'name' => trim($name),
             'value' => trim($value),
             'expires' => null,
@@ -145,8 +138,7 @@ class Cookie
             'secure' => false,
             'httponly' => false,
             'passedRawValue' => true,
-            'samesite' => null,
-        ];
+        );
 
         if (null !== $url) {
             if ((false === $urlParts = parse_url($url)) || !isset($urlParts['host'])) {
@@ -194,8 +186,7 @@ class Cookie
             $values['domain'],
             $values['secure'],
             $values['httponly'],
-            $values['passedRawValue'],
-            $values['samesite']
+            $values['passedRawValue']
         );
     }
 
@@ -306,15 +297,5 @@ class Cookie
     public function isExpired()
     {
         return null !== $this->expires && 0 != $this->expires && $this->expires < time();
-    }
-
-    /**
-     * Gets the samesite attribute of the cookie.
-     *
-     * @return string|null The cookie samesite attribute
-     */
-    public function getSameSite(): ?string
-    {
-        return $this->samesite;
     }
 }

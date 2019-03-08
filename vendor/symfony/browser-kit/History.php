@@ -18,7 +18,7 @@ namespace Symfony\Component\BrowserKit;
  */
 class History
 {
-    protected $stack = [];
+    protected $stack = array();
     protected $position = -1;
 
     /**
@@ -26,7 +26,7 @@ class History
      */
     public function clear()
     {
-        $this->stack = [];
+        $this->stack = array();
         $this->position = -1;
     }
 

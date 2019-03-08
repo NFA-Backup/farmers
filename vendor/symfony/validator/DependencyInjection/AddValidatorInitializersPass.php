@@ -36,11 +36,11 @@ class AddValidatorInitializersPass implements CompilerPassInterface
             return;
         }
 
-        $initializers = [];
+        $initializers = array();
         foreach ($container->findTaggedServiceIds($this->initializerTag, true) as $id => $attributes) {
             $initializers[] = new Reference($id);
         }
 
-        $container->getDefinition($this->builderService)->addMethodCall('addObjectInitializers', [$initializers]);
+        $container->getDefinition($this->builderService)->addMethodCall('addObjectInitializers', array($initializers));
     }
 }

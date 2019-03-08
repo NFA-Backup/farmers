@@ -33,7 +33,7 @@ abstract class AbstractComparison extends Constraint
     public function __construct($options = null)
     {
         if (null === $options) {
-            $options = [];
+            $options = array();
         }
 
         if (\is_array($options)) {

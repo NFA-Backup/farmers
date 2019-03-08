@@ -36,9 +36,9 @@ class CheckCircularReferencesPass implements CompilerPassInterface
     {
         $graph = $container->getCompiler()->getServiceReferenceGraph();
 
-        $this->checkedNodes = [];
+        $this->checkedNodes = array();
         foreach ($graph->getNodes() as $id => $node) {
-            $this->currentPath = [$id];
+            $this->currentPath = array($id);
 
             $this->checkOutEdges($node->getOutEdges());
         }

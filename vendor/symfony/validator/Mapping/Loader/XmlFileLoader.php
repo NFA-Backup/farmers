@@ -72,7 +72,7 @@ class XmlFileLoader extends FileLoader
      */
     protected function parseConstraints(\SimpleXMLElement $nodes)
     {
-        $constraints = [];
+        $constraints = array();
 
         foreach ($nodes as $node) {
             if (\count($node) > 0) {
@@ -83,7 +83,7 @@ class XmlFileLoader extends FileLoader
                 } elseif (\count($node->option) > 0) {
                     $options = $this->parseOptions($node->option);
                 } else {
-                    $options = [];
+                    $options = array();
                 }
             } elseif (\strlen((string) $node) > 0) {
                 $options = XmlUtils::phpize(trim($node));
@@ -106,7 +106,7 @@ class XmlFileLoader extends FileLoader
      */
     protected function parseValues(\SimpleXMLElement $nodes)
     {
-        $values = [];
+        $values = array();
 
         foreach ($nodes as $node) {
             if (\count($node) > 0) {
@@ -115,7 +115,7 @@ class XmlFileLoader extends FileLoader
                 } elseif (\count($node->constraint) > 0) {
                     $value = $this->parseConstraints($node->constraint);
                 } else {
-                    $value = [];
+                    $value = array();
                 }
             } else {
                 $value = trim($node);
@@ -140,7 +140,7 @@ class XmlFileLoader extends FileLoader
      */
     protected function parseOptions(\SimpleXMLElement $nodes)
     {
-        $options = [];
+        $options = array();
 
         foreach ($nodes as $node) {
             if (\count($node) > 0) {
@@ -149,7 +149,7 @@ class XmlFileLoader extends FileLoader
                 } elseif (\count($node->constraint) > 0) {
                     $value = $this->parseConstraints($node->constraint);
                 } else {
-                    $value = [];
+                    $value = array();
                 }
             } else {
                 $value = XmlUtils::phpize($node);
@@ -190,7 +190,7 @@ class XmlFileLoader extends FileLoader
         // state before it completes
         $xml = $this->parseFile($this->file);
 
-        $this->classes = [];
+        $this->classes = array();
 
         foreach ($xml->namespace as $namespace) {
             $this->addNamespaceAlias((string) $namespace['prefix'], trim((string) $namespace));

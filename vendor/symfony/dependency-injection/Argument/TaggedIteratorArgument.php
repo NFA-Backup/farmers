@@ -25,7 +25,7 @@ class TaggedIteratorArgument extends IteratorArgument
      */
     public function __construct($tag)
     {
-        parent::__construct([]);
+        parent::__construct(array());
 
         $this->tag = (string) $tag;
     }

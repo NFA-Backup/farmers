@@ -53,7 +53,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $members = [];
+    public $members = array();
 
     /**
      * @var PropertyMetadata[]
@@ -62,7 +62,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $properties = [];
+    public $properties = array();
 
     /**
      * @var GetterMetadata[]
@@ -71,7 +71,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getPropertyMetadata()} instead.
      */
-    public $getters = [];
+    public $getters = array();
 
     /**
      * @var array
@@ -80,7 +80,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      *           class' serialized representation. Do not access it. Use
      *           {@link getGroupSequence()} instead.
      */
-    public $groupSequence = [];
+    public $groupSequence = array();
 
     /**
      * @var bool
@@ -135,7 +135,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
         // Don't store the cascading strategy. Classes never cascade.
         unset($parentProperties[array_search('cascadingStrategy', $parentProperties)]);
 
-        return array_merge($parentProperties, [
+        return array_merge($parentProperties, array(
             'getters',
             'groupSequence',
             'groupSequenceProvider',
@@ -143,7 +143,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
             'name',
             'properties',
             'defaultGroup',
-        ]);
+        ));
     }
 
     /**
@@ -180,11 +180,17 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     public function addConstraint(Constraint $constraint)
     {
         if (!\in_array(Constraint::CLASS_CONSTRAINT, (array) $constraint->getTargets())) {
-            throw new ConstraintDefinitionException(sprintf('The constraint "%s" cannot be put on classes.', \get_class($constraint)));
+            throw new ConstraintDefinitionException(sprintf(
+                'The constraint "%s" cannot be put on classes.',
+                \get_class($constraint)
+            ));
         }
 
         if ($constraint instanceof Valid) {
-            throw new ConstraintDefinitionException(sprintf('The constraint "%s" cannot be put on classes.', \get_class($constraint)));
+            throw new ConstraintDefinitionException(sprintf(
+                'The constraint "%s" cannot be put on classes.',
+                \get_class($constraint)
+            ));
         }
 
         if ($constraint instanceof Traverse) {
@@ -371,7 +377,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
      */
     public function hasPropertyMetadata($property)
     {
-        return \array_key_exists($property, $this->members);
+        return array_key_exists($property, $this->members);
     }
 
     /**
@@ -380,7 +386,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     public function getPropertyMetadata($property)
     {
         if (!isset($this->members[$property])) {
-            return [];
+            return array();
         }
 
         return $this->members[$property];
@@ -397,7 +403,7 @@ class ClassMetadata extends GenericMetadata implements ClassMetadataInterface
     /**
      * Sets the default group sequence for this class.
      *
-     * @param string[]|GroupSequence $groupSequence An array of group names
+     * @param array $groupSequence An array of group names
      *
      * @return $this
      *

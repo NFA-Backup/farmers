@@ -23,7 +23,7 @@ class AutowireServiceResource implements SelfCheckingResourceInterface, \Seriali
 {
     private $class;
     private $filePath;
-    private $autowiringMetadata = [];
+    private $autowiringMetadata = array();
 
     public function __construct($class, $path, array $autowiringMetadata)
     {
@@ -58,21 +58,15 @@ class AutowireServiceResource implements SelfCheckingResourceInterface, \Seriali
         return 'service.autowire.'.$this->class;
     }
 
-    /**
-     * @internal
-     */
     public function serialize()
     {
-        return serialize([$this->class, $this->filePath, $this->autowiringMetadata]);
+        return serialize(array($this->class, $this->filePath, $this->autowiringMetadata));
     }
 
-    /**
-     * @internal
-     */
     public function unserialize($serialized)
     {
         if (\PHP_VERSION_ID >= 70000) {
-            list($this->class, $this->filePath, $this->autowiringMetadata) = unserialize($serialized, ['allowed_classes' => false]);
+            list($this->class, $this->filePath, $this->autowiringMetadata) = unserialize($serialized, array('allowed_classes' => false));
         } else {
             list($this->class, $this->filePath, $this->autowiringMetadata) = unserialize($serialized);
         }

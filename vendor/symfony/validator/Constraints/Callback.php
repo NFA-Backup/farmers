@@ -37,7 +37,7 @@ class Callback extends Constraint
         }
 
         if (\is_array($options) && !isset($options['callback']) && !isset($options['groups']) && !isset($options['payload'])) {
-            $options = ['callback' => $options];
+            $options = array('callback' => $options);
         }
 
         parent::__construct($options);
@@ -56,6 +56,6 @@ class Callback extends Constraint
      */
     public function getTargets()
     {
-        return [self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT];
+        return array(self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT);
     }
 }

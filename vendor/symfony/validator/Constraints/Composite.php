@@ -62,7 +62,7 @@ abstract class Composite extends Constraint
         $nestedConstraints = $this->$compositeOption;
 
         if (!\is_array($nestedConstraints)) {
-            $nestedConstraints = [$nestedConstraints];
+            $nestedConstraints = array($nestedConstraints);
         }
 
         foreach ($nestedConstraints as $constraint) {
@@ -80,7 +80,7 @@ abstract class Composite extends Constraint
         }
 
         if (!property_exists($this, 'groups')) {
-            $mergedGroups = [];
+            $mergedGroups = array();
 
             foreach ($nestedConstraints as $constraint) {
                 foreach ($constraint->groups as $group) {
@@ -99,7 +99,13 @@ abstract class Composite extends Constraint
                 $excessGroups = array_diff($constraint->groups, $this->groups);
 
                 if (\count($excessGroups) > 0) {
-                    throw new ConstraintDefinitionException(sprintf('The group(s) "%s" passed to the constraint %s should also be passed to its containing constraint %s', implode('", "', $excessGroups), \get_class($constraint), \get_class($this)));
+                    throw new ConstraintDefinitionException(sprintf(
+                        'The group(s) "%s" passed to the constraint %s '.
+                        'should also be passed to its containing constraint %s',
+                        implode('", "', $excessGroups),
+                        \get_class($constraint),
+                        \get_class($this)
+                    ));
                 }
             } else {
                 $constraint->groups = $this->groups;

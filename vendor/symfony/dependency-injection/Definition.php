@@ -28,12 +28,12 @@ class Definition
     private $shared = true;
     private $deprecated = false;
     private $deprecationTemplate;
-    private $properties = [];
-    private $calls = [];
-    private $instanceof = [];
+    private $properties = array();
+    private $calls = array();
+    private $instanceof = array();
     private $autoconfigured = false;
     private $configurator;
-    private $tags = [];
+    private $tags = array();
     private $public = true;
     private $private = true;
     private $synthetic = false;
@@ -41,12 +41,12 @@ class Definition
     private $lazy = false;
     private $decoratedService;
     private $autowired = false;
-    private $autowiringTypes = [];
-    private $changes = [];
-    private $bindings = [];
-    private $errors = [];
+    private $autowiringTypes = array();
+    private $changes = array();
+    private $bindings = array();
+    private $errors = array();
 
-    protected $arguments = [];
+    protected $arguments = array();
 
     private static $defaultDeprecationTemplate = 'The "%service_id%" service is deprecated. You should stop using it, as it will soon be removed.';
 
@@ -54,7 +54,7 @@ class Definition
      * @param string|null $class     The service class
      * @param array       $arguments An array of arguments to pass to the service constructor
      */
-    public function __construct($class = null, array $arguments = [])
+    public function __construct($class = null, array $arguments = array())
     {
         if (null !== $class) {
             $this->setClass($class);
@@ -109,7 +109,7 @@ class Definition
     /**
      * Gets the factory.
      *
-     * @return string|array|null The PHP function or an array containing a class/Reference and a method to call
+     * @return string|array The PHP function or an array containing a class/Reference and a method to call
      */
     public function getFactory()
     {
@@ -119,8 +119,8 @@ class Definition
     /**
      * Sets the service that this service is decorating.
      *
-     * @param string|null $id        The decorated service id, use null to remove decoration
-     * @param string|null $renamedId The new decorated service id
+     * @param null|string $id        The decorated service id, use null to remove decoration
+     * @param null|string $renamedId The new decorated service id
      * @param int         $priority  The priority of decoration
      *
      * @return $this
@@ -138,7 +138,7 @@ class Definition
         if (null === $id) {
             $this->decoratedService = null;
         } else {
-            $this->decoratedService = [$id, $renamedId, (int) $priority];
+            $this->decoratedService = array($id, $renamedId, (int) $priority);
         }
 
         return $this;
@@ -147,7 +147,7 @@ class Definition
     /**
      * Gets the service that this service is decorating.
      *
-     * @return array|null An array composed of the decorated service id, the new id for it and the priority of decoration, null if no service is decorated
+     * @return null|array An array composed of the decorated service id, the new id for it and the priority of decoration, null if no service is decorated
      */
     public function getDecoratedService()
     {
@@ -263,7 +263,7 @@ class Definition
             throw new OutOfBoundsException(sprintf('The index "%d" is not in the range [0, %d].', $index, \count($this->arguments) - 1));
         }
 
-        if (!\array_key_exists($index, $this->arguments)) {
+        if (!array_key_exists($index, $this->arguments)) {
             throw new OutOfBoundsException(sprintf('The argument "%s" doesn\'t exist.', $index));
         }
 
@@ -308,7 +308,7 @@ class Definition
      */
     public function getArgument($index)
     {
-        if (!\array_key_exists($index, $this->arguments)) {
+        if (!array_key_exists($index, $this->arguments)) {
             throw new OutOfBoundsException(sprintf('The argument "%s" doesn\'t exist.', $index));
         }
 
@@ -320,9 +320,9 @@ class Definition
      *
      * @return $this
      */
-    public function setMethodCalls(array $calls = [])
+    public function setMethodCalls(array $calls = array())
     {
-        $this->calls = [];
+        $this->calls = array();
         foreach ($calls as $call) {
             $this->addMethodCall($call[0], $call[1]);
         }
@@ -340,12 +340,12 @@ class Definition
      *
      * @throws InvalidArgumentException on empty $method param
      */
-    public function addMethodCall($method, array $arguments = [])
+    public function addMethodCall($method, array $arguments = array())
     {
         if (empty($method)) {
             throw new InvalidArgumentException('Method name cannot be empty.');
         }
-        $this->calls[] = [$method, $arguments];
+        $this->calls[] = array($method, $arguments);
 
         return $this;
     }
@@ -400,7 +400,7 @@ class Definition
     /**
      * Sets the definition templates to conditionally apply on the current definition, keyed by parent interface/class.
      *
-     * @param ChildDefinition[] $instanceof
+     * @param $instanceof ChildDefinition[]
      *
      * @return $this
      */
@@ -476,7 +476,7 @@ class Definition
      */
     public function getTag($name)
     {
-        return isset($this->tags[$name]) ? $this->tags[$name] : [];
+        return isset($this->tags[$name]) ? $this->tags[$name] : array();
     }
 
     /**
@@ -487,7 +487,7 @@ class Definition
      *
      * @return $this
      */
-    public function addTag($name, array $attributes = [])
+    public function addTag($name, array $attributes = array())
     {
         $this->tags[$name][] = $attributes;
 
@@ -527,7 +527,7 @@ class Definition
      */
     public function clearTags()
     {
-        $this->tags = [];
+        $this->tags = array();
 
         return $this;
     }
@@ -816,7 +816,7 @@ class Definition
     {
         @trigger_error('Autowiring-types are deprecated since Symfony 3.3 and will be removed in 4.0. Use aliases instead.', E_USER_DEPRECATED);
 
-        $this->autowiringTypes = [];
+        $this->autowiringTypes = array();
 
         foreach ($types as $type) {
             $this->autowiringTypes[$type] = true;

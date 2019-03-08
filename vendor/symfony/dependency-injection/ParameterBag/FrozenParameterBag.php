@@ -28,7 +28,7 @@ class FrozenParameterBag extends ParameterBag
      *
      * @param array $parameters An array of parameters
      */
-    public function __construct(array $parameters = [])
+    public function __construct(array $parameters = array())
     {
         $this->parameters = $parameters;
         $this->resolved = true;
