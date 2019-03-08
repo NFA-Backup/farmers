@@ -1,0 +1,4 @@
+name: NFA-FMIS
+description: A module for NFA-FMIS custom changes
+core: 8.x
+type: module
