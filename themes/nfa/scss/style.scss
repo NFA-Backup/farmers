@@ -1,0 +1,14 @@
+// Default variables.
+@import "default-variables";
+
+// Bootstrap Framework.
+@import '../bootstrap/assets/stylesheets/bootstrap';
+
+// Base-theme overrides.
+@import 'overrides';
+
+
+// nfa theme design
+@import "nfa/content";
+@import "nfa/header";
+@import "nfa/footer";

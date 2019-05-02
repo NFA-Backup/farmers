@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+function nfa_preprocess_page(&$variables) {
+  $variables['logo'] = str_replace('.svg', '.png', $variables['logo']);
+}
