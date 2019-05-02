@@ -22,5 +22,3 @@ regions:
 libraries-extend:
   bootstrap/framework:
     - nfa/framework
-
-logo: 'logo.png'
