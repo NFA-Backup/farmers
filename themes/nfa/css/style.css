@@ -6375,3 +6375,16 @@ p:last-child,
 body {
   padding: 0;
   margin: 0; }
+
+.logo img {
+  width: 200px; }
+
+.navbar-brand {
+  text-transform: uppercase;
+  width: 230px;
+  line-height: 1.3em;
+  padding: 10px; }
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: right; } }
