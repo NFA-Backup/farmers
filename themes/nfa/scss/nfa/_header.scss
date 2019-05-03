@@ -1,5 +1,6 @@
 .navbar-default {
   border: none;
+  border-radius: 0;
   background: none;
 }
 .logo {
@@ -21,5 +22,11 @@
     .navbar-nav {
 	  float: right;
 	}
+  }
+}
+
+@media (max-width: $grid-float-breakpoint-max) {
+  .navbar-brand {
+    display: none;
   }
 }

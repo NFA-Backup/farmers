@@ -6378,6 +6378,7 @@ body {
 
 .navbar-default {
   border: none;
+  border-radius: 0;
   background: none; }
 
 .logo img {
@@ -6394,3 +6395,7 @@ body {
     padding: 0; }
     .navbar .navbar-nav {
       float: right; } }
+
+@media (max-width: 767px) {
+  .navbar-brand {
+    display: none; } }
