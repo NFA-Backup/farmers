@@ -6376,6 +6376,10 @@ body {
   padding: 0;
   margin: 0; }
 
+.navbar-default {
+  border: none;
+  background: none; }
+
 .logo img {
   width: 200px; }
 
@@ -6386,5 +6390,7 @@ body {
   padding: 10px; }
 
 @media (min-width: 768px) {
-  .navbar-nav {
-    float: right; } }
+  .navbar {
+    padding: 0; }
+    .navbar .navbar-nav {
+      float: right; } }

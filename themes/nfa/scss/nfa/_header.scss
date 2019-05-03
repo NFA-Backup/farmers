@@ -1,3 +1,7 @@
+.navbar-default {
+  border: none;
+  background: none;
+}
 .logo {
   img {
 	width: 200px;
@@ -10,8 +14,12 @@
   padding: 10px;
 }
 
+
 @media (min-width: $grid-float-breakpoint) {
-  .navbar-nav {
-	float: right;
+  .navbar {
+	padding: 0;
+    .navbar-nav {
+	  float: right;
+	}
   }
 }
