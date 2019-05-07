@@ -6391,6 +6391,7 @@ body {
     width: 160px;
     font-weight: normal; }
   .full .field .field--item {
+    display: block;
     padding: 5px;
     margin-left: 160px;
     background-color: #f5f5f5; }
@@ -6407,6 +6408,7 @@ body {
     width: 160px;
     font-weight: normal; }
   .view-tree-farmer-overview .views-field .field-content {
+    display: block;
     padding: 5px;
     margin-left: 160px;
     background-color: #f5f5f5; }

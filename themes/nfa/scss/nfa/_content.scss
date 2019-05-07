@@ -23,6 +23,7 @@ body {
 	  font-weight: normal;
 	}
 	.field--item {
+	  display: block;
 	  padding: 5px;
 	  margin-left: 160px;
 	  background-color: $gray-lighter;
@@ -44,6 +45,7 @@ body {
 	  font-weight: normal;
 	}
 	.field-content {
+	  display: block;
 	  padding: 5px;
 	  margin-left: 160px;
 	  background-color: $gray-lighter;
