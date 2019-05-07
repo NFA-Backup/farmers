@@ -3,3 +3,26 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.page-header {
+  border: none;
+}
+
+.full {
+  .field {
+	margin-bottom: 5px;
+	overflow: hidden;
+	position: relative;
+	.field--label {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 200px;
+	  font-weight: normal;
+	}
+	.field--item {
+	  padding: 5px;
+	  background-color: $gray-lighter;
+	}
+  }
+}
