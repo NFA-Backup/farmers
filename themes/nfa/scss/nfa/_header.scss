@@ -21,6 +21,13 @@
 	padding: 0;
     .navbar-nav {
 	  float: right;
+	  
+	  .active {
+		a {
+		  background: none;
+		  color: $brand-primary;
+		}
+	  }
 	}
   }
 }

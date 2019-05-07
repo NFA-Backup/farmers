@@ -6433,7 +6433,10 @@ body {
   .navbar {
     padding: 0; }
     .navbar .navbar-nav {
-      float: right; } }
+      float: right; }
+      .navbar .navbar-nav .active a {
+        background: none;
+        color: #c35a20; } }
 
 @media (max-width: 767px) {
   .navbar-brand {
