@@ -8,21 +8,46 @@ body {
   border: none;
 }
 
+
+/*-- article full page --*/
 .full {
   .field {
-	margin-bottom: 5px;
+	margin-bottom: 8px;
 	overflow: hidden;
 	position: relative;
 	.field--label {
 	  position: absolute;
-	  top: 0;
+	  top: 5px;
 	  left: 0;
-	  width: 200px;
+	  width: 160px;
 	  font-weight: normal;
 	}
 	.field--item {
 	  padding: 5px;
+	  margin-left: 160px;
 	  background-color: $gray-lighter;
 	}
   }
 }
+
+/*-- views details --*/
+.view-tree-farmer-overview {
+  .views-field {
+	margin-bottom: 8px;
+	overflow: hidden;
+	position: relative;
+	.views-label {
+	  position: absolute;
+	  top: 5px;
+	  left: 0;
+	  width: 160px;
+	  font-weight: normal;
+	}
+	.field-content {
+	  padding: 5px;
+	  margin-left: 160px;
+	  background-color: $gray-lighter;
+	}
+  }
+}
+
