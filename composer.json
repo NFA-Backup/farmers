@@ -15,7 +15,7 @@
         "drupal/auto_entitylabel": "^2.1@beta"
     },
     "replace": {
-        "drupal/core": "^8.6"
+        "drupal/core": "^8.7"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
