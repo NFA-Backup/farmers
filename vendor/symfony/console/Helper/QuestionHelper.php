@@ -47,29 +47,13 @@ class QuestionHelper extends Helper
         }
 
         if (!$input->isInteractive()) {
-            $default = $question->getDefault();
-
-            if (null === $default) {
-                return $default;
-            }
-
-            if ($validator = $question->getValidator()) {
-                return \call_user_func($question->getValidator(), $default);
-            } elseif ($question instanceof ChoiceQuestion) {
+            if ($question instanceof ChoiceQuestion) {
                 $choices = $question->getChoices();
 
-                if (!$question->isMultiselect()) {
-                    return isset($choices[$default]) ? $choices[$default] : $default;
-                }
-
-                $default = explode(',', $default);
-                foreach ($default as $k => $v) {
-                    $v = trim($v);
-                    $default[$k] = isset($choices[$v]) ? $choices[$v] : $v;
-                }
+                return $choices[$question->getDefault()];
             }
 
-            return $default;
+            return $question->getDefault();
         }
 
         if ($input instanceof StreamableInputInterface && $stream = $input->getStream()) {
@@ -146,7 +130,7 @@ class QuestionHelper extends Helper
     /**
      * Asks the question to the user.
      *
-     * @return bool|mixed|string|null
+     * @return bool|mixed|null|string
      *
      * @throws RuntimeException In case the fallback is deactivated and the response cannot be hidden
      */
@@ -172,7 +156,7 @@ class QuestionHelper extends Helper
             if (false === $ret) {
                 $ret = fgets($inputStream, 4096);
                 if (false === $ret) {
-                    throw new RuntimeException('Aborted.');
+                    throw new RuntimeException('Aborted');
                 }
                 $ret = trim($ret);
             }
@@ -197,7 +181,7 @@ class QuestionHelper extends Helper
         $message = $question->getQuestion();
 
         if ($question instanceof ChoiceQuestion) {
-            $maxWidth = max(array_map([$this, 'strlen'], array_keys($question->getChoices())));
+            $maxWidth = max(array_map(array($this, 'strlen'), array_keys($question->getChoices())));
 
             $messages = (array) $question->getQuestion();
             foreach ($question->getChoices() as $key => $value) {
@@ -258,11 +242,8 @@ class QuestionHelper extends Helper
         while (!feof($inputStream)) {
             $c = fread($inputStream, 1);
 
-            // as opposed to fgets(), fread() returns an empty string when the stream content is empty, not false.
-            if (false === $c || ('' === $ret && '' === $c && null === $question->getDefault())) {
-                shell_exec(sprintf('stty %s', $sttyMode));
-                throw new RuntimeException('Aborted.');
-            } elseif ("\177" === $c) { // Backspace Character
+            // Backspace Character
+            if ("\177" === $c) {
                 if (0 === $numMatches && 0 !== $i) {
                     --$i;
                     // Move cursor backwards
@@ -315,10 +296,6 @@ class QuestionHelper extends Helper
 
                 continue;
             } else {
-                if ("\x80" <= $c) {
-                    $c .= fread($inputStream, ["\xC0" => 1, "\xD0" => 1, "\xE0" => 2, "\xF0" => 3][$c & "\xF0"]);
-                }
-
                 $output->write($c);
                 $ret .= $c;
                 ++$i;
@@ -393,7 +370,7 @@ class QuestionHelper extends Helper
             shell_exec(sprintf('stty %s', $sttyMode));
 
             if (false === $value) {
-                throw new RuntimeException('Aborted.');
+                throw new RuntimeException('Aborted');
             }
 
             $value = trim($value);
@@ -461,7 +438,7 @@ class QuestionHelper extends Helper
         if (file_exists('/usr/bin/env')) {
             // handle other OSs with bash/zsh/ksh/csh if available to hide the answer
             $test = "/usr/bin/env %s -c 'echo OK' 2> /dev/null";
-            foreach (['bash', 'zsh', 'ksh', 'csh'] as $sh) {
+            foreach (array('bash', 'zsh', 'ksh', 'csh') as $sh) {
                 if ('OK' === rtrim(shell_exec(sprintf($test, $sh)))) {
                     self::$shell = $sh;
                     break;
