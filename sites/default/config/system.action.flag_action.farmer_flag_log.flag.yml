@@ -1,0 +1,13 @@
+uuid: 657f9754-1ac3-40e8-b20d-e11a1639bf47
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.farmer_flag_log.flag
+label: 'Flag log'
+type: comment
+plugin: 'flag_action:farmer_flag_log.flag'
+configuration:
+  flag_id: farmer_flag_log
+  flag_action: flag
