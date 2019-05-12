@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.comment.default
+    - field.field.node.farmer_details.comment
     - field.field.node.farmer_details.field_email
     - field.field.node.farmer_details.field_farmer_category_type
     - field.field.node.farmer_details.field_gender
@@ -14,6 +16,7 @@ dependencies:
     - field.field.node.farmer_details.field_tax_identification_number
     - node.type.farmer_details
   module:
+    - comment
     - options
     - user
 id: node.farmer_details.default
@@ -21,6 +24,15 @@ targetEntityType: node
 bundle: farmer_details
 mode: default
 content:
+  comment:
+    weight: 13
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
   field_email:
     weight: 9
     label: above

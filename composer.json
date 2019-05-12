@@ -14,7 +14,8 @@
         "drupal/auto_entitylabel": "^2.1@beta",
         "drupal/views_field_view": "^1.0@beta",
         "drupal/paragraphs": "^1.8",
-        "drupal/bootstrap": "^3.19"
+        "drupal/bootstrap": "^3.19",
+        "drupal/flag": "^4.0@alpha"
     },
     "replace": {
         "drupal/core": "^8.7"

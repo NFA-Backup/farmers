@@ -540,6 +540,74 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  block_2:
+    display_plugin: block
+    id: block_2
+    display_title: 'Land Allocations'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Land Allocations'
+      defaults:
+        title: false
+        arguments: false
+      arguments: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_farmer_category_type'
+        - 'config:field.storage.node.field_phone_number'
+  block_3:
+    display_plugin: block
+    id: block_3
+    display_title: 'Flagged farmer log'
+    position: 4
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Flagged farmer log'
+      defaults:
+        title: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_farmer_category_type'
+        - 'config:field.storage.node.field_phone_number'
+  block_4:
+    display_plugin: block
+    id: block_4
+    display_title: 'Farmer log'
+    position: 4
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Farmer log'
+      defaults:
+        title: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_farmer_category_type'
+        - 'config:field.storage.node.field_phone_number'
   page_1:
     display_plugin: page
     id: page_1
