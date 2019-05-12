@@ -1,0 +1,7 @@
+status: '1'
+pattern: 'FIN-[node:field_farmer_name_ref]'
+php: 0
+escape: 0
+dependencies:
+  config:
+    - node.type.area_planting_history

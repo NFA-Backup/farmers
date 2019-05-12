@@ -1,0 +1,19 @@
+uuid: 2c20ebe6-6ed9-485a-8b19-322ad402f464
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tax_identification_number
+    - node.type.farmer_details
+id: node.farmer_details.field_tax_identification_number
+field_name: field_tax_identification_number
+entity_type: node
+bundle: farmer_details
+label: 'Tax Identification Number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

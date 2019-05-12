@@ -1,0 +1,29 @@
+uuid: 77be8a30-e486-4a8a-8a79-212784f3c737
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_species_variety
+    - paragraphs.paragraphs_type.sub_area
+    - taxonomy.vocabulary.species_variety
+id: paragraph.sub_area.field_sub_area_species_variety
+field_name: field_sub_area_species_variety
+entity_type: paragraph
+bundle: sub_area
+label: 'Sub-area species & variety'
+description: 'Tree species / variety (if known)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      species_variety: species_variety
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

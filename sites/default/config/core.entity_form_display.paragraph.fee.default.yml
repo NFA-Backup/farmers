@@ -1,0 +1,66 @@
+uuid: 0c706149-253d-487d-970d-48ad55c6a77d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fee.field_fee_payable_date
+    - field.field.paragraph.fee.field_fee_total
+    - field.field.paragraph.fee.field_fee_type
+    - field.field.paragraph.fee.field_fee_unit_cost
+    - field.field.paragraph.fee.field_fee_unit_description
+    - field.field.paragraph.fee.field_fee_unit_number
+    - paragraphs.paragraphs_type.fee
+  module:
+    - computed_field
+    - datetime
+id: paragraph.fee.default
+targetEntityType: paragraph
+bundle: fee
+mode: default
+content:
+  field_fee_payable_date:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_fee_total:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_fee_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_fee_unit_cost:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_fee_unit_description:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_fee_unit_number:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

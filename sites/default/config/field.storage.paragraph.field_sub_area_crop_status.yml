@@ -1,0 +1,20 @@
+uuid: 898307a6-d79c-4a80-a389-ef0ec1d1e6ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_sub_area_crop_status
+field_name: field_sub_area_crop_status
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

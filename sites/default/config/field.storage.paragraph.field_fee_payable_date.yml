@@ -1,0 +1,20 @@
+uuid: 1d50b93c-23ed-41de-bde0-7fb5bb2b845b
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - paragraphs
+id: paragraph.field_fee_payable_date
+field_name: field_fee_payable_date
+entity_type: paragraph
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

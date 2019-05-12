@@ -1,0 +1,19 @@
+uuid: faca0bf0-0e70-4a21-b29f-af7c149ab103
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_postal_address
+    - node.type.farmer_details
+id: node.farmer_details.field_postal_address
+field_name: field_postal_address
+entity_type: node
+bundle: farmer_details
+label: 'Postal address'
+description: 'Postal address'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

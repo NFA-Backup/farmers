@@ -1,0 +1,29 @@
+uuid: 19970244-453b-4147-aa5d-15df8e45f5c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_crop_status
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+    - taxonomy.vocabulary.crop_status
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_crop_status
+field_name: field_sub_area_crop_status
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area - crop status'
+description: 'Predefined scoring of quality'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      crop_status: crop_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

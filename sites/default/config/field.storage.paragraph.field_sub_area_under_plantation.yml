@@ -1,0 +1,21 @@
+uuid: 861f7f39-7fab-4367-ab96-45ad903d7ec5
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - paragraphs
+id: paragraph.field_sub_area_under_plantation
+field_name: field_sub_area_under_plantation
+entity_type: paragraph
+type: computed_decimal
+settings:
+  precision: '10'
+  scale: '2'
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

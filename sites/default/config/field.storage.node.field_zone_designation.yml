@@ -1,0 +1,42 @@
+uuid: b23b99f1-9ece-4a9c-bdf3-429f9a0b221d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_zone_designation
+field_name: field_zone_designation
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: One
+    -
+      value: '2'
+      label: Two
+    -
+      value: '3'
+      label: Three
+    -
+      value: '4'
+      label: Four
+    -
+      value: '5'
+      label: Five
+    -
+      value: '6'
+      label: Six
+    -
+      value: '7'
+      label: Seven
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

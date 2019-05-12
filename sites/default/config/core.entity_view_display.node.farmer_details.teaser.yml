@@ -1,0 +1,38 @@
+uuid: 32e0e4c8-e8e9-4447-87cf-b0ce98a73dab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.farmer_details.field_email
+    - field.field.node.farmer_details.field_farmer_category_type
+    - field.field.node.farmer_details.field_gender
+    - field.field.node.farmer_details.field_historical_information
+    - field.field.node.farmer_details.field_national_identification_no
+    - field.field.node.farmer_details.field_phone_number
+    - field.field.node.farmer_details.field_physical_address
+    - field.field.node.farmer_details.field_postal_address
+    - field.field.node.farmer_details.field_tax_identification_number
+    - node.type.farmer_details
+  module:
+    - user
+id: node.farmer_details.teaser
+targetEntityType: node
+bundle: farmer_details
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_email: true
+  field_farmer_category_type: true
+  field_gender: true
+  field_historical_information: true
+  field_national_identification_no: true
+  field_phone_number: true
+  field_physical_address: true
+  field_postal_address: true
+  field_tax_identification_number: true

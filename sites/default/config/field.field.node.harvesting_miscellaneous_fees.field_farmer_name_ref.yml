@@ -1,0 +1,28 @@
+uuid: 886c57c4-3d76-45aa-914e-c58eeb4db233
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_farmer_name_ref
+    - node.type.farmer_details
+    - node.type.harvesting_miscellaneous_fees
+id: node.harvesting_miscellaneous_fees.field_farmer_name_ref
+field_name: field_farmer_name_ref
+entity_type: node
+bundle: harvesting_miscellaneous_fees
+label: 'Farmer name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      farmer_details: farmer_details
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

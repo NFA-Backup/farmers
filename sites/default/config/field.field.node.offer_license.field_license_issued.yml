@@ -1,0 +1,23 @@
+uuid: 4d6dfa45-30a9-4058-88c0-51105a635c51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_license_issued
+    - node.type.offer_license
+id: node.offer_license.field_license_issued
+field_name: field_license_issued
+entity_type: node
+bundle: offer_license
+label: 'License issued?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

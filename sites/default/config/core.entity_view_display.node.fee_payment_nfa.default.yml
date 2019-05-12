@@ -1,0 +1,130 @@
+uuid: c284bc12-949b-4105-8f62-441c3363fc54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.fee_payment_nfa.field_amount_paid
+    - field.field.node.fee_payment_nfa.field_block_id_ref
+    - field.field.node.fee_payment_nfa.field_date_of_nfa_receipt
+    - field.field.node.fee_payment_nfa.field_date_of_ura_receipt
+    - field.field.node.fee_payment_nfa.field_farmer_name_ref
+    - field.field.node.fee_payment_nfa.field_licence_id_ref
+    - field.field.node.fee_payment_nfa.field_name_of_person
+    - field.field.node.fee_payment_nfa.field_nfa_counter_receipt_number
+    - field.field.node.fee_payment_nfa.field_offer_id_ref
+    - field.field.node.fee_payment_nfa.field_scan_of_ura_receipt
+    - field.field.node.fee_payment_nfa.field_ura_receipt_number
+    - node.type.fee_payment_nfa
+  module:
+    - computed_field
+    - datetime
+    - file
+    - user
+id: node.fee_payment_nfa.default
+targetEntityType: node
+bundle: fee_payment_nfa
+mode: default
+content:
+  field_amount_paid:
+    weight: 112
+    label: above
+    settings:
+      cache_unit: -1
+      cache_duration: 1
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: computed_decimal
+    region: content
+  field_block_id_ref:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_date_of_nfa_receipt:
+    weight: 106
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_of_ura_receipt:
+    weight: 109
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_farmer_name_ref:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_licence_id_ref:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_name_of_person:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_nfa_counter_receipt_number:
+    weight: 107
+    label: above
+    settings:
+      sanitized: true
+      cache_unit: -1
+      cache_duration: 1
+    third_party_settings: {  }
+    type: computed_string
+    region: content
+  field_offer_id_ref:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_scan_of_ura_receipt:
+    weight: 111
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_ura_receipt_number:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

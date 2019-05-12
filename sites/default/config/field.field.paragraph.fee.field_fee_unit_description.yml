@@ -1,0 +1,19 @@
+uuid: 9f46c16d-2817-48e7-8d98-b621f6f6d6b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fee_unit_description
+    - paragraphs.paragraphs_type.fee
+id: paragraph.fee.field_fee_unit_description
+field_name: field_fee_unit_description
+entity_type: paragraph
+bundle: fee
+label: 'Fee unit description'
+description: 'Brief description of fee unit'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

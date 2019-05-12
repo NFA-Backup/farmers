@@ -1,0 +1,21 @@
+uuid: ae038169-fb8d-40f2-bd2b-0f2aa8ac8297
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zone_designation
+    - node.type.index_zone_annual_rent_charges
+  module:
+    - options
+id: node.index_zone_annual_rent_charges.field_zone_designation
+field_name: field_zone_designation
+entity_type: node
+bundle: index_zone_annual_rent_charges
+label: 'Zone designation'
+description: 'Or Zone designation'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

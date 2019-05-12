@@ -1,0 +1,19 @@
+uuid: 755fa33d-65ed-4af4-bcd1-992e0edcf93c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fee_unit_number
+    - paragraphs.paragraphs_type.fee
+id: paragraph.fee.field_fee_unit_number
+field_name: field_fee_unit_number
+entity_type: paragraph
+bundle: fee
+label: 'Fee unit number'
+description: 'Number of units '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 637c89a1-8b69-4279-ac93-dc9b94d620f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - node
+id: node.field_amount_paid
+field_name: field_amount_paid
+entity_type: node
+type: computed_decimal
+settings:
+  precision: '10'
+  scale: '2'
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

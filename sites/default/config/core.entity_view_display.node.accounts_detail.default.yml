@@ -1,0 +1,115 @@
+uuid: 878b743f-2990-49f4-aa80-92f7a94a3711
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.accounts_detail.body
+    - field.field.node.accounts_detail.field_area_allocated
+    - field.field.node.accounts_detail.field_area_planted
+    - field.field.node.accounts_detail.field_charge_amount
+    - field.field.node.accounts_detail.field_charge_type
+    - field.field.node.accounts_detail.field_due_date
+    - field.field.node.accounts_detail.field_farmer_name_ref
+    - field.field.node.accounts_detail.field_licence_id_ref
+    - field.field.node.accounts_detail.field_offer_id_ref
+    - field.field.node.accounts_detail.field_year
+    - node.type.accounts_detail
+  module:
+    - datetime
+    - options
+    - text
+    - user
+id: node.accounts_detail.default
+targetEntityType: node
+bundle: accounts_detail
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_area_allocated:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_area_planted:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_charge_amount:
+    weight: 109
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_charge_type:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_due_date:
+    weight: 108
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_farmer_name_ref:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_licence_id_ref:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_offer_id_ref:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_year:
+    weight: 105
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

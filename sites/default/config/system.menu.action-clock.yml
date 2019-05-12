@@ -1,0 +1,8 @@
+uuid: 07048a0f-38d3-4f8c-a044-9f7521b6a018
+langcode: en
+status: true
+dependencies: {  }
+id: action-clock
+label: 'Quick Add'
+description: 'Menu link for adding content easly'
+locked: false

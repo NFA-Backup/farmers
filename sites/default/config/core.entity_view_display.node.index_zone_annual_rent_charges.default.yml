@@ -1,0 +1,62 @@
+uuid: 72ed5650-a53f-416a-8e6e-ee3fcfdc1c8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.index_zone_annual_rent_charges.field_amount_paid
+    - field.field.node.index_zone_annual_rent_charges.field_site_index
+    - field.field.node.index_zone_annual_rent_charges.field_year
+    - field.field.node.index_zone_annual_rent_charges.field_zone_designation
+    - node.type.index_zone_annual_rent_charges
+  module:
+    - computed_field
+    - datetime
+    - options
+    - user
+id: node.index_zone_annual_rent_charges.default
+targetEntityType: node
+bundle: index_zone_annual_rent_charges
+mode: default
+content:
+  field_amount_paid:
+    weight: 104
+    label: above
+    settings:
+      cache_unit: -1
+      cache_duration: 1
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: computed_decimal
+    region: content
+  field_site_index:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_year:
+    weight: 103
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_zone_designation:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

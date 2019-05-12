@@ -1,0 +1,26 @@
+uuid: c832d820-2176-473d-9a31-e75286e82929
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_offer_id
+    - node.type.offer_license
+  module:
+    - computed_field
+id: node.offer_license.field_offer_id
+field_name: field_offer_id
+entity_type: node
+bundle: offer_license
+label: 'Offer ID'
+description: 'Offer Letter ID'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  code: '$value = time();'
+  prefix: ''
+  suffix: ''
+field_type: computed_integer

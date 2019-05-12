@@ -1,0 +1,22 @@
+uuid: 0b16163b-b13f-4f36-84f7-f917fb055e4f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nfa
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: nfa_messages
+theme: nfa
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

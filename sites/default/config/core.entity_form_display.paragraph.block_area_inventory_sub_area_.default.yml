@@ -1,0 +1,92 @@
+uuid: 38202809-73a9-4fbc-b2c3-9ef4aae1c32e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_crop_status
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_harvest_details
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_maintenance
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_observations
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_purpose
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_species_and_varie
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_rate
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_volume
+    - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_under_plantation
+    - field.field.paragraph.block_area_inventory_sub_area_.field_year
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+  module:
+    - computed_field
+    - datetime
+id: paragraph.block_area_inventory_sub_area_.default
+targetEntityType: paragraph
+bundle: block_area_inventory_sub_area_
+mode: default
+content:
+  field_sub_area_crop_status:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sub_area_harvest_details:
+    weight: 9
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_sub_area_maintenance:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sub_area_observations:
+    weight: 8
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_sub_area_purpose:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sub_area_species_and_varie:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sub_area_stocking_rate:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_sub_area_stocking_volume:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_sub_area_under_plantation:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_year:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

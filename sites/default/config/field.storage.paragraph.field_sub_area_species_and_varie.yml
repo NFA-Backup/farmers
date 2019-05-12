@@ -1,0 +1,20 @@
+uuid: 74937511-6614-4abd-8420-c3cd4c51c012
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_sub_area_species_and_varie
+field_name: field_sub_area_species_and_varie
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

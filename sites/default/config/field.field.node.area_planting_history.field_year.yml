@@ -1,0 +1,24 @@
+uuid: cdc6a5f0-73c9-4c5e-9e9c-f16805c2f144
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year
+    - node.type.area_planting_history
+  module:
+    - datetime
+id: node.area_planting_history.field_year
+field_name: field_year
+entity_type: node
+bundle: area_planting_history
+label: Year
+description: 'Year for which planting info being entered'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: relative
+    default_date: 'Y'
+default_value_callback: ''
+settings: {  }
+field_type: datetime

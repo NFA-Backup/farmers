@@ -1,0 +1,22 @@
+uuid: 18097672-8648-4bf3-bb2c-6451ba1eb2e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.harvesting_miscellaneous_fees
+id: node.harvesting_miscellaneous_fees.promote
+field_name: promote
+entity_type: node
+bundle: harvesting_miscellaneous_fees
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

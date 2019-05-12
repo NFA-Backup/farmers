@@ -1,0 +1,21 @@
+uuid: 1d6ee28a-ad96-4ba5-bb49-19d3547211d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - paragraphs
+id: paragraph.field_fee_total
+field_name: field_fee_total
+entity_type: paragraph
+type: computed_integer
+settings:
+  unsigned: false
+  size: normal
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

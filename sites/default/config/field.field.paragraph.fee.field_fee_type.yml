@@ -1,0 +1,21 @@
+uuid: 52aade1d-956c-4751-87fd-a27fb266624a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fee_type
+    - paragraphs.paragraphs_type.fee
+  module:
+    - options
+id: paragraph.fee.field_fee_type
+field_name: field_fee_type
+entity_type: paragraph
+bundle: fee
+label: 'Fee type'
+description: 'Fee type – harvest, other, miscellaneous'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,24 @@
+uuid: a9e3911b-2b86-4f7d-8590-4a34d91d09da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.harvesting_miscellaneous_fees
+  module:
+    - datetime
+id: node.harvesting_miscellaneous_fees.field_date
+field_name: field_date
+entity_type: node
+bundle: harvesting_miscellaneous_fees
+label: Date
+description: 'Date of invoice'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

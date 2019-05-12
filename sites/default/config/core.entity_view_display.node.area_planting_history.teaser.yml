@@ -1,0 +1,26 @@
+uuid: d1929f6e-2ef6-42d0-b7ee-4b5cc994866e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.area_planting_history.field_farmer_name_ref
+    - field.field.node.area_planting_history.field_sub_area
+    - field.field.node.area_planting_history.field_year
+    - node.type.area_planting_history
+  module:
+    - user
+id: node.area_planting_history.teaser
+targetEntityType: node
+bundle: area_planting_history
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_farmer_name_ref: true
+  field_sub_area: true
+  field_year: true

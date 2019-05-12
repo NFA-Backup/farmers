@@ -1,0 +1,21 @@
+uuid: 91510a17-f6c5-4bfc-b3e1-43464826f530
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year
+    - node.type.index_zone_annual_rent_charges
+  module:
+    - datetime
+id: node.index_zone_annual_rent_charges.field_year
+field_name: field_year
+entity_type: node
+bundle: index_zone_annual_rent_charges
+label: Year
+description: 'Choose year to set rent for'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

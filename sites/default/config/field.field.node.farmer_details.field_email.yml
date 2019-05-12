@@ -1,0 +1,19 @@
+uuid: 46a0fd80-1b78-45e4-b715-150c12b48001
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.farmer_details
+id: node.farmer_details.field_email
+field_name: field_email
+entity_type: node
+bundle: farmer_details
+label: Email
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

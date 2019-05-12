@@ -1,0 +1,32 @@
+uuid: 97c962e2-92a4-499e-a1cb-8e87dfba0ed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.harvesting_miscellaneous_fees.field_block_id_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_date
+    - field.field.node.harvesting_miscellaneous_fees.field_farmer_name_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_fee
+    - field.field.node.harvesting_miscellaneous_fees.field_licence_id_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_offer_date_ref
+    - node.type.harvesting_miscellaneous_fees
+  module:
+    - user
+id: node.harvesting_miscellaneous_fees.teaser
+targetEntityType: node
+bundle: harvesting_miscellaneous_fees
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_block_id_ref: true
+  field_date: true
+  field_farmer_name_ref: true
+  field_fee: true
+  field_licence_id_ref: true
+  field_offer_date_ref: true

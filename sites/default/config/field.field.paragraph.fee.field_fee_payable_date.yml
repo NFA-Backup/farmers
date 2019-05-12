@@ -1,0 +1,21 @@
+uuid: 3c6209fb-fb05-4d91-8d97-ae46d7873ca6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fee_payable_date
+    - paragraphs.paragraphs_type.fee
+  module:
+    - datetime
+id: paragraph.fee.field_fee_payable_date
+field_name: field_fee_payable_date
+entity_type: paragraph
+bundle: fee
+label: 'Fee payable date'
+description: 'Payable due by'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

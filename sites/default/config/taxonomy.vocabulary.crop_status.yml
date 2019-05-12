@@ -1,0 +1,8 @@
+uuid: fba59a04-69a3-4483-9219-6859fbfb5a1e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Crop status'
+vid: crop_status
+description: 'Crop status'
+weight: 0

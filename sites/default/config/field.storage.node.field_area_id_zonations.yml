@@ -1,0 +1,42 @@
+uuid: 55d2adcc-7c0a-415f-9fbc-e9a2388b4dcf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_area_id_zonations
+field_name: field_area_id_zonations
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: One
+    -
+      value: '2'
+      label: Two
+    -
+      value: '3'
+      label: Three
+    -
+      value: '4'
+      label: Four
+    -
+      value: '5'
+      label: Five
+    -
+      value: '6'
+      label: Six
+    -
+      value: '7'
+      label: Seven
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

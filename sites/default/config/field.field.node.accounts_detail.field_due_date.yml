@@ -1,0 +1,21 @@
+uuid: 19857dc2-7d0e-4ea3-ae1c-987900d6cdfc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_due_date
+    - node.type.accounts_detail
+  module:
+    - datetime
+id: node.accounts_detail.field_due_date
+field_name: field_due_date
+entity_type: node
+bundle: accounts_detail
+label: 'Due Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

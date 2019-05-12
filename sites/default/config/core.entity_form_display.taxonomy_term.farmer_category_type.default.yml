@@ -1,0 +1,22 @@
+uuid: 19012d02-c834-4754-a5cd-204ea66bf9de
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.farmer_category_type
+id: taxonomy_term.farmer_category_type.default
+targetEntityType: taxonomy_term
+bundle: farmer_category_type
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true

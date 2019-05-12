@@ -1,0 +1,24 @@
+uuid: 14ea3a34-8037-491c-b574-e07c49a9be5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_offer_date
+    - node.type.offer_license
+  module:
+    - datetime
+id: node.offer_license.field_offer_date
+field_name: field_offer_date
+entity_type: node
+bundle: offer_license
+label: 'Offer date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

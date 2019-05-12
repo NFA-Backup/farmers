@@ -1,0 +1,30 @@
+uuid: 6e89ad38-046e-43a5-9b25-1ffde411e13a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.area_site_index_zonations.field_area_id_zonations
+    - field.field.node.area_site_index_zonations.field_block_id_zonations
+    - field.field.node.area_site_index_zonations.field_cfr
+    - field.field.node.area_site_index_zonations.field_site_index
+    - field.field.node.area_site_index_zonations.field_zone_designation
+    - node.type.area_site_index_zonations
+  module:
+    - user
+id: node.area_site_index_zonations.teaser
+targetEntityType: node
+bundle: area_site_index_zonations
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_area_id_zonations: true
+  field_block_id_zonations: true
+  field_cfr: true
+  field_site_index: true
+  field_zone_designation: true

@@ -1,0 +1,77 @@
+uuid: 1a2bc5c2-8b94-42c3-bbaf-145e8b30b258
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.harvesting_miscellaneous_fees.field_block_id_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_date
+    - field.field.node.harvesting_miscellaneous_fees.field_farmer_name_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_fee
+    - field.field.node.harvesting_miscellaneous_fees.field_licence_id_ref
+    - field.field.node.harvesting_miscellaneous_fees.field_offer_date_ref
+    - node.type.harvesting_miscellaneous_fees
+  module:
+    - datetime
+    - entity_reference_revisions
+    - user
+id: node.harvesting_miscellaneous_fees.default
+targetEntityType: node
+bundle: harvesting_miscellaneous_fees
+mode: default
+content:
+  field_block_id_ref:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_date:
+    weight: 107
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_farmer_name_ref:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_fee:
+    type: entity_reference_revisions_entity_view
+    weight: 108
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_licence_id_ref:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_offer_date_ref:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

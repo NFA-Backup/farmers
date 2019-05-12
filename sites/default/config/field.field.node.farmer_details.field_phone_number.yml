@@ -1,0 +1,19 @@
+uuid: 41362759-9c04-4851-98a1-e875ea3c7d29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone_number
+    - node.type.farmer_details
+id: node.farmer_details.field_phone_number
+field_name: field_phone_number
+entity_type: node
+bundle: farmer_details
+label: 'Phone number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

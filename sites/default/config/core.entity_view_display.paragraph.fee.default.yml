@@ -1,0 +1,73 @@
+uuid: 77022c3f-08a4-420a-95ee-f3aa19fae7a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fee.field_fee_payable_date
+    - field.field.paragraph.fee.field_fee_total
+    - field.field.paragraph.fee.field_fee_type
+    - field.field.paragraph.fee.field_fee_unit_cost
+    - field.field.paragraph.fee.field_fee_unit_description
+    - field.field.paragraph.fee.field_fee_unit_number
+    - paragraphs.paragraphs_type.fee
+  module:
+    - computed_field
+    - datetime
+    - options
+id: paragraph.fee.default
+targetEntityType: paragraph
+bundle: fee
+mode: default
+content:
+  field_fee_payable_date:
+    weight: 4
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_fee_total:
+    weight: 5
+    label: above
+    settings:
+      cache_unit: -1
+      cache_duration: 1
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: computed_integer
+    region: content
+  field_fee_type:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_fee_unit_cost:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_fee_unit_description:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_fee_unit_number:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

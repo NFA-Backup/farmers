@@ -1,0 +1,22 @@
+uuid: 1bc1ee4e-8fd1-4360-866a-8b96bcd466d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.fee_payment_nfa
+id: node.fee_payment_nfa.status
+field_name: status
+entity_type: node
+bundle: fee_payment_nfa
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

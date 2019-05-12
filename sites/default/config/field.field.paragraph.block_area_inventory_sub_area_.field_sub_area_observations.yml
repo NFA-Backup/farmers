@@ -1,0 +1,19 @@
+uuid: 2a213b68-8dce-4f76-b206-085a482b5b05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_observations
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_observations
+field_name: field_sub_area_observations
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area - observations'
+description: 'Any observations / comments on the crop'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

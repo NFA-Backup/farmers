@@ -1,0 +1,22 @@
+uuid: cd25d574-179e-42b9-badb-850eb9a0f5b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.fee_payment_nfa
+id: node.fee_payment_nfa.promote
+field_name: promote
+entity_type: node
+bundle: fee_payment_nfa
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

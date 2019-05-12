@@ -1,0 +1,30 @@
+uuid: 6000eb3d-b7db-4ac8-a739-6be83bf764ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.block_area_inventory.field_block_id_ref
+    - field.field.node.block_area_inventory.field_farmer_name_ref
+    - field.field.node.block_area_inventory.field_licence_id_ref
+    - field.field.node.block_area_inventory.field_offer_id_ref
+    - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - node.type.block_area_inventory
+  module:
+    - user
+id: node.block_area_inventory.teaser
+targetEntityType: node
+bundle: block_area_inventory
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_block_id_ref: true
+  field_farmer_name_ref: true
+  field_licence_id_ref: true
+  field_offer_id_ref: true
+  field_sub_area_block_inventory: true

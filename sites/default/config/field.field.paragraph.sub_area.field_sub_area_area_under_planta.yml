@@ -1,0 +1,23 @@
+uuid: 0a68a881-b3d1-473a-a1f8-0a5c035950a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_area_under_planta
+    - paragraphs.paragraphs_type.sub_area
+id: paragraph.sub_area.field_sub_area_area_under_planta
+field_name: field_sub_area_area_under_planta
+entity_type: paragraph
+bundle: sub_area
+label: 'Sub-area area under plantation'
+description: 'Hectarage planted'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: Hectare
+  suffix: ''
+field_type: integer

@@ -1,0 +1,28 @@
+uuid: 05a7c94a-37b4-4498-8433-cde00e7a475b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_farmer_name_ref
+    - node.type.accounts_detail
+    - node.type.farmer_details
+id: node.accounts_detail.field_farmer_name_ref
+field_name: field_farmer_name_ref
+entity_type: node
+bundle: accounts_detail
+label: 'Farmer name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      farmer_details: farmer_details
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

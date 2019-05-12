@@ -1,0 +1,19 @@
+uuid: 00728b07-f949-461f-9dc1-fee0d3208b0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_harvest_details
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_harvest_details
+field_name: field_sub_area_harvest_details
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area - harvest details'
+description: 'How harvested / processed'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

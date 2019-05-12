@@ -1,0 +1,8 @@
+uuid: e021d61f-941d-4bc0-ac2f-448cd2c5f329
+langcode: en
+status: true
+dependencies: {  }
+name: 'Crop purpose'
+vid: crop_purpose
+description: 'Crop purpose'
+weight: 0

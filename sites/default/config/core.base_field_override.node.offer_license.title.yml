@@ -1,0 +1,18 @@
+uuid: c0037f1b-206f-414e-bdbf-af97a74f4f44
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.offer_license
+id: node.offer_license.title
+field_name: title
+entity_type: node
+bundle: offer_license
+label: 'Offer & License Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

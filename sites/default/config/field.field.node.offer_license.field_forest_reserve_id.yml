@@ -1,0 +1,21 @@
+uuid: dc718d68-b417-4aeb-9497-04de65ace67a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_forest_reserve_id
+    - node.type.offer_license
+  module:
+    - options
+id: node.offer_license.field_forest_reserve_id
+field_name: field_forest_reserve_id
+entity_type: node
+bundle: offer_license
+label: 'Forest Reserve ID'
+description: 'Name of Forest Reserve'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

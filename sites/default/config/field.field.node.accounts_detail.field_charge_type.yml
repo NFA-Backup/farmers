@@ -1,0 +1,21 @@
+uuid: 027127be-fb39-4ba5-85a8-a47a00af48ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_charge_type
+    - node.type.accounts_detail
+  module:
+    - options
+id: node.accounts_detail.field_charge_type
+field_name: field_charge_type
+entity_type: node
+bundle: accounts_detail
+label: 'Charge Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

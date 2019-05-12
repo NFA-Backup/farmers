@@ -1,0 +1,20 @@
+uuid: 81dd18bc-ac2d-4eda-855d-d815d95aee59
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_sub_area_area_under_planta
+field_name: field_sub_area_area_under_planta
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

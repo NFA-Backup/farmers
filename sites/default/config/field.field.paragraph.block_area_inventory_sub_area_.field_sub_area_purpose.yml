@@ -1,0 +1,29 @@
+uuid: abcf2e18-02a4-4681-972e-8d5e7e56b70a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_purpose
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+    - taxonomy.vocabulary.crop_purpose
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_purpose
+field_name: field_sub_area_purpose
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area- purpose'
+description: 'Purpose of crop – timber, utility poles etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      crop_purpose: crop_purpose
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,34 @@
+uuid: e3c8d138-9679-4e86-ac25-3946c93c4d49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fee
+    - node.type.harvesting_miscellaneous_fees
+    - paragraphs.paragraphs_type.fee
+  module:
+    - entity_reference_revisions
+id: node.harvesting_miscellaneous_fees.field_fee
+field_name: field_fee
+entity_type: node
+bundle: harvesting_miscellaneous_fees
+label: Fee
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      fee: fee
+    target_bundles_drag_drop:
+      fee:
+        enabled: true
+        weight: 3
+      sub_area:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

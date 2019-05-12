@@ -1,0 +1,21 @@
+uuid: 6328eeec-f195-4ae9-b178-65fb8ac7c981
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_site_index
+    - node.type.area_site_index_zonations
+  module:
+    - options
+id: node.area_site_index_zonations.field_site_index
+field_name: field_site_index
+entity_type: node
+bundle: area_site_index_zonations
+label: 'Site index'
+description: 'Associate site index with them and/or'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

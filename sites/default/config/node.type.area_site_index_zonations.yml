@@ -1,0 +1,18 @@
+uuid: 4afe871e-edb1-4efd-9cd4-078758c84b79
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Area site index / zonations'
+type: area_site_index_zonations
+description: 'Area site index / zonations'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

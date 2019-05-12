@@ -1,0 +1,21 @@
+uuid: dce7c1bc-fe82-4bdc-958c-d950f40396c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - paragraphs
+id: paragraph.field_sub_area_stocking_rate
+field_name: field_sub_area_stocking_rate
+entity_type: paragraph
+type: computed_decimal
+settings:
+  precision: '10'
+  scale: '2'
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

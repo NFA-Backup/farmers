@@ -1,0 +1,21 @@
+uuid: dd14640c-27cf-45b1-b2d4-62901b78343c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_site_index
+    - node.type.index_zone_annual_rent_charges
+  module:
+    - options
+id: node.index_zone_annual_rent_charges.field_site_index
+field_name: field_site_index
+entity_type: node
+bundle: index_zone_annual_rent_charges
+label: 'Site index'
+description: 'Choose either site index'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

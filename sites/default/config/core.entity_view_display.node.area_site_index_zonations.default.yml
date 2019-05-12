@@ -1,0 +1,60 @@
+uuid: 6b8028a5-8736-4976-b5e9-fb2585b979b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.area_site_index_zonations.field_area_id_zonations
+    - field.field.node.area_site_index_zonations.field_block_id_zonations
+    - field.field.node.area_site_index_zonations.field_cfr
+    - field.field.node.area_site_index_zonations.field_site_index
+    - field.field.node.area_site_index_zonations.field_zone_designation
+    - node.type.area_site_index_zonations
+  module:
+    - options
+    - user
+id: node.area_site_index_zonations.default
+targetEntityType: node
+bundle: area_site_index_zonations
+mode: default
+content:
+  field_area_id_zonations:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_block_id_zonations:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_cfr:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_site_index:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_zone_designation:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

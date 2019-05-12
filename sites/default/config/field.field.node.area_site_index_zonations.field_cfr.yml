@@ -1,0 +1,21 @@
+uuid: 843c5a2f-026b-42e5-9aad-8807b86e42c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cfr
+    - node.type.area_site_index_zonations
+  module:
+    - options
+id: node.area_site_index_zonations.field_cfr
+field_name: field_cfr
+entity_type: node
+bundle: area_site_index_zonations
+label: CFR
+description: 'or Reserve(s) (and all blocks & areas in them)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

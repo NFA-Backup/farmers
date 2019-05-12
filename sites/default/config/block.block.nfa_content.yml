@@ -1,0 +1,22 @@
+uuid: aa02474f-e830-4e66-9f8e-829b2f65e849
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nfa
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: nfa_content
+theme: nfa
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

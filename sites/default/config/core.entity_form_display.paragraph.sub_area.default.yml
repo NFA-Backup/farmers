@@ -1,0 +1,42 @@
+uuid: e5bb06f6-c246-4579-acd9-6e3607123e64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sub_area.field_sub_area_area_under_planta
+    - field.field.paragraph.sub_area.field_sub_area_date_area_planted
+    - field.field.paragraph.sub_area.field_sub_area_species_variety
+    - paragraphs.paragraphs_type.sub_area
+  module:
+    - datetime
+id: paragraph.sub_area.default
+targetEntityType: paragraph
+bundle: sub_area
+mode: default
+content:
+  field_sub_area_area_under_planta:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sub_area_date_area_planted:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sub_area_species_variety:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

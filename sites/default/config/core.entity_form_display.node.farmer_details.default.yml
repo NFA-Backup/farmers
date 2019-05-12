@@ -1,0 +1,153 @@
+uuid: b79290f2-f369-4486-8689-03ec0fd49b92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.farmer_details.field_email
+    - field.field.node.farmer_details.field_farmer_category_type
+    - field.field.node.farmer_details.field_gender
+    - field.field.node.farmer_details.field_historical_information
+    - field.field.node.farmer_details.field_national_identification_no
+    - field.field.node.farmer_details.field_phone_number
+    - field.field.node.farmer_details.field_physical_address
+    - field.field.node.farmer_details.field_postal_address
+    - field.field.node.farmer_details.field_tax_identification_number
+    - node.type.farmer_details
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_general_information:
+      children:
+        - title
+        - field_farmer_category_type
+        - field_tax_identification_number
+        - field_national_identification_no
+        - field_fin
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'General Information'
+    group_personal_details:
+      children:
+        - field_surname
+        - field_given_name
+        - field_gender
+        - field_phone_number
+        - field_email
+        - field_historical_information
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Personal details'
+    group_address_information:
+      children:
+        - field_postal_address
+        - field_physical_address
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Address Information'
+id: node.farmer_details.default
+targetEntityType: node
+bundle: farmer_details
+mode: default
+content:
+  field_email:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_farmer_category_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_gender:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_historical_information:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_national_identification_no:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_phone_number:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_physical_address:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_postal_address:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_tax_identification_number:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

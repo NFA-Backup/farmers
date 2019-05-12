@@ -1,0 +1,25 @@
+uuid: 0b6d280b-7db8-4762-ad2d-82a49ef7b610
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.action-clock
+  module:
+    - system
+  theme:
+    - nfa
+id: nfa_actionclock
+theme: nfa
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'system_menu_block:action-clock'
+settings:
+  id: 'system_menu_block:action-clock'
+  label: 'Quick Links'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

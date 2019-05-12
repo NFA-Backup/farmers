@@ -1,0 +1,19 @@
+uuid: 42b0766e-7ec1-4db7-aff5-23c0f3ec8031
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_overall_area_allocated
+    - node.type.offer_license
+id: node.offer_license.field_overall_area_allocated
+field_name: field_overall_area_allocated
+entity_type: node
+bundle: offer_license
+label: 'Overall Area Allocated'
+description: 'Area allocated'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

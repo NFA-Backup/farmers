@@ -1,0 +1,21 @@
+uuid: 4482bb38-73fa-456e-be11-3253f8d1e8b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_id_zonations
+    - node.type.area_site_index_zonations
+  module:
+    - options
+id: node.area_site_index_zonations.field_area_id_zonations
+field_name: field_area_id_zonations
+entity_type: node
+bundle: area_site_index_zonations
+label: 'Area ID'
+description: 'or Area(s)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

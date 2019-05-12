@@ -1,0 +1,8 @@
+uuid: e5bb6819-a3a0-42b9-9512-ee9c45ca104b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Fee type'
+vid: fee_type
+description: 'Fee type'
+weight: 0

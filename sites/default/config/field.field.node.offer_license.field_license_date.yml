@@ -1,0 +1,26 @@
+uuid: f5d1320e-1652-4169-94d7-f120f10eab80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_license_date
+    - node.type.offer_license
+  module:
+    - datetime_range
+id: node.offer_license.field_license_date
+field_name: field_license_date
+entity_type: node
+bundle: offer_license
+label: 'License Date'
+description: 'License Duration'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+    default_end_date_type: now
+    default_end_date: now
+default_value_callback: ''
+settings: {  }
+field_type: daterange

@@ -1,0 +1,18 @@
+uuid: 275b89fd-4516-45eb-a019-47fc3c8ddccc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.farmer_details
+id: node.farmer_details.title
+field_name: title
+entity_type: node
+bundle: farmer_details
+label: 'Farmer name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

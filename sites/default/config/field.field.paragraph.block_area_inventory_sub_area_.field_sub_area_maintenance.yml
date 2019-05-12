@@ -1,0 +1,29 @@
+uuid: be6e86f1-c788-4010-a1c5-b660516093d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_maintenance
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+    - taxonomy.vocabulary.crop_maintenance
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_maintenance
+field_name: field_sub_area_maintenance
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area – maintenance'
+description: 'Predefined scoring of quality'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      crop_maintenance: crop_maintenance
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,21 @@
+uuid: 08ae5c69-e408-4d84-ac64-170272d1ac1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_id_zonations
+    - node.type.area_site_index_zonations
+  module:
+    - options
+id: node.area_site_index_zonations.field_block_id_zonations
+field_name: field_block_id_zonations
+entity_type: node
+bundle: area_site_index_zonations
+label: 'Block ID'
+description: 'Choose either block (s)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

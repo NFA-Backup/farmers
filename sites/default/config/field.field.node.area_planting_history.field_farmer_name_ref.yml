@@ -1,0 +1,28 @@
+uuid: 7b6af11a-6baf-476b-9d01-9a773cd2ada6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_farmer_name_ref
+    - node.type.area_planting_history
+    - node.type.farmer_details
+id: node.area_planting_history.field_farmer_name_ref
+field_name: field_farmer_name_ref
+entity_type: node
+bundle: area_planting_history
+label: 'Farmer name'
+description: 'Name of organisation or individual farmer'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      farmer_details: farmer_details
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

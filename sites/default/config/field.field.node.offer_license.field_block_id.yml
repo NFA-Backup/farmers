@@ -1,0 +1,21 @@
+uuid: 54fe5325-b561-4712-961c-098dfec7b1e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_id
+    - node.type.offer_license
+  module:
+    - options
+id: node.offer_license.field_block_id
+field_name: field_block_id
+entity_type: node
+bundle: offer_license
+label: 'Block ID'
+description: 'Block number (if available) – single use'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,28 @@
+uuid: f9a929e0-842e-4114-b1bc-46d1d1cf308b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_offer_id_ref
+    - node.type.accounts_detail
+    - node.type.offer_license
+id: node.accounts_detail.field_offer_id_ref
+field_name: field_offer_id_ref
+entity_type: node
+bundle: accounts_detail
+label: 'Offer ID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      offer_license: offer_license
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

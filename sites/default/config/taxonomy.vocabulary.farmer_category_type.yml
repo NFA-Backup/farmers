@@ -1,0 +1,8 @@
+uuid: b80952ba-446d-483e-abfb-e7b54e27b255
+langcode: en
+status: true
+dependencies: {  }
+name: 'Farmer category / type'
+vid: farmer_category_type
+description: 'Category of farmer'
+weight: 0

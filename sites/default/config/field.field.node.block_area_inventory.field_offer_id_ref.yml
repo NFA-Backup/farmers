@@ -1,0 +1,25 @@
+uuid: c28bbb0b-e540-498f-81b9-4e1603294602
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_offer_id_ref
+    - node.type.block_area_inventory
+id: node.block_area_inventory.field_offer_id_ref
+field_name: field_offer_id_ref
+entity_type: node
+bundle: block_area_inventory
+label: 'Offer ID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: offer_id_reference
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

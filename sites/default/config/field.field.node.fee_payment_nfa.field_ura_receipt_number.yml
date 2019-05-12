@@ -1,0 +1,19 @@
+uuid: 83e84c9a-bf37-4084-8d9b-f0f428872d35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ura_receipt_number
+    - node.type.fee_payment_nfa
+id: node.fee_payment_nfa.field_ura_receipt_number
+field_name: field_ura_receipt_number
+entity_type: node
+bundle: fee_payment_nfa
+label: 'URA receipt number'
+description: 'URA receipt date'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

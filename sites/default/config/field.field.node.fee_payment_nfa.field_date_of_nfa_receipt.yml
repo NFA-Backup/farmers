@@ -1,0 +1,24 @@
+uuid: 14a79671-1395-4e0a-aa8d-7da1d7c301dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_nfa_receipt
+    - node.type.fee_payment_nfa
+  module:
+    - datetime
+id: node.fee_payment_nfa.field_date_of_nfa_receipt
+field_name: field_date_of_nfa_receipt
+entity_type: node
+bundle: fee_payment_nfa
+label: 'Date of NFA receipt'
+description: 'Date  NFA counter receipt issued'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

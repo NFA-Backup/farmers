@@ -1,0 +1,7 @@
+status: '1'
+pattern: 'site_index_[node:nid]'
+php: 0
+escape: 0
+dependencies:
+  config:
+    - node.type.area_site_index_zonations

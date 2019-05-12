@@ -1,0 +1,19 @@
+uuid: 932e5fd7-a1fd-4425-bb78-b1dbcd38608c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_name_of_person
+    - node.type.fee_payment_nfa
+id: node.fee_payment_nfa.field_name_of_person
+field_name: field_name_of_person
+entity_type: node
+bundle: fee_payment_nfa
+label: 'Name of person'
+description: 'Name of person bringing URA receipt in'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

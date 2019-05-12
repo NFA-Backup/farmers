@@ -1,0 +1,21 @@
+uuid: 338519e0-87b0-4771-88cb-03799bc0fbc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zone_designation
+    - node.type.area_site_index_zonations
+  module:
+    - options
+id: node.area_site_index_zonations.field_zone_designation
+field_name: field_zone_designation
+entity_type: node
+bundle: area_site_index_zonations
+label: 'Zone designation'
+description: 'Zone designation '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

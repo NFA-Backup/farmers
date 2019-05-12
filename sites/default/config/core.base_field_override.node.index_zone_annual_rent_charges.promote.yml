@@ -1,0 +1,22 @@
+uuid: 2f3eb344-4e43-434a-9f09-8e98e91491ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.index_zone_annual_rent_charges
+id: node.index_zone_annual_rent_charges.promote
+field_name: promote
+entity_type: node
+bundle: index_zone_annual_rent_charges
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

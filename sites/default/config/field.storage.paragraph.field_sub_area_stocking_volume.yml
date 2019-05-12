@@ -1,0 +1,21 @@
+uuid: ef375ef0-e949-4abb-b224-21811679bd83
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - paragraphs
+id: paragraph.field_sub_area_stocking_volume
+field_name: field_sub_area_stocking_volume
+entity_type: paragraph
+type: computed_decimal
+settings:
+  precision: '10'
+  scale: '2'
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

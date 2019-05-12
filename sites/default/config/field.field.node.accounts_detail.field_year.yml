@@ -1,0 +1,21 @@
+uuid: 381f3fd4-bbbf-47e3-8d74-9935e3e1e98f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year
+    - node.type.accounts_detail
+  module:
+    - datetime
+id: node.accounts_detail.field_year
+field_name: field_year
+entity_type: node
+bundle: accounts_detail
+label: Year
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

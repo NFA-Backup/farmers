@@ -1,0 +1,25 @@
+uuid: 55535d0b-8192-4bca-a0cc-5a6a7095b4ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_licence_id_ref
+    - node.type.block_area_inventory
+id: node.block_area_inventory.field_licence_id_ref
+field_name: field_licence_id_ref
+entity_type: node
+bundle: block_area_inventory
+label: 'Licence ID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: licence_id_reference
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

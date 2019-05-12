@@ -1,0 +1,24 @@
+uuid: e23f1365-9039-4876-8a10-59a11a46a70b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_year
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+  module:
+    - datetime
+id: paragraph.block_area_inventory_sub_area_.field_year
+field_name: field_year
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: Year
+description: 'Year for which planting info being entered'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

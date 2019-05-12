@@ -1,0 +1,23 @@
+uuid: 075b97a8-d8d7-436b-b2a1-85104355467b
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_scan_of_ura_receipt
+field_name: field_scan_of_ura_receipt
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

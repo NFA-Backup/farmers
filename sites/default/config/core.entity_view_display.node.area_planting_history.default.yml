@@ -1,0 +1,50 @@
+uuid: 085815c2-f890-4d96-8e75-ae36539f1aaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.area_planting_history.field_farmer_name_ref
+    - field.field.node.area_planting_history.field_sub_area
+    - field.field.node.area_planting_history.field_year
+    - node.type.area_planting_history
+  module:
+    - datetime
+    - entity_reference_revisions
+    - user
+id: node.area_planting_history.default
+targetEntityType: node
+bundle: area_planting_history
+mode: default
+content:
+  field_farmer_name_ref:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sub_area:
+    type: entity_reference_revisions_entity_view
+    weight: 104
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_year:
+    weight: 105
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

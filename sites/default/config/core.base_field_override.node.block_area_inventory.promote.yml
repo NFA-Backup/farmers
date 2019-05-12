@@ -1,0 +1,22 @@
+uuid: 87f8405f-e7ab-4ad2-bcab-bbe2dd4f030e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.block_area_inventory
+id: node.block_area_inventory.promote
+field_name: promote
+entity_type: node
+bundle: block_area_inventory
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

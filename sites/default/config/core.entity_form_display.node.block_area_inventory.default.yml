@@ -1,0 +1,66 @@
+uuid: 25667061-ba48-4199-aa4a-58edd324c4df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.block_area_inventory.field_block_id_ref
+    - field.field.node.block_area_inventory.field_farmer_name_ref
+    - field.field.node.block_area_inventory.field_licence_id_ref
+    - field.field.node.block_area_inventory.field_offer_id_ref
+    - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - node.type.block_area_inventory
+  module:
+    - entity_reference_views_select
+    - paragraphs
+id: node.block_area_inventory.default
+targetEntityType: node
+bundle: block_area_inventory
+mode: default
+content:
+  field_block_id_ref:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: erviews_options_select
+    region: content
+  field_farmer_name_ref:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_licence_id_ref:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: erviews_options_select
+    region: content
+  field_offer_id_ref:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: erviews_options_select
+    region: content
+  field_sub_area_block_inventory:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

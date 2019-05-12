@@ -1,0 +1,22 @@
+uuid: 41e5d8e1-af91-4203-875d-241e9cbe62fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.accounts_detail
+  module:
+    - text
+id: node.accounts_detail.body
+field_name: body
+entity_type: node
+bundle: accounts_detail
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

@@ -1,0 +1,29 @@
+uuid: 2a24e2c5-df22-4e75-81f8-82c19137e12b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: type_and_title
+label: 'type and title'
+type: 'canonical_entities:node'
+pattern: '[node:content-type]/[node:title]'
+selection_criteria:
+  dbcadebc-d249-406f-b118-e96bcc3f4b6d:
+    id: node_type
+    bundles:
+      area_planting_history: area_planting_history
+      area_site_index_zonations: area_site_index_zonations
+      block_area_inventory: block_area_inventory
+      farmer_details: farmer_details
+      fee_payment_nfa: fee_payment_nfa
+      harvesting_miscellaneous_fees: harvesting_miscellaneous_fees
+      index_zone_annual_rent_charges: index_zone_annual_rent_charges
+      offer_license: offer_license
+    negate: false
+    context_mapping:
+      node: node
+    uuid: dbcadebc-d249-406f-b118-e96bcc3f4b6d
+selection_logic: and
+weight: -5
+relationships: {  }

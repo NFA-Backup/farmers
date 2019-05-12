@@ -1,0 +1,24 @@
+uuid: 6a4e4213-41c1-4cd9-b792-058bfc842788
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_date_area_planted
+    - paragraphs.paragraphs_type.sub_area
+  module:
+    - datetime
+id: paragraph.sub_area.field_sub_area_date_area_planted
+field_name: field_sub_area_date_area_planted
+entity_type: paragraph
+bundle: sub_area
+label: 'Sub-area date area planted'
+description: 'Date that area was planted'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,29 @@
+uuid: 9d672125-c5fc-488c-966a-5c9f8a4bbe02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_farmer_category_type
+    - node.type.farmer_details
+    - taxonomy.vocabulary.farmer_category_type
+id: node.farmer_details.field_farmer_category_type
+field_name: field_farmer_category_type
+entity_type: node
+bundle: farmer_details
+label: 'Farmer category / type'
+description: 'Please select farmer type Individual or organization.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      farmer_category_type: farmer_category_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

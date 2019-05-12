@@ -1,0 +1,19 @@
+uuid: 112d9a97-761a-40c1-a16f-66825631333e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_license_id
+    - node.type.offer_license
+id: node.offer_license.field_license_id
+field_name: field_license_id
+entity_type: node
+bundle: offer_license
+label: 'License ID'
+description: 'License number (if issued) '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
