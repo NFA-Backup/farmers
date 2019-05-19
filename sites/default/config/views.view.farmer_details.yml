@@ -839,7 +839,7 @@ display:
               administrator: '0'
             placeholder: 'Search for farmer name'
             autocomplete_filter: 1
-            autocomplete_min_chars: '1'
+            autocomplete_min_chars: '0'
             autocomplete_items: '10'
             autocomplete_field: title
             autocomplete_raw_suggestion: 1
