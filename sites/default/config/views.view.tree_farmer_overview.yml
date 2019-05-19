@@ -1181,7 +1181,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: 'Tree Farmer Overview'
     position: 1
     display_options:
       display_extenders: {  }
@@ -1259,6 +1259,7 @@ display:
         filters: false
         filter_groups: false
         fields: false
+        title: false
       filter_groups:
         operator: AND
         groups:
@@ -1272,7 +1273,7 @@ display:
           group_type: group
           admin_label: ''
           label: ID
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -1729,6 +1730,8 @@ display:
           display: block_2
           arguments: '{{ raw_fields.nid }}'
           plugin_id: view
+      title: 'Tree Farmer Overview'
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
