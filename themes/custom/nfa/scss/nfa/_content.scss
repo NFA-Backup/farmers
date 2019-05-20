@@ -33,7 +33,7 @@ body {
 }
 
 /*-- views details --*/
-.view-tree-farmer-overview {
+.view-label-data {
   .views-field {
 	margin-bottom: 8px;
 	overflow: hidden;
@@ -52,6 +52,17 @@ body {
 	  min-height: 30px;
 	  background-color: $gray-lighter;
 	}
+  }
+}
+
+/*--- flagged-comment --*/
+.block-section {
+  margin-bottom: 15px;
+  .title {
+	border-bottom: 2px solid lighten($gray-base, 85%);
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	font-style: italic;
   }
 }
 
