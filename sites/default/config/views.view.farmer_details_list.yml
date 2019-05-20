@@ -390,7 +390,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: farmer-details
+      path: farmer-details-list
     cache_metadata:
       max-age: -1
       contexts:
