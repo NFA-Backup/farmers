@@ -1,0 +1,59 @@
+uuid: 2283d681-4fb1-412f-9d38-704987143321
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.thinning_harvest_details.field_number_of_units
+    - field.field.paragraph.thinning_harvest_details.field_offtake_type
+    - field.field.paragraph.thinning_harvest_details.field_product_type
+    - field.field.paragraph.thinning_harvest_details.field_unit
+    - field.field.paragraph.thinning_harvest_details.field_year
+    - paragraphs.paragraphs_type.thinning_harvest_details
+  module:
+    - datetime
+id: paragraph.thinning_harvest_details.default
+targetEntityType: paragraph
+bundle: thinning_harvest_details
+mode: default
+content:
+  field_number_of_units:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_offtake_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_product_type:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_unit:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_year:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  created: true
+  status: true

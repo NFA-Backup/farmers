@@ -1,0 +1,9 @@
+uuid: 5dd0a65d-abfe-47b8-ba5f-9cacbe2aa85a
+langcode: en
+status: true
+dependencies: {  }
+id: thinning_harvest_details
+label: 'Thinning/harvest details'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

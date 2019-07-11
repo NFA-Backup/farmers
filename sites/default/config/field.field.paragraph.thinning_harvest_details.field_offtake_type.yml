@@ -1,0 +1,21 @@
+uuid: 5250a174-2723-48e7-a463-7a487b68ed37
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_offtake_type
+    - paragraphs.paragraphs_type.thinning_harvest_details
+  module:
+    - options
+id: paragraph.thinning_harvest_details.field_offtake_type
+field_name: field_offtake_type
+entity_type: paragraph
+bundle: thinning_harvest_details
+label: 'Offtake type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

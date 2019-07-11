@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.fee_payment_nfa.field_name_of_person
     - field.field.node.fee_payment_nfa.field_nfa_counter_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
+    - field.field.node.fee_payment_nfa.field_receipt_agaings_account_bi
     - field.field.node.fee_payment_nfa.field_scan_of_ura_receipt
     - field.field.node.fee_payment_nfa.field_ura_receipt_number
     - node.type.fee_payment_nfa
@@ -100,6 +101,14 @@ content:
     region: content
   field_offer_id_ref:
     weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_receipt_agaings_account_bi:
+    weight: 113
     label: above
     settings:
       link: true

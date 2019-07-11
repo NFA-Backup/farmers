@@ -1,0 +1,21 @@
+uuid: d9fa43e7-2090-4115-b690-da6bbcc25a72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_year
+    - paragraphs.paragraphs_type.thinning_harvest_details
+  module:
+    - datetime
+id: paragraph.thinning_harvest_details.field_year
+field_name: field_year
+entity_type: paragraph
+bundle: thinning_harvest_details
+label: Year
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,19 @@
+uuid: 51ae6742-4d75-4a63-8d65-1e8e3a758b6a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_receipt_agaings_account_bi
+field_name: field_receipt_agaings_account_bi
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

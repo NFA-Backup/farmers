@@ -12,11 +12,13 @@ dependencies:
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_rate
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_volume
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_under_plantation
+    - field.field.paragraph.block_area_inventory_sub_area_.field_thinning_harvest_details
     - field.field.paragraph.block_area_inventory_sub_area_.field_year
     - paragraphs.paragraphs_type.block_area_inventory_sub_area_
   module:
     - computed_field
     - datetime
+    - paragraphs
 id: paragraph.block_area_inventory_sub_area_.default
 targetEntityType: paragraph
 bundle: block_area_inventory_sub_area_
@@ -79,6 +81,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
+    region: content
+  field_thinning_harvest_details:
+    type: entity_reference_paragraphs
+    weight: 10
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
     region: content
   field_year:
     weight: 0

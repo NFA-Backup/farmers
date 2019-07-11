@@ -1,0 +1,40 @@
+uuid: ea7a507c-2567-4254-b691-cdc5b399cd62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_thinning_harvest_details
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+    - paragraphs.paragraphs_type.thinning_harvest_details
+  module:
+    - entity_reference_revisions
+id: paragraph.block_area_inventory_sub_area_.field_thinning_harvest_details
+field_name: field_thinning_harvest_details
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Thinning / harvest details'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      thinning_harvest_details: thinning_harvest_details
+    target_bundles_drag_drop:
+      thinning_harvest_details:
+        enabled: true
+        weight: 5
+      block_area_inventory_sub_area_:
+        weight: 6
+        enabled: false
+      fee:
+        weight: 7
+        enabled: false
+      sub_area:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions
