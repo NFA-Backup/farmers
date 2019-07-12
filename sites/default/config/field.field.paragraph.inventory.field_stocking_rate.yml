@@ -1,0 +1,19 @@
+uuid: 125768c1-8dea-444b-9424-66a24b781fa0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stocking_rate
+    - paragraphs.paragraphs_type.inventory
+id: paragraph.inventory.field_stocking_rate
+field_name: field_stocking_rate
+entity_type: paragraph
+bundle: inventory
+label: 'Stocking rate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

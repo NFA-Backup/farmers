@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.block_area_inventory_sub_area_.field_inventory
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_crop_status
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_harvest_details
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_maintenance
@@ -24,6 +25,15 @@ targetEntityType: paragraph
 bundle: block_area_inventory_sub_area_
 mode: default
 content:
+  field_inventory:
+    type: entity_reference_revisions_entity_view
+    weight: 11
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_sub_area_crop_status:
     weight: 5
     label: above

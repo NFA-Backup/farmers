@@ -1,0 +1,21 @@
+uuid: b9b783ce-dc4e-4c89-a954-46d7c3eef368
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date_of_inventory
+    - paragraphs.paragraphs_type.inventory
+  module:
+    - datetime
+id: paragraph.inventory.field_date_of_inventory
+field_name: field_date_of_inventory
+entity_type: paragraph
+bundle: inventory
+label: 'Date of inventory'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

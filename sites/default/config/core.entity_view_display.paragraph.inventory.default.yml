@@ -1,0 +1,60 @@
+uuid: dcbf23ae-6e49-4269-9548-caef96a78907
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.inventory.field_date_of_inventory
+    - field.field.paragraph.inventory.field_stocking_rate
+    - field.field.paragraph.inventory.field_stocking_volume
+    - field.field.paragraph.inventory.field_sub_area_crop_status
+    - field.field.paragraph.inventory.field_sub_area_maintenance
+    - paragraphs.paragraphs_type.inventory
+  module:
+    - datetime
+id: paragraph.inventory.default
+targetEntityType: paragraph
+bundle: inventory
+mode: default
+content:
+  field_date_of_inventory:
+    weight: 0
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_stocking_rate:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_stocking_volume:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sub_area_crop_status:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sub_area_maintenance:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

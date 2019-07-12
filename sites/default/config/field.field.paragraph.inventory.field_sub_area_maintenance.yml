@@ -1,0 +1,29 @@
+uuid: 915dd9e1-54c9-471f-9483-ae005200bf16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_maintenance
+    - paragraphs.paragraphs_type.inventory
+    - taxonomy.vocabulary.crop_maintenance
+id: paragraph.inventory.field_sub_area_maintenance
+field_name: field_sub_area_maintenance
+entity_type: paragraph
+bundle: inventory
+label: 'Crop Maintenance Index'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      crop_maintenance: crop_maintenance
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
