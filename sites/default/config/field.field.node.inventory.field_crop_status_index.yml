@@ -1,19 +1,19 @@
-uuid: fa643e70-98de-4dae-a01f-d3e1251ac203
+uuid: e1301b66-823e-4c61-bbb2-099a9f4b4496
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_sub_area_crop_status
-    - paragraphs.paragraphs_type.inventory
+    - field.storage.node.field_crop_status_index
+    - node.type.inventory
     - taxonomy.vocabulary.crop_status
-id: paragraph.inventory.field_sub_area_crop_status
-field_name: field_sub_area_crop_status
-entity_type: paragraph
+id: node.inventory.field_crop_status_index
+field_name: field_crop_status_index
+entity_type: node
 bundle: inventory
 label: 'Crop Status Index'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

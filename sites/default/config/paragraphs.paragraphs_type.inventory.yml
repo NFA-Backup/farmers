@@ -1,9 +1,0 @@
-uuid: 1b93e35a-7730-4cab-80d6-83b2ef3186ef
-langcode: en
-status: true
-dependencies: {  }
-id: inventory
-label: Inventory
-icon_uuid: null
-description: ''
-behavior_plugins: {  }

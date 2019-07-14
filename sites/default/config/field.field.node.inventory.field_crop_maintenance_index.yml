@@ -1,19 +1,19 @@
-uuid: 915dd9e1-54c9-471f-9483-ae005200bf16
+uuid: f48a38bb-0a0f-4a14-a23c-a30229f83a57
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_sub_area_maintenance
-    - paragraphs.paragraphs_type.inventory
+    - field.storage.node.field_crop_maintenance_index
+    - node.type.inventory
     - taxonomy.vocabulary.crop_maintenance
-id: paragraph.inventory.field_sub_area_maintenance
-field_name: field_sub_area_maintenance
-entity_type: paragraph
+id: node.inventory.field_crop_maintenance_index
+field_name: field_crop_maintenance_index
+entity_type: node
 bundle: inventory
 label: 'Crop Maintenance Index'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

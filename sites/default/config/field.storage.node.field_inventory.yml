@@ -1,16 +1,15 @@
-uuid: e3c82531-dde4-4063-ab9d-8b4b8a94ad77
+uuid: 2462ecd1-2fae-4fac-bda6-6a3447a8202d
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
-    - taxonomy
-id: paragraph.field_unit
-field_name: field_unit
-entity_type: paragraph
+    - node
+id: node.field_inventory
+field_name: field_inventory
+entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+  target_type: node
 module: core
 locked: false
 cardinality: 1

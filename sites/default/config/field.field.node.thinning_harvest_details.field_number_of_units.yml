@@ -1,13 +1,13 @@
-uuid: 62e1bba8-e9da-4d12-a38d-2b73eceaa1fc
+uuid: 030f9cbc-51d3-4657-b321-0c264aecdc9c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_number_of_units
-    - paragraphs.paragraphs_type.thinning_harvest_details
-id: paragraph.thinning_harvest_details.field_number_of_units
+    - field.storage.node.field_number_of_units
+    - node.type.thinning_harvest_details
+id: node.thinning_harvest_details.field_number_of_units
 field_name: field_number_of_units
-entity_type: paragraph
+entity_type: node
 bundle: thinning_harvest_details
 label: 'Number of units'
 description: ''

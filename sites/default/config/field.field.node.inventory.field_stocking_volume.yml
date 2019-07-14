@@ -1,13 +1,13 @@
-uuid: 83262276-a4f9-439d-b987-ee06d4dbc420
+uuid: c0e63a2f-2c55-4abc-a32b-fc2d78fcb82c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_stocking_volume
-    - paragraphs.paragraphs_type.inventory
-id: paragraph.inventory.field_stocking_volume
+    - field.storage.node.field_stocking_volume
+    - node.type.inventory
+id: node.inventory.field_stocking_volume
 field_name: field_stocking_volume
-entity_type: paragraph
+entity_type: node
 bundle: inventory
 label: 'Stocking volume'
 description: ''

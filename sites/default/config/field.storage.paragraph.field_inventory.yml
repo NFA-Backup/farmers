@@ -4,13 +4,14 @@ status: true
 dependencies:
   module:
     - entity_reference_revisions
+    - node
     - paragraphs
 id: paragraph.field_inventory
 field_name: field_inventory
 entity_type: paragraph
 type: entity_reference_revisions
 settings:
-  target_type: paragraph
+  target_type: node
 module: entity_reference_revisions
 locked: false
 cardinality: -1

@@ -1,15 +1,15 @@
-uuid: 5250a174-2723-48e7-a463-7a487b68ed37
+uuid: 8c838078-b733-4226-b0db-e576b98f9764
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_offtake_type
-    - paragraphs.paragraphs_type.thinning_harvest_details
+    - field.storage.node.field_offtake_type
+    - node.type.thinning_harvest_details
   module:
     - options
-id: paragraph.thinning_harvest_details.field_offtake_type
+id: node.thinning_harvest_details.field_offtake_type
 field_name: field_offtake_type
-entity_type: paragraph
+entity_type: node
 bundle: thinning_harvest_details
 label: 'Offtake type'
 description: ''

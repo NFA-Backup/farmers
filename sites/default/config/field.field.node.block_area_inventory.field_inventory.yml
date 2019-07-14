@@ -1,17 +1,15 @@
-uuid: b8853c8e-afd4-4bcc-8402-6835e8bce872
+uuid: e16f46c6-36a7-47c7-a67d-6df65a46cb3a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_inventory
+    - field.storage.node.field_inventory
+    - node.type.block_area_inventory
     - node.type.inventory
-    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
-  module:
-    - entity_reference_revisions
-id: paragraph.block_area_inventory_sub_area_.field_inventory
+id: node.block_area_inventory.field_inventory
 field_name: field_inventory
-entity_type: paragraph
-bundle: block_area_inventory_sub_area_
+entity_type: node
+bundle: block_area_inventory
 label: Inventory
 description: ''
 required: false
@@ -27,4 +25,4 @@ settings:
       field: _none
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference_revisions
+field_type: entity_reference

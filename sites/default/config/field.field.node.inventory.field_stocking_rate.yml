@@ -1,13 +1,13 @@
-uuid: 125768c1-8dea-444b-9424-66a24b781fa0
+uuid: 505e84a4-fad6-4bb5-b765-63ffeafe1e3d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_stocking_rate
-    - paragraphs.paragraphs_type.inventory
-id: paragraph.inventory.field_stocking_rate
+    - field.storage.node.field_stocking_rate
+    - node.type.inventory
+id: node.inventory.field_stocking_rate
 field_name: field_stocking_rate
-entity_type: paragraph
+entity_type: node
 bundle: inventory
 label: 'Stocking rate'
 description: ''

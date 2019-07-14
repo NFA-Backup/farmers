@@ -1,14 +1,14 @@
-uuid: 6e16c4a4-d13c-4b9d-b179-d472dee4bb7f
+uuid: 83df7d3a-5fd4-42b4-83f6-c7ec90433426
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_product_type
-    - paragraphs.paragraphs_type.thinning_harvest_details
-    - taxonomy.vocabulary.tags
-id: paragraph.thinning_harvest_details.field_product_type
+    - field.storage.node.field_product_type
+    - node.type.thinning_harvest_details
+    - taxonomy.vocabulary.product_type
+id: node.thinning_harvest_details.field_product_type
 field_name: field_product_type
-entity_type: paragraph
+entity_type: node
 bundle: thinning_harvest_details
 label: 'Product type'
 description: ''
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      tags: tags
+      product_type: product_type
     sort:
       field: name
       direction: asc

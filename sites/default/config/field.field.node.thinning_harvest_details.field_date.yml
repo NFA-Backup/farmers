@@ -1,0 +1,21 @@
+uuid: 5365ff9d-2b02-432d-8021-282f967bdc1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.thinning_harvest_details
+  module:
+    - datetime
+id: node.thinning_harvest_details.field_date
+field_name: field_date
+entity_type: node
+bundle: thinning_harvest_details
+label: Date
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

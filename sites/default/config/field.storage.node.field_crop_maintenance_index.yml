@@ -1,0 +1,20 @@
+uuid: 72d84008-1aa9-4400-a87e-b58bc798ec5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_crop_maintenance_index
+field_name: field_crop_maintenance_index
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.field.node.block_area_inventory.field_block_id_ref
     - field.field.node.block_area_inventory.field_farmer_name_ref
+    - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
     - field.field.node.block_area_inventory.field_offer_id_ref
     - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - field.field.node.block_area_inventory.field_thinning_harvest_details
     - node.type.block_area_inventory
   module:
     - entity_reference_revisions
@@ -33,6 +35,15 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_inventory:
+    weight: 107
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
   field_licence_id_ref:
     weight: 103
     label: above
@@ -56,6 +67,15 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_thinning_harvest_details:
+    weight: 108
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
     region: content
   links:
     weight: 100

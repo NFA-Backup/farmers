@@ -1,0 +1,21 @@
+uuid: 41e23cb1-7819-4c0b-8c03-bcfcf5ede901
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_unit
+    - node.type.thinning_harvest_details
+  module:
+    - options
+id: node.thinning_harvest_details.field_unit
+field_name: field_unit
+entity_type: node
+bundle: thinning_harvest_details
+label: Unit
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

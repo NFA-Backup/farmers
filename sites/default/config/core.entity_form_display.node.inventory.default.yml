@@ -1,0 +1,73 @@
+uuid: cbd2f8dd-2675-400a-87a3-6f534ee6cc93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.inventory.field_crop_maintenance_index
+    - field.field.node.inventory.field_crop_status_index
+    - field.field.node.inventory.field_date
+    - field.field.node.inventory.field_stocking_rate
+    - field.field.node.inventory.field_stocking_volume
+    - node.type.inventory
+  module:
+    - datetime
+id: node.inventory.default
+targetEntityType: node
+bundle: inventory
+mode: default
+content:
+  field_crop_maintenance_index:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_crop_status_index:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_date:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_stocking_rate:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_stocking_volume:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

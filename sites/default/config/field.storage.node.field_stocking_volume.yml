@@ -1,12 +1,12 @@
-uuid: c46a98f1-65d5-4064-a7dc-2aa261208df1
+uuid: c94a9eaa-ae9d-4381-b56d-c50d1b454486
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
-id: paragraph.field_number_of_units
-field_name: field_number_of_units
-entity_type: paragraph
+    - node
+id: node.field_stocking_volume
+field_name: field_stocking_volume
+entity_type: node
 type: string
 settings:
   max_length: 255

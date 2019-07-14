@@ -1,0 +1,68 @@
+uuid: 4d02bb86-4642-4b47-b7d0-a1eeadf2f10d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.thinning_harvest_details.field_date
+    - field.field.node.thinning_harvest_details.field_number_of_units
+    - field.field.node.thinning_harvest_details.field_offtake_type
+    - field.field.node.thinning_harvest_details.field_product_type
+    - field.field.node.thinning_harvest_details.field_unit
+    - node.type.thinning_harvest_details
+  module:
+    - datetime
+id: node.thinning_harvest_details.default
+targetEntityType: node
+bundle: thinning_harvest_details
+mode: default
+content:
+  field_date:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_number_of_units:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_offtake_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_product_type:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_unit:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

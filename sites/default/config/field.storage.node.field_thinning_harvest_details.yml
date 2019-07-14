@@ -1,16 +1,15 @@
-uuid: e1c9d46e-3f9b-4705-9dfe-3694df7e3eb0
+uuid: 37bcc7a1-533d-4c01-9557-d1fdf8fb7ddb
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
-    - taxonomy
-id: paragraph.field_product_type
-field_name: field_product_type
-entity_type: paragraph
+    - node
+id: node.field_thinning_harvest_details
+field_name: field_thinning_harvest_details
+entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+  target_type: node
 module: core
 locked: false
 cardinality: 1

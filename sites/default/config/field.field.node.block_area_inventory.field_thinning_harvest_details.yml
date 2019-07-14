@@ -1,18 +1,16 @@
-uuid: ea7a507c-2567-4254-b691-cdc5b399cd62
+uuid: fb627deb-c1fd-4cbf-8c40-f6ed18e9d25f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_thinning_harvest_details
+    - field.storage.node.field_thinning_harvest_details
+    - node.type.block_area_inventory
     - node.type.thinning_harvest_details
-    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
-  module:
-    - entity_reference_revisions
-id: paragraph.block_area_inventory_sub_area_.field_thinning_harvest_details
+id: node.block_area_inventory.field_thinning_harvest_details
 field_name: field_thinning_harvest_details
-entity_type: paragraph
-bundle: block_area_inventory_sub_area_
-label: 'Thinning / harvest details'
+entity_type: node
+bundle: block_area_inventory
+label: 'Thinning & harvest details'
 description: ''
 required: false
 translatable: false
@@ -27,4 +25,4 @@ settings:
       field: _none
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference_revisions
+field_type: entity_reference

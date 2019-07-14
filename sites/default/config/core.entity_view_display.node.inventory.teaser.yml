@@ -1,0 +1,20 @@
+uuid: f84085da-be48-4b27-b5af-aa3fc4e10e51
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.inventory
+  module:
+    - user
+id: node.inventory.teaser
+targetEntityType: node
+bundle: inventory
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

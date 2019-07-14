@@ -1,0 +1,33 @@
+uuid: c7d78f79-bc93-4e28-9d5d-05ae2a4826d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_unit
+field_name: field_unit
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: 'Unit one'
+    -
+      value: '2'
+      label: 'Unit two'
+    -
+      value: '3'
+      label: 'Unit three'
+    -
+      value: '4'
+      label: 'Unit four'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

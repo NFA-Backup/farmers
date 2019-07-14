@@ -5,12 +5,15 @@ dependencies:
   config:
     - field.field.node.block_area_inventory.field_block_id_ref
     - field.field.node.block_area_inventory.field_farmer_name_ref
+    - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
     - field.field.node.block_area_inventory.field_offer_id_ref
     - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - field.field.node.block_area_inventory.field_thinning_harvest_details
     - node.type.block_area_inventory
   module:
     - entity_reference_views_select
+    - inline_entity_form
     - paragraphs
 id: node.block_area_inventory.default
 targetEntityType: node
@@ -31,6 +34,22 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_inventory:
+    weight: 26
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: Inventory
+      label_plural: Inventories
+      collapsible: true
+      collapsed: true
+      allow_new: true
+      match_operator: CONTAINS
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
     region: content
   field_licence_id_ref:
     weight: 2
@@ -53,8 +72,24 @@ content:
       edit_mode: open
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: block_area_inventory_sub_area_
     third_party_settings: {  }
+    region: content
+  field_thinning_harvest_details:
+    weight: 27
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: Harvest
+      label_plural: Harvests
+      collapsible: true
+      collapsed: true
+      allow_new: true
+      match_operator: CONTAINS
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
     region: content
 hidden:
   created: true

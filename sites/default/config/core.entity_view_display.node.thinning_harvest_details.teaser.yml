@@ -1,0 +1,20 @@
+uuid: 0fd03d19-0b4d-4400-9cb7-aa10adcda8c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.thinning_harvest_details
+  module:
+    - user
+id: node.thinning_harvest_details.teaser
+targetEntityType: node
+bundle: thinning_harvest_details
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

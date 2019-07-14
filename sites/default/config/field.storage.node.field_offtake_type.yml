@@ -1,19 +1,28 @@
-uuid: ff4ae1d9-27da-462f-97b5-780913553374
+uuid: 41a559de-80b5-4234-b2fe-5fc7ac7def19
 langcode: en
 status: true
 dependencies:
   module:
+    - node
     - options
-    - paragraphs
-id: paragraph.field_offtake_type
+id: node.field_offtake_type
 field_name: field_offtake_type
-entity_type: paragraph
+entity_type: node
 type: list_string
 settings:
   allowed_values:
     -
       value: '1'
+      label: One
+    -
+      value: '2'
+      label: Two
+    -
+      value: '3'
       label: Three
+    -
+      value: '4'
+      label: Four
   allowed_values_function: ''
 module: options
 locked: false
