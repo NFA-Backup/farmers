@@ -1161,7 +1161,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ','
+          separator: ''
           field_api_classes: false
           plugin_id: field
         nothing_1:
@@ -1273,7 +1273,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ''
           field_api_classes: false
           plugin_id: field
       header: {  }
@@ -1748,7 +1748,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ','
+          separator: ''
           field_api_classes: false
           plugin_id: field
       header: {  }
@@ -2222,7 +2222,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ','
+          separator: ''
           field_api_classes: false
           plugin_id: field
         nothing_1:
@@ -2334,7 +2334,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ''
           field_api_classes: false
           plugin_id: field
       header: {  }
@@ -2411,7 +2411,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
