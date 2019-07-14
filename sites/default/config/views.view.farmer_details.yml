@@ -927,6 +927,17 @@ display:
           granularity: second
       title: 'Farmer Details'
       header:
+        area_text_custom_1:
+          id: area_text_custom_1
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
+          plugin_id: text_custom
         area_text_custom:
           id: area_text_custom
           table: views

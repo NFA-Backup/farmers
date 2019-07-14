@@ -1,0 +1,23 @@
+uuid: e558aad1-de8e-4008-96ad-d4d0ffbd23fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_harvested_
+    - node.type.sub_area
+id: node.sub_area.field_area_harvested_
+field_name: field_area_harvested_
+entity_type: node
+bundle: sub_area
+label: 'Area harvested?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.block_area_inventory_sub_area_.field_inventory
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_crop_status
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_harvest_details
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_maintenance
@@ -13,7 +12,6 @@ dependencies:
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_rate
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_stocking_volume
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_under_plantation
-    - field.field.paragraph.block_area_inventory_sub_area_.field_thinning_harvest_details
     - field.field.paragraph.block_area_inventory_sub_area_.field_year
     - paragraphs.paragraphs_type.block_area_inventory_sub_area_
   module:
@@ -24,12 +22,6 @@ targetEntityType: paragraph
 bundle: block_area_inventory_sub_area_
 mode: default
 content:
-  field_inventory:
-    type: options_select
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_sub_area_crop_status:
     weight: 6
     settings: {  }
@@ -87,12 +79,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
-    region: content
-  field_thinning_harvest_details:
-    type: options_select
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
     region: content
   field_year:
     weight: 0

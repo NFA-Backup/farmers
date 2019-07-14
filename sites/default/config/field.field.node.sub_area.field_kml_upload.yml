@@ -1,0 +1,27 @@
+uuid: 2643e63e-de1e-4e5d-b943-096b7155a763
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_kml_upload
+    - node.type.sub_area
+  module:
+    - file
+id: node.sub_area.field_kml_upload
+field_name: field_kml_upload
+entity_type: node
+bundle: sub_area
+label: 'KML upload'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt csv doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

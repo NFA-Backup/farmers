@@ -1,0 +1,19 @@
+uuid: f38f6a2e-0d58-4a09-baec-e57bac69a9ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_planted
+    - node.type.sub_area
+id: node.sub_area.field_area_planted
+field_name: field_area_planted
+entity_type: node
+bundle: sub_area
+label: 'Area Planted'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

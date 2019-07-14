@@ -1,0 +1,22 @@
+uuid: e0f9ae1f-8f43-47d2-a770-4a993fac05a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sub_area
+id: node.sub_area.promote
+field_name: promote
+entity_type: node
+bundle: sub_area
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

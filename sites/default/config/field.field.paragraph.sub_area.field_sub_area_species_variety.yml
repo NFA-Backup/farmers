@@ -10,7 +10,7 @@ id: paragraph.sub_area.field_sub_area_species_variety
 field_name: field_sub_area_species_variety
 entity_type: paragraph
 bundle: sub_area
-label: 'Sub-area species & variety'
+label: Species/variety
 description: 'Tree species / variety (if known)'
 required: false
 translatable: false

@@ -1,0 +1,20 @@
+uuid: dec72d92-6750-4b90-855e-565fd4ce3164
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_date_harvested
+field_name: field_date_harvested
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

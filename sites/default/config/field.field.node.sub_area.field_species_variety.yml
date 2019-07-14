@@ -1,0 +1,19 @@
+uuid: b4a687d5-cb18-4c65-9477-9dfd98b8cf6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_species_variety
+    - node.type.sub_area
+id: node.sub_area.field_species_variety
+field_name: field_species_variety
+entity_type: node
+bundle: sub_area
+label: Species/variety
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

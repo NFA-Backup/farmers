@@ -1,8 +1,9 @@
-uuid: 55393271-c44d-4a9f-8cfd-79fad99fb8e9
+uuid: 24649869-9436-4df9-b015-721713b28e6d
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.view_display
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_crop_status
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_harvest_details
     - field.field.paragraph.block_area_inventory_sub_area_.field_sub_area_maintenance
@@ -17,10 +18,10 @@ dependencies:
   module:
     - computed_field
     - datetime
-id: paragraph.block_area_inventory_sub_area_.default
+id: paragraph.block_area_inventory_sub_area_.view_display
 targetEntityType: paragraph
 bundle: block_area_inventory_sub_area_
-mode: default
+mode: view_display
 content:
   field_sub_area_crop_status:
     weight: 5

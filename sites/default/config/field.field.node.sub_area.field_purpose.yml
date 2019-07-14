@@ -1,0 +1,19 @@
+uuid: 39357d1d-c6b6-4318-bca4-3a66e4cee978
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_purpose
+    - node.type.sub_area
+id: node.sub_area.field_purpose
+field_name: field_purpose
+entity_type: node
+bundle: sub_area
+label: Purpose
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

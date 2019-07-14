@@ -9,10 +9,10 @@ dependencies:
     - field.field.node.block_area_inventory.field_licence_id_ref
     - field.field.node.block_area_inventory.field_offer_id_ref
     - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - field.field.node.block_area_inventory.field_sub_area_content
     - field.field.node.block_area_inventory.field_thinning_harvest_details
     - node.type.block_area_inventory
   module:
-    - entity_reference_revisions
     - user
 id: node.block_area_inventory.default
 targetEntityType: node
@@ -20,7 +20,7 @@ bundle: block_area_inventory
 mode: default
 content:
   field_block_id_ref:
-    weight: 104
+    weight: 3
     label: above
     settings:
       link: true
@@ -28,7 +28,7 @@ content:
     type: entity_reference_label
     region: content
   field_farmer_name_ref:
-    weight: 102
+    weight: 1
     label: above
     settings:
       link: true
@@ -36,7 +36,7 @@ content:
     type: entity_reference_label
     region: content
   field_inventory:
-    weight: 107
+    weight: 6
     label: above
     settings:
       link: true
@@ -45,31 +45,31 @@ content:
     type: entity_reference_entity_view
     region: content
   field_licence_id_ref:
-    weight: 103
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: entity_reference_entity_id
     region: content
   field_offer_id_ref:
-    weight: 105
+    weight: 4
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_sub_area_block_inventory:
-    type: entity_reference_revisions_entity_view
-    weight: 106
+  field_sub_area_content:
+    weight: 5
     label: above
     settings:
+      link: true
       view_mode: default
-      link: ''
     third_party_settings: {  }
+    type: entity_reference_entity_view
     region: content
   field_thinning_harvest_details:
-    weight: 108
+    weight: 7
     label: above
     settings:
       view_mode: default
@@ -78,8 +78,9 @@ content:
     type: entity_reference_entity_view
     region: content
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_sub_area_block_inventory: true

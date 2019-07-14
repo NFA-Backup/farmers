@@ -1961,13 +1961,10 @@ display:
           id: title
           table: node_field_data
           field: title
-          settings:
-            link_to_entity: false
-          plugin_id: field
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Farmer name'
           exclude: false
           alter:
             alter_text: false
@@ -2000,7 +1997,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -2010,6 +2007,8 @@ display:
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2020,6 +2019,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -2469,7 +2469,20 @@ display:
       defaults:
         fields: false
         css_class: false
+        header: false
       css_class: view-label-data
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:

@@ -356,7 +356,12 @@ display:
             label: ''
           granularity: second
       title: 'Tree Farmer Overview'
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
       footer: {  }
       empty: {  }
       relationships: {  }
@@ -1261,6 +1266,7 @@ display:
         fields: false
         title: false
         css_class: false
+        header: false
       filter_groups:
         operator: AND
         groups:
@@ -1881,6 +1887,18 @@ display:
       title: 'Tree Farmer Overview'
       display_description: ''
       css_class: view-label-data
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
