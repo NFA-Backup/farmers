@@ -14,7 +14,8 @@
         "drupal/views_field_view": "^1.0@beta",
         "drupal/paragraphs": "^1.8",
         "drupal/bootstrap": "^3.19",
-        "drupal/flag": "^4.0@alpha"
+        "drupal/flag": "^4.0@alpha",
+        "drupal/inline_entity_form": "^1.0@RC"
     },
     "replace": {
         "drupal/core": "^8.7"
