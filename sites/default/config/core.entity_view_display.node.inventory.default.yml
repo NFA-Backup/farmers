@@ -19,7 +19,7 @@ mode: default
 content:
   field_crop_maintenance_index:
     weight: 105
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -27,7 +27,7 @@ content:
     region: content
   field_crop_status_index:
     weight: 104
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -35,7 +35,7 @@ content:
     region: content
   field_date:
     weight: 101
-    label: above
+    label: inline
     settings:
       format_type: medium
       timezone_override: ''
@@ -44,7 +44,7 @@ content:
     region: content
   field_stocking_rate:
     weight: 102
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -52,7 +52,7 @@ content:
     region: content
   field_stocking_volume:
     weight: 103
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -60,7 +60,7 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

@@ -22,7 +22,7 @@ mode: default
 content:
   field_area_harvested_:
     weight: 5
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -32,7 +32,7 @@ content:
     region: content
   field_area_planted:
     weight: 0
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -40,7 +40,7 @@ content:
     region: content
   field_date_harvested:
     weight: 6
-    label: above
+    label: inline
     settings:
       timezone_override: ''
     third_party_settings: {  }
@@ -48,7 +48,7 @@ content:
     region: content
   field_date_planted:
     weight: 2
-    label: above
+    label: inline
     settings:
       timezone_override: ''
     third_party_settings: {  }
@@ -56,7 +56,7 @@ content:
     region: content
   field_kml_upload:
     weight: 4
-    label: above
+    label: inline
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
@@ -64,7 +64,7 @@ content:
     region: content
   field_purpose:
     weight: 3
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -72,7 +72,7 @@ content:
     region: content
   field_species_variety:
     weight: 1
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }

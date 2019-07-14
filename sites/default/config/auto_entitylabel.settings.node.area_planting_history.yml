@@ -1,5 +1,5 @@
 status: '1'
-pattern: 'FIN-[node:field_farmer_name_ref]'
+pattern: 'FIN - [random:number]'
 php: 0
 escape: 0
 dependencies:

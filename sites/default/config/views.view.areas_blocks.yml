@@ -7,14 +7,12 @@ dependencies:
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_inventory
     - field.storage.node.field_phone_number
-    - field.storage.node.field_sub_area_block_inventory
     - field.storage.node.field_sub_area_content
     - field.storage.node.field_thinning_harvest_details
     - node.type.block_area_inventory
     - node.type.farmer_details
     - system.menu.main
   module:
-    - entity_reference_revisions
     - node
     - user
     - views_autocomplete_filters
@@ -1163,7 +1161,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ''
+          separator: ','
           field_api_classes: false
           plugin_id: field
         nothing_1:
@@ -1690,69 +1688,6 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-        field_sub_area_block_inventory:
-          id: field_sub_area_block_inventory
-          table: node__field_sub_area_block_inventory
-          field: field_sub_area_block_inventory
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_revisions_entity_view
-          settings:
-            view_mode: default
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 5
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_sub_area_content:
           id: field_sub_area_content
           table: node__field_sub_area_content
@@ -1813,7 +1748,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ''
+          separator: ','
           field_api_classes: false
           plugin_id: field
       header: {  }
@@ -1828,7 +1763,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_block_id_ref'
-        - 'config:field.storage.node.field_sub_area_block_inventory'
         - 'config:field.storage.node.field_sub_area_content'
   block_4:
     display_plugin: block
@@ -2288,7 +2222,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ''
+          separator: ','
           field_api_classes: false
           plugin_id: field
         nothing_1:

@@ -1,5 +1,5 @@
-status: '0'
-pattern: '[node:field_farmer_name_ref]'
+status: '1'
+pattern: 'Sub-area - [random:number]'
 php: 0
 escape: 0
 dependencies:

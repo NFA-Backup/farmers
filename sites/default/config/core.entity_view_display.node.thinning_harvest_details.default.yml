@@ -20,7 +20,7 @@ mode: default
 content:
   field_date:
     weight: 101
-    label: above
+    label: inline
     settings:
       format_type: medium
       timezone_override: ''
@@ -29,7 +29,7 @@ content:
     region: content
   field_number_of_units:
     weight: 105
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -37,14 +37,14 @@ content:
     region: content
   field_offtake_type:
     weight: 102
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_product_type:
     weight: 103
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -52,14 +52,14 @@ content:
     region: content
   field_unit:
     weight: 104
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

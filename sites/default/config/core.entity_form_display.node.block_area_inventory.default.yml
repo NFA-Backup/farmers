@@ -43,9 +43,9 @@ content:
       label_singular: Inventory
       label_plural: Inventories
       collapsible: true
-      collapsed: true
       allow_new: true
       match_operator: CONTAINS
+      collapsed: false
       allow_existing: false
       allow_duplicate: false
     third_party_settings: {  }
@@ -87,9 +87,9 @@ content:
       label_singular: Harvest
       label_plural: Harvests
       collapsible: true
-      collapsed: true
       allow_new: true
       match_operator: CONTAINS
+      collapsed: false
       allow_existing: false
       allow_duplicate: false
     third_party_settings: {  }
