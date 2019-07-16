@@ -17,4 +17,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_area_harvested_: true
+  field_area_planted: true
+  field_date_harvested: true
+  field_date_planted: true
+  field_kml_upload: true
+  field_purpose: true
+  field_species_variety: true

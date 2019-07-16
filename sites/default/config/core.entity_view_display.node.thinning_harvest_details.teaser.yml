@@ -17,4 +17,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_date: true
+  field_number_of_units: true
+  field_offtake_type: true
+  field_product_type: true
+  field_unit: true
