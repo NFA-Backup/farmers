@@ -8,8 +8,8 @@ dependencies:
     - field.storage.node.field_comments
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_forest_reserve_id
-    - field.storage.node.field_licence_id_ref
     - field.storage.node.field_license_date
+    - field.storage.node.field_license_id
     - field.storage.node.field_offer_date
     - field.storage.node.field_overall_area_allocated
     - field.storage.node.field_phone_number
@@ -619,6 +619,59 @@ display:
           not: false
           plugin_id: numeric
       fields:
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: true
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link
         title:
           id: title
           table: node_field_data
@@ -627,7 +680,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -694,8 +747,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: false
-            path: ''
+            make_link: true
+            path: '{{ view_node }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -746,18 +799,7 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: '<a href="/node/add/offer_license" class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" >Add</a>'
-          plugin_id: text_custom
+      header: {  }
       footer: {  }
       display_description: ''
       title: 'Offer letters dates'
@@ -934,7 +976,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -989,10 +1031,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_licence_id_ref:
-          id: field_licence_id_ref
-          table: node__field_licence_id_ref
-          field: field_licence_id_ref
+        field_license_id:
+          id: field_license_id
+          table: node__field_license_id
+          field: field_license_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -1025,23 +1067,23 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: '0'
+          element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
-          group_column: target_id
+            link_to_entity: true
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1052,18 +1094,7 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: '<a href="/node/add/offer_license" class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" >Add</a>'
-          plugin_id: text_custom
+      header: {  }
       footer: {  }
       title: 'Licence number'
       display_description: ''
@@ -1076,7 +1107,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_licence_id_ref'
+        - 'config:field.storage.node.field_license_id'
   block_3:
     display_plugin: block
     id: block_3
@@ -1232,6 +1263,55 @@ display:
           not: false
           plugin_id: numeric
       fields:
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Offer/Licence</h5>\r\n</div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
         edit_node:
           id: edit_node
           table: node
@@ -1348,10 +1428,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_licence_id_ref:
-          id: field_licence_id_ref
-          table: node__field_licence_id_ref
-          field: field_licence_id_ref
+        field_license_id:
+          id: field_license_id
+          table: node__field_license_id
+          field: field_license_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -1396,11 +1476,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: false
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1934,8 +2014,8 @@ display:
         - 'config:field.storage.node.field_block_id'
         - 'config:field.storage.node.field_comments'
         - 'config:field.storage.node.field_forest_reserve_id'
-        - 'config:field.storage.node.field_licence_id_ref'
         - 'config:field.storage.node.field_license_date'
+        - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'
         - 'config:field.storage.node.field_overall_area_allocated'
         - 'config:field.storage.node.field_purpose'
@@ -2223,7 +2303,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Key data</h5>\r\n</div>"
+            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Key data</h5>\r\n<a href=\"/node/add/offer_license\" class=\"use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" >Add</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -2365,55 +2445,6 @@ display:
           display: block_2
           arguments: '{{ raw_fields.nid }}'
           plugin_id: view
-        nothing_1:
-          id: nothing_1
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Offer/Licence</h5>\r\n</div>"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: '0'
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
         view_2:
           id: view_2
           table: views
