@@ -17,4 +17,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_crop_maintenance_index: true
+  field_crop_status_index: true
+  field_date: true
+  field_stocking_rate: true
+  field_stocking_volume: true
