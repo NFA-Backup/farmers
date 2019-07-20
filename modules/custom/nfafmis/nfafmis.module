@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Custom module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_offer_license_form' || $form_id == 'node_offer_license__edit_form') {
+    $form['field_license_id']['#states'] = [
+      'visible' => [
+        ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+  // if ($form_id == 'node_block_area_inventory_form' || $form_id == 'node_block_area_inventory_edit_form') {
+  //     // kint($form['field_sub_area_content']);
+  // }
+  if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
+    $form['field_date_harvested']['#states'] = [
+      'visible' => [
+        ':input[name="field_area_harvested[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+}
+

@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.block_area_inventory.field_block_id_ref
+    - field.field.node.block_area_inventory.field_block_id
     - field.field.node.block_area_inventory.field_farmer_name_ref
     - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
     - field.field.node.block_area_inventory.field_offer_id_ref
-    - field.field.node.block_area_inventory.field_sub_area_block_inventory
     - field.field.node.block_area_inventory.field_sub_area_content
     - field.field.node.block_area_inventory.field_thinning_harvest_details
     - node.type.block_area_inventory
@@ -20,11 +19,11 @@ targetEntityType: node
 bundle: block_area_inventory
 mode: default
 content:
-  field_block_id_ref:
+  field_block_id:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-    type: erviews_options_select
+    type: options_select
     region: content
   field_farmer_name_ref:
     weight: 0
@@ -97,7 +96,6 @@ content:
     region: content
 hidden:
   created: true
-  field_sub_area_block_inventory: true
   path: true
   promote: true
   status: true

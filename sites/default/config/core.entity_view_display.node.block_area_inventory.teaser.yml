@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.block_area_inventory.field_block_id_ref
+    - field.field.node.block_area_inventory.field_block_id
     - field.field.node.block_area_inventory.field_farmer_name_ref
+    - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
     - field.field.node.block_area_inventory.field_offer_id_ref
-    - field.field.node.block_area_inventory.field_sub_area_block_inventory
+    - field.field.node.block_area_inventory.field_sub_area_content
+    - field.field.node.block_area_inventory.field_thinning_harvest_details
     - node.type.block_area_inventory
   module:
     - user
@@ -23,8 +25,10 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_block_id_ref: true
+  field_block_id: true
   field_farmer_name_ref: true
+  field_inventory: true
   field_licence_id_ref: true
   field_offer_id_ref: true
-  field_sub_area_block_inventory: true
+  field_sub_area_content: true
+  field_thinning_harvest_details: true

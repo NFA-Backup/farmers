@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.sub_area.field_area_harvested_
+    - field.field.node.sub_area.field_area_harvested
     - field.field.node.sub_area.field_area_planted
     - field.field.node.sub_area.field_date_harvested
     - field.field.node.sub_area.field_date_planted
@@ -20,9 +20,9 @@ targetEntityType: node
 bundle: sub_area
 mode: default
 content:
-  field_area_harvested_:
-    weight: 5
-    label: inline
+  field_area_harvested:
+    weight: 7
+    label: above
     settings:
       format: default
       format_custom_false: ''

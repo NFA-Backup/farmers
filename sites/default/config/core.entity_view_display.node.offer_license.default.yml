@@ -70,9 +70,9 @@ content:
     weight: 119
     label: above
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
+      format_type: html_date
+      separator: to
     third_party_settings: {  }
     type: daterange_default
     region: content
@@ -88,9 +88,9 @@ content:
     weight: 104
     label: above
     settings:
-      format: default
-      format_custom_false: ''
+      format: yes-no
       format_custom_true: ''
+      format_custom_false: ''
     third_party_settings: {  }
     type: boolean
     region: content
@@ -98,8 +98,8 @@ content:
     weight: 103
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: html_date
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -132,7 +132,7 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }
