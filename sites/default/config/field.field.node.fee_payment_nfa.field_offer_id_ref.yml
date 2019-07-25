@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_offer_id_ref
     - node.type.fee_payment_nfa
-    - node.type.offer_license
 id: node.fee_payment_nfa.field_offer_id_ref
 field_name: field_offer_id_ref
 entity_type: node
@@ -17,12 +16,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:node'
+  handler: views
   handler_settings:
-    target_bundles:
-      offer_license: offer_license
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    view:
+      view_name: offer_id_reference
+      display_name: entity_reference_1
+      arguments: {  }
 field_type: entity_reference
