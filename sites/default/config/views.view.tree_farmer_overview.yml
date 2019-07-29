@@ -1408,6 +1408,7 @@ display:
           separator: ''
           hide_empty: false
       block_description: Map
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:

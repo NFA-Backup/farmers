@@ -1,0 +1,8 @@
+nfafmis:
+  version: version
+  js:
+    js/nfafmis.local.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - core/jquery.once
