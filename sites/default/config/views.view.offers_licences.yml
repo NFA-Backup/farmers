@@ -585,6 +585,7 @@ display:
         footer: false
         title: false
         pager: false
+        css_class: false
       filter_groups:
         operator: AND
         groups:
@@ -814,6 +815,7 @@ display:
         options:
           offset: 0
       block_hide_empty: true
+      css_class: offers-letter-dates-tabs
     cache_metadata:
       max-age: -1
       contexts:
@@ -931,50 +933,6 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: views_autocomplete_filters_string
-        field_license_id_value:
-          id: field_license_id_value
-          table: node__field_license_id
-          field: field_license_id_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: 'not empty'
-          value: ''
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: ''
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: ''
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
       defaults:
         filters: false
         filter_groups: false
@@ -984,6 +942,7 @@ display:
         footer: false
         title: false
         pager: false
+        css_class: false
       filter_groups:
         operator: AND
         groups:
@@ -1159,6 +1118,7 @@ display:
         options:
           offset: 0
       block_hide_empty: true
+      css_class: licence-number-tabs
     cache_metadata:
       max-age: -1
       contexts:
@@ -1285,6 +1245,7 @@ display:
         footer: false
         title: false
         pager: false
+        css_class: false
       filter_groups:
         operator: AND
         groups:
@@ -2134,6 +2095,7 @@ display:
         options:
           offset: 0
       block_hide_empty: true
+      css_class: offers-licences-wrapper
     cache_metadata:
       max-age: -1
       contexts:
