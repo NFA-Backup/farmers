@@ -1,0 +1,36 @@
+uuid: 3c5290dc-44ca-4eaa-a828-b4f332033f2e
+langcode: en
+status: true
+dependencies: {  }
+name: tabbed_view
+label: 'Tabbed view'
+tabs:
+  5c06f8de-850d-4c67-8cb0-fb4f6345517c:
+    uuid: 5c06f8de-850d-4c67-8cb0-fb4f6345517c
+    id: views_tab
+    title: 'Farmer Log'
+    weight: 1
+    data:
+      view_name: flagged_farmer_log
+      view_display: block_1
+      view_arg: '%1'
+  23ad018f-8a21-4d23-8f01-a295405dca35:
+    uuid: 23ad018f-8a21-4d23-8f01-a295405dca35
+    id: views_tab
+    title: 'Farmer Details'
+    weight: 2
+    data:
+      view_name: farmer_details
+      view_display: page_1
+      view_arg: ''
+  3f9ca2ac-561b-4ebb-a542-71a727cf7363:
+    uuid: 3f9ca2ac-561b-4ebb-a542-71a727cf7363
+    id: views_tab
+    title: Offer/License
+    weight: 3
+    data:
+      view_name: offers_licences
+      view_display: page_1
+      view_arg: ''
+event: click
+style: default
