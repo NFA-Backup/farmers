@@ -15,7 +15,8 @@
         "drupal/paragraphs": "^1.8",
         "drupal/bootstrap": "^3.19",
         "drupal/flag": "^4.0@alpha",
-        "drupal/inline_entity_form": "^1.0@RC"
+        "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/blocktabs": "^1.0@beta"
     },
     "replace": {
         "drupal/core": "^8.7"
