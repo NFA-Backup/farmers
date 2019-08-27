@@ -648,7 +648,7 @@ display:
         context: '0'
         menu_name: main
       display_description: ''
-      title: 'Farmer Detaials'
+      title: 'Farmer Details'
       defaults:
         title: false
         fields: false
