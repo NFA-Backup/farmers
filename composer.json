@@ -16,7 +16,9 @@
         "drupal/bootstrap": "^3.19",
         "drupal/flag": "^4.0@alpha",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/blocktabs": "^1.0@beta"
+        "drupal/blocktabs": "^1.0@beta",
+        "drupal/kint": "^2.1",
+        "drupal/views_flipped_table": "^1.3"
     },
     "replace": {
         "drupal/core": "^8.7"

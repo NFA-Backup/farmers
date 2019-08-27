@@ -13,7 +13,7 @@ tabs:
     data:
       view_name: flagged_farmer_log
       view_display: block_1
-      view_arg: '%1'
+      view_arg: ''
   23ad018f-8a21-4d23-8f01-a295405dca35:
     uuid: 23ad018f-8a21-4d23-8f01-a295405dca35
     id: views_tab

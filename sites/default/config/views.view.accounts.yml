@@ -1501,6 +1501,7 @@ display:
         weight: -42
         context: '0'
         menu_name: main
+        enabled: false
       fields:
         title:
           id: title

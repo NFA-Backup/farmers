@@ -3033,6 +3033,7 @@ display:
         weight: -46
         context: '0'
         menu_name: main
+        enabled: false
       css_class: view-label-data
       header:
         area_text_custom:
