@@ -1,27 +1,23 @@
-uuid: 567acc6b-90be-4d1d-a1bb-1051e94cfe61
+uuid: 2dcf7e17-5b06-4a54-a7b0-703252ea8cc6
 langcode: en
 status: true
 dependencies:
-  config:
-    - views.view.farmer_filter
   module:
+    - nfafmis
     - system
-    - views
   theme:
     - nfa
-id: views_block__farmer_filter_block_1
+id: nfafmisblock
 theme: nfa
 region: content
-weight: -6
+weight: -5
 provider: null
-plugin: 'views_block:farmer_filter-block_1'
+plugin: nfafmis_block
 settings:
-  id: 'views_block:farmer_filter-block_1'
-  label: ''
-  provider: views
+  id: nfafmis_block
+  label: 'NFAFMIS block'
+  provider: nfafmis
   label_display: '0'
-  views_label: ''
-  items_per_page: none
 visibility:
   request_path:
     id: request_path
