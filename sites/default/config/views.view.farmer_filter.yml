@@ -408,7 +408,7 @@ display:
             operator: title_op
             identifier: title
             required: false
-            remember: true
+            remember: false
             multiple: false
             remember_roles:
               anonymous: anonymous
@@ -472,7 +472,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
-      show_admin_links: false
+      show_admin_links: true
       css_class: view-label-data
     cache_metadata:
       max-age: -1

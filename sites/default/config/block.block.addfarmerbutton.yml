@@ -1,0 +1,31 @@
+uuid: 65d45b1e-68b1-43fe-af90-c2a081687a72
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:7f382215-dbbc-476d-9731-5bcac10ca0b6'
+  module:
+    - block_content
+    - system
+  theme:
+    - nfa
+id: addfarmerbutton
+theme: nfa
+region: content
+weight: -7
+provider: null
+plugin: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
+settings:
+  id: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
+  label: 'Add farmer button'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/details\r\n/tree-farmer-overview/licences"
+    negate: false
+    context_mapping: {  }

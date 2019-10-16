@@ -33,7 +33,7 @@ class NfafmisBlock extends BlockBase {
     $farmer_menu_items = [
       ['uri' => 'internal:/tree-farmer-overview', 'label' => 'Farmer Log'],
       ['uri' => 'internal:/tree-farmer-overview/details', 'label' => 'Farmer Details'],
-      ['uri' => 'internal:/tree-farmer-overview/licences', 'label' => 'Offers/Licenses'],
+      ['uri' => 'internal:/tree-farmer-overview/licences', 'label' => 'Offers/Licences'],
       ['uri' => 'internal:/tree-farmer-overview/sub-areas', 'label' => 'Sub-areas'],
       ['uri' => 'internal:/tree-farmer-overview/inventory', 'label' => 'Inventory'],
       ['uri' => 'internal:/tree-farmer-overview/accounts', 'label' => 'Accounts'],

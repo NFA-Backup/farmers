@@ -289,7 +289,18 @@ display:
             label: ''
           granularity: second
       title: 'Farmer main tab'
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content: '{{ edit_node }}'
+          plugin_id: text_custom
       footer: {  }
       empty: {  }
       relationships: {  }
@@ -334,6 +345,7 @@ display:
         fields: false
         filters: true
         filter_groups: true
+        header: false
       display_description: ''
       fields:
         title_1:
@@ -571,6 +583,59 @@ display:
           display: block_2
           arguments: '{{ raw_fields.nid }}'
           plugin_id: view
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '<a class="btn btn-info btn-xs" href="{{ view_node }}#comment-form">Add a log</a>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: true
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link
         nothing:
           id: nothing
           table: views
@@ -621,6 +686,18 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       exposed_block: true
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content: '{{ view_node }}'
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
@@ -664,10 +741,10 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}\">Edit farmer</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -704,8 +781,8 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: edit
-          output_url_as_text: false
+          text: 'Edit farmer'
+          output_url_as_text: true
           absolute: false
           entity_type: node
           plugin_id: entity_link_edit
@@ -1515,7 +1592,7 @@ display:
           admin_label: ''
           empty: false
           tokenize: false
-          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Land Allocations</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/offer_license\" tabindex=\"-1\">Add offer/Licences</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Land Allocations</h5>\r\n</div>"
           plugin_id: text_custom
       exposed_block: true
     cache_metadata:
@@ -1560,12 +1637,12 @@ display:
   page_5:
     display_plugin: page
     id: page_5
-    display_title: Inventry
+    display_title: Inventory
     position: 5
     display_options:
       display_extenders: {  }
       display_description: ''
-      title: Inventry
+      title: Inventory
       defaults:
         title: false
       menu:

@@ -1617,7 +1617,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
             text: "<a href=\"{{ view_node }}#comment-form\">Add a log</a>\r\n"
@@ -2200,7 +2200,7 @@ display:
           empty: true
           tokenize: true
           content:
-            value: "<h5 class=\"title\">Farmer logs</h5><a href=\"/node/{{ raw_arguments.nid }}#comment-form\">Add a logs</a>\r\n"
+            value: "<h5 class=\"title\">Farmer logs</h5>\r\n"
             format: full_html
           plugin_id: text
       css_class: view-label-data
