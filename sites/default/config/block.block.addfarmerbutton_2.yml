@@ -1,19 +1,22 @@
-uuid: 65d45b1e-68b1-43fe-af90-c2a081687a72
+uuid: 3b6c56b7-99bd-4776-a6ce-2bdc55f60054
 langcode: en
-status: false
+status: true
 dependencies:
+  content:
+    - 'block_content:basic:44361683-371f-447f-8a14-879380fa0c3e'
   module:
+    - block_content
     - system
   theme:
     - nfa
-id: addfarmerbutton
+id: addfarmerbutton_2
 theme: nfa
 region: content
-weight: -1
+weight: -8
 provider: null
-plugin: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
+plugin: 'block_content:44361683-371f-447f-8a14-879380fa0c3e'
 settings:
-  id: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
+  id: 'block_content:44361683-371f-447f-8a14-879380fa0c3e'
   label: 'Add farmer button'
   provider: block_content
   label_display: '0'

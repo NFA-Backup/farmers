@@ -10,7 +10,7 @@ dependencies:
 id: nfafmisblock
 theme: nfa
 region: content
-weight: -4
+weight: -5
 provider: null
 plugin: nfafmis_block
 settings:
