@@ -45,21 +45,29 @@ class NfafmisBlock extends BlockBase {
       if ($path_part[1] === $current_path) {
         $options['attributes'] = [
           'class' => [
-            'farmer-tabs active',
+            'tabs-item active',
           ],
         ];
       }else{
         $options['attributes'] = [
           'class' => [
-            'farmer-tabs',
+            'tabs-item',
           ],
         ];
       }
 
       $url = Url::fromUri($value['uri'], $options);
       $link = Link::fromTextAndUrl($this->t($value['label']), $url);
-      $build[$key] = $link->toRenderable();
+      $build[$key] = $link;
     }
+
+    $build['item_list'] = [
+      '#theme' => 'item_list',
+      '#list_type' => 'ul',
+      '#items' => $build,
+      '#attributes' => ['class' => 'nav nav-tabs farmer-tabs'],
+    ];
+
     // Set cache contexts on query_args.
     $build['#cache']['contexts'][] = 'url.query_args:title';
 

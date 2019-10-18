@@ -66,3 +66,19 @@ body {
   }
 }
 
+/* --- farmer-tabs ---*/
+.farmer-tabs {
+  margin: 25px 0px;
+  a.active {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-color: transparent;
+  }
+}
+
+.center-container {
+  margin-bottom: 15px;
+}
