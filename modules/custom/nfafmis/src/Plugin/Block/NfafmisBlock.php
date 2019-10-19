@@ -70,7 +70,7 @@ class NfafmisBlock extends BlockBase {
 
     // Set cache contexts on query_args.
     $build['#cache']['contexts'][] = 'url.query_args:title';
-
+    $build['#cache']['contexts'][] = 'url.path';
     return $build;
   }
 
