@@ -47,10 +47,14 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
  * Implements hook_views_pre_render().
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
-  if (isset($view) && ($view->storage->id() == 'offers_licences')
-    && $view->current_display == 'block_3') {
-    $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
-  }
+
+  // if (isset($view) && ($view->storage->id() == 'offers_licences')
+  //   && $view->current_display == 'block_3') {
+  //   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+  // }
+
+  // Attach library on all view page.
+  $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
 }
 
 
