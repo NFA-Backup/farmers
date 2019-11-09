@@ -36,8 +36,8 @@ class NfafmisBlock extends BlockBase {
       ['uri' => 'internal:/tree-farmer-overview/licences', 'label' => 'Offers/Licences'],
       ['uri' => 'internal:/tree-farmer-overview/sub-areas', 'label' => 'Sub-areas'],
       ['uri' => 'internal:/tree-farmer-overview/inventory', 'label' => 'Inventory'],
-      ['uri' => 'internal:/tree-farmer-overview/accounts', 'label' => 'Accounts'],
       ['uri' => 'internal:/tree-farmer-overview/harvest', 'label' => 'Harvest'],
+      ['uri' => 'internal:/tree-farmer-overview/accounts', 'label' => 'Accounts'],
     ];
     foreach ($farmer_menu_items as $key => $value) {
       // Set active class for the link.

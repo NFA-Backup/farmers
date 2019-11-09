@@ -3,21 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_area_id
     - field.storage.node.field_area_planted
+    - field.storage.node.field_crop_maintenance_index
+    - field.storage.node.field_crop_status_index
+    - field.storage.node.field_date
     - field.storage.node.field_date_harvested
     - field.storage.node.field_date_planted
+    - field.storage.node.field_number_of_units
+    - field.storage.node.field_offtake_type
+    - field.storage.node.field_product_type
     - field.storage.node.field_purpose
     - field.storage.node.field_species_variety
-    - node.type.offer_license
+    - field.storage.node.field_stocking_rate
+    - field.storage.node.field_stocking_volume
+    - field.storage.node.field_unit
+    - node.type.inventory
     - node.type.sub_area
+    - node.type.thinning_harvest_details
   module:
-    - computed_field
     - datetime
     - node
+    - options
     - user
-    - views_autocomplete_filters
-    - views_field_view
 id: sub_areas_planting_status
 label: 'Sub-areas planting status'
 module: views
@@ -598,6 +605,7 @@ display:
         filter_groups: false
         use_ajax: false
         fields: false
+        header: false
       filters:
         status:
           value: '1'
@@ -1061,6 +1069,18 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area\">Add Sub-aread</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
@@ -1077,11 +1097,20 @@ display:
   block_2:
     display_plugin: block
     id: block_2
-    display_title: Sub-areas
+    display_title: Inventory
     position: 1
     display_options:
       display_extenders: {  }
       display_description: ''
+      arguments: {  }
+      defaults:
+        arguments: false
+        filters: false
+        filter_groups: false
+        use_ajax: false
+        fields: false
+        title: false
+        header: false
       filters:
         status:
           value: '1'
@@ -1103,7 +1132,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            offer_license: offer_license
+            inventory: inventory
           group: 1
           exposed: false
           expose:
@@ -1134,71 +1163,73 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        field_area_id_value:
-          id: field_area_id_value
-          table: node__field_area_id
-          field: field_area_id_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_area_id_value_op
-            label: 'Area ID'
-            description: ''
-            use_operator: false
-            operator: field_area_id_value_op
-            identifier: field_area_id_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: ''
-            autocomplete_raw_suggestion: 0
-            autocomplete_raw_dropdown: 0
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-      defaults:
-        filters: false
-        filter_groups: false
-        fields: false
-        header: false
-        use_ajax: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      use_ajax: true
       fields:
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        edit_node:
+          id: edit_node
+          table: node
+          field: edit_node
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area ID'
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          output_url_as_text: false
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link_edit
+        field_date:
+          id: field_date
+          table: node__field_date
+          field: field_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Date of inventory'
           exclude: false
           alter:
             alter_text: false
@@ -1240,11 +1271,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: datetime_default
           settings:
-            sanitized: 0
-            cache_unit: '0'
-            cache_duration: '1'
+            timezone_override: ''
+            format_type: html_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1256,14 +1286,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        view:
-          id: view
-          table: views
-          field: view
+        field_stocking_rate:
+          id: field_stocking_rate
+          table: node__field_stocking_rate
+          field: field_stocking_rate
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Stocking rate'
           exclude: false
           alter:
             alter_text: false
@@ -1296,59 +1326,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          view: sub_areas_planting_status
-          display: block_1
-          arguments: ''
-          plugin_id: view
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1370,9 +1348,197 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
           plugin_id: field
+        field_stocking_volume:
+          id: field_stocking_volume
+          table: node__field_stocking_volume
+          field: field_stocking_volume
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Stocking volume'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_crop_status_index:
+          id: field_crop_status_index
+          table: node__field_crop_status_index
+          field: field_crop_status_index
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Crop status index'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_crop_maintenance_index:
+          id: field_crop_maintenance_index
+          table: node__field_crop_maintenance_index
+          field: field_crop_maintenance_index
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Crop maintenance index'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      title: Inventory
       header:
         area_text_custom:
           id: area_text_custom
@@ -1383,16 +1549,486 @@ display:
           admin_label: ''
           empty: false
           tokenize: false
-          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Planting status</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/inventory\">Add Inventory</a>\r\n</div>\r\n\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Inventories</h5>\r\n</div>"
           plugin_id: text_custom
-      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_crop_maintenance_index'
+        - 'config:field.storage.node.field_crop_status_index'
+        - 'config:field.storage.node.field_date'
+        - 'config:field.storage.node.field_stocking_rate'
+        - 'config:field.storage.node.field_stocking_volume'
+  block_3:
+    display_plugin: block
+    id: block_3
+    display_title: Harvest
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      arguments: {  }
+      defaults:
+        arguments: false
+        filters: false
+        filter_groups: false
+        use_ajax: false
+        fields: false
+        title: false
+        header: false
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            thinning_harvest_details: thinning_harvest_details
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      use_ajax: true
+      fields:
+        edit_node:
+          id: edit_node
+          table: node
+          field: edit_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          output_url_as_text: false
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link_edit
+        field_date_harvested:
+          id: field_date_harvested
+          table: node__field_date_harvested
+          field: field_date_harvested
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Harvested date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_offtake_type:
+          id: field_offtake_type
+          table: node__field_offtake_type
+          field: field_offtake_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Harvest type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_product_type:
+          id: field_product_type
+          table: node__field_product_type
+          field: field_product_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Product type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_unit:
+          id: field_unit
+          table: node__field_unit
+          field: field_unit
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Unit
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_number_of_units:
+          id: field_number_of_units
+          table: node__field_number_of_units
+          field: field_number_of_units
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Number of units'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      title: Inventory
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/thinning_harvest_details\">Add Harvest</a>\r\n</div>\r\n\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Thinning/Harvests</h5>\r\n</div>"
+          plugin_id: text_custom
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_date_harvested'
+        - 'config:field.storage.node.field_number_of_units'
+        - 'config:field.storage.node.field_offtake_type'
+        - 'config:field.storage.node.field_product_type'
+        - 'config:field.storage.node.field_unit'
