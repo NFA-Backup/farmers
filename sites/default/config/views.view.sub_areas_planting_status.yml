@@ -577,6 +577,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      css_class: view-label-data
     cache_metadata:
       max-age: -1
       contexts:
@@ -606,6 +607,7 @@ display:
         use_ajax: false
         fields: false
         header: false
+        css_class: true
       filters:
         status:
           value: '1'

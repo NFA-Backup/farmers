@@ -1617,6 +1617,7 @@ display:
         title: false
         fields: false
         header: false
+        css_class: true
       menu:
         type: none
         title: Sub-areas
