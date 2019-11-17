@@ -30,10 +30,14 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
       ],
     ];
+    $form['field_license_date']['#states'] = [
+      'visible' => [
+        ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+    $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
   }
-  // if ($form_id == 'node_block_area_inventory_form' || $form_id == 'node_block_area_inventory_edit_form') {
-  //     // kint($form['field_sub_area_content']);
-  // }
+
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
     $form['field_date_harvested']['#states'] = [
       'visible' => [
@@ -47,18 +51,22 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
  * Implements hook_views_pre_render().
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
-
-  // if (isset($view) && ($view->storage->id() == 'offers_licences')
-  //   && $view->current_display == 'block_3') {
-  //   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
-  // }
-
-  // Attach library on all view page.
   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
 }
 
-
+/**
+ * Submit handler for commnet form.
+ */
 function nfafmis_comment_comment_form_submit($form,  FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview');
   $form_state->setRedirectUrl($url);
 }
+
+/**
+ * Submit handler for node_offer_license form.
+ */
+function nfafmis_node_offer_license_form_submit($form,  FormStateInterface &$form_state){
+  $url = Url::fromUri('internal:/tree-farmer-overview/licences');
+  $form_state->setRedirectUrl($url);
+}
+
