@@ -1,4 +1,7 @@
-*:focus {outline:none !important;}
+*:focus {
+  outline: none !important;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -10,9 +13,9 @@ body {
 
 table {
   width: 100%;
-  
+
   td {
-	padding: 5px 0;
+    padding: 5px 0;
   }
 }
 
@@ -20,63 +23,69 @@ table {
 /*-- article full page --*/
 .full {
   .field {
-	margin-bottom: 8px;
-	overflow: hidden;
-	position: relative;
-	.field--label {
-	  position: absolute;
-	  top: 5px;
-	  left: 0;
-	  width: 160px;
-	  font-weight: normal;
-	}
-	.field--item {
-	  display: block;
-	  padding: 5px;
-	  margin-left: 160px;
-	  min-height: 30px;
-	  background-color: $gray-lighter;
-	}
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+
+    .field--label {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 160px;
+      font-weight: normal;
+    }
+
+    .field--item {
+      display: block;
+      padding: 5px;
+      margin-left: 160px;
+      min-height: 30px;
+      background-color: $gray-lighter;
+    }
   }
 }
 
 /*-- views details --*/
 .view-label-data {
   .views-field {
-	margin-bottom: 8px;
-	overflow: hidden;
-	position: relative;
-	.views-label {
-	  position: absolute;
-	  top: 5px;
-	  left: 0;
-	  width: 160px;
-	  font-weight: normal;
-	}
-	.field-content {
-	  display: block;
-	  padding: 5px;
-	  margin-left: 160px;
-	  min-height: 30px;
-	  background-color: $gray-lighter;
-	}
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+
+    .views-label {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 160px;
+      font-weight: normal;
+    }
+
+    .field-content {
+      display: block;
+      padding: 5px;
+      margin-left: 160px;
+      min-height: 30px;
+      background-color: $gray-lighter;
+    }
   }
 }
 
 /*--- flagged-comment --*/
 .block-section {
   margin-bottom: 15px;
+
   .title {
-	border-bottom: 2px solid lighten($gray-base, 85%);
-	margin-bottom: 15px;
-	padding-bottom: 5px;
-	font-style: italic;
+    border-bottom: 2px solid lighten($gray-base, 85%);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-style: italic;
   }
 }
 
 /* --- farmer-tabs ---*/
 .farmer-tabs {
   margin: 25px 0px;
+
   a.active {
     color: #555;
     cursor: default;
@@ -89,4 +98,21 @@ table {
 
 .center-container {
   margin-bottom: 15px;
+}
+
+/* -- Offers/Licences table --*/
+.view-offers-licences-view {
+  table {
+    th {
+      width: 160px;
+    }
+
+    td {
+      height: 40px;
+      padding: 5px;
+      border-bottom: 8px solid #fff;
+      border-left: 8px solid #fff;
+      background-color: $gray-lighter;
+    }
+  }
 }
