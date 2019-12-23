@@ -25,6 +25,7 @@ third_party_settings:
         classes: ''
         description: ''
       label: Sub-area
+      region: content
 id: paragraph.sub_area.default
 targetEntityType: paragraph
 bundle: sub_area

@@ -2,12 +2,14 @@ uuid: b54a67ae-22cf-420d-b7f1-d347c433ca21
 langcode: en
 status: true
 dependencies:
+  config:
+    - flag.flag.farmer_flag_log
   module:
     - flag
-id: flag_action.farmer_flag_log.unflag
+id: flag_action.farmer_flag_log_unflag
 label: 'Unflag log'
 type: comment
-plugin: 'flag_action:farmer_flag_log.unflag'
+plugin: 'flag_action:farmer_flag_log_unflag'
 configuration:
   flag_id: farmer_flag_log
   flag_action: unflag
