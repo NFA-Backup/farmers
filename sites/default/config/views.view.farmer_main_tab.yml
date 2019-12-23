@@ -2164,6 +2164,7 @@ display:
       defaults:
         title: false
         fields: false
+        header: false
       menu:
         type: none
         title: Accounts
@@ -2183,9 +2184,9 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
-            alter_text: true
+            alter_text: false
             text: 'Coming soon!!'
             make_link: false
             path: ''
@@ -2306,6 +2307,119 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
+        view_1:
+          id: view_1
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          view: accounts_tab
+          display: block_1
+          arguments: '{{ raw_fields.nid }}'
+          plugin_id: view
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<li>\r\n<a href=\"#\" class=\"tabs-item\">SUMMARY CHARGES</a>\r\n</li>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4\">Balances</div>\r\n  </div>\r\n</div>\r\n<div class=\"block-section\">\r\n  <h5 class=\"title\">Charges</h5>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-6\">\r\n      <a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"#\">Create Invoice</a> NB: Fee can not be entered for land rent - this is calculated automatically</div>\r\n    <div class=\"col-md-6\">TOTAL CHARGES <span>UGX</span></div>\r\n  </div>\r\n</div>\r\n<div class=\"block-section\">\r\n  <h5 class=\"title\"></h5>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">1.LAND RENT</div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4\">Starting amount</div>\r\n    <div class=\"col-md-4\"><span>Edit</span><span>UGX</span></div>\r\n    <div class=\"col-md-4\"><span>Sub-total</span><span>UGX</span> </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4\">Annual charges<br>These changes are not editable and are calculated automatically</div>\r\n    <div class=\"col-md-4\"><span>Year</span></div>\r\n    <div class=\"col-md-4\"><span>Amount</span></div>\r\n  </div>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">2.OTHER CHARGES</div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4\">Starting amount</div>\r\n    <div class=\"col-md-4\"><span>Edit</span><span>UGX</span></div>\r\n    <div class=\"col-md-4\"><span>Sub-total</span><span>UGX</span> </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4\">Itemised charges<br>Description</div>\r\n    <div class=\"col-md-4\"><span>Date</span></div>\r\n    <div class=\"col-md-4\"><span>Amount</span></div>\r\n  </div>\r\n</div>\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Land Allocations</h5>\r\n</div>"
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
