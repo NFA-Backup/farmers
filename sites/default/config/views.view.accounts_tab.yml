@@ -811,7 +811,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<li class=\"account-list-tabs\">\r\n<a href=\"#{{field_area_id_1}}\">{{ field_area_id_1 }}</a>\r\n</li>"
+            text: "<li class=\"account-list-tabs\">\r\n<a href=\"#\">{{ field_area_id_1 }}</a>\r\n</li>"
             make_link: false
             path: ''
             absolute: false
