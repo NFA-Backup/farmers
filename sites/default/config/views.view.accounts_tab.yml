@@ -817,7 +817,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<li class=\"account-list-tabs\">\r\n<a href=\"#\">{{ field_area_id_1 }}</a>\r\n</li>"
+            text: "<li class=\"account-list-tabs hidden\">\r\n<a href=\"#\">{{ field_area_id_1 }}</a>\r\n</li>"
             make_link: false
             path: ''
             absolute: false
@@ -1958,7 +1958,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: "<li class=\"account-list-tabs\">\r\n<a href=\"#\">PAYMENTS REPORT</a>\r\n</li>\r\n<div class=\"block-section\">\r\n  <h5 class=\"title\">Payments</h5>\r\n</div>"
+          content: "<div class=\"views-row\">\r\n<li class=\"account-list-tabs hidden\">\r\n<a href=\"#\">PAYMENTS REPORT</a>\r\n</li>\r\n<div class=\"block-section\">\r\n  <h5 class=\"title\">Payments</h5>\r\n</div>\r\n</div>"
           plugin_id: text_custom
     cache_metadata:
       max-age: -1
