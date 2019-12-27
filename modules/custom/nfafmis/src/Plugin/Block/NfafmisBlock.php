@@ -23,6 +23,7 @@ class NfafmisBlock extends BlockBase {
   public function build() {
     $farmer_name = \Drupal::request()->query->get('title');
     $options = [];
+    $items = [];
     if ($farmer_name) {
       $options = [
         'query' => ['title' => $farmer_name]
@@ -58,16 +59,15 @@ class NfafmisBlock extends BlockBase {
 
       $url = Url::fromUri($value['uri'], $options);
       $link = Link::fromTextAndUrl($this->t($value['label']), $url);
-      $build[$key] = $link;
+      $items[] = $link;
     }
 
     $build['item_list'] = [
       '#theme' => 'item_list',
       '#list_type' => 'ul',
-      '#items' => $build,
+      '#items' => $items,
       '#attributes' => ['class' => 'nav nav-tabs farmer-tabs'],
     ];
-
     // Set cache contexts on query_args.
     $build['#cache']['contexts'][] = 'url.query_args:title';
     $build['#cache']['contexts'][] = 'url.path';
