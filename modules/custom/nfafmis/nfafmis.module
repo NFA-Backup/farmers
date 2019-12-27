@@ -88,3 +88,11 @@ function nfafmis_node_charge_form_submit($form,  FormStateInterface &$form_state
   $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
   $form_state->setRedirectUrl($url);
 }
+
+/**
+ * Implements computed_field_field_area_id_compute().
+ */
+function computed_field_field_area_id_compute($entity_type_manager, $entity, $fields, $delta) {
+  $value = 'AREA/'. time();
+  return $value;
+}
