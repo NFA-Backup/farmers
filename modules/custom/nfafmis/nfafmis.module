@@ -17,9 +17,16 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['actions']['submit']['#submit'][] = 'nfafmis_comment_comment_form_submit';
   }
 
+  // Hide exposed form from certain page only.
   if ($form_id == 'views_exposed_form') {
-    $excluded_id = ['views-exposed-form-farmer-main-tab-overview'];
-    if (!in_array($form['#id'], $excluded_id)) {
+    $include_id = [
+      'views-exposed-form-farmer-filter-block-1',
+      'views-exposed-form-farmer-main-tab-page-4',
+      'views-exposed-form-farmer-main-tab-page-5',
+      'views-exposed-form-farmer-main-tab-page-6',
+      'views-exposed-form-farmer-main-tab-page-7'
+    ];
+    if (in_array($form['#id'], $include_id)) {
       $form['#attributes']['class'] = ['hidden'];
     }
   }
