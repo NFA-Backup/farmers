@@ -1,0 +1,19 @@
+uuid: 1d4eef7c-33fe-46e4-803a-85c6f5e06bd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_charge_description
+    - node.type.charge
+id: node.charge.field_charge_description
+field_name: field_charge_description
+entity_type: node
+bundle: charge
+label: Description
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

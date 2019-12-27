@@ -1,0 +1,21 @@
+uuid: 0345a0a8-f2f8-4f9f-959b-33d8ad22c054
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_change_type
+    - node.type.charge
+  module:
+    - options
+id: node.charge.field_change_type
+field_name: field_change_type
+entity_type: node
+bundle: charge
+label: 'Change type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

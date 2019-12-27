@@ -1,0 +1,25 @@
+uuid: 5a5d2340-b95e-4d30-bc95-5943661de7a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_amount
+    - node.type.charge
+id: node.charge.field_amount
+field_name: field_amount
+entity_type: node
+bundle: charge
+label: Amount
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: !!float 0
+default_value_callback: ''
+settings:
+  min: null
+  max: !!float 0
+  prefix: UGX
+  suffix: ''
+field_type: float

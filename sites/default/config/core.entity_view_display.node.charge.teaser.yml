@@ -1,0 +1,20 @@
+uuid: ade241ec-7798-4178-9d9f-4abb4e1aa462
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.charge
+  module:
+    - user
+id: node.charge.teaser
+targetEntityType: node
+bundle: charge
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

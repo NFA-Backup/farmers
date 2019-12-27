@@ -1,0 +1,24 @@
+uuid: ad7babb8-a37a-44fc-a4ca-320188c3a8f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_charge_date
+    - node.type.charge
+  module:
+    - datetime
+id: node.charge.field_charge_date
+field_name: field_charge_date
+entity_type: node
+bundle: charge
+label: Date
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

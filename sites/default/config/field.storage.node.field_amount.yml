@@ -1,0 +1,18 @@
+uuid: 5eba577e-8491-4a98-966e-c0734b7ca3f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_amount
+field_name: field_amount
+entity_type: node
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

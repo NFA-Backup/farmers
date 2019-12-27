@@ -1,0 +1,81 @@
+uuid: 92822d5c-1b37-493f-b2d4-124af537e5f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.charge.field_amount
+    - field.field.node.charge.field_areas_id
+    - field.field.node.charge.field_change_type
+    - field.field.node.charge.field_charge_date
+    - field.field.node.charge.field_charge_description
+    - node.type.charge
+  module:
+    - datetime
+    - entity_reference_views_select
+    - field_group
+third_party_settings:
+  field_group:
+    group_charge_details:
+      children:
+        - field_charge_date
+        - field_areas_id
+        - field_area_sub_area
+        - field_change_type
+        - field_amount
+        - field_charge_description
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Charge details'
+id: node.charge.default
+targetEntityType: node
+bundle: charge
+mode: default
+content:
+  field_amount:
+    weight: 12
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_areas_id:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: erviews_options_select
+    region: content
+  field_change_type:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_charge_date:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_charge_description:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

@@ -1,0 +1,22 @@
+uuid: 9df8c398-cb23-4624-ae12-b1b574f573ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.charge
+id: node.charge.promote
+field_name: promote
+entity_type: node
+bundle: charge
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
