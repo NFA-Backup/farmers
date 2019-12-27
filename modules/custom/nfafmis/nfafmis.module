@@ -45,6 +45,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
   }
 
+  if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
+    $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
+  }
+
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
     $form['field_date_harvested']['#states'] = [
       'visible' => [
@@ -77,3 +81,10 @@ function nfafmis_node_offer_license_form_submit($form,  FormStateInterface &$for
   $form_state->setRedirectUrl($url);
 }
 
+/**
+ * Submit handler for node_charge form.
+ */
+function nfafmis_node_charge_form_submit($form,  FormStateInterface &$form_state){
+  $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
+  $form_state->setRedirectUrl($url);
+}

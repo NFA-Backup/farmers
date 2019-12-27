@@ -1,5 +1,5 @@
 status: 1
-pattern: 'Charge for [node:field_farmer_name_ref] for area [node:field_area_sub_area]'
+pattern: 'Charge for area [node:field_areas_id]'
 escape: true
 dependencies:
   config:
