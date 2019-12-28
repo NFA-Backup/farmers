@@ -14,7 +14,6 @@ dependencies:
     - node.type.sub_area
   module:
     - datetime
-    - entity_reference_views_select
     - file
 id: node.sub_area.default
 targetEntityType: node
@@ -38,9 +37,12 @@ content:
     region: content
   field_areas_id:
     weight: 1
-    settings: {  }
+    settings:
+      match_operator: STARTS_WITH
+      size: 60
+      placeholder: 'Area ID'
     third_party_settings: {  }
-    type: erviews_options_select
+    type: entity_reference_autocomplete
     region: content
   field_date_harvested:
     weight: 8

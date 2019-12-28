@@ -12,7 +12,7 @@ entity_type: node
 bundle: area_planting_history
 label: 'Farmer name'
 description: 'Name of organisation or individual farmer'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
