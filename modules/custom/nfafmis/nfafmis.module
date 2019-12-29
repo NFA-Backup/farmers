@@ -74,6 +74,19 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
 }
 
+function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+
+  // Offer license ID.
+  if ($view->id() == 'sub_areas_planting_status' && $display_id == 'block_4') {
+    // We have pass farmer Id intentionaly to get offer license ID from that.
+    if (!empty($args)) {
+      $farmer_id = $args[0];
+      // @TODO: get offer license ID.
+      $args = ['79']; // remove this hard coded value;
+    }
+  }
+}
+
 /**
  * Submit handler for commnet form.
  */
