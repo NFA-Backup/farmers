@@ -38,9 +38,9 @@ content:
   field_areas_id:
     weight: 1
     settings:
-      match_operator: STARTS_WITH
+      match_operator: CONTAINS
       size: 60
-      placeholder: 'Area ID'
+      placeholder: 'Area Id'
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
