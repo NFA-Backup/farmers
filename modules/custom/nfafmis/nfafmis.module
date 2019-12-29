@@ -82,7 +82,7 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
     if (!empty($args)) {
       $farmer_id = $args[0];
       // @TODO: get offer license ID.
-      $args = ['79']; // remove this hard coded value;
+      // $args = ['79']; // remove this hard coded value;
     }
   }
 }
