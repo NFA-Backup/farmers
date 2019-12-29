@@ -7,15 +7,19 @@
   Drupal.behaviors.nfamis = {
     attach: function(context, settings) {
 
-      $(".account-tab-view", context).once("nfamis").each(function() {
+      $(".view-id-sub_areas_planting_status", context).once("nfamis").each(function() {
+        let filterElem = '<div class="form--inline form-inline clearfix"><label for="edit-title" class="control-label">Area ID</label>';
+        filterElem+= '<div class="input-group"><input placeholder="AREA/XXXX" class="form-control ui-autocomplete-input"><span class="input-group-addon">';
+        filterElem+= '<span class="icon glyphicon glyphicon glyphicon-arrow-down"></span></span></div></div>';
+        $(this).find('.center-container .area-filter-section').append(filterElem);
+      });
 
+      $(".account-tab-view", context).once("nfamis").each(function() {
         // Default hide all content, then show first as default.
         $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
-
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<ul></ul>').find('ul');
             ulist.addClass('nav nav-tabs farmer-tabs');
-
         // Loop through existing li to create a new one and append them in ul.
         $(context).find(".account-list-tabs").each(function(i,e) {
           let anchorElem = $(this).find('a');
