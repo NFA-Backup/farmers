@@ -1,0 +1,6 @@
+status: 1
+pattern: 'Rent rate of "[node:field_forest_reserve_id]" for the year [node:field_rate_year]'
+escape: false
+dependencies:
+  config:
+    - node.type.land_rent_rates

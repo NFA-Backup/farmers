@@ -1,0 +1,20 @@
+uuid: 823d5ec5-4d54-4da2-bf7e-27808ef416b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.land_rent_rates
+  module:
+    - user
+id: node.land_rent_rates.teaser
+targetEntityType: node
+bundle: land_rent_rates
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

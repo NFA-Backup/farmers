@@ -1,0 +1,19 @@
+uuid: e6e67f6a-1c79-4ff1-b2c4-514fd663e819
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - yearonly
+id: node.field_rate_year
+field_name: field_rate_year
+entity_type: node
+type: yearonly
+settings: {  }
+module: yearonly
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,22 @@
+uuid: c59f5b91-e1a9-4370-a42c-ceaff531b1e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.land_rent_rates
+id: node.land_rent_rates.promote
+field_name: promote
+entity_type: node
+bundle: land_rent_rates
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

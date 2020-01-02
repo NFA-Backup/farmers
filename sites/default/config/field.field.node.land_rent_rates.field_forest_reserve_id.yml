@@ -1,0 +1,21 @@
+uuid: f0b4e4eb-7a4f-4856-aa2d-123183788067
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_forest_reserve_id
+    - node.type.land_rent_rates
+  module:
+    - options
+id: node.land_rent_rates.field_forest_reserve_id
+field_name: field_forest_reserve_id
+entity_type: node
+bundle: land_rent_rates
+label: 'Central Forest Reserve'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

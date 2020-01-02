@@ -1,0 +1,23 @@
+uuid: c42ca1d4-ceb2-4ad1-b7b5-2b768f9a3fb1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rate_year
+    - node.type.land_rent_rates
+  module:
+    - yearonly
+id: node.land_rent_rates.field_rate_year
+field_name: field_rate_year
+entity_type: node
+bundle: land_rent_rates
+label: 'Rate for the Year'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  yearonly_from: '2000'
+  yearonly_to: now
+field_type: yearonly

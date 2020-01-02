@@ -1,0 +1,23 @@
+uuid: ec844f3b-aeee-482f-8424-1a9209f2f32c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rate
+    - node.type.land_rent_rates
+id: node.land_rent_rates.field_rate
+field_name: field_rate
+entity_type: node
+bundle: land_rent_rates
+label: Rate
+description: 'Land rent set by reserve - UGX per hectare(ha)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: UGX
+  suffix: /ha
+field_type: decimal

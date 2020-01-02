@@ -1,0 +1,20 @@
+uuid: e3fe8052-f311-4d31-90fa-29a1481ffbd5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_rate
+field_name: field_rate
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
