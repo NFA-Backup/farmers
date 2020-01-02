@@ -88,6 +88,28 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
 }
 
+/**
+ * Implements hook_preprocess_views_view_field().
+ */
+function nfafmis_preprocess_views_view_field(&$variables) {
+  $view = $variables['view'];
+  $field = $variables['field'];
+  $row = $variables['row'];
+  if ($view->storage->id() == 'sub_areas_planting_status' && $view->current_display == 'block_1') {
+    $field_overall_area_allocated = $row->_entity->get('field_overall_area_allocated')->value;
+    $area_panted_values = getAreaPlantedUnPlantedValute($row->nid);
+
+    // Override the view rewult.
+    if ($field->field == 'nid') {
+      $variables['output'] = $field_overall_area_allocated;
+    }
+    if ($field->field == 'title') {
+      $variables['output'] = $field_overall_area_allocated - $area_panted_values;
+    }
+  }
+}
+
+
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 
   // Set Offer license IDs as view arguments.
@@ -166,4 +188,26 @@ function getOfferLicenseIds($farmer_id) {
     return implode(',', $nids);
   }
   return NULL;
+}
+
+function getAreaPlantedUnPlantedValute($offer_license_id) {
+  // Get sub-area entity Ids based on area ID.
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $nids = $query->condition('type', 'sub_area')
+  ->condition('field_areas_id.target_id', $offer_license_id)
+  ->execute();
+  if (!empty($nids)) {
+    // Need to work on this.
+    // $nids = array_values($nids);
+    // $nids = implode(',', $nids);
+    //  print_r($nids);
+    // $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+    // $nids = $query->condition('type', 'sub_area')
+    // ->condition('field_sub_area_planted.entity_id', $nids, 'IN')
+    // ->execute();
+    if (!empty($nids)) {
+      return 0;
+    }
+  }
+  return 0;
 }

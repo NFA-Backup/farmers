@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.sub_area.field_area_harvested
-    - field.field.node.sub_area.field_area_planted
     - field.field.node.sub_area.field_areas_id
     - field.field.node.sub_area.field_date_harvested
     - field.field.node.sub_area.field_date_planted
     - field.field.node.sub_area.field_kml_upload
     - field.field.node.sub_area.field_purpose
     - field.field.node.sub_area.field_species_variety
+    - field.field.node.sub_area.field_sub_area_planted
     - node.type.sub_area
   module:
     - datetime
@@ -26,14 +26,6 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: content
-  field_area_planted:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_areas_id:
     weight: 1
@@ -72,12 +64,19 @@ content:
     type: string_textfield
     region: content
   field_species_variety:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_sub_area_planted:
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
   title:
     type: string_textfield

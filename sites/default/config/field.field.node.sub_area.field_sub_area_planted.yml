@@ -1,0 +1,25 @@
+uuid: acf303a4-35c8-4198-a00b-eacbe731cead
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_area_planted
+    - node.type.sub_area
+id: node.sub_area.field_sub_area_planted
+field_name: field_sub_area_planted
+entity_type: node
+bundle: sub_area
+label: 'Area Planted'
+description: 'Sub-area planted in hectare, and must not greater than area selected value.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ha
+field_type: integer
