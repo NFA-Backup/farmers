@@ -96,7 +96,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $area_panted_values = getAreaPlantedUnPlantedValute($row->nid);
 
     // Override the view rewult.
-    if ($field->field == 'nid') {
+    if ($field->field == 'field_offer_id') {
       $variables['output'] = $field_overall_area_allocated;
     }
     if ($field->field == 'title') {

@@ -7,11 +7,36 @@
   Drupal.behaviors.nfamis = {
     attach: function(context, settings) {
 
-      $(".view-id-sub_areas_planting_status", context).once("nfamis").each(function() {
+      $(".sub-areas-planting", context).once("nfamis").each(function() {
         let filterElem = '<div class="form--inline form-inline clearfix"><label for="edit-title" class="control-label">Area ID</label>';
-        filterElem+= '<div class="input-group"><input placeholder="AREA/XXXX" class="form-control ui-autocomplete-input"><span class="input-group-addon">';
+        filterElem+= '<div class="input-group"><input placeholder="AREA/XXXX" class="form-control ui-autocomplete-input" id="sub-area-filter"><span class="input-group-addon">';
         filterElem+= '<span class="icon glyphicon glyphicon glyphicon-arrow-down"></span></span></div></div>';
         $(this).find('.center-container .area-filter-section').append(filterElem);
+
+        // Event handler for down arrow.
+        $('span.glyphicon-arrow-down').click(function(){
+          let filterVal = $('#sub-area-filter').val().trim();
+          $(".sub-areas-planting .views-row").hide();
+          $('.view-id-sub_areas_planting_status .views-row').hide();
+          let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
+          let filterClass = $('#'+filtered_name).attr('class');
+          $(".sub-areas-planting .views-row").find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+          $('.view-id-sub_areas_planting_status .views-row').find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+        });
+
+        $(this).find(".views-row").hide();
+        $('.view-id-sub_areas_planting_status .views-row').hide();
+        $(this).find(".views-row").each(function(index) {
+          let filterVal = $(this).find('span').attr('id');
+          let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
+          $(this).find('span').attr('id', filtered_name);
+          let filterClass = $(this).find('span').attr('class');
+          if (index == 0) {
+            $('#sub-area-filter').val(filterVal);
+            $(this).find('span').parents('.views-row').fadeIn('slow');
+            $('.view-id-sub_areas_planting_status .views-row').find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+          }
+        });
       });
 
       $(".account-tab-view", context).once("nfamis").each(function() {
@@ -40,7 +65,7 @@
           if (i === 0) {
             tempElem.addClass('active');
             window.location = window.location+'#'+filtered_name;
-            $('#'+filtered_name).parents('.views-row').fadeIn('slow')
+            $('#'+filtered_name).parents('.views-row').fadeIn('slow');
           }
           // Bind click event for anchor tag.
           $(tempElem).click(function(){
