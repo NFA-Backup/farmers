@@ -43,11 +43,8 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
       ],
     ];
-    $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
-  }
 
-  // Set default farmer when adding offer license content.
-  if ($form_id == 'node_offer_license_form' || $form_id == 'node_offer_license_edit_form') {
+    // Set default farmer when adding offer license content.
     $form['field_farmer_name_ref']['widget'][0]['#disabled'] = TRUE;
     if ($form_id == 'node_offer_license_form') {
       $query_params = getOfferLicenseDetails();
@@ -57,8 +54,8 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer_data;
       }
     }
+    $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
   }
-
 
   if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
@@ -66,7 +63,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
     $offer_license_id = getOfferLicenseDetails();
-
     // Provide farmer id as arguments to the reference views to filter result.
     // This only works when widget is selected as autocompleted.
     if ($offer_license_id) {
@@ -127,7 +123,7 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
 /**
  * Submit handler for commnet form.
  */
-function nfafmis_comment_comment_form_submit($form,  FormStateInterface &$form_state) {
+function nfafmis_comment_comment_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview');
   $form_state->setRedirectUrl($url);
 }
@@ -135,15 +131,21 @@ function nfafmis_comment_comment_form_submit($form,  FormStateInterface &$form_s
 /**
  * Submit handler for node_offer_license form.
  */
-function nfafmis_node_offer_license_form_submit($form,  FormStateInterface &$form_state){
+function nfafmis_node_offer_license_form_submit($form, FormStateInterface &$form_state){
   $url = Url::fromUri('internal:/tree-farmer-overview/licences');
+  $response_data = getReffererAndQueryParams();
+  if (!empty($response_data)) {
+    if (isset($response_data['alias'])) {
+      $url = Url::fromUri('internal:'. $response_data['alias']);
+    }
+  }
   $form_state->setRedirectUrl($url);
 }
 
 /**
  * Submit handler for node_charge form.
  */
-function nfafmis_node_charge_form_submit($form,  FormStateInterface &$form_state){
+function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state){
   $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
   $form_state->setRedirectUrl($url);
 }
@@ -160,17 +162,11 @@ function computed_field_field_area_id_compute($entity_type_manager, $entity, $fi
  * Get offer license ID.
  */
 function getOfferLicenseDetails() {
-  // Getting the referer.
-  $request = \Drupal::request();
-  $referer = $request->headers->get('referer');
-  // Getting the base url.
-  $base_url = Request::createFromGlobals()->getSchemeAndHttpHost();
-  // Getting the alias or the relative path.
-  $alias = substr($referer, strlen($base_url));
-
-  $query_params = $request->query->all();
-  if ($alias == '/tree-farmer-overview/sub-areas' || !empty($query_params)) {
-    return $query_params;
+  $response_data = getReffererAndQueryParams();
+  if (!empty($response_data)) {
+    if (isset($response_data['query_params'])) {
+      return $response_data['query_params'];
+    }
   }
   return NULL;
 }
@@ -197,17 +193,31 @@ function getAreaPlantedUnPlantedValute($offer_license_id) {
   ->condition('field_areas_id.target_id', $offer_license_id)
   ->execute();
   if (!empty($nids)) {
-    // Need to work on this.
-    // $nids = array_values($nids);
-    // $nids = implode(',', $nids);
-    //  print_r($nids);
-    // $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-    // $nids = $query->condition('type', 'sub_area')
-    // ->condition('field_sub_area_planted.entity_id', $nids, 'IN')
-    // ->execute();
-    if (!empty($nids)) {
-      return 0;
+    $nids = array_values($nids);
+    $field_sub_area_planted = 0;
+    $sub_areas = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+    foreach ($sub_areas as $key => $area) {
+      $field_sub_area_planted += $area->get('field_sub_area_planted')->value;
     }
+    return $field_sub_area_planted;
   }
   return 0;
+}
+
+function getReffererAndQueryParams() {
+    // Getting the referer.
+  $request = \Drupal::request();
+  $referer = $request->headers->get('referer');
+  // Getting the base url.
+  $base_url = Request::createFromGlobals()->getSchemeAndHttpHost();
+  // Getting the alias or the relative path.
+  $alias = substr($referer, strlen($base_url));
+
+  // All query params.
+  $query_params = $request->query->all();
+
+  $ref_param['query_params'] = !empty($query_params) ? $query_params : NULL;
+  $ref_param['alias'] = $alias ? $alias : NULL;
+
+  return $ref_param;
 }
