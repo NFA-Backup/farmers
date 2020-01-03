@@ -14,7 +14,7 @@
         $(this).find('.center-container .area-filter-section').append(filterElem);
 
         // Event handler for down arrow.
-        $('span.glyphicon-arrow-down').click(function(){
+        $(this).find('span.input-group-addon').click(function() {
           let filterVal = $('#sub-area-filter').val().trim();
           $(".sub-areas-planting .views-row").hide();
           $('.view-id-sub_areas_planting_status .views-row').hide();
