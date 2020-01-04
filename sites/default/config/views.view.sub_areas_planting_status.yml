@@ -850,7 +850,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Planted'
+          label: 'Total area planted'
           exclude: false
           alter:
             alter_text: false
