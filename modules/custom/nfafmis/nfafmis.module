@@ -97,10 +97,10 @@ function nfafmis_preprocess_views_view_field(&$variables) {
 
     // Override the view rewult.
     if ($field->field == 'field_offer_id') {
-      $variables['output'] = $field_overall_area_allocated;
+      $variables['output'] = $field_overall_area_allocated . 'ha';
     }
     if ($field->field == 'title') {
-      $variables['output'] = $field_overall_area_allocated - $area_panted_values;
+      $variables['output'] = $field_overall_area_allocated - $area_panted_values . 'ha';
     }
   }
 }

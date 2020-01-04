@@ -8,8 +8,8 @@
     attach: function(context, settings) {
 
       $(".sub-areas-planting", context).once("nfamis").each(function() {
-        let filterElem = '<div class="form--inline form-inline clearfix"><label for="edit-title" class="control-label">Area ID</label>';
-        filterElem+= '<div class="input-group"><input placeholder="AREA/XXXX" class="form-control ui-autocomplete-input" id="sub-area-filter"><span class="input-group-addon">';
+        let filterElem = '<div class="form-inline clearfix"><span class="control-label">Area ID:</span>';
+        filterElem+= '<div class="input-group"><input class="form-control ui-autocomplete-input" id="sub-area-filter"><span class="input-group-addon">';
         filterElem+= '<span class="icon glyphicon glyphicon glyphicon-arrow-down"></span></span></div></div>';
         $(this).find('.center-container .area-filter-section').append(filterElem);
 
