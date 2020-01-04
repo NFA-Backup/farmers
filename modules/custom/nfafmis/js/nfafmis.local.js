@@ -8,10 +8,19 @@
     attach: function(context, settings) {
 
       $(".sub-areas-planting", context).once("nfamis").each(function() {
+
+        // A area ID filter on sub-area, inventory tab.
         let filterElem = '<div class="form-inline clearfix"><span class="control-label">Area ID:</span>';
         filterElem+= '<div class="input-group"><input class="form-control ui-autocomplete-input" id="sub-area-filter"><span class="input-group-addon">';
         filterElem+= '<span class="icon glyphicon glyphicon glyphicon-arrow-down"></span></span></div></div>';
         $(this).find('.center-container .area-filter-section').append(filterElem);
+
+        // Add sub-area ID filter on inventroy tab.
+        let filterSubElem = '<div class="form-inline clearfix"><span class="control-label">Sub-area ID:</span>';
+        filterSubElem+= '<div class="input-group"><input class="form-control ui-autocomplete-input" id="filter-sub-area"><span class="input-group-addon">';
+        filterSubElem+= '<span class="icon glyphicon glyphicon glyphicon-arrow-down"></span></span></div></div>';
+        $(this).find('.center-container .area-filter-sub-area').append(filterSubElem);
+
 
         // Event handler for down arrow.
         $(this).find('span.input-group-addon').click(function() {

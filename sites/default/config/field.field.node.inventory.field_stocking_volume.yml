@@ -1,4 +1,4 @@
-uuid: c0e63a2f-2c55-4abc-a32b-fc2d78fcb82c
+uuid: 9babd855-9618-4859-854d-65e4fcf2c503
 langcode: en
 status: true
 dependencies:
@@ -15,5 +15,9 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  min: !!float 0
+  max: null
+  prefix: ''
+  suffix: m3/ha
+field_type: decimal

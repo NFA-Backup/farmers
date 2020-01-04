@@ -1,20 +1,20 @@
-uuid: 3b20d64a-a755-4676-91a7-1dbf03247a4f
+uuid: c29cee5a-007c-4dd3-9765-65d3d6da5bde
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_date
+    - field.storage.node.field_date_of_inventory
     - node.type.inventory
   module:
     - datetime
-id: node.inventory.field_date
-field_name: field_date
+id: node.inventory.field_date_of_inventory
+field_name: field_date_of_inventory
 entity_type: node
 bundle: inventory
 label: 'Date of inventory'
 description: ''
-required: false
-translatable: true
+required: true
+translatable: false
 default_value:
   -
     default_date_type: now

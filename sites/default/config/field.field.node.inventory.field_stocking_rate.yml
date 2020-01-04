@@ -1,4 +1,4 @@
-uuid: 505e84a4-fad6-4bb5-b765-63ffeafe1e3d
+uuid: fd33d2be-82ac-4f4f-bc15-28fbe966b7b1
 langcode: en
 status: true
 dependencies:
@@ -15,5 +15,9 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  min: !!float 0
+  max: null
+  prefix: ''
+  suffix: stems/ha
+field_type: decimal

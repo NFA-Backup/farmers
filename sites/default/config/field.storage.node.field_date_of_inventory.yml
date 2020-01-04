@@ -1,17 +1,17 @@
-uuid: e686a394-c74c-443c-a3c4-19cac94b0551
+uuid: a0a74a7d-7ff1-4bf6-b8a6-14f4d2711d13
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
-id: node.field_stocking_volume
-field_name: field_stocking_volume
+id: node.field_date_of_inventory
+field_name: field_date_of_inventory
 entity_type: node
-type: decimal
+type: datetime
 settings:
-  precision: 10
-  scale: 0
-module: core
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true

@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.node.inventory.field_crop_maintenance_index
     - field.field.node.inventory.field_crop_status_index
-    - field.field.node.inventory.field_date
+    - field.field.node.inventory.field_date_of_inventory
     - field.field.node.inventory.field_stocking_rate
     - field.field.node.inventory.field_stocking_volume
     - node.type.inventory
@@ -34,7 +34,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_date:
+  field_date_of_inventory:
     weight: 1
     settings: {  }
     third_party_settings: {  }
@@ -43,18 +43,16 @@ content:
   field_stocking_rate:
     weight: 2
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
   field_stocking_volume:
     weight: 3
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
   title:
     type: string_textfield
