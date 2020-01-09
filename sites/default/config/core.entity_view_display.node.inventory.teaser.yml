@@ -4,6 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.inventory.field_crop_maintenance_index
+    - field.field.node.inventory.field_crop_status_index
+    - field.field.node.inventory.field_date_of_inventory
+    - field.field.node.inventory.field_stocking_rate
+    - field.field.node.inventory.field_stocking_volume
+    - field.field.node.inventory.field_sub_area_id
     - node.type.inventory
   module:
     - user
@@ -21,5 +27,7 @@ hidden:
   field_crop_maintenance_index: true
   field_crop_status_index: true
   field_date: true
+  field_date_of_inventory: true
   field_stocking_rate: true
   field_stocking_volume: true
+  field_sub_area_id: true

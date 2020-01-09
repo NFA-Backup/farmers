@@ -1,0 +1,28 @@
+uuid: 831b80c6-9fab-4e3b-92fb-f4761b4213e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_area_id
+    - node.type.inventory
+    - node.type.sub_area
+id: node.inventory.field_sub_area_id
+field_name: field_sub_area_id
+entity_type: node
+bundle: inventory
+label: 'Sub-area ID'
+description: 'Inventory against sub area ID.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sub_area: sub_area
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.inventory.field_date_of_inventory
     - field.field.node.inventory.field_stocking_rate
     - field.field.node.inventory.field_stocking_volume
+    - field.field.node.inventory.field_sub_area_id
     - node.type.inventory
   module:
     - datetime
@@ -55,6 +56,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_sub_area_id:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   title:
     type: string_textfield

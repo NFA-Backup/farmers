@@ -109,7 +109,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 
   // Set Offer license IDs as view arguments.
-  if ($view->id() == 'sub_areas_planting_status' && $display_id == 'block_4') {
+  if ($view->id() == 'sub_areas_planting_status' && ($display_id == 'block_4' || $display_id == 'block_6')) {
     // We have pass farmer Id intentionaly to get offer license ID from that.
     if (!empty($args)) {
       $offer_license_ids = getOfferLicenseIds($args[0]);

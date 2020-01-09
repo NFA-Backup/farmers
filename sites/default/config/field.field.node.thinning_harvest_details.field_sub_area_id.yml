@@ -1,0 +1,28 @@
+uuid: ff28a92d-862f-4bbe-9add-a9325c1408d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_area_id
+    - node.type.sub_area
+    - node.type.thinning_harvest_details
+id: node.thinning_harvest_details.field_sub_area_id
+field_name: field_sub_area_id
+entity_type: node
+bundle: thinning_harvest_details
+label: 'Sub-area ID'
+description: "Thinning/Harvests against Sub-area ID\r\n"
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sub_area: sub_area
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.thinning_harvest_details.field_number_of_units
     - field.field.node.thinning_harvest_details.field_offtake_type
     - field.field.node.thinning_harvest_details.field_product_type
+    - field.field.node.thinning_harvest_details.field_sub_area_id
     - field.field.node.thinning_harvest_details.field_unit
     - node.type.thinning_harvest_details
   module:
@@ -45,6 +46,14 @@ content:
   field_product_type:
     weight: 103
     label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sub_area_id:
+    weight: 106
+    label: above
     settings:
       link: true
     third_party_settings: {  }

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.inventory.field_date_of_inventory
     - field.field.node.inventory.field_stocking_rate
     - field.field.node.inventory.field_stocking_volume
+    - field.field.node.inventory.field_sub_area_id
     - node.type.inventory
   module:
     - datetime
@@ -63,6 +64,14 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
+  field_sub_area_id:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 0

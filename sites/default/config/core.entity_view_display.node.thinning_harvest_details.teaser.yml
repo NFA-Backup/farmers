@@ -4,6 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.thinning_harvest_details.field_date
+    - field.field.node.thinning_harvest_details.field_number_of_units
+    - field.field.node.thinning_harvest_details.field_offtake_type
+    - field.field.node.thinning_harvest_details.field_product_type
+    - field.field.node.thinning_harvest_details.field_sub_area_id
+    - field.field.node.thinning_harvest_details.field_unit
     - node.type.thinning_harvest_details
   module:
     - user
@@ -22,4 +28,5 @@ hidden:
   field_number_of_units: true
   field_offtake_type: true
   field_product_type: true
+  field_sub_area_id: true
   field_unit: true
