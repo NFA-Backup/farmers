@@ -17,4 +17,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_amount: true
+  field_areas_id: true
+  field_change_type: true
+  field_charge_date: true
+  field_charge_description: true

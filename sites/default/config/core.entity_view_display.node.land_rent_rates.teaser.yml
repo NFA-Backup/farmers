@@ -17,4 +17,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_forest_reserve_id: true
+  field_rate: true
+  field_rate_year: true
