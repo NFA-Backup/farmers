@@ -25,6 +25,7 @@
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
         "drupal/core-vendor-hardening": "^8.8",
+        "drupal/devel_entity_updates": "^1.0",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
         "drupal/inline_entity_form": "^1.0@RC",
