@@ -118,6 +118,21 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       }
     }
   }
+  // Set argument for Inventroy.
+  if ($view->id() == 'sub_areas_planting_status' && $display_id == 'block_2') {
+    // We have pass farmer Id intentionaly to get offer license ID from that.
+    if (!empty($args)) {
+      $offer_license_ids = getOfferLicenseIds($args[0]);
+      // Now get all sub-area ids based on area(offer license).
+      if ($offer_license_ids) {
+        $sub_areas_ids = getSubAreasIds($offer_license_ids);
+        // Pass sub-area ids to get Inventory.
+        if ($sub_areas_ids) {
+          $args = [$sub_areas_ids];
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -186,6 +201,41 @@ function getOfferLicenseIds($farmer_id) {
   return NULL;
 }
 
+/**
+ * Get offer license IDs based on farmer id.
+ */
+function getSubAreasIds($offer_licence_ids) {
+  $offer_licence_ids = explode(',', $offer_licence_ids);
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $sub_area_nids = $query->condition('type', 'sub_area')
+  ->condition('field_areas_id.target_id', $offer_licence_ids, 'IN')
+  ->execute();
+  if (!empty($sub_area_nids)) {
+    $sub_area_nids = array_values($sub_area_nids);
+    return implode(',', $sub_area_nids);
+  }
+  return NULL;
+}
+
+/**
+ * Get offer license IDs based on farmer id.
+ */
+function getInventoryIds($sub_areas_ids) {
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $inventory_nids = $query->condition('type', 'inventory')
+  ->condition('field_sub_area_id.target_id', $offer_licence_id, 'IN')
+  ->execute();
+  if (!empty($inventory_nids)) {
+    print_r($inventory_nids);die;
+    $inventory_nids = array_values($inventory_nids);
+    return implode(',', $inventory_nids);
+  }
+  return NULL;
+}
+
+/**
+ * Get getAreaPlantedUnPlantedValute value  based on $offer_license_id.
+ */
 function getAreaPlantedUnPlantedValute($offer_license_id) {
   // Get sub-area entity Ids based on area ID.
   $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();

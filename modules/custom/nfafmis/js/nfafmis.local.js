@@ -10,12 +10,12 @@
       $(".sub-areas-planting", context).once("nfamis").each(function() {
 
         // A area ID filter on sub-area, inventory tab.
-        let filterElem = '<div class="form-inline clearfix"><span class="control-label">Area ID:</span>';
+        let filterElem = '<div class="form-inline clearfix"><span class="control-label" style="margin-right: 110px;">Area ID:</span>';
         filterElem+= '<div class="input-group"><select id="filter-sub-area" class="form-control ui-autocomplete-input"></select></div></div>';
         $(this).find('.center-container .area-filter-section').append(filterElem);
 
         // Add sub-area ID filter on inventroy tab.
-        let filterSubElem = '<div class="form-inline clearfix"><span class="control-label">Sub-area ID:</span>';
+        let filterSubElem = '<div class="form-inline clearfix"><span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>';
         filterSubElem+= '<div class="input-group"><select id="filter-sub-area" class="form-control ui-autocomplete-input"></select></div></div>';
         $(this).find('.center-container .area-filter-sub-area').append(filterSubElem);
 

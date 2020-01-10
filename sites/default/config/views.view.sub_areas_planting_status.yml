@@ -1036,7 +1036,42 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      arguments: {  }
+      arguments:
+        field_sub_area_id_target_id:
+          id: field_sub_area_id_target_id
+          table: node__field_sub_area_id
+          field: field_sub_area_id_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: ''
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: true
+          not: false
+          plugin_id: numeric
       defaults:
         arguments: false
         filters: false
@@ -1046,6 +1081,7 @@ display:
         title: false
         header: false
         empty: false
+        pager: false
       filters:
         status:
           value: '1'
@@ -1486,11 +1522,16 @@ display:
       title: Inventory
       header: {  }
       empty: {  }
+      pager:
+        type: none
+        options:
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
