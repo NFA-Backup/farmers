@@ -218,22 +218,6 @@ function getSubAreasIds($offer_licence_ids) {
 }
 
 /**
- * Get offer license IDs based on farmer id.
- */
-function getInventoryIds($sub_areas_ids) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $inventory_nids = $query->condition('type', 'inventory')
-  ->condition('field_sub_area_id.target_id', $offer_licence_id, 'IN')
-  ->execute();
-  if (!empty($inventory_nids)) {
-    print_r($inventory_nids);die;
-    $inventory_nids = array_values($inventory_nids);
-    return implode(',', $inventory_nids);
-  }
-  return NULL;
-}
-
-/**
  * Get getAreaPlantedUnPlantedValute value  based on $offer_license_id.
  */
 function getAreaPlantedUnPlantedValute($offer_license_id) {

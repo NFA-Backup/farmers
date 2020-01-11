@@ -9,30 +9,65 @@
 
       $(".sub-areas-planting", context).once("nfamis").each(function() {
 
-        // A area ID filter on sub-area, inventory tab.
-        let filterElem = '<div class="form-inline clearfix"><span class="control-label" style="margin-right: 110px;">Area ID:</span>';
+        let filterSubAreaTab = $(this).find('.center-container .area-filter-sub-area-tab');
+        let filterInventoryTab = $(this).find('.center-container .area-filter-inventory-tab');
+
+        // Add area ID filter on sub-area and inventory tab.
+        let filterElem = '<div class="form-inline views-field"><span class="control-label" style="margin-right: 110px;">Area ID:</span>';
         filterElem+= '<div class="input-group"><select id="filter-sub-area" class="form-control ui-autocomplete-input"></select></div></div>';
-        $(this).find('.center-container .area-filter-section').append(filterElem);
+        filterSubAreaTab.append(filterElem);
+        filterInventoryTab.append(filterElem);
 
         // Add sub-area ID filter on inventroy tab.
-        let filterSubElem = '<div class="form-inline clearfix"><span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>';
-        filterSubElem+= '<div class="input-group"><select id="filter-sub-area" class="form-control ui-autocomplete-input"></select></div></div>';
-        $(this).find('.center-container .area-filter-sub-area').append(filterSubElem);
+        let filterSubElem = '<div class="form-inline views-field"><span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>';
+        filterSubElem+= '<div class="input-group"><select id="filter-sub-area-id" class="form-control ui-autocomplete-input"></select></div></div>';
+        filterInventoryTab.append(filterSubElem);
 
+        // Add inventory link.
+        let addInventroyElem = '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" id="add-invenotry" href="#">Add Inventroy</a>';
+        filterInventoryTab.append(addInventroyElem);
 
         // Event handler for area select list.
         $(this).find('#filter-sub-area').change(function() {
           let filterVal = $(this).children("option:selected").val();
+
           $(".sub-areas-planting .views-row").hide();
           $('.view-id-sub_areas_planting_status .views-row').hide();
+
           let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
           let filterClass = $('#'+filtered_name).attr('class');
-          $(".sub-areas-planting .views-row").find('span.'+filterClass).parents('.views-row').fadeIn('slow');
-          $('.view-id-sub_areas_planting_status .views-row').find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+
+          $(".sub-areas-planting .views-row").
+          find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+          $('.view-id-sub_areas_planting_status .views-row')
+          .find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+
+          // Remove all option and create new based on area selection.
+          $('#filter-sub-area-id option').remove();
+          $('.view-id-sub_areas_planting_status .views-row')
+          .find('span.'+filterClass).parents('.views-col').each(function(index){
+            let subAreaId = $(this).find('span.'+filterClass).attr('data-sub-area-id');
+
+             // Append option in sub-area-id select list.
+             if (subAreaId !== undefined) {
+              $('.view-id-sub_areas_planting_status .views-row')
+              .find('span.sub-area-id-'+subAreaId).parents('.views-row').fadeIn('slow');
+              $('#filter-sub-area-id').append('<option value="'+subAreaId+'">'+subAreaId+'</option>');
+             }
+          })
+        });
+
+        // Change handler for sub-area-ids.
+        $('#filter-sub-area-id').change(function(){
+          let filterClass = $(this).val();
+          if (filterClass !== undefined) {
+            $('#add-invenotry').attr('href', '/node/add/inventory?sub_area_id='+filterClass);
+          }
         });
 
         $(this).find(".views-row").hide();
         $('.view-id-sub_areas_planting_status .views-row').hide();
+        // Process default functionality.
         $(this).find(".views-row").each(function(index) {
           let filterVal = $(this).find('span').attr('id');
           let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
@@ -42,13 +77,15 @@
           // Show the first element value as default selected.
           if (index == 0) {
             $(this).find('span').parents('.views-row').fadeIn('slow');
-            $('.view-id-sub_areas_planting_status .views-row').find('span.'+filterClass).parents('.views-row').fadeIn('slow');
+            $('.view-id-sub_areas_planting_status .views-row')
+            .find('span.'+filterClass).parents('.views-row').fadeIn('slow');
           }
           // Append option in select list.
           $('#filter-sub-area').append('<option value="'+filtered_name+'">'+filterVal+'</option>');
         });
       });
 
+      // Account tab section start from here.
       $(".account-tab-view", context).once("nfamis").each(function() {
         // Default hide all content, then show first as default.
         $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
