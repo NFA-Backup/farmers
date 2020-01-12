@@ -57,6 +57,17 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
   }
 
+  // Set default sub-area-id when adding Inventory content.
+  if ($form_id == 'node_inventory_form') {
+    $query_params = getOfferLicenseDetails();
+    if (!empty($query_params) && isset($query_params['sub_area_id'])) {
+    $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
+      $sub_area_id = $query_params['sub_area_id'];
+      $sub_area_data = \Drupal::entityTypeManager()->getStorage('node')->load($sub_area_id);
+      $form['field_sub_area_id']['widget'][0]['target_id']['#default_value'] = $sub_area_data;
+    }
+  }
+
   if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
   }
