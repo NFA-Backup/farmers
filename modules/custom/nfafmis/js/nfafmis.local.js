@@ -13,18 +13,30 @@
         let filterInventoryTab = $(this).find('.center-container .area-filter-inventory-tab');
 
         // Add area ID filter on sub-area and inventory tab.
-        let filterElem = '<div class="form-inline views-field"><span class="control-label" style="margin-right: 110px;">Area ID:</span>';
-        filterElem+= '<div class="input-group"><select id="filter-sub-area" class="form-control ui-autocomplete-input"></select></div></div>';
+        let filterElem = `
+        <div class="form-inline views-field">
+          <span class="control-label" style="margin-right: 110px;">Area ID:</span>
+          <div class="input-group">
+            <select id="filter-sub-area" class="form-control ui-autocomplete-input"></select>
+          </div>
+        </div>`;
         filterSubAreaTab.append(filterElem);
         filterInventoryTab.append(filterElem);
 
         // Add sub-area ID filter on inventroy tab.
-        let filterSubElem = '<div class="form-inline views-field"><span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>';
-        filterSubElem+= '<div class="input-group"><select id="filter-sub-area-id" class="form-control ui-autocomplete-input"></select></div></div>';
+        let filterSubElem = `
+        <div class="form-inline views-field">
+          <span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>
+          <div class="input-group">
+            <select id="filter-sub-area-id" class="form-control ui-autocomplete-input"></select>
+          </div>
+        </div>`;
         filterInventoryTab.append(filterSubElem);
 
         // Add inventory link.
-        let addInventroyElem = '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" id="add-invenotry" href="#">Add Inventroy</a>';
+        let addInventroyElem = `<a class="use-ajax btn btn-info btn-xs"
+        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
+        href="/node/add/inventory" id="add-invenotry-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventroyElem);
 
         // Event handler for area select list.
@@ -53,7 +65,10 @@
               $('.view-id-sub_areas_planting_status .views-row')
               .find('span.sub-area-id-'+subAreaId).parents('.views-row').fadeIn('slow');
               $('#filter-sub-area-id').append('<option value="'+subAreaId+'">'+subAreaId+'</option>');
-             }
+              if (index == 0) {
+                $('#filter-sub-area-id').val(subAreaId).change();
+              }
+            }
           })
         });
 
@@ -61,12 +76,13 @@
         $('#filter-sub-area-id').change(function(){
           let filterClass = $(this).val();
           if (filterClass !== undefined) {
-            $('#add-invenotry').attr('href', '/node/add/inventory?sub_area_id='+filterClass);
+            $('#add-invenotry-btn').attr('href', '/node/add/inventory?sub_area_id='+filterClass);
           }
         });
 
         $(this).find(".views-row").hide();
         $('.view-id-sub_areas_planting_status .views-row').hide();
+
         // Process default functionality.
         $(this).find(".views-row").each(function(index) {
           let filterVal = $(this).find('span').attr('id');
@@ -74,14 +90,16 @@
           $(this).find('span').attr('id', filtered_name);
           let filterClass = $(this).find('span').attr('class');
 
+          // Append option in select list.
+          $('#filter-sub-area').append('<option value="'+filtered_name+'">'+filterVal+'</option>');
+
           // Show the first element value as default selected.
           if (index == 0) {
+            $('#filter-sub-area').val(filtered_name).change();
             $(this).find('span').parents('.views-row').fadeIn('slow');
             $('.view-id-sub_areas_planting_status .views-row')
             .find('span.'+filterClass).parents('.views-row').fadeIn('slow');
           }
-          // Append option in select list.
-          $('#filter-sub-area').append('<option value="'+filtered_name+'">'+filterVal+'</option>');
         });
       });
 
@@ -103,17 +121,18 @@
           let tempElem = $('<a href />');
           tempElem.addClass('tabs-item');
           $(this).attr('id',filtered_name);
-          // tempElem.attr('style', 'margin-left: 50px;');
           tempElem.attr('href', '#'+filtered_name);
           tempElem.text(name);
           tempElem.appendTo(listElem);
           listElem.appendTo(ulist);
+
           // Set active class for first tab by default.
           if (i === 0) {
             tempElem.addClass('active');
             window.location = window.location+'#'+filtered_name;
             $('#'+filtered_name).parents('.views-row').fadeIn('slow');
           }
+
           // Bind click event for anchor tag.
           $(tempElem).click(function(){
             if (!$(this).hasClass('active')) {
