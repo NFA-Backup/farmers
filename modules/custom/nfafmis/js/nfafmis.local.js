@@ -11,6 +11,7 @@
 
         let filterSubAreaTab = $(this).find('.center-container .area-filter-sub-area-tab');
         let filterInventoryTab = $(this).find('.center-container .area-filter-inventory-tab');
+        let filterHarvestTab = $(this).find('.center-container .area-filter-harvest-tab');
 
         // Add area ID filter on sub-area and inventory tab.
         let filterElem = `
@@ -22,6 +23,7 @@
         </div>`;
         filterSubAreaTab.append(filterElem);
         filterInventoryTab.append(filterElem);
+        filterHarvestTab.append(filterElem);
 
         // Add sub-area ID filter on inventroy tab.
         let filterSubElem = `
@@ -32,12 +34,19 @@
           </div>
         </div>`;
         filterInventoryTab.append(filterSubElem);
+        filterHarvestTab.append(filterSubElem);
 
         // Add inventory link.
         let addInventroyElem = `<a class="btn btn-info btn-xs"
         data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
         id="add-invenotry-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventroyElem);
+
+        // Add Harvest link.
+        let addHarvestElem = `<a class="btn btn-info btn-xs"
+        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
+        id="add-harvest-btn">Add Harvest</a>`;
+        filterHarvestTab.append(addHarvestElem);
 
         // Event handler for area select list.
         $(this).find('#filter-sub-area').change(function() {
@@ -73,6 +82,7 @@
               let length = $('#filter-sub-area-id > option').length;
               if (length === 0) {
                 $('#add-invenotry-btn').attr('href', '/node/add/inventory?destination=/tree-farmer-overview/inventory');
+                $('#add-harvest-btn').attr('href', '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest');
               }
             });
         });
@@ -82,6 +92,7 @@
           let filterClass = $(this).val();
           if (filterClass !== undefined) {
             $('#add-invenotry-btn').attr('href', '/node/add/inventory?destination=/tree-farmer-overview/inventory&sub_area_id=' + filterClass);
+            $('#add-harvest-btn').attr('href', '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest&sub_area_id=' + filterClass);
           }
         });
 

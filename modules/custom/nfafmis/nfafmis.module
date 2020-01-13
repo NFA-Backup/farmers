@@ -57,11 +57,11 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
   }
 
-  // Set default sub-area-id when adding Inventory content.
-  if ($form_id == 'node_inventory_form') {
+  // Set default sub-area-id when adding Inventory/Harvest content.
+  if ($form_id == 'node_inventory_form' || $form_id == 'node_thinning_harvest_details_form') {
     $query_params = getOfferLicenseDetails();
     if (!empty($query_params) && isset($query_params['sub_area_id'])) {
-    $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
+      $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
       $sub_area_id = $query_params['sub_area_id'];
       $sub_area_data = \Drupal::entityTypeManager()->getStorage('node')->load($sub_area_id);
       $form['field_sub_area_id']['widget'][0]['target_id']['#default_value'] = $sub_area_data;
@@ -120,7 +120,8 @@ function nfafmis_preprocess_views_view_field(&$variables) {
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 
   // Set Offer license IDs as view arguments.
-  if ($view->id() == 'sub_areas_planting_status' && ($display_id == 'block_4' || $display_id == 'block_6')) {
+  if ($view->id() == 'sub_areas_planting_status' &&
+    ($display_id == 'block_4' || $display_id == 'block_6' || $display_id == 'block_8')) {
     // We have pass farmer Id intentionaly to get offer license ID from that.
     if (!empty($args)) {
       $offer_license_ids = getOfferLicenseIds($args[0]);
@@ -130,7 +131,8 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
     }
   }
   // Set argument for Inventroy.
-  if ($view->id() == 'sub_areas_planting_status' && $display_id == 'block_2') {
+  if ($view->id() == 'sub_areas_planting_status' &&
+   ($display_id == 'block_2' || $display_id == 'block_3')) {
     // We have pass farmer Id intentionaly to get offer license ID from that.
     if (!empty($args)) {
       $offer_license_ids = getOfferLicenseIds($args[0]);
