@@ -34,9 +34,9 @@
         filterInventoryTab.append(filterSubElem);
 
         // Add inventory link.
-        let addInventroyElem = `<a class="use-ajax btn btn-info btn-xs"
+        let addInventroyElem = `<a class="btn btn-info btn-xs"
         data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        href="/node/add/inventory" id="add-invenotry-btn">Add Inventory</a>`;
+        id="add-invenotry-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventroyElem);
 
         // Event handler for area select list.

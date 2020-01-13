@@ -12,7 +12,7 @@ entity_type: node
 bundle: inventory
 label: 'Sub-area ID'
 description: 'Inventory against sub area ID.'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
