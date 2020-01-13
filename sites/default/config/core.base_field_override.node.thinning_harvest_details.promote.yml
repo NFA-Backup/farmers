@@ -1,0 +1,22 @@
+uuid: ea844c35-6324-4447-9ed4-df07350334de
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.thinning_harvest_details
+id: node.thinning_harvest_details.promote
+field_name: promote
+entity_type: node
+bundle: thinning_harvest_details
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

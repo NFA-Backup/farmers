@@ -12,7 +12,7 @@ entity_type: node
 bundle: thinning_harvest_details
 label: 'Sub-area ID'
 description: "Thinning/Harvests against Sub-area ID\r\n"
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
