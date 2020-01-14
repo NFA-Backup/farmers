@@ -1,0 +1,15 @@
+nfafmis.admin_index:
+  path: '/admin/config/nfafmis'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'NFA FMIS'
+  requirements:
+    _permission: 'administer site configuration'
+
+nfafmis.settings:
+  path: '/admin/config/nfafmis/settings'
+  defaults:
+    _form: '\Drupal\nfafmis\Form\NfafmisSettingsForm'
+    _title: 'NFA FMIS settings'
+  requirements:
+    _permission: 'administer site configuration'
