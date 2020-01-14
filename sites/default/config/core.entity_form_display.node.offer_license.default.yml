@@ -5,9 +5,9 @@ dependencies:
   config:
     - field.field.node.offer_license.field_area_id
     - field.field.node.offer_license.field_block_id
+    - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
     - field.field.node.offer_license.field_farmer_name_ref
-    - field.field.node.offer_license.field_forest_reserve_id
     - field.field.node.offer_license.field_license_date
     - field.field.node.offer_license.field_license_id
     - field.field.node.offer_license.field_license_issued
@@ -26,19 +26,25 @@ bundle: offer_license
 mode: default
 content:
   field_area_id:
-    weight: 9
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
     region: content
   field_block_id:
-    weight: 10
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_central_forest_reserve:
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_comments:
-    weight: 12
+    weight: 13
     settings:
       rows: 5
       placeholder: ''
@@ -54,12 +60,6 @@ content:
       match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_forest_reserve_id:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_license_date:
     weight: 5
@@ -95,7 +95,7 @@ content:
     type: computed_number_widget
     region: content
   field_overall_area_allocated:
-    weight: 8
+    weight: 9
     settings:
       size: 60
       placeholder: ''
@@ -103,7 +103,7 @@ content:
     type: string_textfield
     region: content
   field_purpose:
-    weight: 11
+    weight: 12
     settings:
       size: 60
       placeholder: ''

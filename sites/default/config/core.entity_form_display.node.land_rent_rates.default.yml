@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.land_rent_rates.field_forest_reserve_id
+    - field.field.node.land_rent_rates.field_central_forest_reserve
     - field.field.node.land_rent_rates.field_rate
     - field.field.node.land_rent_rates.field_rate_year
     - node.type.land_rent_rates
@@ -14,21 +14,21 @@ targetEntityType: node
 bundle: land_rent_rates
 mode: default
 content:
-  field_forest_reserve_id:
+  field_central_forest_reserve:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_rate:
-    weight: 2
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_rate_year:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: yearonly_default

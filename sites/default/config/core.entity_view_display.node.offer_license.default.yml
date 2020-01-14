@@ -5,9 +5,9 @@ dependencies:
   config:
     - field.field.node.offer_license.field_area_id
     - field.field.node.offer_license.field_block_id
+    - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
     - field.field.node.offer_license.field_farmer_name_ref
-    - field.field.node.offer_license.field_forest_reserve_id
     - field.field.node.offer_license.field_license_date
     - field.field.node.offer_license.field_license_id
     - field.field.node.offer_license.field_license_issued
@@ -28,7 +28,7 @@ bundle: offer_license
 mode: default
 content:
   field_area_id:
-    weight: 117
+    weight: 10
     label: above
     settings:
       sanitized: true
@@ -38,36 +38,37 @@ content:
     type: computed_string
     region: content
   field_block_id:
-    weight: 115
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_comments:
-    weight: 114
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_farmer_name_ref:
-    weight: 102
+  field_central_forest_reserve:
+    weight: 11
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_forest_reserve_id:
-    weight: 118
+  field_comments:
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    type: basic_string
+    region: content
+  field_farmer_name_ref:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_license_date:
-    weight: 119
+    weight: 13
     label: above
     settings:
       timezone_override: ''
@@ -77,7 +78,7 @@ content:
     type: daterange_default
     region: content
   field_license_id:
-    weight: 105
+    weight: 4
     label: above
     settings:
       link_to_entity: false
@@ -85,7 +86,7 @@ content:
     type: string
     region: content
   field_license_issued:
-    weight: 104
+    weight: 3
     label: above
     settings:
       format: yes-no
@@ -95,7 +96,7 @@ content:
     type: boolean
     region: content
   field_offer_date:
-    weight: 103
+    weight: 2
     label: above
     settings:
       timezone_override: ''
@@ -104,7 +105,7 @@ content:
     type: datetime_default
     region: content
   field_offer_id:
-    weight: 116
+    weight: 9
     label: above
     settings:
       cache_unit: -1
@@ -115,7 +116,7 @@ content:
     type: computed_integer
     region: content
   field_overall_area_allocated:
-    weight: 110
+    weight: 5
     label: above
     settings:
       link_to_entity: false
@@ -123,7 +124,7 @@ content:
     type: string
     region: content
   field_purpose:
-    weight: 113
+    weight: 6
     label: above
     settings:
       link_to_entity: false
@@ -131,7 +132,7 @@ content:
     type: string
     region: content
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }

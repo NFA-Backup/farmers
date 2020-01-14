@@ -1,0 +1,29 @@
+uuid: 8fbba604-94bf-4890-b7bd-98434a7ac5ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_central_forest_reserve
+    - node.type.offer_license
+    - taxonomy.vocabulary.central_forest_reserve
+id: node.offer_license.field_central_forest_reserve
+field_name: field_central_forest_reserve
+entity_type: node
+bundle: offer_license
+label: 'Central Forest Reserve'
+description: 'Central Forest Reserve (CFR)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      central_forest_reserve: central_forest_reserve
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

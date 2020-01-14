@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.land_rent_rates.field_central_forest_reserve
+    - field.field.node.land_rent_rates.field_rate
+    - field.field.node.land_rent_rates.field_rate_year
     - node.type.land_rent_rates
   module:
     - user
@@ -18,6 +21,6 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_forest_reserve_id: true
+  field_central_forest_reserve: true
   field_rate: true
   field_rate_year: true

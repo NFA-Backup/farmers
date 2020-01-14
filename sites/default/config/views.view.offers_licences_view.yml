@@ -5,8 +5,8 @@ dependencies:
   config:
     - field.storage.node.field_area_id
     - field.storage.node.field_block_id
+    - field.storage.node.field_central_forest_reserve
     - field.storage.node.field_comments
-    - field.storage.node.field_forest_reserve_id
     - field.storage.node.field_licence_id_ref
     - field.storage.node.field_license_date
     - field.storage.node.field_license_id
@@ -756,10 +756,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_forest_reserve_id:
-          id: field_forest_reserve_id
-          table: node__field_forest_reserve_id
-          field: field_forest_reserve_id
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
           relationship: none
           group_type: group
           admin_label: ''
@@ -804,10 +804,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1038,8 +1039,8 @@ display:
       tags:
         - 'config:field.storage.node.field_area_id'
         - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
-        - 'config:field.storage.node.field_forest_reserve_id'
         - 'config:field.storage.node.field_licence_id_ref'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_offer_date'
@@ -1620,10 +1621,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_forest_reserve_id:
-          id: field_forest_reserve_id
-          table: node__field_forest_reserve_id
-          field: field_forest_reserve_id
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
           relationship: none
           group_type: group
           admin_label: ''
@@ -1668,10 +1669,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1834,8 +1836,8 @@ display:
       tags:
         - 'config:field.storage.node.field_area_id'
         - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
-        - 'config:field.storage.node.field_forest_reserve_id'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'
@@ -2363,10 +2365,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_forest_reserve_id:
-          id: field_forest_reserve_id
-          table: node__field_forest_reserve_id
-          field: field_forest_reserve_id
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
           relationship: none
           group_type: group
           admin_label: ''
@@ -2411,10 +2413,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2502,7 +2505,7 @@ display:
       tags:
         - 'config:field.storage.node.field_area_id'
         - 'config:field.storage.node.field_block_id'
-        - 'config:field.storage.node.field_forest_reserve_id'
+        - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'

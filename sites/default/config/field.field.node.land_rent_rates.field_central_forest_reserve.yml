@@ -1,0 +1,29 @@
+uuid: 249674ac-21b6-429c-a2ce-e7459fd74e6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_central_forest_reserve
+    - node.type.land_rent_rates
+    - taxonomy.vocabulary.central_forest_reserve
+id: node.land_rent_rates.field_central_forest_reserve
+field_name: field_central_forest_reserve
+entity_type: node
+bundle: land_rent_rates
+label: 'Central Forest Reserve'
+description: 'Central Forest Reserve (CFR)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      central_forest_reserve: central_forest_reserve
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
