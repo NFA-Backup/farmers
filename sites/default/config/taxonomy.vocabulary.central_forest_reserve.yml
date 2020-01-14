@@ -1,0 +1,8 @@
+uuid: a2858609-9a21-4711-8a7a-176980fba597
+langcode: en
+status: true
+dependencies: {  }
+name: 'Central Forest Reserve (CFR)'
+vid: central_forest_reserve
+description: 'Central Forest Reserve (CFR)'
+weight: 0
