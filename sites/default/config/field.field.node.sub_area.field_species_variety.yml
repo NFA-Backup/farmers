@@ -1,10 +1,11 @@
-uuid: b4a687d5-cb18-4c65-9477-9dfd98b8cf6a
+uuid: c76d2b2a-684e-452e-acdc-6f215ce9f995
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_species_variety
     - node.type.sub_area
+    - taxonomy.vocabulary.species_variety
 id: node.sub_area.field_species_variety
 field_name: field_species_variety
 entity_type: node
@@ -12,8 +13,17 @@ bundle: sub_area
 label: Species/variety
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      species_variety: species_variety
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

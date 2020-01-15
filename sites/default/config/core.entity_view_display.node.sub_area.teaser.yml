@@ -4,6 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.sub_area.field_area_harvested
+    - field.field.node.sub_area.field_areas_id
+    - field.field.node.sub_area.field_date_harvested
+    - field.field.node.sub_area.field_date_planted
+    - field.field.node.sub_area.field_kml_upload
+    - field.field.node.sub_area.field_purpose
+    - field.field.node.sub_area.field_species_variety
+    - field.field.node.sub_area.field_sub_area_planted
     - node.type.sub_area
   module:
     - user
@@ -18,10 +26,13 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_area_harvested: true
   field_area_harvested_: true
   field_area_planted: true
+  field_areas_id: true
   field_date_harvested: true
   field_date_planted: true
   field_kml_upload: true
   field_purpose: true
   field_species_variety: true
+  field_sub_area_planted: true

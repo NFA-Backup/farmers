@@ -26,13 +26,13 @@ bundle: offer_license
 mode: default
 content:
   field_area_id:
-    weight: 10
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
     region: content
   field_block_id:
-    weight: 11
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -44,7 +44,7 @@ content:
     type: options_select
     region: content
   field_comments:
-    weight: 13
+    weight: 12
     settings:
       rows: 5
       placeholder: ''
@@ -95,7 +95,7 @@ content:
     type: computed_number_widget
     region: content
   field_overall_area_allocated:
-    weight: 9
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -103,12 +103,10 @@ content:
     type: string_textfield
     region: content
   field_purpose:
-    weight: 12
-    settings:
-      size: 60
-      placeholder: ''
+    weight: 11
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: options_select
     region: content
   title:
     type: string_textfield

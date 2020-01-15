@@ -1,17 +1,16 @@
-uuid: 63f05398-8f28-4af2-a800-c10cfd413f56
+uuid: 7c131235-bd06-48f4-98ba-ef08a88655b3
 langcode: en
 status: true
 dependencies:
   module:
     - node
+    - taxonomy
 id: node.field_species_variety
 field_name: field_species_variety
 entity_type: node
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1
