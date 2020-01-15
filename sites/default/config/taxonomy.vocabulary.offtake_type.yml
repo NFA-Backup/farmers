@@ -1,0 +1,8 @@
+uuid: 801acb45-4087-4ed9-9439-dc31742179a1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Offtake type'
+vid: offtake_type
+description: 'Offtake type (Harvest type)'
+weight: 0

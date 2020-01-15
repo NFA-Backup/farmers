@@ -1,30 +1,17 @@
-uuid: 41a559de-80b5-4234-b2fe-5fc7ac7def19
+uuid: a254b407-1fca-4f80-a9a4-433cc367f01a
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - options
+    - taxonomy
 id: node.field_offtake_type
 field_name: field_offtake_type
 entity_type: node
-type: list_string
+type: entity_reference
 settings:
-  allowed_values:
-    -
-      value: '1'
-      label: One
-    -
-      value: '2'
-      label: Two
-    -
-      value: '3'
-      label: Three
-    -
-      value: '4'
-      label: Four
-  allowed_values_function: ''
-module: options
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

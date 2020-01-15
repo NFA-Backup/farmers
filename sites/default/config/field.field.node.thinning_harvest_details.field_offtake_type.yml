@@ -1,12 +1,11 @@
-uuid: 8c838078-b733-4226-b0db-e576b98f9764
+uuid: 1c3789f2-7c75-4e34-b337-63e14f0ebc59
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_offtake_type
     - node.type.thinning_harvest_details
-  module:
-    - options
+    - taxonomy.vocabulary.offtake_type
 id: node.thinning_harvest_details.field_offtake_type
 field_name: field_offtake_type
 entity_type: node
@@ -17,5 +16,14 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      offtake_type: offtake_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
