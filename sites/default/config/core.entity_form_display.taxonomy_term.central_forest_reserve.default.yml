@@ -1,14 +1,14 @@
-uuid: c96bb40e-ca81-4729-bd48-e9c62d338540
+uuid: 88862001-78bf-4580-b423-87113fbd7628
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.crop_maintenance
+    - taxonomy.vocabulary.central_forest_reserve
   module:
     - path
-id: taxonomy_term.crop_maintenance.default
+id: taxonomy_term.central_forest_reserve.default
 targetEntityType: taxonomy_term
-bundle: crop_maintenance
+bundle: central_forest_reserve
 mode: default
 content:
   name:

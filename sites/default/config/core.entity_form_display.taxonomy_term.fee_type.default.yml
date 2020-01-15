@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.fee_type
+  module:
+    - path
 id: taxonomy_term.fee_type.default
 targetEntityType: taxonomy_term
 bundle: fee_type
@@ -17,6 +19,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   description: true
-  path: true
+  status: true

@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.farmer_category_type
+  module:
+    - path
 id: taxonomy_term.farmer_category_type.default
 targetEntityType: taxonomy_term
 bundle: farmer_category_type
@@ -17,6 +19,18 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
 hidden:
   description: true
-  path: true

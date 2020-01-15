@@ -1,14 +1,14 @@
-uuid: c96bb40e-ca81-4729-bd48-e9c62d338540
+uuid: 3486b661-f3dc-40cf-973e-83befc2f0e4b
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.crop_maintenance
+    - taxonomy.vocabulary.crop_purpose
   module:
     - path
-id: taxonomy_term.crop_maintenance.default
+id: taxonomy_term.crop_purpose.default
 targetEntityType: taxonomy_term
-bundle: crop_maintenance
+bundle: crop_purpose
 mode: default
 content:
   name:

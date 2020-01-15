@@ -1,14 +1,14 @@
-uuid: c96bb40e-ca81-4729-bd48-e9c62d338540
+uuid: 0896b361-a5d3-4a77-9730-bbed79b6057e
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.crop_maintenance
+    - taxonomy.vocabulary.offtake_type
   module:
     - path
-id: taxonomy_term.crop_maintenance.default
+id: taxonomy_term.offtake_type.default
 targetEntityType: taxonomy_term
-bundle: crop_maintenance
+bundle: offtake_type
 mode: default
 content:
   name:
