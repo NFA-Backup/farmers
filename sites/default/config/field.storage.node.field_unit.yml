@@ -1,30 +1,17 @@
-uuid: c7d78f79-bc93-4e28-9d5d-05ae2a4826d3
+uuid: 1f48a80c-afb3-4e8c-8bfb-f2278bc7752e
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - options
+    - taxonomy
 id: node.field_unit
 field_name: field_unit
 entity_type: node
-type: list_string
+type: entity_reference
 settings:
-  allowed_values:
-    -
-      value: '1'
-      label: 'Unit one'
-    -
-      value: '2'
-      label: 'Unit two'
-    -
-      value: '3'
-      label: 'Unit three'
-    -
-      value: '4'
-      label: 'Unit four'
-  allowed_values_function: ''
-module: options
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

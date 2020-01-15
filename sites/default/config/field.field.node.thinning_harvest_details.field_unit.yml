@@ -1,12 +1,11 @@
-uuid: 41e23cb1-7819-4c0b-8c03-bcfcf5ede901
+uuid: 560b1ff0-a307-4139-826e-4453a84a8b47
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_unit
     - node.type.thinning_harvest_details
-  module:
-    - options
+    - taxonomy.vocabulary.unit
 id: node.thinning_harvest_details.field_unit
 field_name: field_unit
 entity_type: node
@@ -17,5 +16,14 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      unit: unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
