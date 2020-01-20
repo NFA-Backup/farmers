@@ -18,6 +18,6 @@ default_value_callback: ''
 settings:
   min: !!float 0
   max: null
-  prefix: UGX
-  suffix: /ha
+  prefix: 'UGX '
+  suffix: ' /ha'
 field_type: decimal
