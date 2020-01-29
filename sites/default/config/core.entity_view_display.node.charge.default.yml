@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.charge.field_change_type
     - field.field.node.charge.field_charge_date
     - field.field.node.charge.field_charge_description
+    - field.field.node.charge.field_charges_sub_area
     - node.type.charge
   module:
     - datetime
@@ -60,6 +61,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_charges_sub_area:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 100

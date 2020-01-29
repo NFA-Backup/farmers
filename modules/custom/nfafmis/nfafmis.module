@@ -69,6 +69,19 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   }
 
   if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
+    $query_params = getOfferLicenseDetails();
+     if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
+      $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
+      $area_id = $query_params['offer_licence_id'];
+      $area_data = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
+      $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
+    }
+    // Provide farmer id as arguments to the reference views to filter result.
+    // This only works when widget is selected as autocompleted.
+    if ($query_params) {
+      $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
+    }
+
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
   }
 

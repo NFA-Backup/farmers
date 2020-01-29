@@ -4,6 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.charge.field_amount
+    - field.field.node.charge.field_areas_id
+    - field.field.node.charge.field_change_type
+    - field.field.node.charge.field_charge_date
+    - field.field.node.charge.field_charge_description
+    - field.field.node.charge.field_charges_sub_area
     - node.type.charge
   module:
     - user
@@ -23,3 +29,4 @@ hidden:
   field_change_type: true
   field_charge_date: true
   field_charge_description: true
+  field_charges_sub_area: true

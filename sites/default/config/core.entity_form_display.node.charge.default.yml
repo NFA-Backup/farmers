@@ -8,10 +8,10 @@ dependencies:
     - field.field.node.charge.field_change_type
     - field.field.node.charge.field_charge_date
     - field.field.node.charge.field_charge_description
+    - field.field.node.charge.field_charges_sub_area
     - node.type.charge
   module:
     - datetime
-    - entity_reference_views_select
     - field_group
 third_party_settings:
   field_group:
@@ -19,7 +19,7 @@ third_party_settings:
       children:
         - field_charge_date
         - field_areas_id
-        - field_area_sub_area
+        - field_charges_sub_area
         - field_change_type
         - field_amount
         - field_charge_description
@@ -47,9 +47,13 @@ content:
     region: content
   field_areas_id:
     weight: 9
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: erviews_options_select
+    type: entity_reference_autocomplete
     region: content
   field_change_type:
     weight: 11
@@ -70,6 +74,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_charges_sub_area:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true
