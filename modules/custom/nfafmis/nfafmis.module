@@ -75,10 +75,22 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $area_id = $query_params['offer_licence_id'];
       $area_data = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
       $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
+
+      $sub_areas = getSubAreasIds($area_id);
+      // Provide area-id as agrumet to get sub-area ids.
+      if ($sub_areas) {
+        $form['field_charges_sub_area']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['offer_licence_id'];
+      }
+      // Disabled field since there is no sub-area-is available.
+      else{
+        $form['field_charges_sub_area']['widget'][0]['target_id']['#placeholder'] = t('No sub-area found.');
+        $form['field_charges_sub_area']['widget'][0]['#disabled'] = TRUE;
+      }
     }
-    // Provide farmer id as arguments to the reference views to filter result.
-    // This only works when widget is selected as autocompleted.
-    if ($query_params) {
+
+    if (!empty($query_params) && isset($query_params['farmer_id'])) {
+      // Provide farmer id as arguments to the reference views to filter result.
+      // This only works when widget is selected as autocompleted.
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
     }
 

@@ -10,7 +10,7 @@ field_name: field_charges_sub_area
 entity_type: node
 bundle: charge
 label: Sub-area
-description: ''
+description: 'If there is sub-area available you can search here else field will be disabled.'
 required: false
 translatable: false
 default_value: {  }
@@ -19,7 +19,7 @@ settings:
   handler: views
   handler_settings:
     view:
-      view_name: offer_id_reference
+      view_name: sub_area_ids_entity_ref
       display_name: entity_reference_1
       arguments: {  }
 field_type: entity_reference
