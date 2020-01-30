@@ -1,5 +1,5 @@
 status: 1
-pattern: 'Offer & License for [node:field_farmer_name_ref]'
+pattern: '[node:field_area_id]'
 php: 0
 escape: false
 dependencies:

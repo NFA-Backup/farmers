@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Offer & License'
 type: offer_license
-description: 'Section related to Offer & License.'
+description: 'This is being used as area.'
 help: ''
 new_revision: false
 preview_mode: 0

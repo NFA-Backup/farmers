@@ -1,6 +1,6 @@
 status: 1
-pattern: 'Charge for area [node:field_areas_id]'
-escape: true
+pattern: 'Charge for  [node:field_areas_id]'
+escape: false
 dependencies:
   config:
     - node.type.charge
