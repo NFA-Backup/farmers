@@ -139,6 +139,15 @@ function nfafmis_preprocess_views_view_field(&$variables) {
       $variables['output'] = $field_overall_area_allocated - $area_panted_values . 'ha';
     }
   }
+
+  // Preprocess views view field_purpose to show custom data.
+  if ($view->storage->id() == 'accounts_tab' && $view->current_display == 'block_1') {
+    $farmer_id = $view->args[0];
+    $offer_licence_id = $row->nid;
+    if ($field->field == 'field_purpose') {
+      $variables['output'] = getLandRentAndOtherData($farmer_id, $offer_licence_id);
+    }
+  }
 }
 
 
@@ -171,6 +180,39 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       }
     }
   }
+}
+
+/**
+ * Update view field result with getLandRentAndOtherData.
+ */
+function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
+  // @TODO: Need to get data dynamically.
+  $data = [
+    'total' => 20000,
+    'rent_sub_total' => 5000,
+    'other_sub_total' => 15000,
+    'farmer_id' => $farmer_id,
+    'offer_licence_id' => $offer_licence_id,
+  ];
+  $renderable = [
+    '#theme' => 'land_rent_other_data',
+    '#data' => $data,
+  ];
+  $rendered = \Drupal::service('renderer')->render($renderable);
+  return $rendered;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nfafmis_theme($existing, $type, $theme, $path) {
+  return [
+    'land_rent_other_data' => [
+      'variables' => [
+        'data' => NULL
+      ],
+    ],
+  ];
 }
 
 /**

@@ -14,6 +14,7 @@ dependencies:
     - field.storage.node.field_nfa_counter_receipt_number
     - field.storage.node.field_offer_date
     - field.storage.node.field_overall_area_allocated
+    - field.storage.node.field_purpose
     - field.storage.node.field_ura_receipt_number
     - node.type.fee_payment_nfa
     - node.type.offer_license
@@ -1455,18 +1456,18 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
+        field_purpose:
+          id: field_purpose
+          table: node__field_purpose
+          field: field_purpose
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: "<div class=\"block-section\">\r\n  <h5 class=\"title\"></h5>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-8\">\r\n      <a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/add/charge?farmer_id={{arguments.field_farmer_name_ref_target_id}}&offer_licence_id={{nid}}\">Add Charge</a> NB: Fee can not be entered for land rent - this is calculated automatically</div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">TOTAL CHARGES</span>\r\n      <div class=\"field-content\">UGX</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"block-section\">\r\n  <h5 class=\"title\"></h5>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">1.LAND RENT</div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 views-field\">Starting amount</div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">Edit</span>\r\n      <div class=\"field-content\">UGX</div>\r\n    </div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">Sub-total</span>\r\n      <div class=\"field-content\">UGX</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 views-field\">Annual charges<br>These changes are not editable and are calculated automatically</div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">Year</span>\r\n      <div class=\"field-content\">Amount</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"center-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12 views-field\">2.OTHER CHARGES</div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 views-field\">Starting amount</div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">Edit</span>\r\n      <div class=\"field-content\">UGX</div>\r\n    </div>\r\n    <div class=\"col-md-4 views-field\">\r\n      <span class=\"views-label\">Sub-total</span>\r\n      <div class=\"field-content\">UGX</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -1502,8 +1503,22 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         view:
           id: view
           table: views
@@ -1576,6 +1591,7 @@ display:
         - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'
         - 'config:field.storage.node.field_overall_area_allocated'
+        - 'config:field.storage.node.field_purpose'
   block_2:
     display_plugin: block
     id: block_2
