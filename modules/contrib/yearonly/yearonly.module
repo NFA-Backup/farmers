@@ -28,3 +28,31 @@ function yearonly_help($route_name, RouteMatchInterface $route_match) {
       return $output;
   }
 }
+
+
+/**
+ * Implements hook_token_info_alter().
+ *
+ * This adds the missing token info for automatically detected tokens.
+ */
+
+function yearonly_token_info_alter(&$info) {
+  $entities = \Drupal::service('entity_field.manager')->getFieldMap();
+  foreach ($entities as $entity_key => $entity) {
+    if ($entity_key !== 'node') {
+      continue;
+    }
+
+    foreach ($entity as $field_key => $field) {
+      if ($field['type'] !== 'yearonly' ) {
+        continue;
+      }
+
+      $token_key = sprintf('node-%s', $field_key);
+      $info['tokens'][$token_key]['value'] = [
+        'name' => t('Year Only'),
+        'description' => t('Year only value.'),
+      ];
+    }
+  }
+}
