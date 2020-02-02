@@ -1,0 +1,4 @@
+nfafmis.settings:
+  title: 'Settings'
+  route_name: nfafmis.settings
+  base_route: nfafmis.settings

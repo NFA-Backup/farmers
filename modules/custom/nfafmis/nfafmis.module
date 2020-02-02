@@ -181,6 +181,12 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       }
     }
   }
+  // Set default value for filter.
+  if ($view->id() == 'admin_land_rent_rates' && $display_id == 'page') {
+    $date = date('Y') - 1;
+    $exposed_filters = ['field_rate_year_value' => $date];
+    $view->setExposedInput($exposed_filters);
+  }
 }
 
 /**

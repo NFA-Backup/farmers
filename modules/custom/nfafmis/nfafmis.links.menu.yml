@@ -1,11 +1,10 @@
 nfafmis.admin_index:
-  title: NFA FMIS
+  title: 'NFA-FMIS'
   route_name: nfafmis.admin_index
   parent: system.admin_config
-  description: 'Configure NFAFMIS.'
-  weight: '-100'
+  description: 'Configure settings like anual charges & dates.'
 nfafmis.settings:
-  title: 'NFA FMIS settings'
+  title: 'Settings'
   parent: nfafmis.admin_index
-  description: 'Anual charges date & late fee settings'
+  description: 'Anual charges date & late fee calculation settings'
   route_name: nfafmis.settings
