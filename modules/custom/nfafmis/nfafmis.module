@@ -187,10 +187,13 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
   // @TODO: Need to get data dynamically.
+  $rent_sub_total = 0;
+  $other_subtotal = getChargesSubTotal($offer_licence_id);
+  $total = $rent_sub_total + $other_subtotal;
   $data = [
-    'total' => 20000,
-    'rent_sub_total' => 5000,
-    'other_sub_total' => 15000,
+    'total' => number_format($total, 0, '.', ','),
+    'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
+    'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
     'farmer_id' => $farmer_id,
     'offer_licence_id' => $offer_licence_id,
   ];
@@ -202,6 +205,25 @@ function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
   return $rendered;
 }
 
+/**
+ * Get sub-total from charges.
+ */
+function getChargesSubTotal($offer_licence_id){
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $charge_nids = $query->condition('type', 'charge')
+  ->condition('field_areas_id.target_id', $offer_licence_id)
+  ->execute();
+  $field_amount = 0;
+  if (!empty($charge_nids)) {
+    $nids = array_values($charge_nids);
+    $charges = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+
+    foreach ($charges as $key => $charge) {
+      $field_amount += $charge->get('field_amount')->value;
+    }
+  }
+  return $field_amount;
+}
 /**
  * Implements hook_theme().
  */
