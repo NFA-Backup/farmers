@@ -330,6 +330,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       show_admin_links: false
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -357,7 +358,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add\">Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates\">Add Year</a>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/listing\">Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/listing\">Add Year</a>\r\n</div>"
           plugin_id: text_custom
       defaults:
         header: false
