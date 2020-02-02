@@ -83,6 +83,7 @@ display:
             field_charge_description: field_charge_description
             field_charge_date: field_charge_date
             field_amount: field_amount
+            edit_node: edit_node
           info:
             field_charge_description:
               sortable: false
@@ -105,8 +106,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            edit_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           default: '-1'
-          empty_table: false
+          empty_table: true
       row:
         type: fields
         options:
@@ -416,7 +424,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "No itemized charges found.\r\n"
+            value: "No charges found for this area.\r\n"
             format: basic_html
           plugin_id: text
       relationships: {  }
