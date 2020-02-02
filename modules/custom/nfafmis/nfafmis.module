@@ -189,7 +189,8 @@ function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
   // @TODO: Need to get data dynamically.
   $area = \Drupal::entityTypeManager()->getStorage('node')->load($offer_licence_id);
   $field_cfr = $area->get('field_central_forest_reserve')->target_id;
-  $rent_charges = getRentSubTotal($field_cfr);
+  $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
+  $rent_charges = getRentSubTotal($field_cfr, $overall_area_allocated);
   $rent_sub_total = $rent_charges['sub_total'];
   $other_subtotal = getChargesSubTotal($offer_licence_id);
   $total = $rent_sub_total + $other_subtotal;
@@ -232,7 +233,7 @@ function getChargesSubTotal($offer_licence_id) {
 /**
  * Get rent-total from Land rent rates.
  */
-function getRentSubTotal($cfr) {
+function getRentSubTotal($cfr, $overall_area_allocated) {
   // field_central_forest_reserve taxonomy term id.
   $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
   $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
@@ -243,8 +244,18 @@ function getRentSubTotal($cfr) {
     $nids = array_values($land_rent_rates_nid);
     $land_rent_rates = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
     foreach ($land_rent_rates as $key => $land_rent_rate) {
-      $land_rent_rates_table['sub_total'] += $land_rent_rate->get('field_rate')->value;
-      $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent_rate->get('field_rate')->value, 0, '.', ',');
+      // Make sure overall area is not zero.
+      // land_rent_rate x overall_area_allocated.
+      $rent_rate = $land_rent_rate->get('field_rate')->value;
+      if ($overall_area_allocated) {
+        $land_rent = $rent_rate * $overall_area_allocated;
+        $land_rent_rates_table['sub_total'] += $land_rent;
+        $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent, 0, '.', ',');
+      }
+      else{
+        $land_rent_rates_table['sub_total'] += $rent_rate;
+        $land_rent_rates_table['data'][$key]['field_rate'] = number_format($rent_rate, 0, '.', ',');
+      }
       $land_rent_rates_table['data'][$key]['field_rate_year'] = $land_rent_rate->get('field_rate_year')->value;
     }
   }
