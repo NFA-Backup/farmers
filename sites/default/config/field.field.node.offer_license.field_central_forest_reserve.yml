@@ -12,7 +12,7 @@ entity_type: node
 bundle: offer_license
 label: 'Central Forest Reserve'
 description: 'Central Forest Reserve (CFR)'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''

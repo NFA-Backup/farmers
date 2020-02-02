@@ -10,8 +10,8 @@ field_name: field_overall_area_allocated
 entity_type: node
 bundle: offer_license
 label: 'Overall Area Allocated'
-description: 'Area allocated'
-required: false
+description: 'Area allocated in hectare - (ha)'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
