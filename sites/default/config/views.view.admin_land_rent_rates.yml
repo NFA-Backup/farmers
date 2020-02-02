@@ -302,7 +302,20 @@ display:
       title: 'Land rent rates'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No land rent rates found.'
+            format: basic_html
+          plugin_id: text
       relationships:
         reverse__node__field_central_forest_reserve:
           id: reverse__node__field_central_forest_reserve
@@ -342,7 +355,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
+          empty: true
           tokenize: false
           content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add\">Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates\">Add Year</a>\r\n</div>"
           plugin_id: text_custom
