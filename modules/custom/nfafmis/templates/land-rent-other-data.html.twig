@@ -41,6 +41,11 @@
             </tr>
           </thead>
           <tbody>
+            {# if empty table #}
+            {% if data.rent_charges is empty %}
+            <td class="view-empty" colspan="2">No anual charges found for this area.</td>
+            {% endif %}
+            {# if empty table #}
             {% for key,rent_charge in data.rent_charges %}
             <tr>
               <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">01-01-{{ rent_charge.field_rate_year }}</td>
