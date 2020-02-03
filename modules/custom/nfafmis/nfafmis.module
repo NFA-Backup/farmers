@@ -152,9 +152,12 @@ function nfafmis_preprocess_views_view_field(&$variables) {
   // Preprocess views view field_physical_address to show SUMARY-CHARGES Tab.
   if ($view->storage->id() == 'farmer_main_tab' && $view->current_display == 'page_6') {
     $farmer_id = $row->nid;
-    // $offer_licence_id = $row->nid;
     if ($field->field == 'field_physical_address') {
       $variables['output'] = getSummaryChargesData($farmer_id);
+    }
+    // Preprocess views view field_postal_address to show PAYMENTS Tab.
+    if ($field->field == 'field_postal_address') {
+      $variables['output'] = getPaymentsData($farmer_id);
     }
   }
 }
@@ -209,6 +212,22 @@ function getSummaryChargesData($farmer_id) {
   $data = [];
   $renderable = [
     '#theme' => 'summary_charges_data',
+    '#data' => $data,
+  ];
+  $rendered = \Drupal::service('renderer')->render($renderable);
+  return $rendered;
+}
+
+/**
+ * Update view field result with getPaymentsData.
+ */
+function getPaymentsData($farmer_id) {
+  // @TODO get dynamic data.
+  $data = [
+    'payment_land_rent' => []
+  ];
+  $renderable = [
+    '#theme' => 'payments_data',
     '#data' => $data,
   ];
   $rendered = \Drupal::service('renderer')->render($renderable);
@@ -305,6 +324,11 @@ function nfafmis_theme($existing, $type, $theme, $path) {
       ],
     ],
     'summary_charges_data' => [
+       'variables' => [
+        'data' => NULL
+      ],
+    ],
+    'payments_data' => [
        'variables' => [
         'data' => NULL
       ],
