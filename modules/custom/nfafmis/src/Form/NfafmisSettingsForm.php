@@ -58,7 +58,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
 
     $config = $this->config('nfafmis.settings');
 
-     $form['item-check'] = [
+    $form['item-check'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Anual charges date & late fees settings'),
       '#description' => $this->t('Add anual charge date on which calculation will be happen applying the late fees.'),
@@ -66,7 +66,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $form['item-check']['anual_charge_date'] = [
       '#type' => 'date',
       '#required' => TRUE,
-      '#title' => $this->t('Date '),
+      '#title' => $this->t('Date'),
       '#default_value' => $config->get('anual_charge_date'),
     ];
     $form['item-check']['late_fees'] = [

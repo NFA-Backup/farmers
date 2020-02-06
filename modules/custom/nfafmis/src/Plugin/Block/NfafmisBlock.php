@@ -26,7 +26,7 @@ class NfafmisBlock extends BlockBase {
     $items = [];
     if ($farmer_name) {
       $options = [
-        'query' => ['title' => $farmer_name]
+        'query' => ['title' => $farmer_name],
       ];
     }
 
@@ -49,7 +49,8 @@ class NfafmisBlock extends BlockBase {
             'tabs-item active',
           ],
         ];
-      }else{
+      }
+      else {
         $options['attributes'] = [
           'class' => [
             'tabs-item',
@@ -58,7 +59,7 @@ class NfafmisBlock extends BlockBase {
       }
 
       $url = Url::fromUri($value['uri'], $options);
-      $link = Link::fromTextAndUrl($this->t($value['label']), $url);
+      $link = Link::fromTextAndUrl($value['label'], $url);
       $items[] = $link;
     }
 
