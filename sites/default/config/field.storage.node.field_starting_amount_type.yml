@@ -1,0 +1,27 @@
+uuid: fd9f3711-254a-4ecb-8af5-b0fd278d81ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_starting_amount_type
+field_name: field_starting_amount_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: land_rent
+      label: 'LAND RENT'
+    -
+      value: other_charges
+      label: 'OTHER CHARGES'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

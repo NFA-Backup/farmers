@@ -1,0 +1,18 @@
+uuid: ef2221a5-23e3-444b-871e-d3b12cdc7eb0
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Starting Amount'
+type: starting_amount
+description: 'This content type will be used for adding starting amount for Areas.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

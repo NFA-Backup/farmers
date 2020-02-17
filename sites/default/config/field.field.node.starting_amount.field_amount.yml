@@ -1,0 +1,23 @@
+uuid: 61eeb98c-0e1b-4e02-8bf9-f5d1cb7db4af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_amount
+    - node.type.starting_amount
+id: node.starting_amount.field_amount
+field_name: field_amount
+entity_type: node
+bundle: starting_amount
+label: Amount
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: float

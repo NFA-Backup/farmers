@@ -1,0 +1,21 @@
+uuid: a96982f1-400d-403e-9371-d554b5faf460
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_starting_amount_type
+    - node.type.starting_amount
+  module:
+    - options
+id: node.starting_amount.field_starting_amount_type
+field_name: field_starting_amount_type
+entity_type: node
+bundle: starting_amount
+label: 'Starting amount type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

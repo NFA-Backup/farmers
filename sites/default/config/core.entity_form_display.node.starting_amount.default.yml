@@ -1,0 +1,52 @@
+uuid: 597cf8fe-cbd3-4b44-8f76-d84972a40bfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.starting_amount.field_amount
+    - field.field.node.starting_amount.field_areas_id
+    - field.field.node.starting_amount.field_starting_amount_type
+    - node.type.starting_amount
+id: node.starting_amount.default
+targetEntityType: node
+bundle: starting_amount
+mode: default
+content:
+  field_amount:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_areas_id:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_starting_amount_type:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

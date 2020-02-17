@@ -1,0 +1,26 @@
+uuid: 09a502a8-303d-4be3-84c6-6af2e2f7f0b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.starting_amount.field_amount
+    - field.field.node.starting_amount.field_areas_id
+    - field.field.node.starting_amount.field_starting_amount_type
+    - node.type.starting_amount
+  module:
+    - user
+id: node.starting_amount.teaser
+targetEntityType: node
+bundle: starting_amount
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_amount: true
+  field_areas_id: true
+  field_starting_amount_type: true
