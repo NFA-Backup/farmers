@@ -244,7 +244,16 @@ function get_summary_charges_data($farmer_id) {
 function get_payments_data($farmer_id) {
   // @TODO get dynamic data.
   $data = [
-    'payment_land_rent' => [],
+    'balance' => [
+      'overall' => 0,
+      'land_rent' => 0,
+      'other_fee' => 0,
+    ],
+    'payments' => [
+      'total' => 0,
+      'land_rent' => 0,
+      'other' => 0,
+    ],
   ];
   $renderable = [
     '#theme' => 'payments_data',
