@@ -209,7 +209,27 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function get_summary_charges_data($farmer_id) {
   // @TODO get dynamic data.
-  $data = [];
+  $data = [
+    'balance' => [
+      'overall' => 0,
+      'land_rent' => 0,
+      'other_fee' => 0,
+    ],
+    'charges' => [
+      'total' => 0,
+      'land_rent' => 0,
+      'other' => 0,
+    ],
+    'land_rent' => [
+      'sub_total' => 0,
+    ],
+    'land_rent_areares' => [
+      'sub_total' => 0,
+    ],
+    'other_fees' => [
+      'sub_total' => 0,
+    ]
+  ];
   $renderable = [
     '#theme' => 'summary_charges_data',
     '#data' => $data,

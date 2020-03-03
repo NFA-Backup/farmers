@@ -1,3 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display payment tab data.
+ *
+ * Available variables:
+ * - $data['balance']: balance array contains overall,land_rent, other_fee.
+ * - $data['charges']: charges array contains total, land_rent, other.
+ * - $data['land_rent']: land_rent array.
+ * - $data['land_rent_areares']: array.
+ * - $data['other_fees']: array.
+ *
+ * @ingroup templates
+ *
+ * @see get_summary_charges_data()
+ * @see nfafmis_theme()
+ */
+#}
 <div class="views-row">
   <li class="account-list-tabs hidden">
     <a href="#">SUMMARY CHARGES</a>
@@ -7,7 +25,7 @@
       <div class="col-md-4 views-field">Balances</div>
       <div class="col-md-4 views-field">
         <span class="views-label">OVERALL</span>
-        <div class="field-content">UGX 256,000</div>
+        <div class="field-content">UGX {{ data.balance.overall }}</div>
       </div>
       <div class="col-md-4 views-field">&nbsp;</div>
     </div>
@@ -15,7 +33,7 @@
       <div class="col-md-4 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">1. LAND RENT</span>
-        <div class="field-content">UGX 256,000</div>
+        <div class="field-content">UGX {{ data.balance.land_rent }}</div>
       </div>
       <div class="col-md-4 views-field">&nbsp;</div>
     </div>
@@ -23,7 +41,7 @@
       <div class="col-md-4 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">2. OTHER FEES</span>
-        <div class="field-content">UGX 0</div>
+        <div class="field-content">UGX {{ data.balance.other_fee }}</div>
       </div>
       <div class="col-md-4 views-field">&nbsp;</div>
     </div>
@@ -36,7 +54,7 @@
       <div class="col-md-8 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">TOTAL CHARGES</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.charges.total }}</div>
       </div>
     </div>
     <div class="row">
@@ -45,14 +63,14 @@
       </div>
       <div class="col-md-4 views-field">
         <span class="views-label">1. LAND REND</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.charges.land_rent }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">2. OTHER FEES</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.charges.other }}</div>
       </div>
     </div>
   </div>
@@ -71,7 +89,7 @@
       </div>
       <div class="col-md-4 views-field">
         <span class="views-label">Sub-total</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.land_rent.sub_total }}</div>
       </div>
     </div>
     <div class="row">
@@ -99,7 +117,7 @@
       </div>
       <div class="col-md-4 views-field">
         <span class="views-label">Sub-total</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.land_rent_areares.sub_total }}</div>
       </div>
     </div>
     <div class="row">
@@ -149,7 +167,7 @@
       </div>
       <div class="col-md-4 views-field">
         <span class="views-label">Sub-total</span>
-        <div class="field-content">UGX</div>
+        <div class="field-content">UGX {{ data.other_fees.sub_total }}</div>
       </div>
     </div>
     <div class="row">
