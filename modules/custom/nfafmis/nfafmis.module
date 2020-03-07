@@ -209,6 +209,13 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function get_summary_charges_data($farmer_id) {
   // @TODO get dynamic data.
+  // Get total of all area for farmer year wise.
+  $rent_total_data = get_rent_total_year_wise($farmer_id);
+  $rent_sub_total = 0;
+  if (isset($rent_total_data['sub_total'])) {
+    $rent_sub_total = $rent_total_data['sub_total'];
+    unset($rent_total_data['sub_total']);
+  }
   $data = [
     'balance' => [
       'overall' => 0,
@@ -221,14 +228,15 @@ function get_summary_charges_data($farmer_id) {
       'other' => 0,
     ],
     'land_rent' => [
-      'sub_total' => 0,
+      'data' => $rent_total_data,
+      'sub_total' => $rent_sub_total,
     ],
     'land_rent_areares' => [
       'sub_total' => 0,
     ],
     'other_fees' => [
       'sub_total' => 0,
-    ]
+    ],
   ];
   $renderable = [
     '#theme' => 'summary_charges_data',
@@ -236,6 +244,69 @@ function get_summary_charges_data($farmer_id) {
   ];
   $rendered = \Drupal::service('renderer')->render($renderable);
   return $rendered;
+}
+
+/**
+ * Get total of all area for farmer year wise.
+ */
+function get_rent_total_year_wise($farmer_id) {
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $offer_license_nids = $query->condition('type', 'offer_license')
+    ->condition('field_farmer_name_ref.target_id', $farmer_id)
+    ->execute();
+
+  // Load each areas and calculate its changes for each year.
+  foreach ($offer_license_nids as $offer_licence_id) {
+    $area = \Drupal::entityTypeManager()->getStorage('node')->load($offer_licence_id);
+    $field_cfr = $area->get('field_central_forest_reserve')->target_id;
+    $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
+    $rent_charges[] = get_total_year_wise($field_cfr, $overall_area_allocated);
+  }
+  $total_rent_charges = [];
+  foreach ($rent_charges as $rent_charge) {
+    foreach ($rent_charge as $key => $value) {
+      $total_rent_charges[$key] += $value;
+    }
+  }
+  // Add sub total charges.
+  if (!empty($total_rent_charges)) {
+    foreach ($total_rent_charges as $key => $value) {
+      $total_rent_charges['sub_total'] += $value;
+      $total_rent_charges[$key] = number_format($value, 0, '.', ',');
+    }
+    $total_rent_charges['sub_total'] = number_format(array_sum($total_rent_charges), 0, '.', ',');
+  }
+  return $total_rent_charges;
+}
+
+/**
+ * Get total charges of area year wise.
+ */
+function get_total_year_wise($cfr, $overall_area_allocated) {
+  // field_central_forest_reserve taxonomy term id.
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
+    ->condition('field_central_forest_reserve.target_id', $cfr)
+    ->execute();
+  $land_rent_rates_table = [];
+  if (!empty($land_rent_rates_nid)) {
+    $nids = array_values($land_rent_rates_nid);
+    $land_rent_rates = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+    foreach ($land_rent_rates as $key => $land_rent_rate) {
+      // Make sure overall area is not zero.
+      // land_rent_rate x overall_area_allocated.
+      $rent_rate = $land_rent_rate->get('field_rate')->value;
+      $for_year = $land_rent_rate->get('field_rate_year')->value;
+      if ($overall_area_allocated) {
+        $land_rent = $rent_rate * $overall_area_allocated;
+        $land_rent_rates_table[$for_year] += $land_rent;
+      }
+      else {
+        $land_rent_rates_table[$for_year] += $land_rent;
+      }
+    }
+  }
+  return $land_rent_rates_table;
 }
 
 /**
