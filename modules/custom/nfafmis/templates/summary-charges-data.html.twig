@@ -25,7 +25,7 @@
       <div class="col-md-4 views-field">Balances</div>
       <div class="col-md-4 views-field">
         <span class="views-label">OVERALL</span>
-        <div class="field-content">UGX {{ data.land_rent.sub_total }}</div>
+        <div class="field-content">UGX {{ data.balance.overall }}</div>
       </div>
       <div class="col-md-4 views-field">&nbsp;</div>
     </div>
@@ -33,7 +33,7 @@
       <div class="col-md-4 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">1. LAND RENT</span>
-        <div class="field-content">UGX {{ data.land_rent.sub_total }}</div>
+        <div class="field-content">UGX {{ data.balance.land_rent }}</div>
       </div>
       <div class="col-md-4 views-field">&nbsp;</div>
     </div>
@@ -54,7 +54,7 @@
       <div class="col-md-8 views-field">&nbsp;</div>
       <div class="col-md-4 views-field">
         <span class="views-label">TOTAL CHARGES</span>
-        <div class="field-content">UGX {{ data.land_rent.sub_total }}</div>
+        <div class="field-content">UGX {{ data.charges.total }}</div>
       </div>
     </div>
     <div class="row">
@@ -63,7 +63,7 @@
       </div>
       <div class="col-md-4 views-field">
         <span class="views-label">1. LAND REND</span>
-        <div class="field-content">UGX {{ data.land_rent.sub_total }}</div>
+        <div class="field-content">UGX {{ data.charges.land_rent }}</div>
       </div>
     </div>
     <div class="row">
@@ -197,22 +197,29 @@
     <div class="row">
       <div class="col-md-4 views-field"></div>
       <div class="col-md-4 views-field">
-        <span class="views-label">Year</span>
-        <div class="field-content">Amount</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 views-field"></div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">2018</span>
-        <div class="field-content">UGX</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 views-field"></div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">2019</span>
-        <div class="field-content">UGX</div>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Year</th>
+                <th id="view-field-amount-table-column" class="views-field views-field-field-amount" scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {# if empty table #}
+              {% if data.other_fees.data is empty %}
+              <td class="view-empty" colspan="2">No anual charges found for this area.</td>
+              {% endif %}
+              {# if empty table #}
+              {% for key,other_fees in data.other_fees.data %}
+              <tr>
+                <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ key }}</td>
+                <td headers="view-field-amount-table-column" class="views-field views-field-field-amount">UGX {{ other_fees }} </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

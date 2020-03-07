@@ -209,33 +209,45 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function get_summary_charges_data($farmer_id) {
   // @TODO get dynamic data.
-  // Get total of all area for farmer year wise.
+  // Get total rent charges of all area for farmer year wise.
   $rent_total_data = get_rent_total_year_wise($farmer_id);
   $rent_sub_total = 0;
   if (isset($rent_total_data['sub_total'])) {
     $rent_sub_total = $rent_total_data['sub_total'];
     unset($rent_total_data['sub_total']);
   }
+  // Get total other charges of all area for farmer year wise.
+  $other_total_data = get_other_charges_year_wise($farmer_id);
+  $other_sub_total = 0;
+  if (isset($other_total_data['sub_total'])) {
+    $other_sub_total = $other_total_data['sub_total'];
+    unset($other_total_data['sub_total']);
+  }
+
+  $overall = $rent_sub_total + $other_sub_total;
+  $total = $rent_sub_total + $other_sub_total;
+
   $data = [
     'balance' => [
-      'overall' => 0,
-      'land_rent' => 0,
-      'other_fee' => 0,
+      'overall' => number_format($overall, 0, '.', ','),
+      'land_rent' => number_format($rent_sub_total, 0, '.', ','),
+      'other_fee' => number_format($other_sub_total, 0, '.', ','),
     ],
     'charges' => [
-      'total' => 0,
-      'land_rent' => 0,
-      'other' => 0,
+      'total' => number_format($total, 0, '.', ','),
+      'land_rent' => number_format($rent_sub_total, 0, '.', ','),
+      'other' => number_format($other_sub_total, 0, '.', ','),
     ],
     'land_rent' => [
       'data' => $rent_total_data,
-      'sub_total' => $rent_sub_total,
+      'sub_total' => number_format($rent_sub_total, 0, '.', ','),
     ],
     'land_rent_areares' => [
       'sub_total' => 0,
     ],
     'other_fees' => [
-      'sub_total' => 0,
+      'data' => $other_total_data,
+      'sub_total' => number_format($other_sub_total, 0, '.', ','),
     ],
   ];
   $renderable = [
@@ -247,7 +259,62 @@ function get_summary_charges_data($farmer_id) {
 }
 
 /**
- * Get total of all area for farmer year wise.
+ * Get total other charges of all area for farmer year wise.
+ */
+function get_other_charges_year_wise($farmer_id) {
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $offer_license_nids = $query->condition('type', 'offer_license')
+    ->condition('field_farmer_name_ref.target_id', $farmer_id)
+    ->execute();
+
+  // Load each areas and calculate its changes for each year.
+  foreach ($offer_license_nids as $offer_licence_id) {
+    $other_amounts[] = get_other_total_year_wise($offer_licence_id);
+  }
+  // Add sub total charges.
+  $other_amounts_by_year = [];
+  $other_amounts_by_year['sub_total'] = 0;
+  if (!empty($other_amounts)) {
+    foreach ($other_amounts as $other_amount) {
+      foreach ($other_amount as $key => $value) {
+        $other_amounts_by_year[$key] += $value;
+      }
+    }
+  }
+  foreach ($other_amounts_by_year as $key => $value) {
+    $other_amounts_by_year['sub_total'] += $value;
+    $other_amounts_by_year[$key] = number_format($value, 0, '.', ',');
+  }
+  return $other_amounts_by_year;
+}
+
+/**
+ * Get sub-total from charges.
+ */
+function get_other_total_year_wise($offer_licence_id) {
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $charge_nids = $query->condition('type', 'charge')
+    ->condition('field_areas_id.target_id', $offer_licence_id)
+    ->execute();
+  $field_amount = [];
+  if (!empty($charge_nids)) {
+    $nids = array_values($charge_nids);
+    $charges = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+
+    foreach ($charges as $key => $charge) {
+      $field_charge_date = $charge->get('field_charge_date')->value;
+      if ($field_charge_date) {
+        $field_charge_date = explode('-', $field_charge_date);
+        $key = $field_charge_date[0];
+        $field_amount[$key] += $charge->get('field_amount')->value;
+      }
+    }
+  }
+  return $field_amount;
+}
+
+/**
+ * Get total rent charges of all area for farmer year wise.
  */
 function get_rent_total_year_wise($farmer_id) {
   $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
@@ -263,6 +330,7 @@ function get_rent_total_year_wise($farmer_id) {
     $rent_charges[] = get_total_year_wise($field_cfr, $overall_area_allocated);
   }
   $total_rent_charges = [];
+  $total_rent_charges['sub_total'] = 0;
   foreach ($rent_charges as $rent_charge) {
     foreach ($rent_charge as $key => $value) {
       $total_rent_charges[$key] += $value;
@@ -274,7 +342,6 @@ function get_rent_total_year_wise($farmer_id) {
       $total_rent_charges['sub_total'] += $value;
       $total_rent_charges[$key] = number_format($value, 0, '.', ',');
     }
-    $total_rent_charges['sub_total'] = number_format(array_sum($total_rent_charges), 0, '.', ',');
   }
   return $total_rent_charges;
 }
