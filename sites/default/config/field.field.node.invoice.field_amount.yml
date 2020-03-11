@@ -1,0 +1,23 @@
+uuid: 847c2d9b-2fdc-40d9-959f-adf3e9a0959e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_amount
+    - node.type.invoice
+id: node.invoice.field_amount
+field_name: field_amount
+entity_type: node
+bundle: invoice
+label: Amount
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: float

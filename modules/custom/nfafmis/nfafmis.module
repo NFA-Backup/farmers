@@ -112,6 +112,15 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       ],
     ];
   }
+
+  if ($form_id == 'node_invoice_form' || $form_id == 'node_invoice_edit_form') {
+    $query_params = get_offer_license_details();
+    if (!empty($query_params['farmer_id'])) {
+      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
+      $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
+    }
+  }
+
 }
 
 /**
@@ -228,6 +237,7 @@ function get_summary_charges_data($farmer_id) {
   $total = $rent_sub_total + $other_sub_total;
 
   $data = [
+    'farmer_id' => $farmer_id,
     'balance' => [
       'overall' => number_format($overall, 0, '.', ','),
       'land_rent' => number_format($rent_sub_total, 0, '.', ','),
@@ -382,6 +392,7 @@ function get_total_year_wise($cfr, $overall_area_allocated) {
 function get_payments_data($farmer_id) {
   // @TODO get dynamic data.
   $data = [
+    'farmer_id' => $farmer_id,
     'balance' => [
       'overall' => 0,
       'land_rent' => 0,

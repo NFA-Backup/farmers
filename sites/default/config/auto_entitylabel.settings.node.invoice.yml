@@ -1,0 +1,6 @@
+status: 1
+pattern: 'Invoice-[node:field_invoice_number]'
+escape: false
+dependencies:
+  config:
+    - node.type.invoice

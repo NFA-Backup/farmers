@@ -1,0 +1,69 @@
+uuid: 4b3667bb-8312-4a35-8a01-2655646fd26b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.invoice.field_amount
+    - field.field.node.invoice.field_farmer_name_ref
+    - field.field.node.invoice.field_invoice_date
+    - field.field.node.invoice.field_invoice_details
+    - field.field.node.invoice.field_invoice_number
+    - node.type.invoice
+  module:
+    - datetime
+    - options
+    - user
+id: node.invoice.default
+targetEntityType: node
+bundle: invoice
+mode: default
+content:
+  field_amount:
+    weight: 105
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_farmer_name_ref:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_invoice_date:
+    weight: 102
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_invoice_details:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_invoice_number:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }
