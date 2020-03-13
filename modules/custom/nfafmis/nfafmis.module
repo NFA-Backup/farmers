@@ -118,6 +118,62 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     if (!empty($query_params['farmer_id'])) {
       $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
+
+      // Hide farmer field and info instead.
+      $form['field_farmer_name_ref']['#access'] = FALSE;
+      $form_object = $form_state->getFormObject();
+      $entity = $form_object->getEntity();
+
+      // Set default value for invoice number dynamic if not already set.
+      if ($entity->isNew()) {
+        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I'.time();
+      }
+
+      // Hide amount field based on field_invoice_details.
+      $form['field_amount']['widget'][0]['#disabled'] = TRUE;
+      $form['field_amount']['#states'] = [
+        'visible' => [
+          [
+            [':input[name="field_invoice_details"]' => ['value' => '1']],
+            'or',
+            [':input[name="field_invoice_details"]' => ['value' => '2']],
+          ],
+        ],
+      ];
+
+      // Set default farmer when adding offer license content.
+      $form['field_invoice_number']['widget'][0]['#disabled'] = TRUE;
+      $form['field_invoice_date']['widget'][0]['#disabled'] = TRUE;
+
+      // Create farmer info field container:
+      $form['farmer_info'] = [
+        '#type' => "container",
+        '#theme' => 'farmer_info',
+        '#farmer_data' => [
+          'name' => $farmer->get('title')->value,
+          'field_email' => $farmer->get('field_email')->value,
+          'field_phone_number' => $farmer->get('field_phone_number')->value,
+          'field_physical_address' => $farmer->get('field_physical_address')->value,
+          'field_postal_address' => $farmer->get('field_postal_address')->value,
+          'field_tax_identification_number' => $farmer->get('field_tax_identification_number')->value,
+          'field_national_identification_no' => $farmer->get('field_national_identification_no')->value,
+        ],
+      ];
+      $form['area_info'] = [
+        '#type' => "container",
+        '#theme' => 'area_info',
+        '#weight' => 20,
+        '#area_data' => [
+          'area/001' => ['data' => []],
+          'area/002' => ['data' => []],
+          'area/003' => ['data' => []],
+        ]
+      ];
+      $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_info';
+      $form['#fieldgroups']['group_invoice_details']->children[] = 'area_info';
+    }
+    else{
+      //set error message if farmer id not availble in the param.
     }
   }
 
@@ -509,6 +565,16 @@ function nfafmis_theme($existing, $type, $theme, $path) {
     'payments_data' => [
       'variables' => [
         'data' => NULL,
+      ],
+    ],
+    'farmer_info' => [
+      'variables' => [
+        'farmer_data' => NULL,
+      ],
+    ],
+    'area_info' => [
+      'variables' => [
+        'area_data' => NULL,
       ],
     ],
   ];

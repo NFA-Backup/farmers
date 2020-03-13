@@ -1,0 +1,45 @@
+{#
+/**
+* @file
+* Default theme implementation to display area information under Invoice details
+* on Invoice page.
+*
+* Available variables:
+* - $area_data: array.
+* @see nfafmis_theme()
+*/
+#}
+<article class="farmer-details full clearfix">
+  <div class="content">
+    {% for key,area in area_data %}
+    <div class="block-section">
+      <h5 class="title">AREA/XXXXXXX</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th id="view-field-charge-date-table-column" class="views-field" scope="col">Description</th>
+            <th id="view-field-amount-table-column" class="views-field" scope="col">Date</th>
+            <th id="view-field-amount-table-column" class="views-field" scope="col">Amount owed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {# if empty table #}
+          {% if area.data is empty %}
+          <td class="view-empty" colspan="3">No data found.</td>
+          {% endif %}
+          {# if empty table #}
+          {% for key,sub_area in area.data %}
+          <tr>
+            <td headers="view-field-charge-date-table-column"></td>
+            <td headers="view-field-amount-table-column"></td>
+            <td headers="view-field-charge-date-table-column"></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</article>

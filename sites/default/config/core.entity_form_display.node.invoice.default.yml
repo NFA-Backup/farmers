@@ -81,7 +81,7 @@ content:
   field_invoice_number:
     weight: 5
     settings:
-      size: 60
+      size: 15
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield

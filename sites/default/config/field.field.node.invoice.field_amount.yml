@@ -9,7 +9,7 @@ id: node.invoice.field_amount
 field_name: field_amount
 entity_type: node
 bundle: invoice
-label: Amount
+label: 'PLEASE PAY'
 description: ''
 required: false
 translatable: true

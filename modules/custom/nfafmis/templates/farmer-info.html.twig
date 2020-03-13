@@ -1,0 +1,42 @@
+{#
+/**
+* @file
+* Default theme implementation to display farmer info on Invoice page.
+*
+* Available variables:
+* - $farmer_data: array.
+* @see nfafmis_theme()
+*/
+#}
+<article class="farmer-details full clearfix">
+  <div class="content">
+    <div class="field">
+      <div class="field--label">Farmer Name</div>
+      <div class="field--item">{{farmer_data.name}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">Tax Identification Number</div>
+      <div class="field--item">{{farmer_data.field_tax_identification_number}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">National Identification Number</div>
+      <div class="field--item">{{farmer_data.field_national_identification_no}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">Phone Number</div>
+      <div class="field--item">{{farmer_data.field_phone_number}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">Email</div>
+      <div class="field--item">{{farmer_data.field_email}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">Physical Address</div>
+      <div class="field--item">{{farmer_data.field_physical_address}}</div>
+    </div>
+    <div class="field">
+      <div class="field--label">Postal Address</div>
+      <div class="field--item">{{farmer_data.field_postal_address}}</div>
+    </div>
+  </div>
+</article>
