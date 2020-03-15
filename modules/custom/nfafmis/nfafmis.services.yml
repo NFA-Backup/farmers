@@ -1,0 +1,7 @@
+services:
+  nfafmis_service.farmer:
+    class: Drupal\nfafmis\Services\FarmerServices
+    arguments: ['@current_user','@entity_type.manager','@renderer']
+  nfafmis_service.utility:
+    class: Drupal\nfafmis\Services\UtilityServices
+    arguments: ['@current_user','@request_stack']

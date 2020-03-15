@@ -8,12 +8,16 @@
 use Drupal\Core\Url;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Implements hook_form_alter().
  */
 function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+
+  // Create nfafmis service object.
+  $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
+  $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+
   if ($form_id === 'comment_comment_form') {
     $form['actions']['submit']['#submit'][] = 'nfafmis_comment_comment_form_submit';
   }
@@ -47,7 +51,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     // Set default farmer when adding offer license content.
     $form['field_farmer_name_ref']['widget'][0]['#disabled'] = TRUE;
     if ($form_id == 'node_offer_license_form') {
-      $query_params = get_offer_license_details();
+      $query_params = $nfafmis_service_utility->getQueryParams();
       if (!empty($query_params) && isset($query_params['farmer_id'])) {
         $farmer_id = $query_params['farmer_id'];
         $farmer_data = \Drupal::entityTypeManager()->getStorage('node')->load($farmer_id);
@@ -60,7 +64,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
   // Set default sub-area-id when adding Inventory/Harvest content.
   if ($form_id == 'node_inventory_form' || $form_id == 'node_thinning_harvest_details_form') {
-    $query_params = get_offer_license_details();
+    $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params) && isset($query_params['sub_area_id'])) {
       $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
       $sub_area_id = $query_params['sub_area_id'];
@@ -70,14 +74,14 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   }
 
   if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
-    $query_params = get_offer_license_details();
+    $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
       $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
       $area_id = $query_params['offer_licence_id'];
       $area_data = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
       $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
 
-      $sub_areas = get_sub_areas_ids($area_id);
+      $sub_areas = $nfafmis_service_farmer->getSubAreasIds($area_id);
       // Provide area-id as agrumet to get sub-area ids.
       if ($sub_areas) {
         $form['field_charges_sub_area']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['offer_licence_id'];
@@ -99,7 +103,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   }
 
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
-    $offer_license_id = get_offer_license_details();
+    $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
     // This only works when widget is selected as autocompleted.
     if ($offer_license_id) {
@@ -114,7 +118,12 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   }
 
   if ($form_id == 'node_invoice_form' || $form_id == 'node_invoice_edit_form') {
-    $query_params = get_offer_license_details();
+    // Set default farmer when adding offer license content.
+    $form['field_invoice_number']['widget'][0]['#disabled'] = TRUE;
+    $form['field_invoice_date']['widget'][0]['#disabled'] = TRUE;
+    $form['field_amount']['widget'][0]['#disabled'] = TRUE;
+
+    $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params['farmer_id'])) {
       $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
@@ -126,11 +135,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
       // Set default value for invoice number dynamic if not already set.
       if ($entity->isNew()) {
-        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I'.time();
+        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I' . time();
       }
 
       // Hide amount field based on field_invoice_details.
-      $form['field_amount']['widget'][0]['#disabled'] = TRUE;
       $form['field_amount']['#states'] = [
         'visible' => [
           [
@@ -140,10 +148,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           ],
         ],
       ];
-
-      // Set default farmer when adding offer license content.
-      $form['field_invoice_number']['widget'][0]['#disabled'] = TRUE;
-      $form['field_invoice_date']['widget'][0]['#disabled'] = TRUE;
 
       // Create farmer info field container:
       $form['farmer_info'] = [
@@ -167,13 +171,20 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           'area/001' => ['data' => []],
           'area/002' => ['data' => []],
           'area/003' => ['data' => []],
-        ]
+        ],
       ];
       $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_info';
       $form['#fieldgroups']['group_invoice_details']->children[] = 'area_info';
+      $form['area_info']['#ajax'] = [
+        'callback' => 'ref_number_dropdown_callback',
+        'wrapper' => 'ref_number_list',
+        'event' => 'change',
+        'method' => 'replace',
+        'effect' => 'fade',
+      ];
     }
-    else{
-      //set error message if farmer id not availble in the param.
+    else {
+      // Set error message if farmer id not availble in the param.
     }
   }
 
@@ -190,12 +201,15 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
  * Implements hook_preprocess_views_view_field().
  */
 function nfafmis_preprocess_views_view_field(&$variables) {
+  // Create nfafmis service object.
+  $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+
   $view = $variables['view'];
   $field = $variables['field'];
   $row = $variables['row'];
   if ($view->storage->id() == 'sub_areas_planting_status' && $view->current_display == 'block_1') {
     $field_overall_area_allocated = $row->_entity->get('field_overall_area_allocated')->value;
-    $area_panted_values = get_area_planted_un_planted_valute($row->nid);
+    $area_panted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
     // Override the view rewult.
     if ($field->field == 'field_offer_id') {
@@ -211,18 +225,18 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $farmer_id = $view->args[0];
     $offer_licence_id = $row->nid;
     if ($field->field == 'field_purpose') {
-      $variables['output'] = get_land_rent_and_other_data($farmer_id, $offer_licence_id);
+      $variables['output'] = $nfafmis_service_farmer->getLandRentAndOtherData($farmer_id, $offer_licence_id);;
     }
   }
   // Preprocess views view field_physical_address to show SUMARY-CHARGES Tab.
   if ($view->storage->id() == 'farmer_main_tab' && $view->current_display == 'page_6') {
     $farmer_id = $row->nid;
     if ($field->field == 'field_physical_address') {
-      $variables['output'] = get_summary_charges_data($farmer_id);
+      $variables['output'] = $nfafmis_service_farmer->getSummaryChargesData($farmer_id);
     }
     // Preprocess views view field_postal_address to show PAYMENTS Tab.
     if ($field->field == 'field_postal_address') {
-      $variables['output'] = get_payments_data($farmer_id);
+      $variables['output'] = $nfafmis_service_farmer->getPaymentsData($farmer_id);
     }
   }
 }
@@ -231,13 +245,15 @@ function nfafmis_preprocess_views_view_field(&$variables) {
  * Implements hook_preprocess_views_pre_view().
  */
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+  // Create nfafmis service object.
+  $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
 
   // Set Offer license IDs as view arguments.
   if ($view->id() == 'sub_areas_planting_status' &&
     ($display_id == 'block_4' || $display_id == 'block_6' || $display_id == 'block_8')) {
     // We have pass farmer Id intentionaly to get offer license ID from that.
     if (!empty($args)) {
-      $offer_license_ids = get_offer_license_ids($args[0]);
+      $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       if ($offer_license_ids) {
         $args = [$offer_license_ids];
       }
@@ -248,10 +264,10 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
    ($display_id == 'block_2' || $display_id == 'block_3')) {
     // We have pass farmer Id intentionaly to get offer license ID from that.
     if (!empty($args)) {
-      $offer_license_ids = get_offer_license_ids($args[0]);
+      $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       // Now get all sub-area ids based on area(offer license).
       if ($offer_license_ids) {
-        $sub_areas_ids = get_sub_areas_ids($offer_license_ids);
+        $sub_areas_ids = $nfafmis_service_farmer->getSubAreasIds($offer_license_ids);
         // Pass sub-area ids to get Inventory.
         if ($sub_areas_ids) {
           $args = [$sub_areas_ids];
@@ -267,284 +283,6 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       $view->setExposedInput($exposed_filters);
     }
   }
-}
-
-/**
- * Update view field result with get_summary_charges_data.
- */
-function get_summary_charges_data($farmer_id) {
-  // @TODO get dynamic data.
-  // Get total rent charges of all area for farmer year wise.
-  $rent_total_data = get_rent_total_year_wise($farmer_id);
-  $rent_sub_total = 0;
-  if (isset($rent_total_data['sub_total'])) {
-    $rent_sub_total = $rent_total_data['sub_total'];
-    unset($rent_total_data['sub_total']);
-  }
-  // Get total other charges of all area for farmer year wise.
-  $other_total_data = get_other_charges_year_wise($farmer_id);
-  $other_sub_total = 0;
-  if (isset($other_total_data['sub_total'])) {
-    $other_sub_total = $other_total_data['sub_total'];
-    unset($other_total_data['sub_total']);
-  }
-
-  $overall = $rent_sub_total + $other_sub_total;
-  $total = $rent_sub_total + $other_sub_total;
-
-  $data = [
-    'farmer_id' => $farmer_id,
-    'balance' => [
-      'overall' => number_format($overall, 0, '.', ','),
-      'land_rent' => number_format($rent_sub_total, 0, '.', ','),
-      'other_fee' => number_format($other_sub_total, 0, '.', ','),
-    ],
-    'charges' => [
-      'total' => number_format($total, 0, '.', ','),
-      'land_rent' => number_format($rent_sub_total, 0, '.', ','),
-      'other' => number_format($other_sub_total, 0, '.', ','),
-    ],
-    'land_rent' => [
-      'data' => $rent_total_data,
-      'sub_total' => number_format($rent_sub_total, 0, '.', ','),
-    ],
-    'land_rent_areares' => [
-      'sub_total' => 0,
-    ],
-    'other_fees' => [
-      'data' => $other_total_data,
-      'sub_total' => number_format($other_sub_total, 0, '.', ','),
-    ],
-  ];
-  $renderable = [
-    '#theme' => 'summary_charges_data',
-    '#data' => $data,
-  ];
-  $rendered = \Drupal::service('renderer')->render($renderable);
-  return $rendered;
-}
-
-/**
- * Get total other charges of all area for farmer year wise.
- */
-function get_other_charges_year_wise($farmer_id) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $offer_license_nids = $query->condition('type', 'offer_license')
-    ->condition('field_farmer_name_ref.target_id', $farmer_id)
-    ->execute();
-
-  // Load each areas and calculate its changes for each year.
-  foreach ($offer_license_nids as $offer_licence_id) {
-    $other_amounts[] = get_other_total_year_wise($offer_licence_id);
-  }
-  // Add sub total charges.
-  $other_amounts_by_year = [];
-  $other_amounts_by_year['sub_total'] = 0;
-  if (!empty($other_amounts)) {
-    foreach ($other_amounts as $other_amount) {
-      foreach ($other_amount as $key => $value) {
-        $other_amounts_by_year[$key] += $value;
-      }
-    }
-  }
-  foreach ($other_amounts_by_year as $key => $value) {
-    $other_amounts_by_year['sub_total'] += $value;
-    $other_amounts_by_year[$key] = number_format($value, 0, '.', ',');
-  }
-  return $other_amounts_by_year;
-}
-
-/**
- * Get sub-total from charges.
- */
-function get_other_total_year_wise($offer_licence_id) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $charge_nids = $query->condition('type', 'charge')
-    ->condition('field_areas_id.target_id', $offer_licence_id)
-    ->execute();
-  $field_amount = [];
-  if (!empty($charge_nids)) {
-    $nids = array_values($charge_nids);
-    $charges = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-
-    foreach ($charges as $key => $charge) {
-      $field_charge_date = $charge->get('field_charge_date')->value;
-      if ($field_charge_date) {
-        $field_charge_date = explode('-', $field_charge_date);
-        $key = $field_charge_date[0];
-        $field_amount[$key] += $charge->get('field_amount')->value;
-      }
-    }
-  }
-  return $field_amount;
-}
-
-/**
- * Get total rent charges of all area for farmer year wise.
- */
-function get_rent_total_year_wise($farmer_id) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $offer_license_nids = $query->condition('type', 'offer_license')
-    ->condition('field_farmer_name_ref.target_id', $farmer_id)
-    ->execute();
-
-  // Load each areas and calculate its changes for each year.
-  foreach ($offer_license_nids as $offer_licence_id) {
-    $area = \Drupal::entityTypeManager()->getStorage('node')->load($offer_licence_id);
-    $field_cfr = $area->get('field_central_forest_reserve')->target_id;
-    $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
-    $rent_charges[] = get_total_year_wise($field_cfr, $overall_area_allocated);
-  }
-  $total_rent_charges = [];
-  $total_rent_charges['sub_total'] = 0;
-  foreach ($rent_charges as $rent_charge) {
-    foreach ($rent_charge as $key => $value) {
-      $total_rent_charges[$key] += $value;
-    }
-  }
-  // Add sub total charges.
-  if (!empty($total_rent_charges)) {
-    foreach ($total_rent_charges as $key => $value) {
-      $total_rent_charges['sub_total'] += $value;
-      $total_rent_charges[$key] = number_format($value, 0, '.', ',');
-    }
-  }
-  return $total_rent_charges;
-}
-
-/**
- * Get total charges of area year wise.
- */
-function get_total_year_wise($cfr, $overall_area_allocated) {
-  // field_central_forest_reserve taxonomy term id.
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
-    ->condition('field_central_forest_reserve.target_id', $cfr)
-    ->execute();
-  $land_rent_rates_table = [];
-  if (!empty($land_rent_rates_nid)) {
-    $nids = array_values($land_rent_rates_nid);
-    $land_rent_rates = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-    foreach ($land_rent_rates as $key => $land_rent_rate) {
-      // Make sure overall area is not zero.
-      // land_rent_rate x overall_area_allocated.
-      $rent_rate = $land_rent_rate->get('field_rate')->value;
-      $for_year = $land_rent_rate->get('field_rate_year')->value;
-      if ($overall_area_allocated) {
-        $land_rent = $rent_rate * $overall_area_allocated;
-        $land_rent_rates_table[$for_year] += $land_rent;
-      }
-      else {
-        $land_rent_rates_table[$for_year] += $land_rent;
-      }
-    }
-  }
-  return $land_rent_rates_table;
-}
-
-/**
- * Update view field result with get_payments_data.
- */
-function get_payments_data($farmer_id) {
-  // @TODO get dynamic data.
-  $data = [
-    'farmer_id' => $farmer_id,
-    'balance' => [
-      'overall' => 0,
-      'land_rent' => 0,
-      'other_fee' => 0,
-    ],
-    'payments' => [
-      'total' => 0,
-      'land_rent' => 0,
-      'other' => 0,
-    ],
-  ];
-  $renderable = [
-    '#theme' => 'payments_data',
-    '#data' => $data,
-  ];
-  $rendered = \Drupal::service('renderer')->render($renderable);
-  return $rendered;
-}
-
-/**
- * Update view field result with get_land_rent_and_other_data.
- */
-function get_land_rent_and_other_data($farmer_id, $offer_licence_id) {
-  $area = \Drupal::entityTypeManager()->getStorage('node')->load($offer_licence_id);
-  $field_cfr = $area->get('field_central_forest_reserve')->target_id;
-  $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
-  $rent_charges = get_rent_sub_total($field_cfr, $overall_area_allocated);
-  $rent_sub_total = $rent_charges['sub_total'];
-  $other_subtotal = get_charges_sub_total($offer_licence_id);
-  $total = $rent_sub_total + $other_subtotal;
-  $data = [
-    'total' => number_format($total, 0, '.', ','),
-    'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
-    'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
-    'rent_charges' => $rent_charges['data'],
-    'farmer_id' => $farmer_id,
-    'offer_licence_id' => $offer_licence_id,
-  ];
-  $renderable = [
-    '#theme' => 'land_rent_other_data',
-    '#data' => $data,
-  ];
-  $rendered = \Drupal::service('renderer')->render($renderable);
-  return $rendered;
-}
-
-/**
- * Get sub-total from charges.
- */
-function get_charges_sub_total($offer_licence_id) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $charge_nids = $query->condition('type', 'charge')
-    ->condition('field_areas_id.target_id', $offer_licence_id)
-    ->execute();
-  $field_amount = 0;
-  if (!empty($charge_nids)) {
-    $nids = array_values($charge_nids);
-    $charges = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-
-    foreach ($charges as $key => $charge) {
-      $field_amount += $charge->get('field_amount')->value;
-    }
-  }
-  return $field_amount;
-}
-
-/**
- * Get rent-total from Land rent rates.
- */
-function get_rent_sub_total($cfr, $overall_area_allocated) {
-  // field_central_forest_reserve taxonomy term id.
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
-    ->condition('field_central_forest_reserve.target_id', $cfr)
-    ->execute();
-  $land_rent_rates_table = [];
-  if (!empty($land_rent_rates_nid)) {
-    $nids = array_values($land_rent_rates_nid);
-    $land_rent_rates = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-    foreach ($land_rent_rates as $key => $land_rent_rate) {
-      // Make sure overall area is not zero.
-      // land_rent_rate x overall_area_allocated.
-      $rent_rate = $land_rent_rate->get('field_rate')->value;
-      if ($overall_area_allocated) {
-        $land_rent = $rent_rate * $overall_area_allocated;
-        $land_rent_rates_table['sub_total'] += $land_rent;
-        $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent, 0, '.', ',');
-      }
-      else {
-        $land_rent_rates_table['sub_total'] += $rent_rate;
-        $land_rent_rates_table['data'][$key]['field_rate'] = number_format($rent_rate, 0, '.', ',');
-      }
-      $land_rent_rates_table['data'][$key]['field_rate_year'] = $land_rent_rate->get('field_rate_year')->value;
-    }
-  }
-  return $land_rent_rates_table;
 }
 
 /**
@@ -606,7 +344,7 @@ function nfafmis_node_offer_license_form_validate($form, FormStateInterface &$fo
  */
 function nfafmis_node_offer_license_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview/licences');
-  $response_data = get_refferer_and_query_params();
+  $response_data = $nfafmis_service_utility->getReffererAndQueryParams();
   if (!empty($response_data)) {
     if (isset($response_data['alias'])) {
       $url = Url::fromUri('internal:' . $response_data['alias']);
@@ -629,90 +367,4 @@ function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state)
 function computed_field_field_area_id_compute($entity_type_manager, $entity, $fields, $delta) {
   $value = 'AREA/' . time();
   return $value;
-}
-
-/**
- * Get offer license ID.
- */
-function get_offer_license_details() {
-  $response_data = get_refferer_and_query_params();
-  if (!empty($response_data)) {
-    if (isset($response_data['query_params'])) {
-      return $response_data['query_params'];
-    }
-  }
-  return NULL;
-}
-
-/**
- * Get offer license IDs based on farmer id.
- */
-function get_offer_license_ids($farmer_id) {
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $nids = $query->condition('type', 'offer_license')
-    ->condition('field_farmer_name_ref.target_id', $farmer_id)
-    ->execute();
-  if (!empty($nids)) {
-    $nids = array_values($nids);
-    return implode(',', $nids);
-  }
-  return NULL;
-}
-
-/**
- * Get offer license IDs based on farmer id.
- */
-function get_sub_areas_ids($offer_licence_ids) {
-  $offer_licence_ids = explode(',', $offer_licence_ids);
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $sub_area_nids = $query->condition('type', 'sub_area')
-    ->condition('field_areas_id.target_id', $offer_licence_ids, 'IN')
-    ->execute();
-  if (!empty($sub_area_nids)) {
-    $sub_area_nids = array_values($sub_area_nids);
-    return implode(',', $sub_area_nids);
-  }
-  return NULL;
-}
-
-/**
- * Get get_area_planted_un_planted_valute value  based on $offer_license_id.
- */
-function get_area_planted_un_planted_valute($offer_license_id) {
-  // Get sub-area entity Ids based on area ID.
-  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-  $nids = $query->condition('type', 'sub_area')
-    ->condition('field_areas_id.target_id', $offer_license_id)
-    ->execute();
-  if (!empty($nids)) {
-    $nids = array_values($nids);
-    $field_sub_area_planted = 0;
-    $sub_areas = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-    foreach ($sub_areas as $key => $area) {
-      $field_sub_area_planted += $area->get('field_sub_area_planted')->value;
-    }
-    return $field_sub_area_planted;
-  }
-  return 0;
-}
-
-/**
- * Get refferer and query params.
- */
-function get_refferer_and_query_params() {
-  $request = \Drupal::request();
-  // Getting the referer.
-  $referer = $request->headers->get('referer');
-  // Getting the base url.
-  $base_url = Request::createFromGlobals()->getSchemeAndHttpHost();
-  // Getting the alias or the relative path.
-  $alias = substr($referer, strlen($base_url));
-
-  // All query params.
-  $query_params = $request->query->all();
-
-  $ref_param['query_params'] = !empty($query_params) ? $query_params : NULL;
-  $ref_param['alias'] = $alias ? $alias : NULL;
-
-  return $ref_param;
 }
