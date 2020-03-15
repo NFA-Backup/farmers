@@ -61,14 +61,15 @@ class FarmerServices {
     $field_cfr = $area->get('field_central_forest_reserve')->target_id;
     $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
     $rent_charges = $this->getRentSubTotal($field_cfr, $overall_area_allocated);
-    $rent_sub_total = $rent_charges['sub_total'];
+    $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
+    $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
     $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
     $total = $rent_sub_total + $other_subtotal;
     $data = [
       'total' => number_format($total, 0, '.', ','),
       'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
       'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
-      'rent_charges' => $rent_charges['data'],
+      'rent_charges' => $rent_charges_data,
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
     ];
@@ -98,6 +99,7 @@ class FarmerServices {
       ->condition('field_central_forest_reserve.target_id', $cfr)
       ->execute();
     $land_rent_rates_table = [];
+    $land_rent_rates_table['sub_total'] = 0;
     if (!empty($land_rent_rates_nid)) {
       $nids = array_values($land_rent_rates_nid);
       $land_rent_rates = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
@@ -194,7 +196,12 @@ class FarmerServices {
     $total_rent_charges['sub_total'] = 0;
     foreach ($rent_charges as $rent_charge) {
       foreach ($rent_charge as $key => $value) {
-        $total_rent_charges[$key] += $value;
+        if (array_key_exists($key, $total_rent_charges)) {
+          $total_rent_charges[$key] += $value;
+        }
+        else {
+          $total_rent_charges[$key] = $value;
+        }
       }
     }
     // Add sub total charges.
@@ -235,10 +242,20 @@ class FarmerServices {
         $for_year = $land_rent_rate->get('field_rate_year')->value;
         if ($overall_area_allocated) {
           $land_rent = $rent_rate * $overall_area_allocated;
-          $land_rent_rates_table[$for_year] += $land_rent;
+          if (array_key_exists($for_year, $land_rent_rates_table)) {
+            $land_rent_rates_table[$for_year] += $land_rent;
+          }
+          else {
+            $land_rent_rates_table[$for_year] = $land_rent;
+          }
         }
         else {
-          $land_rent_rates_table[$for_year] += $land_rent;
+          if (array_key_exists($for_year, $land_rent_rates_table)) {
+            $land_rent_rates_table[$for_year] += $land_rent;
+          }
+          else {
+            $land_rent_rates_table[$for_year] = $land_rent;
+          }
         }
       }
     }
@@ -270,7 +287,12 @@ class FarmerServices {
     if (!empty($other_amounts)) {
       foreach ($other_amounts as $other_amount) {
         foreach ($other_amount as $key => $value) {
-          $other_amounts_by_year[$key] += $value;
+          if (array_key_exists($key, $other_amounts_by_year)) {
+            $other_amounts_by_year[$key] += $value;
+          }
+          else {
+            $other_amounts_by_year[$key] = $value;
+          }
         }
       }
     }
@@ -305,7 +327,12 @@ class FarmerServices {
         if ($field_charge_date) {
           $field_charge_date = explode('-', $field_charge_date);
           $key = $field_charge_date[0];
-          $field_amount[$key] += $charge->get('field_amount')->value;
+          if (array_key_exists($key, $field_amount)) {
+            $field_amount[$key] += $charge->get('field_amount')->value;
+          }
+          else {
+            $field_amount[$key] = $charge->get('field_amount')->value;
+          }
         }
       }
     }
