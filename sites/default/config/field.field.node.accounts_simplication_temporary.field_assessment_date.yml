@@ -1,0 +1,24 @@
+uuid: 30d9475a-f1bb-4957-a9fe-8300e60891dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_assessment_date
+    - node.type.accounts_simplication_temporary
+  module:
+    - datetime
+id: node.accounts_simplication_temporary.field_assessment_date
+field_name: field_assessment_date
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Assessment date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

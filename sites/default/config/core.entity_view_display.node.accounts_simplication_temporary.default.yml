@@ -1,0 +1,100 @@
+uuid: 50614b1e-a2cb-4e91-94ec-cc5663a8c7c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.accounts_simplication_temporary.field_amount_due
+    - field.field.node.accounts_simplication_temporary.field_amount_paid_as
+    - field.field.node.accounts_simplication_temporary.field_assessment_amount
+    - field.field.node.accounts_simplication_temporary.field_assessment_date
+    - field.field.node.accounts_simplication_temporary.field_date_paid
+    - field.field.node.accounts_simplication_temporary.field_description
+    - field.field.node.accounts_simplication_temporary.field_licence_id_ref
+    - field.field.node.accounts_simplication_temporary.field_receipt_number
+    - node.type.accounts_simplication_temporary
+  module:
+    - computed_field
+    - datetime
+    - user
+id: node.accounts_simplication_temporary.default
+targetEntityType: node
+bundle: accounts_simplication_temporary
+mode: default
+content:
+  field_amount_due:
+    weight: 109
+    label: above
+    settings:
+      cache_unit: -1
+      cache_duration: 1
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: computed_integer
+    region: content
+  field_amount_paid_as:
+    weight: 104
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_assessment_amount:
+    weight: 103
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_assessment_date:
+    weight: 101
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_paid:
+    weight: 105
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_description:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_licence_id_ref:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_receipt_number:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

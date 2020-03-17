@@ -368,3 +368,11 @@ function computed_field_field_area_id_compute($entity_type_manager, $entity, $fi
   $value = 'AREA/' . time();
   return $value;
 }
+
+/**
+ * Implements hook_field_field_amount_due_compute().
+ */
+function computed_field_field_amount_due_compute($entity_type_manager, $entity, $fields, $delta) {
+  $value = ($entity->field_assessment_amount->value - $entity->field_amount_paid_as->value);
+  return $value;
+}

@@ -1,0 +1,6 @@
+status: 1
+pattern: 'accounts simplication for [node:field_licence_id_ref]'
+escape: false
+dependencies:
+  config:
+    - node.type.accounts_simplication_temporary

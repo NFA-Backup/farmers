@@ -1,0 +1,88 @@
+uuid: ed2aa487-a5ed-4866-b524-78441be37266
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.accounts_simplication_temporary.field_amount_due
+    - field.field.node.accounts_simplication_temporary.field_amount_paid_as
+    - field.field.node.accounts_simplication_temporary.field_assessment_amount
+    - field.field.node.accounts_simplication_temporary.field_assessment_date
+    - field.field.node.accounts_simplication_temporary.field_date_paid
+    - field.field.node.accounts_simplication_temporary.field_description
+    - field.field.node.accounts_simplication_temporary.field_licence_id_ref
+    - field.field.node.accounts_simplication_temporary.field_receipt_number
+    - node.type.accounts_simplication_temporary
+  module:
+    - computed_field
+    - datetime
+id: node.accounts_simplication_temporary.default
+targetEntityType: node
+bundle: accounts_simplication_temporary
+mode: default
+content:
+  field_amount_due:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_amount_paid_as:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_assessment_amount:
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_assessment_date:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_paid:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_description:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_licence_id_ref:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_receipt_number:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

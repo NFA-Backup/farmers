@@ -1,0 +1,19 @@
+uuid: 19277ad8-0498-4ce4-b42f-c433755e4e08
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_receipt_number
+    - node.type.accounts_simplication_temporary
+id: node.accounts_simplication_temporary.field_receipt_number
+field_name: field_receipt_number
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Receipt number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

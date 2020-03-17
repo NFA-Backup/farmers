@@ -1,0 +1,24 @@
+uuid: a6b2e283-ddb7-4c32-a65e-e9497b058388
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_paid
+    - node.type.accounts_simplication_temporary
+  module:
+    - datetime
+id: node.accounts_simplication_temporary.field_date_paid
+field_name: field_date_paid
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Date paid'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

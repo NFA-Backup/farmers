@@ -1,0 +1,23 @@
+uuid: 8adf458a-016d-43a2-b004-1f0637b80a8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_assessment_amount
+    - node.type.accounts_simplication_temporary
+id: node.accounts_simplication_temporary.field_assessment_amount
+field_name: field_assessment_amount
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Assessment amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: integer

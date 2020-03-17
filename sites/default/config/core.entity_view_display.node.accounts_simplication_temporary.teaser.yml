@@ -1,0 +1,36 @@
+uuid: 1f23dc7f-05b9-4deb-ad5d-bf2e7eb07ecb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.accounts_simplication_temporary.field_amount_due
+    - field.field.node.accounts_simplication_temporary.field_amount_paid_as
+    - field.field.node.accounts_simplication_temporary.field_assessment_amount
+    - field.field.node.accounts_simplication_temporary.field_assessment_date
+    - field.field.node.accounts_simplication_temporary.field_date_paid
+    - field.field.node.accounts_simplication_temporary.field_description
+    - field.field.node.accounts_simplication_temporary.field_licence_id_ref
+    - field.field.node.accounts_simplication_temporary.field_receipt_number
+    - node.type.accounts_simplication_temporary
+  module:
+    - user
+id: node.accounts_simplication_temporary.teaser
+targetEntityType: node
+bundle: accounts_simplication_temporary
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_amount_due: true
+  field_amount_paid_as: true
+  field_assessment_amount: true
+  field_assessment_date: true
+  field_date_paid: true
+  field_description: true
+  field_licence_id_ref: true
+  field_receipt_number: true

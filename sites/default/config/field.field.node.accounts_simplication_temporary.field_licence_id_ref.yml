@@ -1,0 +1,29 @@
+uuid: 90662d5e-d101-4346-acfa-5b807912d7ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_licence_id_ref
+    - node.type.accounts_simplication_temporary
+    - node.type.offer_license
+id: node.accounts_simplication_temporary.field_licence_id_ref
+field_name: field_licence_id_ref
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Licence Area'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      offer_license: offer_license
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
