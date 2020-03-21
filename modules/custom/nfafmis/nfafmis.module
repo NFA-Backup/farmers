@@ -382,7 +382,6 @@ function computed_field_field_amount_due_compute($entity_type_manager, $entity, 
  *
  * This adds the missing token info for automatically detected tokens.
  */
-
 function nfafmis_token_info_alter(&$info) {
   $entities = \Drupal::service('entity_field.manager')->getFieldMap();
   foreach ($entities as $entity_key => $entity) {

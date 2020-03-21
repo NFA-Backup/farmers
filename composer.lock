@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "090d11fc1e70754085013340b71f556d",
+    "content-hash": "32957522747144f5ab3c679a74e1e58a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1644,6 +1644,54 @@
             "homepage": "https://www.drupal.org/project/devel_entity_updates",
             "support": {
                 "source": "https://git.drupalcode.org/project/devel_entity_updates"
+            }
+        },
+        {
+            "name": "drupal/devel_php",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/devel_php.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/devel_php-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "2ab05330df6b7720db68139880c8e59bfda57ec9"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/devel": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1562913186",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lussoluca",
+                    "homepage": "https://www.drupal.org/user/138068"
+                }
+            ],
+            "description": "Re-add Execute PHP feature to Devel.",
+            "homepage": "https://www.drupal.org/project/devel_php",
+            "support": {
+                "source": "https://git.drupalcode.org/project/devel_php"
             }
         },
         {
@@ -5574,9 +5622,6 @@
                 "ext-zip": "Enabling the zip extension allows you to unzip archives",
                 "ext-zlib": "Allow gzip compression of HTTP requests"
             },
-            "bin": [
-                "bin/composer"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
