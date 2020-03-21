@@ -164,6 +164,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
    */
   public function createAnnualCharges($area, $cfr, $area_allocated) {
     $annual_charges = $this->farmerService->getRentSubTotal($cfr, $area_allocated, $this->year);
+    $title = $area->get('title')->value;
     if (!empty($annual_charges['data'])) {
       $field_annual_charges = array_values($annual_charges['data'])[0]['field_rate'];
       $node = Node::create([
@@ -173,6 +174,10 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_licence_id_ref' => $area,
       ]);
       $node->save();
+      $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
+        ':area' => $title,
+        ':year' => $this->year,
+      ]));
     }
   }
 
