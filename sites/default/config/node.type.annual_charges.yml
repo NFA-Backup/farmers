@@ -1,0 +1,17 @@
+uuid: 673392e2-6800-4a19-bb69-571786791dbb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Annual charges'
+type: annual_charges
+description: 'This will be use for create annual charges for each areas on year end. (Will be created programmatically).'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

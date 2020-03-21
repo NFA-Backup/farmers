@@ -1,0 +1,26 @@
+uuid: 6f753f56-6f4e-436b-af4b-bb02a91d99f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.annual_charges.field_annual_charges
+    - field.field.node.annual_charges.field_licence_id_ref
+    - field.field.node.annual_charges.field_rate_year
+    - node.type.annual_charges
+  module:
+    - user
+id: node.annual_charges.teaser
+targetEntityType: node
+bundle: annual_charges
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_annual_charges: true
+  field_licence_id_ref: true
+  field_rate_year: true

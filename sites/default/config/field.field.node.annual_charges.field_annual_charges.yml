@@ -1,0 +1,23 @@
+uuid: d726c407-4bb7-49c4-acb7-bcd86ece8ba4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_annual_charges
+    - node.type.annual_charges
+id: node.annual_charges.field_annual_charges
+field_name: field_annual_charges
+entity_type: node
+bundle: annual_charges
+label: 'Annual Charges'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: integer

@@ -1,0 +1,6 @@
+status: 1
+pattern: 'Annual charges for [node:field_licence_id_ref] & Year [node:field_rate_year]'
+escape: false
+dependencies:
+  config:
+    - node.type.annual_charges

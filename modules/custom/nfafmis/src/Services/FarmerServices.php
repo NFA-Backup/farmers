@@ -92,12 +92,15 @@ class FarmerServices {
    * @return array
    *   The rent sub total.
    */
-  protected function getRentSubTotal($cfr, $overall_area_allocated) {
+  public function getRentSubTotal($cfr, $overall_area_allocated, $for_year = NULL) {
     // field_central_forest_reserve taxonomy term id.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
-      ->condition('field_central_forest_reserve.target_id', $cfr)
-      ->execute();
+    $query->condition('type', 'land_rent_rates');
+    $query->condition('field_central_forest_reserve.target_id', $cfr);
+    if ($for_year) {
+      $query->condition('field_rate_year.value', $for_year);
+    }
+    $land_rent_rates_nid = $query->execute();
     $land_rent_rates_table = [];
     $land_rent_rates_table['sub_total'] = 0;
     if (!empty($land_rent_rates_nid)) {
@@ -110,11 +113,21 @@ class FarmerServices {
         if ($overall_area_allocated) {
           $land_rent = $rent_rate * $overall_area_allocated;
           $land_rent_rates_table['sub_total'] += $land_rent;
-          $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent, 0, '.', ',');
+          if ($for_year) {
+            $land_rent_rates_table['data'][$key]['field_rate'] = $land_rent;
+          }
+          else {
+            $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent, 0, '.', ',');
+          }
         }
         else {
           $land_rent_rates_table['sub_total'] += $rent_rate;
-          $land_rent_rates_table['data'][$key]['field_rate'] = number_format($rent_rate, 0, '.', ',');
+          if ($for_year) {
+            $land_rent_rates_table['data'][$key]['field_rate'] = $land_rent;
+          }
+          else {
+            $land_rent_rates_table['data'][$key]['field_rate'] = number_format($land_rent, 0, '.', ',');
+          }
         }
         $land_rent_rates_table['data'][$key]['field_rate_year'] = $land_rent_rate->get('field_rate_year')->value;
       }

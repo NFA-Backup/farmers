@@ -1,0 +1,23 @@
+uuid: 6eb6feac-f54c-4a27-955d-c70201e66727
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rate_year
+    - node.type.annual_charges
+  module:
+    - yearonly
+id: node.annual_charges.field_rate_year
+field_name: field_rate_year
+entity_type: node
+bundle: annual_charges
+label: 'For the Year'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  yearonly_from: '2010'
+  yearonly_to: now
+field_type: yearonly

@@ -390,7 +390,7 @@ function nfafmis_token_info_alter(&$info) {
     }
 
     foreach ($entity as $field_key => $field) {
-      if ($field['type'] !== 'yearonly' ) {
+      if ($field['type'] !== 'yearonly') {
         continue;
       }
 
