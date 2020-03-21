@@ -60,16 +60,24 @@ class FarmerServices {
     $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
     $field_cfr = $area->get('field_central_forest_reserve')->target_id;
     $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
-    $rent_charges = $this->getRentSubTotal($field_cfr, $overall_area_allocated);
+    $rent_charges = $this->getRentSubTotal($offer_licence_id);
+    $starting_amount = $this->getStartingAmountData($offer_licence_id);;
     $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
     $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
     $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
+
+    $land_rent_starting_amount = isset($starting_amount['data']['land_rent']['amount']) ? $starting_amount['data']['land_rent']['amount'] : 0;
+    $rent_sub_total += $land_rent_starting_amount;
+    $other_charges_starting_amount = isset($starting_amount['data']['other_charges']['amount']) ? $starting_amount['data']['land_rent']['amount'] : 0;
+    $other_subtotal += $other_charges_starting_amount;
     $total = $rent_sub_total + $other_subtotal;
+
     $data = [
       'total' => number_format($total, 0, '.', ','),
       'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
       'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
       'rent_charges' => $rent_charges_data,
+      'starting_amount' => $starting_amount['data'],
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
     ];
@@ -82,7 +90,55 @@ class FarmerServices {
   }
 
   /**
-   * Get rent-total from Land rent rates.
+   * Get Starting amound data for both land rent and other charges.
+   */
+  protected function getStartingAmountData($offer_licence_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $starting_amount_nids = $query->condition('type', 'starting_amount')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->execute();
+    $starting_amount_data = [];
+    if (!empty($starting_amount_nids)) {
+      $starting_amounts = $this->entityTypeManager->getStorage('node')->loadMultiple($starting_amount_nids);
+      foreach ($starting_amounts as $key => $starting_amount) {
+        $sa_type = $starting_amount->get('field_starting_amount_type')->value;
+        $starting_amount_data['data'][$sa_type]['nid'] = $starting_amount->get('nid')->value;
+        $starting_amount_data['data'][$sa_type]['amount'] = $starting_amount->get('field_amount')->value;
+      }
+    }
+    return $starting_amount_data;
+  }
+
+  /**
+   * Get rent-total from annual charges.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   *
+   * @return array
+   *   The rent sub total.
+   */
+  protected function getRentSubTotal($offer_licence_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $annual_charges_nids = $query->condition('type', 'annual_charges')
+      ->condition('field_licence_id_ref.target_id', $offer_licence_id)
+      ->execute();
+    $annual_charges_table = [];
+    $annual_charges_table['sub_total'] = 0;
+    if (!empty($annual_charges_nids)) {
+      $annual_charges = $this->entityTypeManager->getStorage('node')->loadMultiple($annual_charges_nids);
+      foreach ($annual_charges as $key => $annual_charge) {
+        $field_annual_charges = $annual_charge->get('field_annual_charges')->value;
+        $annual_charges_table['sub_total'] += $field_annual_charges;
+        $annual_charges_table['data'][$key]['field_rate'] = number_format($field_annual_charges, 0, '.', ',');
+        $annual_charges_table['data'][$key]['field_rate_year'] = $annual_charge->get('field_rate_year')->value;
+      }
+    }
+    return $annual_charges_table;
+  }
+
+  /**
+   * Get annual charges from Land rent rates.
    *
    * @param string $cfr
    *   The central forest reseve ID.
@@ -92,7 +148,7 @@ class FarmerServices {
    * @return array
    *   The rent sub total.
    */
-  public function getRentSubTotal($cfr, $overall_area_allocated, $for_year = NULL) {
+  public function getAnnualCharges($cfr, $overall_area_allocated, $for_year = NULL) {
     // field_central_forest_reserve taxonomy term id.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'land_rent_rates');

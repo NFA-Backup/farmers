@@ -9,6 +9,7 @@
 * - $data['other_sub_total']: other sub total.
 * - $data['farmer_id']: farmer id.
 * - $data['offer_licence_id']: area id.
+* - $data['starting_amount']: staring amount.
 *
 * @ingroup templates
 *
@@ -39,8 +40,15 @@
   <div class="row">
     <div class="col-md-4 views-field">Starting amount</div>
     <div class="col-md-4 views-field">
+      {% if data.starting_amount.land_rent %}
+      <span class="views-label text-right">
+        <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.land_rent.nid}}/edit?destination=/tree-farmer-overview/accounts">edit</a>
+      </span>
+      <div class="field-content">UGX {{ data.starting_amount.land_rent.amount }}</div>
+      {% else %}
       <span class="views-label text-right">edit</span>
       <div class="field-content">UGX</div>
+      {% endif %}
     </div>
     <div class="col-md-4 views-field">
       <span class="views-label">Sub-total</span>
@@ -83,8 +91,15 @@
   <div class="row">
     <div class="col-md-4 views-field">Starting amount</div>
     <div class="col-md-4 views-field">
+      {% if data.starting_amount.other_charges %}
+      <span class="views-label text-right">
+        <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.other_charges.nid}}/edit?destination=/tree-farmer-overview/accounts">edit</a>
+      </span>
+      <div class="field-content">UGX {{ data.starting_amount.other_charges.amount }}</div>
+      {% else %}
       <span class="views-label text-right">edit</span>
       <div class="field-content">UGX</div>
+      {% endif %}
     </div>
     <div class="col-md-4 views-field">
       <span class="views-label">Sub-total</span>

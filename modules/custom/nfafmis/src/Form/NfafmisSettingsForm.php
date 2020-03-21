@@ -163,7 +163,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
    * Create node of annual charges programmatically for last year.
    */
   public function createAnnualCharges($area, $cfr, $area_allocated) {
-    $annual_charges = $this->farmerService->getRentSubTotal($cfr, $area_allocated, $this->year);
+    $annual_charges = $this->farmerService->getAnnualCharges($cfr, $area_allocated, $this->year);
     $title = $area->get('title')->value;
     if (!empty($annual_charges['data'])) {
       $field_annual_charges = array_values($annual_charges['data'])[0]['field_rate'];
