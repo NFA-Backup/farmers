@@ -66,12 +66,26 @@ class FarmerServices {
     $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
     $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
 
-    $land_rent_starting_amount = isset($starting_amount['data']['land_rent']['amount']) ? $starting_amount['data']['land_rent']['amount'] : 0;
-    $rent_sub_total += $land_rent_starting_amount;
-    $other_charges_starting_amount = isset($starting_amount['data']['other_charges']['amount']) ? $starting_amount['data']['other_charges']['amount'] : 0;
-    $other_subtotal += $other_charges_starting_amount;
-    $total = $rent_sub_total + $other_subtotal;
+    $land_rent_starting_amount = 0;
+    $other_charges_starting_amount = 0;
 
+    // Calculate starting amount for land rent.
+    if (isset($starting_amount['data']['land_rent']['amount'])) {
+      $land_rent_starting_amount = $starting_amount['data']['land_rent']['amount'];
+      $rent_sub_total += $land_rent_starting_amount;
+      $land_rent_starting_amount_format = number_format($land_rent_starting_amount, 0, '.', ',');
+      $starting_amount['data']['land_rent']['amount'] = $land_rent_starting_amount_format;
+    }
+
+    // Calculate starting amount for other charges amount.
+    if (isset($starting_amount['data']['other_charges']['amount'])) {
+      $other_charges_starting_amount = $starting_amount['data']['other_charges']['amount'];
+      $other_subtotal += $other_charges_starting_amount;
+      $other_charges_starting_amount_format = number_format($other_charges_starting_amount, 0, '.', ',');
+      $starting_amount['data']['other_charges']['amount'] = $other_charges_starting_amount_format;
+    }
+
+    $total = $rent_sub_total + $other_subtotal;
     $data = [
       'total' => number_format($total, 0, '.', ','),
       'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
