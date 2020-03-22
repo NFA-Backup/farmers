@@ -68,7 +68,7 @@ class FarmerServices {
 
     $land_rent_starting_amount = isset($starting_amount['data']['land_rent']['amount']) ? $starting_amount['data']['land_rent']['amount'] : 0;
     $rent_sub_total += $land_rent_starting_amount;
-    $other_charges_starting_amount = isset($starting_amount['data']['other_charges']['amount']) ? $starting_amount['data']['land_rent']['amount'] : 0;
+    $other_charges_starting_amount = isset($starting_amount['data']['other_charges']['amount']) ? $starting_amount['data']['other_charges']['amount'] : 0;
     $other_subtotal += $other_charges_starting_amount;
     $total = $rent_sub_total + $other_subtotal;
 
