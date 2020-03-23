@@ -480,19 +480,39 @@ class FarmerServices {
    *   The rendered summary charges.
    */
   public function getSummaryChargesData($farmer_id) {
-    // @TODO get dynamic data.
+    // Get starting amount total for all area.
+    $starting_amount_data = $this->getStartingAmountTotalData($farmer_id);
+    $total_starting_amount = [];
+    if (!empty($starting_amount_data)) {
+      foreach ($starting_amount_data as $value) {
+        foreach ($value['data'] as $key => $value) {
+          $total_starting_amount[$key] += $value['amount'];
+        }
+      }
+    }
+
+    $total_starting_amount_land_rent = 0;
+    if (isset($total_starting_amount['land_rent'])) {
+      $total_starting_amount_land_rent = $total_starting_amount['land_rent'];
+    }
+
+    $total_starting_amount_other_charges = 0;
+    if (isset($total_starting_amount['other_charges'])) {
+      $total_starting_amount_other_charges = $total_starting_amount['other_charges'];
+    }
+
     // Get total rent charges of all area for farmer year wise.
     $rent_total_data = $this->getRentTotalYearWise($farmer_id);
     $rent_sub_total = 0;
     if (isset($rent_total_data['sub_total'])) {
-      $rent_sub_total = $rent_total_data['sub_total'];
+      $rent_sub_total = $rent_total_data['sub_total'] + $total_starting_amount_land_rent;
       unset($rent_total_data['sub_total']);
     }
     // Get total other charges of all area for farmer year wise.
     $other_total_data = $this->getOtherChargesYearWise($farmer_id);
     $other_sub_total = 0;
     if (isset($other_total_data['sub_total'])) {
-      $other_sub_total = $other_total_data['sub_total'];
+      $other_sub_total = $other_total_data['sub_total'] + $total_starting_amount_other_charges;
       unset($other_total_data['sub_total']);
     }
 
@@ -513,6 +533,7 @@ class FarmerServices {
       ],
       'land_rent' => [
         'data' => $rent_total_data,
+        'total_starting_amount' => number_format($total_starting_amount_land_rent, 0, '.', ','),
         'sub_total' => number_format($rent_sub_total, 0, '.', ','),
       ],
       'land_rent_areares' => [
@@ -520,6 +541,7 @@ class FarmerServices {
       ],
       'other_fees' => [
         'data' => $other_total_data,
+        'total_starting_amount' => number_format($total_starting_amount_other_charges, 0, '.', ','),
         'sub_total' => number_format($other_sub_total, 0, '.', ','),
       ],
     ];
@@ -528,6 +550,28 @@ class FarmerServices {
       '#data' => $data,
     ];
     return $this->renderer->render($renderable);;
+  }
+
+  /**
+   * Get total starting amount for all area of a farmer.
+   *
+   * @param string $farmer_id
+   *   The farmer ID.
+   *
+   * @return array
+   *   The other charges year wise.
+   */
+  public function getStartingAmountTotalData($farmer_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $offer_license_nids = $query->condition('type', 'offer_license')
+      ->condition('field_farmer_name_ref.target_id', $farmer_id)
+      ->execute();
+
+    // Load each areas and calculate its changes for each year.
+    foreach ($offer_license_nids as $offer_licence_id) {
+      $other_amounts[] = $this->getStartingAmountData($offer_licence_id);
+    }
+    return $other_amounts ?? [];
   }
 
   /**
