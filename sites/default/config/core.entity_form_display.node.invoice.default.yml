@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.invoice.field_amount
+    - field.field.node.invoice.field_areas_id
     - field.field.node.invoice.field_farmer_name_ref
     - field.field.node.invoice.field_invoice_date
     - field.field.node.invoice.field_invoice_details
@@ -34,6 +35,7 @@ third_party_settings:
         - field_invoice_number
         - field_invoice_details
         - field_amount
+        - field_areas_id
       parent_name: ''
       weight: 3
       format_type: fieldset
@@ -55,6 +57,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_areas_id:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_farmer_name_ref:
     weight: 2

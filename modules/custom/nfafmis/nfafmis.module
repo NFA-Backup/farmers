@@ -169,8 +169,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         '#weight' => 20,
         '#area_data' => [
           'area/001' => ['data' => []],
-          'area/002' => ['data' => []],
-          'area/003' => ['data' => []],
         ],
       ];
       $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_info';

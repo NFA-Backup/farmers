@@ -1,0 +1,28 @@
+uuid: f16505b7-5ee2-4b19-b2cd-894bd80acd73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_areas_id
+    - node.type.invoice
+    - node.type.offer_license
+id: node.invoice.field_areas_id
+field_name: field_areas_id
+entity_type: node
+bundle: invoice
+label: Area
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      offer_license: offer_license
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.invoice.field_amount
+    - field.field.node.invoice.field_areas_id
     - field.field.node.invoice.field_farmer_name_ref
     - field.field.node.invoice.field_invoice_date
     - field.field.node.invoice.field_invoice_details
@@ -24,6 +25,7 @@ content:
     region: content
 hidden:
   field_amount: true
+  field_areas_id: true
   field_farmer_name_ref: true
   field_invoice_date: true
   field_invoice_details: true
