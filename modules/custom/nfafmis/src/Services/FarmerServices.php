@@ -158,6 +158,8 @@ class FarmerServices {
    *   The central forest reseve ID.
    * @param string $overall_area_allocated
    *   The overall area alocated for the area.
+   * @param string $for_year
+   *   Annual charges for the year.
    *
    * @return array
    *   The rent sub total.

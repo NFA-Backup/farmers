@@ -292,31 +292,31 @@ function nfafmis_theme($existing, $type, $theme, $path) {
       'variables' => [
         'data' => NULL,
       ],
-      'template' => 'tab/accounts/tab--accounts--land-rent-other-data'
+      'template' => 'tab/accounts/tab--accounts--land-rent-other-data',
     ],
     'tab__accounts__summary_charges_data' => [
       'variables' => [
         'data' => NULL,
       ],
-      'template' => 'tab/accounts/tab--accounts--summary-charges-data'
+      'template' => 'tab/accounts/tab--accounts--summary-charges-data',
     ],
     'tab__accounts__payments_data' => [
       'variables' => [
         'data' => NULL,
       ],
-      'template' => 'tab/accounts/tab--accounts--payments-data'
+      'template' => 'tab/accounts/tab--accounts--payments-data',
     ],
     'section__farmer_infomation' => [
       'variables' => [
         'farmer_data' => NULL,
       ],
-      'template' => 'sections/section--farmer-infomation'
+      'template' => 'sections/section--farmer-infomation',
     ],
     'section__area_info' => [
       'variables' => [
         'area_data' => NULL,
       ],
-      'template' => 'sections/section--area-infomation'
+      'template' => 'sections/section--area-infomation',
     ],
   ];
 }
