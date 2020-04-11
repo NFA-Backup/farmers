@@ -34,6 +34,8 @@ third_party_settings:
         - field_invoice_date
         - field_invoice_number
         - field_invoice_details
+        - field_amount
+        - field_areas_id
       parent_name: ''
       weight: 1
       format_type: fieldset
@@ -44,35 +46,13 @@ third_party_settings:
         description: ''
         required_fields: true
       label: 'Invoice details'
-    group_table:
-      children:
-        - field_areas_id
-        - field_amount
-      parent_name: ''
-      weight: 2
-      format_type: field_group_table
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        label_visibility: '2'
-        desc: ''
-        desc_visibility: '2'
-        first_column: ''
-        second_column: ''
-        empty_label_behavior: '1'
-        table_row_striping: 0
-        always_show_field_label: 0
-        always_show_field_value: 0
-        empty_field_placeholder: ''
-      label: Table
 id: node.invoice.default
 targetEntityType: node
 bundle: invoice
 mode: default
 content:
   field_amount:
-    weight: 9
+    weight: 7
     settings:
       placeholder: ''
     third_party_settings: {  }

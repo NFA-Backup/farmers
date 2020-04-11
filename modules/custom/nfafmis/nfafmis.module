@@ -165,7 +165,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       ];
       $form['area_info'] = [
         '#type' => "container",
-        '#theme' => 'section__area_infomation',
+        '#theme' => 'section__area_information',
         '#weight' => 20,
         '#area_data' => [
           'area/001' => ['data' => []],
@@ -310,13 +310,13 @@ function nfafmis_theme($existing, $type, $theme, $path) {
       'variables' => [
         'farmer_data' => NULL,
       ],
-      'template' => 'sections/section--farmer-infomation',
+      'template' => 'section/section--farmer-infomation',
     ],
-    'section__area_info' => [
+    'section__area_information' => [
       'variables' => [
         'area_data' => NULL,
       ],
-      'template' => 'sections/section--area-infomation',
+      'template' => 'section/section--area-information',
     ],
   ];
 }
