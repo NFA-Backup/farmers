@@ -96,7 +96,7 @@ class FarmerServices {
       'offer_licence_id' => $offer_licence_id,
     ];
     $renderable = [
-      '#theme' => 'land_rent_other_data',
+      '#theme' => 'tab__accounts__land_rent_other_data',
       '#data' => $data,
     ];
     $rendered = $this->renderer->render($renderable);
@@ -546,7 +546,7 @@ class FarmerServices {
       ],
     ];
     $renderable = [
-      '#theme' => 'summary_charges_data',
+      '#theme' => 'tab__accounts__summary_charges_data',
       '#data' => $data,
     ];
     return $this->renderer->render($renderable);;
@@ -599,7 +599,7 @@ class FarmerServices {
       ],
     ];
     $renderable = [
-      '#theme' => 'payments_data',
+      '#theme' => 'tab__accounts__payments_data',
       '#data' => $data,
     ];
     return $this->renderer->render($renderable);;

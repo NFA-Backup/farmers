@@ -152,7 +152,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       // Create farmer info field container:
       $form['farmer_info'] = [
         '#type' => "container",
-        '#theme' => 'farmer_info',
+        '#theme' => 'section__farmer_infomation',
         '#farmer_data' => [
           'name' => $farmer->get('title')->value,
           'field_email' => $farmer->get('field_email')->value,
@@ -165,7 +165,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       ];
       $form['area_info'] = [
         '#type' => "container",
-        '#theme' => 'area_info',
+        '#theme' => 'section__area_infomation',
         '#weight' => 20,
         '#area_data' => [
           'area/001' => ['data' => []],
@@ -288,30 +288,35 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function nfafmis_theme($existing, $type, $theme, $path) {
   return [
-    'land_rent_other_data' => [
+    'tab__accounts__land_rent_other_data' => [
       'variables' => [
         'data' => NULL,
       ],
+      'template' => 'tab/accounts/tab--accounts--land-rent-other-data'
     ],
-    'summary_charges_data' => [
+    'tab__accounts__summary_charges_data' => [
       'variables' => [
         'data' => NULL,
       ],
+      'template' => 'tab/accounts/tab--accounts--summary-charges-data'
     ],
-    'payments_data' => [
+    'tab__accounts__payments_data' => [
       'variables' => [
         'data' => NULL,
       ],
+      'template' => 'tab/accounts/tab--accounts--payments-data'
     ],
-    'farmer_info' => [
+    'section__farmer_infomation' => [
       'variables' => [
         'farmer_data' => NULL,
       ],
+      'template' => 'sections/section--farmer-infomation'
     ],
-    'area_info' => [
+    'section__area_info' => [
       'variables' => [
         'area_data' => NULL,
       ],
+      'template' => 'sections/section--area-infomation'
     ],
   ];
 }
