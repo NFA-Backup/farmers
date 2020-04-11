@@ -8,6 +8,8 @@
 use Drupal\Core\Url;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Implements hook_form_alter().
@@ -128,7 +130,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
 
-      // Hide farmer field and info instead.
+      // Hide farmer field and show information.
       $form['field_farmer_name_ref']['#access'] = FALSE;
       $form_object = $form_state->getFormObject();
       $entity = $form_object->getEntity();
@@ -138,19 +140,29 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I' . time();
       }
 
-      // Hide amount field based on field_invoice_details.
-      $form['field_amount']['#states'] = [
-        'visible' => [
+      // Hide field_areas_id field based on field_invoice_details.
+      $form['field_areas_id']['#states'] = [
+        'invisible' => [
           [
-            [':input[name="field_invoice_details"]' => ['value' => '1']],
-            'or',
-            [':input[name="field_invoice_details"]' => ['value' => '2']],
+            [':input[name="field_invoice_details"]' => ['value' => '_none']],
+          ],
+        ],
+      ];
+      // Hide amount field based on field_areas_id.
+      $form['field_amount']['#states'] = [
+        'invisible' => [
+          [
+            [':input[name="field_areas_id[0][target_id]"]' => ['value' => '']],
           ],
         ],
       ];
 
-      // Create farmer info field container:
-      $form['farmer_info'] = [
+      // Provide farmer id as arguments to the reference views to filter result.
+      // This only works when widget is selected as autocompleted.
+      $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
+
+      // Create farmer infomation container to show on invoice add page.
+      $form['farmer_information'] = [
         '#type' => "container",
         '#theme' => 'section__farmer_infomation',
         '#farmer_data' => [
@@ -163,29 +175,65 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           'field_national_identification_no' => $farmer->get('field_national_identification_no')->value,
         ],
       ];
-      $form['area_info'] = [
+      // Add ajax feature of area select autocomplet on add invoice page.
+      $form['field_areas_id']['widget'][0]['target_id']['#ajax'] = [
+        'callback' => 'get_area_details_ajax_callback',
+        'event' => 'autocompleteclose',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => t('Please wait...'),
+        ],
+      ];
+      // Area information on add invoice page.
+      $form['farmer_area_infomation'] = [
         '#type' => "container",
         '#theme' => 'section__area_information',
         '#weight' => 20,
-        '#area_data' => [
-          'area/001' => ['data' => []],
-        ],
       ];
-      $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_info';
-      $form['#fieldgroups']['group_invoice_details']->children[] = 'area_info';
-      $form['area_info']['#ajax'] = [
-        'callback' => 'ref_number_dropdown_callback',
-        'wrapper' => 'ref_number_list',
-        'event' => 'change',
-        'method' => 'replace',
-        'effect' => 'fade',
-      ];
+      // Add above created wrapper to the field group on invoice add page.
+      $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_information';
+      $form['#fieldgroups']['group_invoice_details']->children[] = 'farmer_area_infomation';
     }
     else {
       // Set error message if farmer id not availble in the param.
     }
   }
 
+}
+
+/**
+ * Get area details using ajax call.
+ */
+function get_area_details_ajax_callback(&$form, &$form_state) {
+  // Instantiate an AjaxResponse Object to return.
+  $ajax_response = new AjaxResponse();
+
+  $value = $form_state->getValue('field_areas_id');
+  if (!empty($value) && isset($value[0]['target_id'])) {
+    // Get area id.
+    $area_id = $value[0]['target_id'];
+    $area_data['title'] = 'Some title';
+    $area_data['data'] = [
+      ['desc' => 'One information', 'date' => '01/23/2010', 'amount' => '200'],
+      ['desc' => 'Two information', 'date' => '01/23/2010', 'amount' => '300'],
+    ];
+
+    $element = [
+      '#type' => "container",
+      '#theme' => 'section__area_information',
+      '#weight' => 20,
+      '#area_data' => $area_data,
+    ];
+
+    $rendered_data = \Drupal::service('renderer')->render($element);
+  }
+  else {
+    $rendered_data = [];
+  }
+  $ajax_response->addCommand(new HtmlCommand('#farmer-area-information', $rendered_data));
+
+  // Return the AjaxResponse Object.
+  return $ajax_response;
 }
 
 /**
