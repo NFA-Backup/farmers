@@ -23,9 +23,9 @@ content:
     weight: 105
     label: above
     settings:
-      thousand_separator: ''
+      thousand_separator: ','
       decimal_separator: .
-      scale: 2
+      scale: 0
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
@@ -72,7 +72,7 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

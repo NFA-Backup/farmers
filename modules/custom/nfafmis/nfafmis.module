@@ -236,7 +236,7 @@ function get_area_details_ajax_callback(&$form, &$form_state) {
   else {
     $rendered_data = [];
   }
-  $ajax_response->addCommand(new HtmlCommand('#edit-farmer-area-infomation', $rendered_data));
+  $ajax_response->addCommand(new HtmlCommand('#farmer-area-details', $rendered_data));
 
   // Return the AjaxResponse Object.
   return $ajax_response;
