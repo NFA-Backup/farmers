@@ -12,11 +12,15 @@
 <article class="farmer-details full clearfix" id="farmer-area-details">
   {% if area_data %}
   <div class="content">
+
+    {% if area_data.total %}
     <div>
       <span class="pull-right">
         <strong>PLEASE PAY </strong>UGX {{ area_data.total }}
       </span>
     </div>
+    {% endif %}
+
     <div class="block-section">
       <h5 class="title">{{ area_data.title }}</h5>
     </div>
