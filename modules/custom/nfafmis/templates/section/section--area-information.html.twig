@@ -12,7 +12,6 @@
 <article class="farmer-details full clearfix" id="farmer-area-details">
   {% if area_data %}
   <div class="content">
-
     {% if area_data.total %}
     <div>
       <span class="pull-right">
@@ -20,10 +19,10 @@
       </span>
     </div>
     {% endif %}
-
     <div class="block-section">
       <h5 class="title">{{ area_data.title }}</h5>
     </div>
+    {% if area_data.other_fees %}
     <div class="table-responsive">
       <table class="table table-hover table-striped">
         <thead>
@@ -49,6 +48,12 @@
         </tbody>
       </table>
     </div>
+    {% endif %}
+    {% if area_data.land_rent %}
+    <div class="infomarion">
+      Annual charges, these changes are calculated automatically on year end.
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 </article>

@@ -446,6 +446,7 @@ class FarmerServices {
 
     // Charges type '1' represents other fees.
     if ($charge_type === '1') {
+      $charges_data['other_fees'] = TRUE;
       $query = $this->entityTypeManager->getStorage('node')->getQuery();
       $charge_nids = $query->condition('type', 'charge')
         ->condition('field_areas_id.target_id', $offer_licence_id)
@@ -466,9 +467,10 @@ class FarmerServices {
       }
     }
     // Charges type '2' represents land rent.
-    // @TODO: update once charges types created for each area.
     if ($charge_type === '2') {
-      // code...
+      $charges_data['land_rent'] = TRUE;
+      $charges_date = $this->getRentSubTotal($offer_licence_id);
+      $charges_total = $charges_date['sub_total'];
     }
 
     if ($unformatted) {
