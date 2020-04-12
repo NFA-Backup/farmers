@@ -425,31 +425,52 @@ class FarmerServices {
   }
 
   /**
-   * Get other charges amount for area.
+   * Get other charges or land rent amount for specific area.
+   *
+   * @param string $offer_licence_id
+   *   The area id for which amount has to be fetched.
+   * @param string $charge_type
+   *   Indicate charges type other or land rent.
+   * @param bool $unformatted
+   *   Weather to return formated amount.
+   *
+   * @return array
+   *   The detail array result.
    */
-  public function getOtherCharges($offer_licence_id, $unformatted) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $charge_nids = $query->condition('type', 'charge')
-      ->condition('field_areas_id.target_id', $offer_licence_id)
-      ->execute();
+  public function getOtherCharges($offer_licence_id, $charge_type, $unformatted = FALSE) {
+
     $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
     $charges_data['title'] = $area->getTitle();
     $charges_total = 0;
     $charges_data['data'] = [];
-    if (!empty($charge_nids)) {
-      $nids = array_values($charge_nids);
-      $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
 
-      foreach ($charges as $key => $charge) {
-        $field_amount = $charge->get('field_amount')->value;
-        $charges_total += $field_amount;
-        $charges_data['data'][] = [
-          'desc' => $charge->get('field_charge_description')->value,
-          'date' => $charge->get('field_charge_date')->value,
-          'amount' => number_format($field_amount, 0, '.', ','),
-        ];
+    // Charges type '1' represents other fees.
+    if ($charge_type === '1') {
+      $query = $this->entityTypeManager->getStorage('node')->getQuery();
+      $charge_nids = $query->condition('type', 'charge')
+        ->condition('field_areas_id.target_id', $offer_licence_id)
+        ->execute();
+      if (!empty($charge_nids)) {
+        $nids = array_values($charge_nids);
+        $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
+
+        foreach ($charges as $key => $charge) {
+          $field_amount = $charge->get('field_amount')->value;
+          $charges_total += $field_amount;
+          $charges_data['data'][] = [
+            'desc' => $charge->get('field_charge_description')->value,
+            'date' => $charge->get('field_charge_date')->value,
+            'amount' => number_format($field_amount, 0, '.', ','),
+          ];
+        }
       }
     }
+    // Charges type '2' represents land rent.
+    // @TODO: update once charges types created for each area.
+    if ($charge_type === '2') {
+      // code...
+    }
+
     if ($unformatted) {
       $charges_data['total'] = $charges_total;
     }

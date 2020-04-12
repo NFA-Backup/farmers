@@ -12,8 +12,13 @@
 <article class="farmer-details full clearfix" id="farmer-area-details">
   {% if area_data %}
   <div class="content">
+    <div>
+      <span class="pull-right">
+        <strong>PLEASE PAY </strong>UGX {{ area_data.total }}
+      </span>
+    </div>
     <div class="block-section">
-      <h5 class="title">{{area_data.title}}</h5>
+      <h5 class="title">{{ area_data.title }}</h5>
     </div>
     <div class="table-responsive">
       <table class="table table-hover table-striped">
@@ -32,9 +37,9 @@
           {# if empty table #}
           {% for key,area_info in area_data.data %}
           <tr>
-            <td headers="view-field-charge-date-table-column">{{area_info.desc}}</td>
-            <td headers="view-field-amount-table-column">{{area_info.date}}</td>
-            <td headers="view-field-charge-date-table-column">UGX {{area_info.amount}}</td>
+            <td headers="view-field-charge-date-table-column">{{ area_info.desc }}</td>
+            <td headers="view-field-amount-table-column">{{ area_info.date }}</td>
+            <td headers="view-field-charge-date-table-column">UGX {{ area_info.amount }}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -133,12 +133,12 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
       // Hide farmer field and show information.
       $form['field_farmer_name_ref']['#access'] = FALSE;
-      $form['field_amount']['#access'] = FALSE;
       $form_object = $form_state->getFormObject();
       $entity = $form_object->getEntity();
 
       // Set default value for invoice number dynamic if not already set.
       if ($entity->isNew()) {
+        $form['field_amount']['#access'] = FALSE;
         $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I' . time();
       }
 
@@ -168,6 +168,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           'field_national_identification_no' => $farmer->get('field_national_identification_no')->value,
         ],
       ];
+
       // Add ajax feature of area select autocomplet on add invoice page.
       $form['field_areas_id']['widget'][0]['target_id']['#ajax'] = [
         'callback' => 'get_area_details_ajax_callback',
@@ -177,6 +178,17 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           'message' => t('Fetching area data..'),
         ],
       ];
+
+      // Add ajax feature for field_invoice_details on add invoice page.
+      $form['field_invoice_details']['widget']['#ajax'] = [
+        'callback' => 'get_area_details_ajax_callback',
+        'event' => 'change',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => t('Updating are data..'),
+        ],
+      ];
+
       // Area information on add invoice page.
       $form['farmer_area_infomation'] = [
         '#type' => "container",
@@ -191,7 +203,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       // Set error message if farmer id not availble in the param.
     }
   }
-
 }
 
 /**
@@ -201,10 +212,12 @@ function nfafmis_node_presave(Node $node) {
   // Update field amount value as per area charges for that invoice.
   if ($node->bundle() == 'invoice') {
     $field_areas_id = $node->get('field_areas_id')->target_id;
+    // Get field invoice for 1=Fee, 2=Land rent.
+    $field_invoice_for = $node->get('field_invoice_details')->value;
     if ($field_areas_id) {
       // Create nfafmis service object.
       $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
-      $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, TRUE);
+      $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, $field_invoice_for, TRUE);
       $node->field_amount->value = $area_data['total'];
     }
   }
@@ -216,14 +229,14 @@ function nfafmis_node_presave(Node $node) {
 function get_area_details_ajax_callback(&$form, &$form_state) {
   // Instantiate an AjaxResponse Object to return.
   $ajax_response = new AjaxResponse();
-
-  $value = $form_state->getValue('field_areas_id');
-  if (!empty($value) && isset($value[0]['target_id'])) {
-    // Get area id.
-    $area_id = $value[0]['target_id'];
+  // Get area id.
+  $field_areas_id = $form_state->getValue('field_areas_id')[0]['target_id'];
+  // Get field invoice for 1=Fee, 2=Land rent.
+  $field_invoice_for = $form_state->getValue('field_invoice_details')[0]['value'];
+  if ($field_areas_id && $field_invoice_for) {
     // Create nfafmis service object.
     $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
-    $area_data = $nfafmis_service_farmer->getOtherCharges($area_id, FALSE);
+    $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, $field_invoice_for);
     $element = [
       '#type' => "container",
       '#theme' => 'section__area_information',
