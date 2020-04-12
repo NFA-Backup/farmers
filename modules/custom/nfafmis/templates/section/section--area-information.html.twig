@@ -9,7 +9,7 @@
 * @see nfafmis_theme()
 */
 #}
-<article class="farmer-details full clearfix" id="farmer-area-information">
+<article class="farmer-details full clearfix">
   {% if area_data %}
   <div class="content">
     <div class="block-section">
@@ -34,7 +34,7 @@
           <tr>
             <td headers="view-field-charge-date-table-column">{{area_info.desc}}</td>
             <td headers="view-field-amount-table-column">{{area_info.date}}</td>
-            <td headers="view-field-charge-date-table-column">{{area_info.amount}}</td>
+            <td headers="view-field-charge-date-table-column">UGX {{area_info.amount}}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -7,9 +7,10 @@
 
 use Drupal\Core\Url;
 use Drupal\views\ViewExecutable;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Implements hook_form_alter().
@@ -132,6 +133,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
       // Hide farmer field and show information.
       $form['field_farmer_name_ref']['#access'] = FALSE;
+      $form['field_amount']['#access'] = FALSE;
       $form_object = $form_state->getFormObject();
       $entity = $form_object->getEntity();
 
@@ -148,15 +150,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
           ],
         ],
       ];
-      // Hide amount field based on field_areas_id.
-      $form['field_amount']['#states'] = [
-        'invisible' => [
-          [
-            [':input[name="field_areas_id[0][target_id]"]' => ['value' => '']],
-          ],
-        ],
-      ];
-
       // Provide farmer id as arguments to the reference views to filter result.
       // This only works when widget is selected as autocompleted.
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
@@ -181,7 +174,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         'event' => 'autocompleteclose',
         'progress' => [
           'type' => 'throbber',
-          'message' => t('Please wait...'),
+          'message' => t('Fetching area data..'),
         ],
       ];
       // Area information on add invoice page.
@@ -202,6 +195,22 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 }
 
 /**
+ * Implements hook_entity_presave().
+ */
+function nfafmis_entity_presave(EntityInterface $entity) {
+  // Update field amount value as per area charges for that invoice.
+  if ($entity instanceof ContentEntityInterface && $entity->bundle() == 'invoice') {
+    $field_areas_id = $entity->get('field_areas_id')->target_id;
+    if ($field_areas_id) {
+      // Create nfafmis service object.
+      $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+      $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, TRUE);
+      $entity->field_amount->value = $area_data['total'];
+    }
+  }
+}
+
+/**
  * Get area details using ajax call.
  */
 function get_area_details_ajax_callback(&$form, &$form_state) {
@@ -212,25 +221,22 @@ function get_area_details_ajax_callback(&$form, &$form_state) {
   if (!empty($value) && isset($value[0]['target_id'])) {
     // Get area id.
     $area_id = $value[0]['target_id'];
-    $area_data['title'] = 'Some title';
-    $area_data['data'] = [
-      ['desc' => 'One information', 'date' => '01/23/2010', 'amount' => '200'],
-      ['desc' => 'Two information', 'date' => '01/23/2010', 'amount' => '300'],
-    ];
-
+    // Create nfafmis service object.
+    $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+    $area_data = $nfafmis_service_farmer->getOtherCharges($area_id, FALSE);
     $element = [
       '#type' => "container",
       '#theme' => 'section__area_information',
       '#weight' => 20,
       '#area_data' => $area_data,
     ];
-
     $rendered_data = \Drupal::service('renderer')->render($element);
   }
+
   else {
     $rendered_data = [];
   }
-  $ajax_response->addCommand(new HtmlCommand('#farmer-area-information', $rendered_data));
+  $ajax_response->addCommand(new HtmlCommand('#edit-farmer-area-infomation', $rendered_data));
 
   // Return the AjaxResponse Object.
   return $ajax_response;
