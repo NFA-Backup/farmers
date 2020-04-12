@@ -6,11 +6,11 @@
  */
 
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Implements hook_form_alter().
@@ -195,17 +195,17 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 }
 
 /**
- * Implements hook_entity_presave().
+ * Implements hook_node_presave().
  */
-function nfafmis_entity_presave(EntityInterface $entity) {
+function nfafmis_node_presave(Node $node) {
   // Update field amount value as per area charges for that invoice.
-  if ($entity instanceof ContentEntityInterface && $entity->bundle() == 'invoice') {
-    $field_areas_id = $entity->get('field_areas_id')->target_id;
+  if ($node->bundle() == 'invoice') {
+    $field_areas_id = $node->get('field_areas_id')->target_id;
     if ($field_areas_id) {
       // Create nfafmis service object.
       $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
       $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, TRUE);
-      $entity->field_amount->value = $area_data['total'];
+      $node->field_amount->value = $area_data['total'];
     }
   }
 }
