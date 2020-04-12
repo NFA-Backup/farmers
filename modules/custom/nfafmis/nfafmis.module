@@ -170,6 +170,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       ];
 
       // Add ajax feature of area select autocomplet on add invoice page.
+      $form['field_areas_id']['widget'][0]['target_id']['#attributes'] = ['placeholder'=> t('AREA/123456')];
       $form['field_areas_id']['widget'][0]['target_id']['#ajax'] = [
         'callback' => 'get_area_details_ajax_callback',
         'event' => 'autocompleteclose',

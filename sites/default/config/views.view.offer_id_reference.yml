@@ -252,6 +252,7 @@ display:
         type: entity_reference
         options:
           search_fields:
+            title: title
             field_offer_id: field_offer_id
       row:
         type: entity_reference
