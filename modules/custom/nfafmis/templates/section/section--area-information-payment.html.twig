@@ -1,0 +1,69 @@
+{#
+/**
+* @file
+* Default theme implementation to display area information under Invoice details
+* on Invoice page.
+*
+* Available variables:
+* - $area_data: array.
+* @see nfafmis_theme()
+*/
+#}
+<article class="farmer-details full clearfix" id="farmer-area-details">
+  {% if area_data %}
+  {% if area_data.other_fees %}
+  <div>Receipt for <strong>Fees</strong></div>
+  {% else %}
+  <div>Receipt for <strong>Land rent</strong></div>
+  {% endif %}
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="pull-left">
+          <strong>BEING PAYMENT FOR</strong>
+        </span>
+        {% if area_data.total %}
+        <span class="pull-right">
+          <strong>RECEIVED </strong>UGX {{ area_data.total }}
+        </span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="block-section">
+      <h5 class="title">{{ area_data.title }}</h5>
+    </div>
+    {% if area_data.other_fees %}
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th id="view-field-charge-date-table-column" class="views-field" scope="col">Description</th>
+            <th id="view-field-amount-table-column" class="views-field" scope="col">Date</th>
+            <th id="view-field-amount-table-column" class="views-field" scope="col">Amount owed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {# if empty table #}
+          {% if area_data.data is empty %}
+          <td class="view-empty" colspan="3">No data found.</td>
+          {% endif %}
+          {# if empty table #}
+          {% for key,area_info in area_data.data %}
+          <tr>
+            <td headers="view-field-charge-date-table-column">{{ area_info.desc }}</td>
+            <td headers="view-field-amount-table-column">{{ area_info.date }}</td>
+            <td headers="view-field-charge-date-table-column">UGX {{ area_info.amount }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+    {% if area_data.land_rent %}
+    <div class="infomarion">
+      Annual charges, these changes are calculated automatically on year end.
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</article>
