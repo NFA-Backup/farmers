@@ -425,6 +425,24 @@ class FarmerServices {
   }
 
   /**
+   * Get invoice details.
+   *
+   * @param string $field_invoice_id
+   *   The invoice id.
+   *
+   * @return array
+   *   The result array.
+   */
+  public function getInvoiceDetails($field_invoice_id) {
+    $invoice = $this->entityTypeManager->getStorage('node')->load($field_invoice_id);
+    $field_areas_id = $invoice->get('field_areas_id')->target_id;
+    $field_invoice_for = $invoice->get('field_invoice_details')->value;
+    $other_charges['field_invoice_details'] = $field_invoice_for;
+    $other_charges = $this->getOtherCharges($field_areas_id, $field_invoice_for);
+    return $other_charges;
+  }
+
+  /**
    * Get other charges or land rent amount for specific area.
    *
    * @param string $offer_licence_id

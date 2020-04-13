@@ -204,6 +204,63 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       // Set error message if farmer id not availble in the param.
     }
   }
+
+  if ($form_id == 'node_payment_form' || $form_id == 'node_payment_edit_form') {
+    $form['field_date_paid']['widget'][0]['#disabled'] = TRUE;
+
+    // Set default farmer when adding offer license content.
+    $query_params = $nfafmis_service_utility->getQueryParams();
+    if (!empty($query_params['farmer_id'])) {
+      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
+      $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
+
+      // Hide farmer field and show information.
+      $form['field_farmer_name_ref']['#access'] = FALSE;
+      $form_object = $form_state->getFormObject();
+      $entity = $form_object->getEntity();
+
+      // Provide farmer id as arguments to the reference views to filter result.
+      // This only works when widget is selected as autocompleted.
+      $form['field_invoice']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
+
+      // Create farmer infomation container to show on payment add page.
+      $form['farmer_information'] = [
+        '#type' => "container",
+        '#theme' => 'section__farmer_infomation',
+        '#farmer_data' => [
+          'name' => $farmer->get('title')->value,
+          'field_email' => $farmer->get('field_email')->value,
+          'field_phone_number' => $farmer->get('field_phone_number')->value,
+          'field_physical_address' => $farmer->get('field_physical_address')->value,
+          'field_postal_address' => $farmer->get('field_postal_address')->value,
+          'field_tax_identification_number' => $farmer->get('field_tax_identification_number')->value,
+          'field_national_identification_no' => $farmer->get('field_national_identification_no')->value,
+        ],
+      ];
+
+      // Add ajax feature of area select autocomplet on add payment page.
+      $form['field_invoice']['widget'][0]['target_id']['#attributes'] = ['placeholder' => t('I687889324')];
+      $form['field_invoice']['widget'][0]['target_id']['#ajax'] = [
+        'callback' => 'get_area_details_for_payment_ajax_callback',
+        'event' => 'autocompleteclose',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => t('Fetching area data..'),
+        ],
+      ];
+
+      // Area information on add payment page.
+      $form['farmer_area_infomation'] = [
+        '#type' => "container",
+        '#theme' => 'section__area_information_payment',
+        '#weight' => 20,
+      ];
+      // Add above created wrapper to the field group on payment add page.
+      $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_information';
+      $form['#fieldgroups']['group_receipt_details']->children[] = 'farmer_area_infomation';
+    }
+  }
+
 }
 
 /**
@@ -222,6 +279,36 @@ function nfafmis_node_presave(Node $node) {
       $node->field_amount->value = $area_data['total'];
     }
   }
+}
+
+/**
+ * Get area details for payment using ajax.
+ */
+function get_area_details_for_payment_ajax_callback(&$form, &$form_state) {
+  // Instantiate an AjaxResponse Object to return.
+  $ajax_response = new AjaxResponse();
+  $field_invoice = $form_state->getValue('field_invoice')[0]['target_id'];
+
+  if ($field_invoice) {
+    // Create nfafmis service object.
+    $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+    $area_data = $nfafmis_service_farmer->getInvoiceDetails($field_invoice);
+    $element = [
+      '#type' => "container",
+      '#theme' => 'section__area_information_payment',
+      '#weight' => 20,
+      '#area_data' => $area_data,
+    ];
+    $rendered_data = \Drupal::service('renderer')->render($element);
+  }
+
+  else {
+    $rendered_data = [];
+  }
+  $ajax_response->addCommand(new HtmlCommand('#farmer-area-details', $rendered_data));
+
+  // Return the AjaxResponse Object.
+  return $ajax_response;
 }
 
 /**
@@ -385,6 +472,12 @@ function nfafmis_theme($existing, $type, $theme, $path) {
         'area_data' => NULL,
       ],
       'template' => 'section/section--area-information',
+    ],
+    'section__area_information_payment' => [
+      'variables' => [
+        'area_data' => NULL,
+      ],
+      'template' => 'section/section--area-information-payment',
     ],
   ];
 }
