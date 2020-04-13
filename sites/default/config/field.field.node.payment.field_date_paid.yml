@@ -1,0 +1,24 @@
+uuid: 96383596-114d-4998-995a-4012e3a43dc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_paid
+    - node.type.payment
+  module:
+    - datetime
+id: node.payment.field_date_paid
+field_name: field_date_paid
+entity_type: node
+bundle: payment
+label: Date
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

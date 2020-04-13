@@ -1,0 +1,25 @@
+uuid: 6c48cd34-dd1f-4f28-8f74-3e8fd8a7b065
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_invoice
+    - node.type.payment
+id: node.payment.field_invoice
+field_name: field_invoice
+entity_type: node
+bundle: payment
+label: 'Invoice number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: invoice_reference
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

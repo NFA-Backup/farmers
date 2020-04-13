@@ -1,0 +1,28 @@
+uuid: 8482471e-ab43-4980-abfa-049af512bc56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_farmer_name_ref
+    - node.type.farmer_details
+    - node.type.payment
+id: node.payment.field_farmer_name_ref
+field_name: field_farmer_name_ref
+entity_type: node
+bundle: payment
+label: 'Farmer name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      farmer_details: farmer_details
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

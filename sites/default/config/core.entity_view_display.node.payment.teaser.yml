@@ -1,0 +1,30 @@
+uuid: 06054771-3997-4f91-ba19-783a6f3df7df
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.payment.field_date_paid
+    - field.field.node.payment.field_farmer_name_ref
+    - field.field.node.payment.field_invoice
+    - field.field.node.payment.field_receipt_number
+    - field.field.node.payment.field_receipt_scan
+    - node.type.payment
+  module:
+    - user
+id: node.payment.teaser
+targetEntityType: node
+bundle: payment
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_date_paid: true
+  field_farmer_name_ref: true
+  field_invoice: true
+  field_receipt_number: true
+  field_receipt_scan: true

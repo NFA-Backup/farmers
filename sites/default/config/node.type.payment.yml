@@ -1,0 +1,17 @@
+uuid: 085179a4-3e11-4812-8a4a-1795ebb96123
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Payment
+type: payment
+description: 'Will be use to create payment against invoice for particular area(offer license).'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,22 @@
+uuid: e1be0822-a031-4047-b0b8-11c5bb7549c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.payment
+id: node.payment.promote
+field_name: promote
+entity_type: node
+bundle: payment
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
