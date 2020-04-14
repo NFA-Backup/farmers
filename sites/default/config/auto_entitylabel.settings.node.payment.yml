@@ -1,5 +1,5 @@
 status: 1
-pattern: 'Label for invoice - [node:field_invoice]'
+pattern: 'Payment for [node:field_invoice]'
 escape: false
 dependencies:
   config:
