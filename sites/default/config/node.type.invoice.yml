@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: Invoice
+name: 'Payment Advice'
 type: invoice
-description: 'This content type will be use for creating a invoice against farmer for the land he/she has taken on rent.'
+description: 'This content type will be use for creating a Payment Advice (invoice) against farmer for the land he/she has taken on rent.'
 help: ''
 new_revision: false
 preview_mode: 0
