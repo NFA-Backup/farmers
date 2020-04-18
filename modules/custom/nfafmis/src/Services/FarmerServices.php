@@ -662,25 +662,100 @@ class FarmerServices {
    *   The rendered payment data.
    */
   public function getPaymentsData($farmer_id) {
-    // @TODO get dynamic data.
+    $payment_data = $this->getPaymentLandRentOtherFees($farmer_id);
+    $other_fees = $land_rent = 0;
+    foreach ($payment_data as $key => $value) {
+      $other_fees += $value['other_fees']['raw_sub_total'];
+      $land_rent += $value['land_rent']['raw_sub_total'];
+    }
+    $overall = $other_fees + $land_rent;
+    $other_fees = number_format($other_fees, 0, '.', ',');
+    $land_rent = number_format($land_rent, 0, '.', ',');
+    $overall = number_format($overall, 0, '.', ',');
     $data = [
       'farmer_id' => $farmer_id,
       'balance' => [
-        'overall' => 0,
-        'land_rent' => 0,
-        'other_fee' => 0,
+        'overall' => $overall,
+        'land_rent' => $land_rent,
+        'other_fee' => $other_fees,
       ],
       'payments' => [
-        'total' => 0,
-        'land_rent' => 0,
-        'other' => 0,
+        'total' => $overall,
+        'land_rent' => $land_rent,
+        'other_fee' => $other_fees,
       ],
+      'payments_details' => $payment_data,
     ];
     $renderable = [
       '#theme' => 'tab__accounts__payments_data',
       '#data' => $data,
     ];
     return $this->renderer->render($renderable);;
+  }
+
+  /**
+   * Get total starting amount for all area of a farmer.
+   *
+   * @param string $farmer_id
+   *   The farmer ID.
+   *
+   * @return array
+   *   The other charges year wise.
+   */
+  public function getPaymentLandRentOtherFees($farmer_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $payments_nids = $query->condition('type', 'payment')
+      ->condition('field_farmer_name_ref.target_id', $farmer_id)
+      ->condition('status', '1')
+      ->execute();
+
+    // Load each payment and calculate its changes for each year.
+    $data = [];
+    $total = $other_fees_subtotal = $land_rent_subtotal = 0;
+    foreach ($payments_nids as $payments_id) {
+      $payment = $this->entityTypeManager->getStorage('node')->load($payments_id);
+      $invoice = $payment->get('field_invoice')->referencedEntities()[0];
+      $payment_date = $payment->get('field_date_paid')->value;
+      $year = explode('-', $payment_date)[0];
+
+      // Check if invoce is there with payment.
+      if (!empty($invoice)) {
+        $field_invoice_details = $invoice->get('field_invoice_details')->value;
+        $field_amount = $invoice->get('field_amount')->value;
+
+        // Data for other fees.
+        if ($field_invoice_details === '1') {
+          $other_fees_subtotal += $field_amount;
+          $total += $field_amount;
+          $data[$year]['other_fees']['data'][] = [
+            'amount' => number_format($field_amount, 0, '.', ','),
+            'date' => $payment_date,
+            'field_invoice_number' => $invoice->get('field_invoice_number')->value,
+            'field_receipt_number' => $payment->get('field_receipt_number')->value,
+            'details' => 'get value to print',
+          ];
+          $data[$year]['other_fees']['sub_total'] = number_format($other_fees_subtotal, 0, '.', ',');;
+          $data[$year]['other_fees']['raw_sub_total'] = $other_fees_subtotal;
+        }
+        // Data for land rent.
+        if ($field_invoice_details === '2') {
+          $total += $field_amount;
+          $land_rent_subtotal += $field_amount;
+          $data[$year]['land_rent']['data'][] = [
+            'amount' => number_format($field_amount, 0, '.', ','),
+            'date' => $payment_date,
+            'field_invoice_number' => $invoice->get('field_invoice_number')->value,
+            'field_receipt_number' => $payment->get('field_receipt_number')->value,
+            'details' => 'get value to print',
+          ];
+          $data[$year]['land_rent']['sub_total'] = number_format($land_rent_subtotal, 0, '.', ',');
+          $data[$year]['land_rent']['raw_sub_total'] = $land_rent_subtotal;
+        }
+      }
+      $data[$year]['total'] = number_format($total, 0, '.', ',');
+      $data[$year]['raw_total'] = $total;
+    }
+    return $data ?? [];
   }
 
 }
