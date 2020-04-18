@@ -123,6 +123,7 @@
       $(".account-tab-view", context).once("nfamis").each(function() {
         // Default hide all content, then show first as default.
         $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
+        $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<ul></ul>').find('ul');
         ulist.addClass('nav nav-tabs farmer-tabs');
@@ -153,8 +154,10 @@
           $(tempElem).click(function() {
             if (!$(this).hasClass('active')) {
               $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
+              $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
-              $('#' + elemToHide).parents('.views-row').fadeIn('slow')
+              $('#' + elemToHide).parents('.views-row').fadeIn('slow');
+              $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
               $(this).addClass('active');
             }
