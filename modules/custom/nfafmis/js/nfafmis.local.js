@@ -144,10 +144,22 @@
           listElem.appendTo(ulist);
 
           // Set active class for first tab by default.
-          if (i === 0) {
+          if (!window.location.hash) {
             tempElem.addClass('active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
+          }
+          // Set active tab based on hash value, like: payment, summary-charges.
+          else {
+            let filtered_id = window.location.hash;
+            if (filtered_name === filtered_id.slice(1)) {
+              $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
+              $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+              $(filtered_id).parents('.views-row').fadeIn('slow');
+              $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
+              $('.account-list-subtabs a').removeClass('active');
+              tempElem.addClass('active');
+            }
           }
 
           // Bind click event for anchor tag.
