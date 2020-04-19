@@ -91,7 +91,7 @@ class FarmerServices {
       'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
       'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
       'rent_charges' => $rent_charges_data,
-      'starting_amount' => $starting_amount['data'],
+      'starting_amount' => isset($starting_amount['data']) ? $starting_amount['data'] : [],
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
     ];
@@ -563,8 +563,11 @@ class FarmerServices {
     $total_starting_amount = [];
     if (!empty($starting_amount_data)) {
       foreach ($starting_amount_data as $value) {
-        foreach ($value['data'] as $key => $value) {
-          $total_starting_amount[$key] += $value['amount'];
+        if (isset($value['data'])) {
+          foreach ($value['data'] as $key => $value) {
+            $total_starting_amount[$key] = isset($total_starting_amount[$key]) ? $total_starting_amount[$key] : 0;
+            $total_starting_amount[$key] += $value['amount'];
+          }
         }
       }
     }
@@ -664,9 +667,9 @@ class FarmerServices {
   public function getPaymentsData($farmer_id) {
     $payment_data = $this->getPaymentLandRentOtherFees($farmer_id);
     $other_fees = $land_rent = 0;
-    foreach ($payment_data as $key => $value) {
-      $other_fees += $value['other_fees']['raw_sub_total'];
-      $land_rent += $value['land_rent']['raw_sub_total'];
+    foreach ($payment_data as $value) {
+      $other_fees += $value['other_fees']['raw_sub_total'] ?? 0;
+      $land_rent += $value['land_rent']['raw_sub_total'] ?? 0;
     }
     $overall = $other_fees + $land_rent;
     $other_fees = number_format($other_fees, 0, '.', ',');
@@ -711,7 +714,6 @@ class FarmerServices {
 
     // Load each payment and calculate its changes for each year.
     $data = [];
-    $total = $other_fees_subtotal = $land_rent_subtotal = 0;
     foreach ($payments_nids as $payments_id) {
       $payment = $this->entityTypeManager->getStorage('node')->load($payments_id);
       $invoice = $payment->get('field_invoice')->referencedEntities()[0];
@@ -722,11 +724,15 @@ class FarmerServices {
       if (!empty($invoice)) {
         $field_invoice_details = $invoice->get('field_invoice_details')->value;
         $field_amount = $invoice->get('field_amount')->value;
+        $data[$year]['raw_total'] = isset($data[$year]['raw_total']) ? $data[$year]['raw_total'] : 0;
 
         // Data for other fees.
         if ($field_invoice_details === '1') {
-          $other_fees_subtotal += $field_amount;
-          $total += $field_amount;
+          // Initialize variables.
+          $data[$year]['other_fees']['raw_sub_total'] = isset($data[$year]['other_fees']['raw_sub_total']) ? $data[$year]['other_fees']['raw_sub_total'] : 0;
+          $data[$year]['other_fees']['sub_total'] = isset($data[$year]['other_fees']['sub_total']) ? $data[$year]['other_fees']['sub_total'] : 0;
+
+          $data[$year]['raw_total'] += $field_amount;
           $data[$year]['other_fees']['data'][] = [
             'amount' => number_format($field_amount, 0, '.', ','),
             'date' => $payment_date,
@@ -734,13 +740,16 @@ class FarmerServices {
             'field_receipt_number' => $payment->get('field_receipt_number')->value,
             'details' => 'get value to print',
           ];
-          $data[$year]['other_fees']['sub_total'] = number_format($other_fees_subtotal, 0, '.', ',');;
-          $data[$year]['other_fees']['raw_sub_total'] = $other_fees_subtotal;
+          $data[$year]['other_fees']['raw_sub_total'] += $field_amount;
+          $data[$year]['other_fees']['sub_total'] = number_format($data[$year]['other_fees']['raw_sub_total'], 0, '.', ',');;
         }
         // Data for land rent.
         if ($field_invoice_details === '2') {
-          $total += $field_amount;
-          $land_rent_subtotal += $field_amount;
+          // Initialize variables.
+          $data[$year]['land_rent']['raw_sub_total'] = isset($data[$year]['land_rent']['raw_sub_total']) ? $data[$year]['land_rent']['raw_sub_total'] : 0;
+          $data[$year]['land_rent']['sub_total'] = isset($data[$year]['land_rent']['sub_total']) ? $data[$year]['land_rent']['sub_total'] : 0;
+
+          $data[$year]['raw_total'] += $field_amount;
           $data[$year]['land_rent']['data'][] = [
             'amount' => number_format($field_amount, 0, '.', ','),
             'date' => $payment_date,
@@ -748,12 +757,11 @@ class FarmerServices {
             'field_receipt_number' => $payment->get('field_receipt_number')->value,
             'details' => 'get value to print',
           ];
-          $data[$year]['land_rent']['sub_total'] = number_format($land_rent_subtotal, 0, '.', ',');
-          $data[$year]['land_rent']['raw_sub_total'] = $land_rent_subtotal;
+          $data[$year]['land_rent']['raw_sub_total'] += $field_amount;
+          $data[$year]['land_rent']['sub_total'] = number_format($data[$year]['land_rent']['raw_sub_total'], 0, '.', ',');
         }
       }
-      $data[$year]['total'] = number_format($total, 0, '.', ',');
-      $data[$year]['raw_total'] = $total;
+      $data[$year]['total'] = number_format($data[$year]['raw_total'], 0, '.', ',');
     }
     return $data ?? [];
   }
