@@ -717,8 +717,14 @@ class FarmerServices {
     foreach ($payments_nids as $payments_id) {
       $payment = $this->entityTypeManager->getStorage('node')->load($payments_id);
       $invoice = $payment->get('field_invoice')->referencedEntities()[0];
+      $area = $invoice->get('field_areas_id')->referencedEntities()[0];
       $payment_date = $payment->get('field_date_paid')->value;
       $year = explode('-', $payment_date)[0];
+
+      // Get description as area name.
+      if (!empty($area)) {
+        $field_area_id = $area->get('field_area_id')->value;
+      }
 
       // Check if invoce is there with payment.
       if (!empty($invoice)) {
@@ -738,7 +744,8 @@ class FarmerServices {
             'date' => $payment_date,
             'field_invoice_number' => $invoice->get('field_invoice_number')->value,
             'field_receipt_number' => $payment->get('field_receipt_number')->value,
-            'details' => 'get value to print',
+            'field_voucher_number' => $payment->get('field_receipt_scan')->value,
+            'details' => $field_area_id ?? '',
           ];
           $data[$year]['other_fees']['raw_sub_total'] += $field_amount;
           $data[$year]['other_fees']['sub_total'] = number_format($data[$year]['other_fees']['raw_sub_total'], 0, '.', ',');;
@@ -755,7 +762,8 @@ class FarmerServices {
             'date' => $payment_date,
             'field_invoice_number' => $invoice->get('field_invoice_number')->value,
             'field_receipt_number' => $payment->get('field_receipt_number')->value,
-            'details' => 'get value to print',
+            'field_voucher_number' => $payment->get('field_receipt_scan')->value,
+            'details' => $field_area_id ?? '',
           ];
           $data[$year]['land_rent']['raw_sub_total'] += $field_amount;
           $data[$year]['land_rent']['sub_total'] = number_format($data[$year]['land_rent']['raw_sub_total'], 0, '.', ',');
