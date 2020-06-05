@@ -46,7 +46,6 @@ class ComposerStaticInit3f677a71373dac14d778354d3cf46a4d
         ),
         'W' => 
         array (
-            'Wikimedia\\Composer\\' => 19,
             'Webmozart\\Assert\\' => 17,
         ),
         'T' => 
@@ -181,10 +180,6 @@ class ComposerStaticInit3f677a71373dac14d778354d3cf46a4d
         'Zend\\Diactoros\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
-        ),
-        'Wikimedia\\Composer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
