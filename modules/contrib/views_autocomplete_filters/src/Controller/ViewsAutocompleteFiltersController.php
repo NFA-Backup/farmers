@@ -4,8 +4,11 @@ namespace Drupal\views_autocomplete_filters\Controller;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -165,15 +168,9 @@ class ViewsAutocompleteFiltersController implements ContainerInjectionInterface 
         return new JsonResponse($matches);
       }
     }
+
     // Collect exposed filter values and set them to the view.
-    if (!empty($expose_options['autocomplete_dependent'])) {
-      $exposed_input = $view->getExposedInput() ;
-    }
-    else {
-      $exposed_input = [];
-    }
-    $exposed_input[$expose_options['identifier']] = $string;
-    $view->setExposedInput($exposed_input);
+    $view->setExposedInput($this->getExposedInput($view, $request, $expose_options));
 
     // Disable cache for view, because caching autocomplete is a waste of time and memory.
     $display_handler->setOption('cache', ['type' => 'none']);
@@ -207,11 +204,11 @@ class ViewsAutocompleteFiltersController implements ContainerInjectionInterface 
     $view->row_index = 0;
     foreach ($view->result as $index => $row) {
       $view->row_index = $index;
-      $rendered_field = $raw_field = '';
       /** @var \Drupal\views\Plugin\views\style\StylePluginBase $style_plugin */
       $style_plugin = $display_handler->getPlugin('style');
   
       foreach ($field_names as $field_name) {
+        $rendered_field = $raw_field = '';
         // Render field only if suggestion or dropdown item not in RAW format.
         if (!$use_raw_suggestion || !$use_raw_dropdown) {
           $rendered_field = $style_plugin->getField($index, $field_name);
@@ -231,21 +228,28 @@ class ViewsAutocompleteFiltersController implements ContainerInjectionInterface 
           }
         }
   
-        if (empty($raw_field)) {
+        if (empty($raw_field) && !empty($rendered_field)) {
           $raw_field = [['value' => $rendered_field]];
         }
-        foreach ($raw_field as $delta => $item) {
-          if (isset($item['value']) && strstr(Unicode::strtolower($item['value']), Unicode::strtolower($string))) {
-            $dropdown = $use_raw_dropdown ? Html::escape($item['value']) : $rendered_field;
-            if ($dropdown != '') {
-              $suggestion = $use_raw_suggestion ? Html::escape($item['value']) : $rendered_field;
-              $suggestion = Html::decodeEntities($suggestion);
+        if (is_array($raw_field)) {
+          foreach ($raw_field as $delta => $item) {
+            if (isset($item['value']) && strstr(mb_strtolower($item['value']), mb_strtolower($string))) {
+              $dropdown = $use_raw_dropdown ? Html::escape($item['value']) : $rendered_field;
+              if ($dropdown != '') {
+                if ($use_raw_suggestion) {
+                  $suggestion = Unicode::truncate(Html::escape($item['value']), 128);
+                }
+                else {
+                  $suggestion = Unicode::truncate(Xss::filter($rendered_field, []), 128);
+                }
+                $suggestion = Html::decodeEntities($suggestion);
 
-              // Add a class wrapper for a few required CSS overrides.
-              $matches[] = [
-                'value' => $suggestion,
-                'label' => $dropdown,
-              ];
+                // Add a class wrapper for a few required CSS overrides.
+                $matches[] = [
+                  'value' => $suggestion,
+                  'label' => $dropdown,
+                ];
+              }
             }
           }
         }
@@ -262,6 +266,43 @@ class ViewsAutocompleteFiltersController implements ContainerInjectionInterface 
     }
 
     return new JsonResponse($matches);
+  }
+
+  /**
+   * Collect exposed filter values for setting them to the view.
+   *
+   * @param \Drupal\views\ViewExecutable $view
+   *   The view.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param array $expose_options
+   *   The options for the exposed filter.
+   *
+   * @return array|string[]
+   *   The exposed input.
+   */
+  protected function getExposedInput(ViewExecutable $view, Request $request, array $expose_options) {
+    $display_handler = $view->display_handler;
+    $filters = $display_handler->getOption('filters');
+
+    if (!empty($expose_options['autocomplete_dependent'])) {
+      $exposed_input = $view->getExposedInput();
+    }
+    else {
+      $exposed_input = [];
+      // Need to reset the default values for exposed filters.
+      foreach ($display_handler->getOption('filters') as $name => $filter) {
+        if (!empty($filters[$name]['exposed'])) {
+          if (!empty($filter['is_grouped'])) {
+            $filters[$name]['group_info']['default_group'] = 'All';
+          }
+          $filters[$name]['value'] = [];
+        }
+      }
+      $display_handler->setOption('filters', $filters);
+    }
+    $exposed_input[$expose_options['identifier']] = $request->query->get('q');
+    return $exposed_input;
   }
 
 }

@@ -88,7 +88,7 @@ class EntityReferenceViewsOptionsButtonsWidget extends OptionsWidgetBase impleme
       $filter_options = [];
       foreach ($view->result as $row) {
         $row_output = $view->style_plugin->view->rowPlugin->render($row);
-        $filter_options[$row->_entity->id()] = $options[$row->_entity->id()]->create($this->renderer->render($row_output));
+        $filter_options[$row->_entity->id()] = $this->renderer->render($row_output);
       }
       $options = $filter_options;
     }
