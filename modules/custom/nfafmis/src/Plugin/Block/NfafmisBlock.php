@@ -2,9 +2,13 @@
 
 namespace Drupal\nfafmis\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Path\CurrentPathStack;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'NFAMIS' Block.
@@ -15,13 +19,66 @@ use Drupal\Core\Link;
  *   category = @Translation("NFAFMIS"),
  * )
  */
-class NfafmisBlock extends BlockBase {
+class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * Request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
+   * Request stack.
+   *
+   * @var \Drupal\Core\Path\CurrentPathStack
+   */
+  protected $currentPathStack;
+
+  /**
+   * Constructor of NfafmisBlock.
+   *
+   * @param array $configuration
+   *   The configuration array.
+   * @param string $plugin_id
+   *   The plugin id.
+   * @param mixed $plugin_definition
+   *   The plugin definition.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request service.
+   * @param \Drupal\Core\Path\CurrentPathStack $current_path_stack
+   *   The current path stack service.
+   */
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    RequestStack $request_stack,
+    CurrentPathStack $current_path_stack
+  ) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->requestStack = $request_stack;
+    $this->currentPathStack = $current_path_stack;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('request_stack'),
+      $container->get('path.current')
+    );
+  }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $farmer_name = \Drupal::request()->query->get('title');
+    $farmer_name = $this->requestStack->getCurrentRequest()->query->get('title');
     $options = [];
     $items = [];
     if ($farmer_name) {
@@ -30,7 +87,7 @@ class NfafmisBlock extends BlockBase {
       ];
     }
 
-    $current_path = \Drupal::service('path.current')->getPath();
+    $current_path = $this->currentPathStack->getPath();
     $farmer_menu_items = [
       ['uri' => 'internal:/tree-farmer-overview', 'label' => 'Farmer Log'],
       ['uri' => 'internal:/tree-farmer-overview/details', 'label' => 'Farmer Details'],
@@ -40,7 +97,7 @@ class NfafmisBlock extends BlockBase {
       ['uri' => 'internal:/tree-farmer-overview/harvest', 'label' => 'Harvest'],
       ['uri' => 'internal:/tree-farmer-overview/accounts', 'label' => 'Accounts'],
     ];
-    foreach ($farmer_menu_items as $key => $value) {
+    foreach ($farmer_menu_items as $value) {
       // Set active class for the link.
       $path_part = explode(":", $value['uri']);
       if ($path_part[1] === $current_path) {

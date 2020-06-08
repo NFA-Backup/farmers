@@ -57,9 +57,6 @@ class FarmerServices {
    *   The rendered array.
    */
   public function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
-    $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
-    $field_cfr = $area->get('field_central_forest_reserve')->target_id;
-    $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
     $rent_charges = $this->getRentSubTotal($offer_licence_id);
     $starting_amount = $this->getStartingAmountData($offer_licence_id);;
     $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
@@ -114,7 +111,7 @@ class FarmerServices {
     $starting_amount_data = [];
     if (!empty($starting_amount_nids)) {
       $starting_amounts = $this->entityTypeManager->getStorage('node')->loadMultiple($starting_amount_nids);
-      foreach ($starting_amounts as $key => $starting_amount) {
+      foreach ($starting_amounts as $starting_amount) {
         $sa_type = $starting_amount->get('field_starting_amount_type')->value;
         $starting_amount_data['data'][$sa_type]['nid'] = $starting_amount->get('nid')->value;
         $starting_amount_data['data'][$sa_type]['amount'] = $starting_amount->get('field_amount')->value;
@@ -226,7 +223,7 @@ class FarmerServices {
       $nids = array_values($charge_nids);
       $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
 
-      foreach ($charges as $key => $charge) {
+      foreach ($charges as $charge) {
         $field_amount += $charge->get('field_amount')->value;
       }
     }
@@ -320,7 +317,7 @@ class FarmerServices {
     if (!empty($land_rent_rates_nid)) {
       $nids = array_values($land_rent_rates_nid);
       $land_rent_rates = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
-      foreach ($land_rent_rates as $key => $land_rent_rate) {
+      foreach ($land_rent_rates as $land_rent_rate) {
         // Make sure overall area is not zero.
         // land_rent_rate x overall_area_allocated.
         $rent_rate = $land_rent_rate->get('field_rate')->value;
@@ -473,7 +470,7 @@ class FarmerServices {
         $nids = array_values($charge_nids);
         $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
 
-        foreach ($charges as $key => $charge) {
+        foreach ($charges as $charge) {
           $field_amount = $charge->get('field_amount')->value;
           $charges_total += $field_amount;
           $charges_data['data'][] = [
@@ -540,7 +537,7 @@ class FarmerServices {
       $nids = array_values($nids);
       $field_sub_area_planted = 0;
       $sub_areas = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
-      foreach ($sub_areas as $key => $area) {
+      foreach ($sub_areas as $area) {
         $field_sub_area_planted += $area->get('field_sub_area_planted')->value;
       }
       return $field_sub_area_planted;
