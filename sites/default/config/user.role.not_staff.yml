@@ -1,0 +1,10 @@
+uuid: 9281d844-b60c-45f7-9609-acce2a45ebe6
+langcode: en
+status: true
+dependencies: {  }
+id: not_staff
+label: Not-Staff
+weight: 4
+is_admin: null
+permissions:
+  - 'access content'

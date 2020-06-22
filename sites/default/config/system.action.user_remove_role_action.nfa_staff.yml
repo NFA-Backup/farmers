@@ -1,0 +1,14 @@
+uuid: bfa9eb47-6692-4d38-b771-33985dd20fcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nfa_staff
+  module:
+    - user
+id: user_remove_role_action.nfa_staff
+label: 'Remove the NFA Staff role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nfa_staff

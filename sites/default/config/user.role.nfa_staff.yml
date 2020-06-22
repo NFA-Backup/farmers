@@ -1,0 +1,10 @@
+uuid: f30e2ce7-9779-4d29-8b9c-da5787b6d391
+langcode: en
+status: true
+dependencies: {  }
+id: nfa_staff
+label: 'NFA Staff'
+weight: 3
+is_admin: null
+permissions:
+  - 'access content'

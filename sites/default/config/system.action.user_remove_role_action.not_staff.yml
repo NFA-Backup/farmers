@@ -1,0 +1,14 @@
+uuid: 57ff87cb-c8e5-4646-8ae2-6fe1b0b63fa0
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.not_staff
+  module:
+    - user
+id: user_remove_role_action.not_staff
+label: 'Remove the Not-Staff role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: not_staff

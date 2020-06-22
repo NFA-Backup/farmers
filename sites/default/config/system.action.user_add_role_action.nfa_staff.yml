@@ -1,0 +1,14 @@
+uuid: 1042753e-1034-41c6-97b3-11de12400651
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nfa_staff
+  module:
+    - user
+id: user_add_role_action.nfa_staff
+label: 'Add the NFA Staff role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nfa_staff

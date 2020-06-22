@@ -1,0 +1,14 @@
+uuid: 0f863ff3-ae0d-4d86-81d5-1cc8d68a32ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.not_staff
+  module:
+    - user
+id: user_add_role_action.not_staff
+label: 'Add the Not-Staff role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: not_staff
