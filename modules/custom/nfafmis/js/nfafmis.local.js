@@ -124,6 +124,9 @@
         // Default hide all content, then show first as default.
         $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
         $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+        $('section.fees').hide();
+        $('section.land-rent').hide();
+        //$('.views-field-field-itemise-charges').hide();
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<ul></ul>').find('ul');
         ulist.addClass('nav nav-tabs farmer-tabs');
@@ -148,6 +151,8 @@
             tempElem.addClass('active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
+            $('.account-list-subtab-fees a').addClass('active');
+            $('section.fees').fadeIn('slow');
           }
           // Set active tab based on hash value, like: payment, summary-charges.
           else {
@@ -155,9 +160,13 @@
             if (filtered_name === filtered_id.slice(1)) {
               $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
               $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+              $('section.fees').hide();
+              $('section.land-rent').hide();
               $(filtered_id).parents('.views-row').fadeIn('slow');
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
+              $('.account-list-subtab-fees a').addClass('active');
+              $('section.fees').fadeIn('slow');
               tempElem.addClass('active');
             }
           }
@@ -167,13 +176,37 @@
             if (!$(this).hasClass('active')) {
               $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
               $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+              $('section.fees').hide();
+              $('section.land-rent').hide();
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
+              $('.account-list-subtab-fees a').addClass('active');
+              $('section.fees').fadeIn('slow');
               $(this).addClass('active');
             }
           })
+
+          // Bind click event for anchor tag fees.
+          $('.account-list-subtab-fees a').click(function() {
+            if (!$(this).hasClass('active')) {
+              $('section.land-rent').hide();
+              $('.account-list-subtab-land-rent a').removeClass('active');
+              $(this).addClass('active');
+              $('section.fees').fadeIn('slow');
+            }
+          });
+          // Bind click event for anchor tag land-rent.
+          $('.account-list-subtab-land-rent a').click(function() {
+            if (!$(this).hasClass('active')) {
+              $('section.fees').hide();
+              $('.account-list-subtab-fees a').removeClass('active');
+              $(this).addClass('active');
+              $('section.land-rent').fadeIn('slow');
+            }
+          });
+
         });
       });
 
