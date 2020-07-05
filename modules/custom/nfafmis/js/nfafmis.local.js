@@ -25,7 +25,7 @@
         filterInventoryTab.append(filterElem);
         filterHarvestTab.append(filterElem);
 
-        // Add sub-area ID filter on inventroy tab.
+        // Add sub-area ID filter on inventory tab.
         let filterSubElem = `
         <div class="form-inline views-field">
           <span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>
@@ -121,12 +121,7 @@
 
       // Account tab section start from here.
       $(".account-tab-view", context).once("nfamis").each(function() {
-        // Default hide all content, then show first as default.
-        $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
-        $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
-        $('section.fees').hide();
-        $('section.land-rent').hide();
-        //$('.views-field-field-itemise-charges').hide();
+        hideElement();
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<ul></ul>').find('ul');
         ulist.addClass('nav nav-tabs farmer-tabs');
@@ -158,10 +153,7 @@
           else {
             let filtered_id = window.location.hash;
             if (filtered_name === filtered_id.slice(1)) {
-              $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
-              $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
-              $('section.fees').hide();
-              $('section.land-rent').hide();
+              hideElement();
               $(filtered_id).parents('.views-row').fadeIn('slow');
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
@@ -174,10 +166,7 @@
           // Bind click event for anchor tag.
           $(tempElem).click(function() {
             if (!$(this).hasClass('active')) {
-              $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
-              $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
-              $('section.fees').hide();
-              $('section.land-rent').hide();
+              hideElement();
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
@@ -244,4 +233,12 @@
       $(".licence-number-tabs").tabsMapper();
     }
   };
+
+  // Default hide all content, then show accordingly.
+  function hideElement() {
+    $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
+    $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+    $('section.fees').hide();
+    $('section.land-rent').hide();
+  }
 }(jQuery));
