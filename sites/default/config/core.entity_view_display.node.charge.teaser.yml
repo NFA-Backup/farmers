@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.charge.field_charge_date
     - field.field.node.charge.field_charge_description
     - field.field.node.charge.field_charges_sub_area
+    - field.field.node.charge.field_payment_advice
     - node.type.charge
   module:
     - user
@@ -30,3 +31,4 @@ hidden:
   field_charge_date: true
   field_charge_description: true
   field_charges_sub_area: true
+  field_payment_advice: true

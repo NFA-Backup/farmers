@@ -1,0 +1,28 @@
+uuid: 222e2bdc-af26-4876-9bfa-99adb77e6b54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_advice
+    - node.type.charge
+    - node.type.invoice
+id: node.charge.field_payment_advice
+field_name: field_payment_advice
+entity_type: node
+bundle: charge
+label: 'Payment Advice'
+description: 'Payment Advice against this changes, will be generated automatically along with changes.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      invoice: invoice
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -139,7 +139,11 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       // Set default value for invoice number dynamic if not already set.
       if ($entity->isNew()) {
         $form['field_amount']['#access'] = FALSE;
-        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'I' . time();
+        $default_timezone = new \DateTimeZone(date_default_timezone_get());
+        $date = new \DateTime('now', $default_timezone);
+        $time = Drupal::time()->getCurrentTime();
+        $field_invoice_number = $date->format('Ymd') . '-' . $time;
+        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = $field_invoice_number;
       }
 
       // Hide field_areas_id field based on field_invoice_details.
@@ -268,6 +272,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
  */
 function nfafmis_node_presave(Node $node) {
   // Update field amount value as per area charges for that invoice.
+  // @TODO: remove below code once implementaiton done.
   if ($node->bundle() == 'invoice') {
     $field_areas_id = $node->get('field_areas_id')->target_id;
     // Get field invoice for 1=Fee, 2=Land rent.
@@ -276,8 +281,30 @@ function nfafmis_node_presave(Node $node) {
       // Create nfafmis service object.
       $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
       $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, $field_invoice_for, TRUE);
-      $node->field_amount->value = $area_data['total'];
+      // $node->field_amount->value = $area_data['total'];.
     }
+  }
+  // Automatically generate invoice against each charges.
+  if ($node->bundle() == 'charge' && $node->isNew()) {
+    $field_amount = $node->get('field_amount')->value;
+    $field_areas_id = $node->get('field_areas_id')->target_id;
+    $default_timezone = new \DateTimeZone(date_default_timezone_get());
+    $date = new \DateTime('now', $default_timezone);
+    $time = Drupal::time()->getCurrentTime();
+    $field_invoice_number = $date->format('Ymd') . '-' . $time;
+    // Create Invoice(Payment Advice) for every charge node automatically.
+    $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->create([
+      'type' => 'invoice',
+      'title' => 'Payment Advice -' . $field_invoice_number,
+      'field_amount' => $field_amount,
+      'field_areas_id' => ['target_id' => $field_areas_id],
+      'field_invoice_date' => $date->format('Y-m-d'),
+      'field_invoice_number' => $field_invoice_number,
+      'field_invoice_details' => '1',
+    ]);
+    $node_invoice->save();
+    // Update charges field_payment_advice.
+    $node->field_payment_advice->target_id = $node_invoice->id();
   }
 }
 

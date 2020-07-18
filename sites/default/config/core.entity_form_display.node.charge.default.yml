@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.charge.field_charge_date
     - field.field.node.charge.field_charge_description
     - field.field.node.charge.field_charges_sub_area
+    - field.field.node.charge.field_payment_advice
     - node.type.charge
   module:
     - datetime
@@ -24,7 +25,7 @@ third_party_settings:
         - field_amount
         - field_charge_description
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: fieldset
       region: content
       format_settings:
@@ -87,6 +88,7 @@ content:
     region: content
 hidden:
   created: true
+  field_payment_advice: true
   path: true
   promote: true
   status: true
