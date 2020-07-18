@@ -39,6 +39,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
   }
 
+  // Prepare offer license add edit form.
   if ($form_id == 'node_offer_license_form' || $form_id == 'node_offer_license__edit_form') {
     $form['field_license_id']['#states'] = [
       'visible' => [
@@ -76,6 +77,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
   }
 
+  // Prepare charge add edit form.
   if ($form_id == 'node_charge_form' || $form_id == 'node_charge_edit_form') {
     $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
@@ -105,6 +107,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
   }
 
+  // Prepare sub_area add edit form.
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
     $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
@@ -120,6 +123,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     ];
   }
 
+  // Prepare invoice add edit form.
   if ($form_id == 'node_invoice_form' || $form_id == 'node_invoice_edit_form') {
     // Set default farmer when adding offer license content.
     $form['field_invoice_number']['widget'][0]['#disabled'] = TRUE;
@@ -209,14 +213,24 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
   }
 
+  // Prepare payment add edit form.
   if ($form_id == 'node_payment_form' || $form_id == 'node_payment_edit_form') {
     $form['field_date_paid']['widget'][0]['#disabled'] = TRUE;
+    $form['field_invoice']['widget'][0]['#disabled'] = TRUE;
+    $form['field_receipt_number']['widget'][0]['#disabled'] = TRUE;
+
+    // Set default for field_receipt_number.
+    $time = Drupal::time()->getCurrentTime();
+    $form['field_receipt_number']['widget'][0]['value']['#default_value'] = $time;
 
     // Set default farmer when adding offer license content.
     $query_params = $nfafmis_service_utility->getQueryParams();
-    if (!empty($query_params['farmer_id'])) {
-      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
+    if (!empty($query_params['invoice_id'])) {
+      $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['invoice_id']);
+      $farmer_id = $node_invoice->get('field_farmer_name_ref')->target_id;
+      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($farmer_id);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
+      $form['field_invoice']['widget'][0]['target_id']['#default_value'] = $node_invoice;
 
       // Hide farmer field and show information.
       $form['field_farmer_name_ref']['#access'] = FALSE;
@@ -225,7 +239,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
       // Provide farmer id as arguments to the reference views to filter result.
       // This only works when widget is selected as autocompleted.
-      $form['field_invoice']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
+      $form['field_invoice']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $farmer_id;
 
       // Create farmer infomation container to show on payment add page.
       $form['farmer_information'] = [
@@ -284,8 +298,12 @@ function nfafmis_node_presave(Node $node) {
       // $node->field_amount->value = $area_data['total'];.
     }
   }
+  // Set default farmer when adding offer license content.
+  $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
+  $query_params = $nfafmis_service_utility->getQueryParams();
+
   // Automatically generate invoice against each charges.
-  if ($node->bundle() == 'charge' && $node->isNew()) {
+  if ($node->bundle() == 'charge' && $node->isNew() && isset($query_params['farmer_id'])) {
     $field_amount = $node->get('field_amount')->value;
     $field_areas_id = $node->get('field_areas_id')->target_id;
     $default_timezone = new \DateTimeZone(date_default_timezone_get());
@@ -301,6 +319,7 @@ function nfafmis_node_presave(Node $node) {
       'field_invoice_date' => $date->format('Y-m-d'),
       'field_invoice_number' => $field_invoice_number,
       'field_invoice_details' => '1',
+      'field_farmer_name_ref' => ['target_id' => $query_params['farmer_id']],
     ]);
     $node_invoice->save();
     // Update charges field_payment_advice.
