@@ -156,6 +156,7 @@
               hideElement();
               $(filtered_id).parents('.views-row').fadeIn('slow');
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
+              $('.views-field-field-itemise-charges').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
               $('.account-list-subtab-fees a').addClass('active');
               $('section.fees').fadeIn('slow');
@@ -170,6 +171,7 @@
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
+              $('.views-field-field-itemise-charges').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
               $('.account-list-subtab-fees a').addClass('active');
               $('section.fees').fadeIn('slow');
@@ -184,6 +186,7 @@
               $('.account-list-subtab-land-rent a').removeClass('active');
               $(this).addClass('active');
               $('section.fees').fadeIn('slow');
+              $('.views-field-field-itemise-charges').fadeIn('slow');
             }
           });
           // Bind click event for anchor tag land-rent.
@@ -191,6 +194,7 @@
             if (!$(this).hasClass('active')) {
               $('section.fees').hide();
               $('.account-list-subtab-fees a').removeClass('active');
+              $('.views-field-field-itemise-charges').hide();
               $(this).addClass('active');
               $('section.land-rent').fadeIn('slow');
             }
@@ -238,6 +242,7 @@
   function hideElement() {
     $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
     $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+    $('.views-field-field-itemise-charges').hide();
     $('section.fees').hide();
     $('section.land-rent').hide();
   }
