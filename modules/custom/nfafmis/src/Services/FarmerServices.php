@@ -56,12 +56,18 @@ class FarmerServices {
    * @return array
    *   The rendered array.
    */
-  public function getLandRentAndOtherData($farmer_id, $offer_licence_id) {
+  public function getLandRentAndFeesData($farmer_id, $offer_licence_id) {
     $rent_charges = $this->getRentSubTotal($offer_licence_id);
     $starting_amount = $this->getStartingAmountData($offer_licence_id);;
     $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
     $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
     $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
+
+    // Get fees data.
+    $fees_data = $this->getFeesData($offer_licence_id);
+
+    // Get land rent data.
+    $land_rent_data = $this->getLandRentData($offer_licence_id);
 
     $land_rent_starting_amount = 0;
     $other_charges_starting_amount = 0;
@@ -75,6 +81,7 @@ class FarmerServices {
     }
 
     // Calculate starting amount for other charges amount.
+    // @INFO: this is useless now can be remove
     if (isset($starting_amount['data']['other_charges']['amount'])) {
       $other_charges_starting_amount = $starting_amount['data']['other_charges']['amount'];
       $other_subtotal += $other_charges_starting_amount;
@@ -91,13 +98,96 @@ class FarmerServices {
       'starting_amount' => isset($starting_amount['data']) ? $starting_amount['data'] : [],
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
+      'fees' => $fees_data,
+      'land_rent' => $land_rent_data,
     ];
     $renderable = [
-      '#theme' => 'tab__accounts__land_rent_other_data',
+      '#theme' => 'tab__accounts__land_rent_fees_data',
       '#data' => $data,
     ];
     $rendered = $this->renderer->render($renderable);
     return $rendered;
+  }
+
+  /**
+   * Get fees data for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   *
+   * @return array
+   *   The fee data.
+   */
+  public function getFeesData($offer_licence_id) {
+    $fees_data = [
+      'balance' => 0,
+      'charges' => 0,
+      'payments' => 0,
+    ];
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $charge_nids = $query->condition('type', 'charge')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->execute();
+    if (!empty($charge_nids)) {
+      $nids = array_values($charge_nids);
+      $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
+
+      foreach ($charges as $charge) {
+        // Get invoice from charges.
+        $invoice = $charge->get('field_payment_advice')->referencedEntities()[0];
+        $invoice_has_payment = $this->invoiceHasPayment($invoice->id());
+        if ($invoice_has_payment) {
+          $fees_data['payments'] += $charge->get('field_amount')->value;
+        }
+        else {
+          $fees_data['balance'] += $charge->get('field_amount')->value;
+        }
+        $fees_data['charges'] += $charge->get('field_amount')->value;
+      }
+    }
+    // Format the data.
+    $fees_data['balance'] = number_format($fees_data['balance'], 0, '.', ',');
+    $fees_data['payments'] = number_format($fees_data['payments'], 0, '.', ',');
+    $fees_data['charges'] = number_format($fees_data['charges'], 0, '.', ',');
+    return $fees_data;
+  }
+
+  /**
+   * Get payment status against each invoice (Payment advice).
+   *
+   * @param string $invoice_id
+   *   The invoice ID.
+   *
+   * @return bool
+   *   The flag.
+   */
+  public function invoiceHasPayment($invoice_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $payment_nid = $query->condition('type', 'payment')
+      ->condition('field_invoice.target_id', $invoice_id)
+      ->execute();
+    if (!empty($payment_nid)) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Get land rent data for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   *
+   * @return array
+   *   The land rent data.
+   */
+  public function getLandRentData($offer_licence_id) {
+    $land_rent_data = [
+      'balance' => 0,
+      'charges' => 0,
+      'payments' => 0,
+    ];
+    return $land_rent_data;
   }
 
   /**

@@ -4,6 +4,8 @@
 * Default theme implementation to display land rent and other data.
 *
 * Available variables:
+* - $data['fees']: fees data.
+* - $data['land_rent']: fee data
 * - $data['total']: total sum.
 * - $data['rent_sub_total']: rent sub total.
 * - $data['other_sub_total']: other sub total.
@@ -13,7 +15,7 @@
 *
 * @ingroup templates
 *
-* @see get_land_rent_and_other_data()
+* @see Drupal\nfafmis\Services::getLandRentAndFeesData()
 * @see nfafmis_theme()
 */
 #}
@@ -36,21 +38,21 @@
       </div>
       <div class="col-md-4 views-field heading">
         <span class="views-label">Area Fee Balance</span>
-        <div class="field-content balance">UGX {{ data.total }}</div>
+        <div class="field-content balance">UGX {{ data.fees.balance }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4 views-field">
         <span class="views-label">Area Fee Charges</span>
-        <div class="field-content balance">UGX {{ data.total }}</div>
+        <div class="field-content balance">UGX {{ data.fees.charges }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4 views-field">
         <span class="views-label">Area Fee Payments</span>
-        <div class="field-content payment">UGX {{ data.total }}</div>
+        <div class="field-content payment">UGX {{ data.fees.payments }}</div>
       </div>
     </div>
   </div>
@@ -61,27 +63,27 @@
       <div class="col-md-8"></div>
       <div class="col-md-4 views-field heading">
         <span class="views-label">Land Rent Balance</span>
-        <div class="field-content balance">UGX {{ data.total }}</div>
+        <div class="field-content balance">UGX {{ data.land_rent.balance }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4 views-field">
         <span class="views-label">Land Rent Charges</span>
-        <div class="field-content">UGX {{ data.total }}</div>
+        <div class="field-content">UGX {{ data.land_rent.charges }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4 views-field">
         <span class="views-label">Land Rent Payments</span>
-        <div class="field-content">UGX {{ data.total }}</div>
+        <div class="field-content">UGX {{ data.land_rent.payments }}</div>
       </div>
     </div>
   </div>
   <div class="center-container">
     <div class="row">
-      <div class="col-md-2 views-field">Balance brought forward: <br/>(Starting amount)</div>
+      <div class="col-md-2 views-field">Balance brought forward: <br />(Starting amount)</div>
       <div class="col-md-4 views-field">
         {% if data.starting_amount.land_rent %}
         <span class="views-label text-right">

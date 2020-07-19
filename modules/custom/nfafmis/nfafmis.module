@@ -20,6 +20,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   // Create nfafmis service object.
   $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
   $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+  $entity_type_manager = \Drupal::entityTypeManager();
 
   if ($form_id === 'comment_comment_form') {
     $form['actions']['submit']['#submit'][] = 'nfafmis_comment_comment_form_submit';
@@ -58,7 +59,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $query_params = $nfafmis_service_utility->getQueryParams();
       if (!empty($query_params) && isset($query_params['farmer_id'])) {
         $farmer_id = $query_params['farmer_id'];
-        $farmer_data = \Drupal::entityTypeManager()->getStorage('node')->load($farmer_id);
+        $farmer_data = $entity_type_manager->getStorage('node')->load($farmer_id);
         $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer_data;
       }
     }
@@ -72,7 +73,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     if (!empty($query_params) && isset($query_params['sub_area_id'])) {
       $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
       $sub_area_id = $query_params['sub_area_id'];
-      $sub_area_data = \Drupal::entityTypeManager()->getStorage('node')->load($sub_area_id);
+      $sub_area_data = $entity_type_manager->getStorage('node')->load($sub_area_id);
       $form['field_sub_area_id']['widget'][0]['target_id']['#default_value'] = $sub_area_data;
     }
   }
@@ -83,7 +84,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
       $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
       $area_id = $query_params['offer_licence_id'];
-      $area_data = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
+      $area_data = $entity_type_manager->getStorage('node')->load($area_id);
       $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
 
       $sub_areas = $nfafmis_service_farmer->getSubAreasIds($area_id);
@@ -132,7 +133,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
     $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params['farmer_id'])) {
-      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['farmer_id']);
+      $farmer = $entity_type_manager->getStorage('node')->load($query_params['farmer_id']);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
 
       // Hide farmer field and show information.
@@ -226,9 +227,9 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     // Set default farmer when adding offer license content.
     $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params['invoice_id'])) {
-      $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->load($query_params['invoice_id']);
+      $node_invoice = $entity_type_manager->getStorage('node')->load($query_params['invoice_id']);
       $farmer_id = $node_invoice->get('field_farmer_name_ref')->target_id;
-      $farmer = \Drupal::entityTypeManager()->getStorage('node')->load($farmer_id);
+      $farmer = $entity_type_manager->getStorage('node')->load($farmer_id);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
       $form['field_invoice']['widget'][0]['target_id']['#default_value'] = $node_invoice;
 
@@ -424,7 +425,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $farmer_id = $view->args[0];
     $offer_licence_id = $row->nid;
     if ($field->field == 'field_purpose') {
-      $variables['output'] = $nfafmis_service_farmer->getLandRentAndOtherData($farmer_id, $offer_licence_id);;
+      $variables['output'] = $nfafmis_service_farmer->getLandRentAndFeesData($farmer_id, $offer_licence_id);;
     }
   }
   // Preprocess views view field_physical_address to show SUMARY-CHARGES Tab.
@@ -489,11 +490,11 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function nfafmis_theme($existing, $type, $theme, $path) {
   return [
-    'tab__accounts__land_rent_other_data' => [
+    'tab__accounts__land_rent_fees_data' => [
       'variables' => [
         'data' => NULL,
       ],
-      'template' => 'tab/accounts/tab--accounts--land-rent-other-data',
+      'template' => 'tab/accounts/tab--accounts--land-rent-fees-data',
     ],
     'tab__accounts__summary_charges_data' => [
       'variables' => [

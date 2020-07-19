@@ -116,3 +116,24 @@ table {
     }
   }
 }
+
+/* --  --*/
+.fees, .land-rent {
+
+  .heading {
+    font-size: 16px;
+  }
+  .views-label {
+    font-weight: bold !important;
+  }
+
+  .balance {
+    color: red;
+    font-weight: bold;
+  }
+
+  .payment {
+    color: green;
+    font-weight: bold;
+  }
+}
