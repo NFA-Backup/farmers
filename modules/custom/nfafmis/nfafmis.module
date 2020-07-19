@@ -280,6 +280,19 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
   }
 
+  // Prepare starting amount add edit form.
+  if ($form_id == 'node_starting_amount_form' || $form_id == 'node_starting_amount_edit_form') {
+    $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
+    $form['field_starting_amount_type']['#disabled'] = TRUE;
+
+    // Set default farmer when adding offer license content.
+    $query_params = $nfafmis_service_utility->getQueryParams();
+    if (!empty($query_params['offer_licence_id'])) {
+      $node_area = $entity_type_manager->getStorage('node')->load($query_params['offer_licence_id']);
+      $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $node_area;
+    }
+  }
+
 }
 
 /**
@@ -299,28 +312,27 @@ function nfafmis_node_presave(Node $node) {
       // $node->field_amount->value = $area_data['total'];.
     }
   }
-  // Set default farmer when adding offer license content.
-  $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
-  $query_params = $nfafmis_service_utility->getQueryParams();
 
-  // Automatically generate invoice against each charges.
-  if ($node->bundle() == 'charge' && $node->isNew() && isset($query_params['farmer_id'])) {
+  // Automatically generate invoice against each charges & starting_amount.
+  $allowed_bundle = ['charge', 'starting_amount'];
+  if (in_array($node->bundle(), $allowed_bundle) && $node->isNew()) {
     $field_amount = $node->get('field_amount')->value;
-    $field_areas_id = $node->get('field_areas_id')->target_id;
+    $area = $node->get('field_areas_id')->referencedEntities()[0];
+    $farmer_id = $area->get('field_farmer_name_ref')->target_id;
     $default_timezone = new \DateTimeZone(date_default_timezone_get());
     $date = new \DateTime('now', $default_timezone);
     $time = Drupal::time()->getCurrentTime();
     $field_invoice_number = $date->format('Ymd') . '-' . $time;
-    // Create Invoice(Payment Advice) for every charge node automatically.
+    // Create Invoice(Payment Advice) for every $allowed_bundle automatically.
     $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->create([
       'type' => 'invoice',
       'title' => 'Payment Advice -' . $field_invoice_number,
       'field_amount' => $field_amount,
-      'field_areas_id' => ['target_id' => $field_areas_id],
+      'field_areas_id' => ['target_id' => $area->id()],
       'field_invoice_date' => $date->format('Y-m-d'),
       'field_invoice_number' => $field_invoice_number,
-      'field_invoice_details' => '1',
-      'field_farmer_name_ref' => ['target_id' => $query_params['farmer_id']],
+      'field_invoice_details' => $node->bundle() == 'charge' ? '1' : '3',
+      'field_farmer_name_ref' => ['target_id' => $farmer_id],
     ]);
     $node_invoice->save();
     // Update charges field_payment_advice.

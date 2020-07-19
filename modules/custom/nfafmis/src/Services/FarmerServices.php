@@ -58,7 +58,7 @@ class FarmerServices {
    */
   public function getLandRentAndFeesData($farmer_id, $offer_licence_id) {
     $rent_charges = $this->getRentSubTotal($offer_licence_id);
-    $starting_amount = $this->getStartingAmountData($offer_licence_id);;
+    $starting_amount = $this->getStartingAmountData($offer_licence_id);
     $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
     $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
     $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
@@ -136,7 +136,7 @@ class FarmerServices {
         // Get invoice from charges.
         $invoice = $charge->get('field_payment_advice')->referencedEntities()[0];
         $invoice_has_payment = $this->invoiceHasPayment($invoice->id());
-        if ($invoice_has_payment) {
+        if (!empty($invoice_has_payment)) {
           $fees_data['payments'] += $charge->get('field_amount')->value;
         }
         else {
@@ -153,23 +153,20 @@ class FarmerServices {
   }
 
   /**
-   * Get payment status against each invoice (Payment advice).
+   * Get payment id against each invoice (Payment advice).
    *
    * @param string $invoice_id
    *   The invoice ID.
    *
-   * @return bool
-   *   The flag.
+   * @return array
+   *   The array of payment id.
    */
   public function invoiceHasPayment($invoice_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $payment_nid = $query->condition('type', 'payment')
       ->condition('field_invoice.target_id', $invoice_id)
       ->execute();
-    if (!empty($payment_nid)) {
-      return TRUE;
-    }
-    return FALSE;
+    return !empty($payment_nid) ? $payment_nid : [];
   }
 
   /**
@@ -182,12 +179,61 @@ class FarmerServices {
    *   The land rent data.
    */
   public function getLandRentData($offer_licence_id) {
-    $land_rent_data = [
+    $starting_amount = $this->getLandRentStartingAmountData($offer_licence_id);
+    return $starting_amount;
+  }
+
+  /**
+   * Get Land rendt starting amound data.
+   */
+  protected function getLandRentStartingAmountData($offer_licence_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $starting_amount_nids = $query->condition('type', 'starting_amount')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->condition('field_starting_amount_type.value', 'land_rent')
+      ->execute();
+    $starting_amount_data = [
       'balance' => 0,
       'charges' => 0,
       'payments' => 0,
+      'data' => [],
     ];
-    return $land_rent_data;
+    $data_array = [];
+    if (!empty($starting_amount_nids)) {
+      $starting_amounts = $this->entityTypeManager->getStorage('node')->loadMultiple($starting_amount_nids);
+      foreach ($starting_amounts as $starting_amount) {
+        $amount = $starting_amount->get('field_amount')->value;
+        $data_array += ['date' => 'Starting amount'];
+        $data_array += ['nid' => $starting_amount->get('nid')->value];
+        $starting_amount_data['charges'] += $amount;
+        $data_array += ['land_rent_due' => $amount];
+        $data_array += ['previous_arrears' => 0];
+        $data_array += ['late_fee_due' => 0];
+        $data_array += ['total_due' => $amount];
+        $invoice = $starting_amount->get('field_payment_advice')->referencedEntities()[0];
+        // Get incove for staring amount.
+        if ($invoice) {
+          $data_array += ['payment_advc_no' => $invoice->get('field_invoice_number')->value];
+          $data_array += ['payment_advc_nid' => $invoice->id()];
+          $invoice_payment_id = $this->invoiceHasPayment($invoice->id());
+          // Get payment data for invoice.
+          if (!empty($invoice_payment_id)) {
+            $starting_amount_data['payments'] += $amount;
+            $payment_ids = array_values($invoice_payment_id);
+            $payment = $this->entityTypeManager->getStorage('node')->load($payment_ids[0]);
+            $data_array += ['payment_nid' => $payment->id()];
+            $data_array += ['payment_date' => $payment->get('field_date_paid')->value];
+            $data_array += ['receipt_number' => $payment->get('field_receipt_number')->value];
+          }
+          else {
+            $starting_amount_data['balance'] += $amount;
+          }
+        }
+      }
+      $starting_amount_data['data']['sa'] = $data_array;
+    }
+    // kint($starting_amount_data);die;
+    return $starting_amount_data;
   }
 
   /**
