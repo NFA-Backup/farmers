@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.annual_charges.field_annual_charges
     - field.field.node.annual_charges.field_licence_id_ref
+    - field.field.node.annual_charges.field_payment_advice
     - field.field.node.annual_charges.field_rate_year
     - node.type.annual_charges
   module:
@@ -47,6 +48,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_payment_advice: true
   path: true
   promote: true
   status: true

@@ -106,7 +106,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
     ];
     $form['item-charges'] = [
       '#type' => 'fieldset',
-      '#description' => $this->t('By clicking the button you can generate annual charges for the year %year.  note annual charges will be calculated for last the year only.', ['%year' => $this->year]),
+      '#description' => $this->t('By clicking the button you can generate annual charges for the year %year.  note annual charges will be calculated for the last year only.', ['%year' => $this->year]),
     ];
     $form['item-charges']['calculate_annual_charges'] = [
       '#type' => 'submit',

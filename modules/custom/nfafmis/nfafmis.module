@@ -314,10 +314,21 @@ function nfafmis_node_presave(Node $node) {
   }
 
   // Automatically generate invoice against each charges & starting_amount.
-  $allowed_bundle = ['charge', 'starting_amount'];
+  $allowed_bundle = ['charge', 'starting_amount', 'annual_charges'];
+  $field_invoice_details = [
+    'charge' => '1',
+    'annual_charges' => '2',
+    'starting_amount' => '3',
+  ];
   if (in_array($node->bundle(), $allowed_bundle) && $node->isNew()) {
-    $field_amount = $node->get('field_amount')->value;
-    $area = $node->get('field_areas_id')->referencedEntities()[0];
+    if ($node->bundle()) {
+      $field_amount = $node->get('field_annual_charges')->value;
+      $area = $node->get('field_licence_id_ref')->referencedEntities()[0];
+    }
+    else {
+      $field_amount = $node->get('field_amount')->value;
+      $area = $node->get('field_areas_id')->referencedEntities()[0];
+    }
     $farmer_id = $area->get('field_farmer_name_ref')->target_id;
     $default_timezone = new \DateTimeZone(date_default_timezone_get());
     $date = new \DateTime('now', $default_timezone);
@@ -331,7 +342,7 @@ function nfafmis_node_presave(Node $node) {
       'field_areas_id' => ['target_id' => $area->id()],
       'field_invoice_date' => $date->format('Y-m-d'),
       'field_invoice_number' => $field_invoice_number,
-      'field_invoice_details' => $node->bundle() == 'charge' ? '1' : '3',
+      'field_invoice_details' => $field_invoice_details[$node->bundle()],
       'field_farmer_name_ref' => ['target_id' => $farmer_id],
     ]);
     $node_invoice->save();

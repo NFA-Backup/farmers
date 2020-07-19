@@ -179,25 +179,31 @@ class FarmerServices {
    *   The land rent data.
    */
   public function getLandRentData($offer_licence_id) {
-    $starting_amount = $this->getLandRentStartingAmountData($offer_licence_id);
-    return $starting_amount;
-  }
-
-  /**
-   * Get Land rendt starting amound data.
-   */
-  protected function getLandRentStartingAmountData($offer_licence_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $starting_amount_nids = $query->condition('type', 'starting_amount')
-      ->condition('field_areas_id.target_id', $offer_licence_id)
-      ->condition('field_starting_amount_type.value', 'land_rent')
-      ->execute();
-    $starting_amount_data = [
+    $land_rent_data = [
       'balance' => 0,
       'charges' => 0,
       'payments' => 0,
       'data' => [],
     ];
+    $this->getLandRentStartingAmountData($offer_licence_id, $land_rent_data);
+    $this->getLandRentAnnulChargesData($offer_licence_id, $land_rent_data);
+    return $land_rent_data;
+  }
+
+  /**
+   * Get land rent starting amount for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   * @param array $land_rent_data
+   *   The $land_rent_data.
+   */
+  protected function getLandRentStartingAmountData($offer_licence_id, &$land_rent_data) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $starting_amount_nids = $query->condition('type', 'starting_amount')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->condition('field_starting_amount_type.value', 'land_rent')
+      ->execute();
     $data_array = [];
     if (!empty($starting_amount_nids)) {
       $starting_amounts = $this->entityTypeManager->getStorage('node')->loadMultiple($starting_amount_nids);
@@ -205,7 +211,7 @@ class FarmerServices {
         $amount = $starting_amount->get('field_amount')->value;
         $data_array += ['date' => 'Starting amount'];
         $data_array += ['nid' => $starting_amount->get('nid')->value];
-        $starting_amount_data['charges'] += $amount;
+        $land_rent_data['charges'] += $amount;
         $data_array += ['land_rent_due' => $amount];
         $data_array += ['previous_arrears' => 0];
         $data_array += ['late_fee_due' => 0];
@@ -218,7 +224,7 @@ class FarmerServices {
           $invoice_payment_id = $this->invoiceHasPayment($invoice->id());
           // Get payment data for invoice.
           if (!empty($invoice_payment_id)) {
-            $starting_amount_data['payments'] += $amount;
+            $land_rent_data['payments'] += $amount;
             $payment_ids = array_values($invoice_payment_id);
             $payment = $this->entityTypeManager->getStorage('node')->load($payment_ids[0]);
             $data_array += ['payment_nid' => $payment->id()];
@@ -226,14 +232,61 @@ class FarmerServices {
             $data_array += ['receipt_number' => $payment->get('field_receipt_number')->value];
           }
           else {
-            $starting_amount_data['balance'] += $amount;
+            $land_rent_data['balance'] += $amount;
           }
         }
       }
-      $starting_amount_data['data']['sa'] = $data_array;
+      $land_rent_data['data']['sa'] = $data_array;
     }
-    // kint($starting_amount_data);die;
-    return $starting_amount_data;
+  }
+
+  /**
+   * Get land rent annual charges for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   * @param array $land_rent_data
+   *   The $land_rent_data.
+   */
+  protected function getLandRentAnnulChargesData($offer_licence_id, &$land_rent_data) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $annual_charges_nids = $query->condition('type', 'annual_charges')
+      ->condition('field_licence_id_ref.target_id', $offer_licence_id)
+      ->execute();
+    $data_array = [];
+    if (!empty($annual_charges_nids)) {
+      $annual_charges = $this->entityTypeManager->getStorage('node')->loadMultiple($annual_charges_nids);
+      foreach ($annual_charges as $key => $annual_charge) {
+        $amount = $annual_charge->get('field_annual_charges')->value;
+        $year = $annual_charge->get('field_rate_year')->value;
+        $land_rent_data['charges'] += $amount;
+        $data_array[$key]['date'] = '01-01-' . $year;
+        $data_array[$key]['land_rent_due'] = 0;
+        $data_array[$key]['previous_arrears'] = 0;
+        $data_array[$key]['late_fee_due'] = $amount;
+        $data_array[$key]['total_due'] = $amount;
+        $invoice = $annual_charge->get('field_payment_advice')->referencedEntities()[0];
+        // Get incove for annual charges.
+        if ($invoice) {
+          $data_array[$key]['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+          $data_array[$key]['payment_advc_nid'] = $invoice->id();
+          $invoice_payment_id = $this->invoiceHasPayment($invoice->id());
+          // Get payment data for annual charges.
+          if (!empty($invoice_payment_id)) {
+            $land_rent_data['payments'] += $amount;
+            $payment_ids = array_values($invoice_payment_id);
+            $payment = $this->entityTypeManager->getStorage('node')->load($payment_ids[0]);
+            $data_array[$key]['payment_nid'] = $payment->id();
+            $data_array[$key]['payment_date'] = $payment->get('field_date_paid')->value;
+            $data_array[$key]['receipt_number'] = $payment->get('field_receipt_number')->value;
+          }
+          else {
+            $land_rent_data['balance'] += $amount;
+          }
+        }
+      }
+      $land_rent_data['data'] = array_merge($data_array, $land_rent_data['data']);
+    }
   }
 
   /**
