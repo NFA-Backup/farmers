@@ -17,6 +17,9 @@ settings:
     -
       value: '2'
       label: 'Land rent'
+    -
+      value: '3'
+      label: 'Starting amount'
   allowed_values_function: ''
 module: options
 locked: false

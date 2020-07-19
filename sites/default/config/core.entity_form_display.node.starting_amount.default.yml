@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.starting_amount.field_amount
     - field.field.node.starting_amount.field_areas_id
+    - field.field.node.starting_amount.field_payment_advice
     - field.field.node.starting_amount.field_starting_amount_type
     - node.type.starting_amount
 id: node.starting_amount.default
@@ -13,7 +14,7 @@ bundle: starting_amount
 mode: default
 content:
   field_amount:
-    weight: 2
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -30,7 +31,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_starting_amount_type:
-    weight: 3
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -45,6 +46,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_payment_advice: true
   path: true
   promote: true
   status: true

@@ -1,0 +1,28 @@
+uuid: 25b6f76b-1e81-4a70-8389-0a6e751649e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_advice
+    - node.type.invoice
+    - node.type.starting_amount
+id: node.starting_amount.field_payment_advice
+field_name: field_payment_advice
+entity_type: node
+bundle: starting_amount
+label: 'Payment Advice'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      invoice: invoice
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
