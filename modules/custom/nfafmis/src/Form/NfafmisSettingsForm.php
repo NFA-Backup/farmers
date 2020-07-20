@@ -2,7 +2,6 @@
 
 namespace Drupal\nfafmis\Form;
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManager;
@@ -64,7 +63,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $this->farmerService = $farmer_service;
 
     // Year for which annual charges has to be calculated.
-    $this->year = date("Y") - 1;
+    $this->year = date("Y");
   }
 
   /**
@@ -163,15 +162,34 @@ class NfafmisSettingsForm extends ConfigFormBase {
    * Create node of annual charges programmatically for last year.
    */
   public function createAnnualCharges($area, $cfr, $area_allocated) {
-    $annual_charges = $this->farmerService->getAnnualCharges($cfr, $area_allocated, $this->year);
-    $title = $area->get('title')->value;
-    if (!empty($annual_charges['data'])) {
-      $field_annual_charges = array_values($annual_charges['data'])[0]['field_rate'];
-      $node = Node::create([
+    $previous_year_land_rent = $this->farmerService->getPreviousYearLandRentDue($area, $this->year);
+    if (!empty($previous_year_land_rent) && $previous_year_land_rent['charges_due']) {
+      $config = $this->config('nfafmis.settings');
+      $late_fees = $config->get('late_fees');
+      $title = $area->get('title')->value;
+      $node = $this->entityTypeManager->getStorage('node')->create([
         'type' => 'annual_charges',
-        'field_annual_charges' => $field_annual_charges,
+        'field_annual_charges' => ($previous_year_land_rent['amount'] * $late_fees) / 100,
         'field_rate_year' => $this->year,
         'field_licence_id_ref' => $area,
+        'field_arrears' => $previous_year_land_rent['amount'],
+        'field_annual_charges_type' => '2',
+      ]);
+      $node->save();
+      $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
+        ':area' => $title,
+        ':year' => $this->year,
+      ]));
+    }
+    $annual_charges = $this->farmerService->calculateAnnualCharges($cfr, $area_allocated, $this->year);
+    $title = $area->get('title')->value;
+    if ($annual_charges) {
+      $node = $this->entityTypeManager->getStorage('node')->create([
+        'type' => 'annual_charges',
+        'field_annual_charges' => $annual_charges,
+        'field_rate_year' => $this->year,
+        'field_licence_id_ref' => $area,
+        'field_annual_charges_type' => '1',
       ]);
       $node->save();
       $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [

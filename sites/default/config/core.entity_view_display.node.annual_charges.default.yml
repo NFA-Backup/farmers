@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.annual_charges.field_annual_charges
+    - field.field.node.annual_charges.field_annual_charges_type
+    - field.field.node.annual_charges.field_arrears
     - field.field.node.annual_charges.field_licence_id_ref
     - field.field.node.annual_charges.field_payment_advice
     - field.field.node.annual_charges.field_rate_year
     - node.type.annual_charges
   module:
+    - options
     - user
     - yearonly
 id: node.annual_charges.default
@@ -18,6 +21,22 @@ mode: default
 content:
   field_annual_charges:
     weight: 102
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_annual_charges_type:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_arrears:
+    weight: 106
     label: above
     settings:
       thousand_separator: ''

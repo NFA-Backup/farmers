@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.annual_charges.field_annual_charges
+    - field.field.node.annual_charges.field_annual_charges_type
+    - field.field.node.annual_charges.field_arrears
     - field.field.node.annual_charges.field_licence_id_ref
     - field.field.node.annual_charges.field_payment_advice
     - field.field.node.annual_charges.field_rate_year
@@ -23,6 +25,8 @@ content:
     region: content
 hidden:
   field_annual_charges: true
+  field_annual_charges_type: true
+  field_arrears: true
   field_licence_id_ref: true
   field_payment_advice: true
   field_rate_year: true

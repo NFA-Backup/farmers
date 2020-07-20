@@ -1,0 +1,21 @@
+uuid: 9b0235d0-6d03-4e1b-bec0-08432b71d2f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_annual_charges_type
+    - node.type.annual_charges
+  module:
+    - options
+id: node.annual_charges.field_annual_charges_type
+field_name: field_annual_charges_type
+entity_type: node
+bundle: annual_charges
+label: 'Charges type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
