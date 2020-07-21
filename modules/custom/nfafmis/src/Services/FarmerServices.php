@@ -241,6 +241,24 @@ class FarmerServices {
   }
 
   /**
+   * Check for existing annual charges for the particular year and area.
+   *
+   * @param object $area
+   *   The area object.
+   * @param string $for_year
+   *   The year.
+   */
+  public function chekForExistingAnnualCharges($area, $for_year) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $annual_charges_nid = $query->condition('type', 'annual_charges')
+      ->condition('field_licence_id_ref.target_id', $area->id())
+      ->condition('field_rate_year.value', $for_year)
+      ->condition('field_annual_charges_type', '1')
+      ->execute();
+    return $annual_charges_nid ?? [];
+  }
+
+  /**
    * Get land rent annual charges for particular area.
    *
    * @param string $offer_licence_id

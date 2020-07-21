@@ -153,7 +153,17 @@ class NfafmisSettingsForm extends ConfigFormBase {
       $area_allocated = $area->get('field_overall_area_allocated')->value;
       $cfr = $area->get('field_central_forest_reserve')->target_id;
       if ($cfr && $area_allocated) {
-        $this->createAnnualCharges($area, $cfr, $area_allocated);
+        $annual_charges = $this->farmerService->chekForExistingAnnualCharges($area, $this->year);
+        // Prevent creating duplicate annual charges for the same year.
+        if (empty($annual_charges)) {
+          $this->createAnnualCharges($area, $cfr, $area_allocated);
+        }
+        else {
+          $this->messenger()->addMessage($this->t('Annual charges already added against area :area for the year :year', [
+            ':area' => $area->getTitle(),
+            ':year' => $this->year,
+          ]), 'warning');
+        }
       }
     }
   }
@@ -166,7 +176,6 @@ class NfafmisSettingsForm extends ConfigFormBase {
     if (!empty($previous_year_land_rent) && $previous_year_land_rent['charges_due']) {
       $config = $this->config('nfafmis.settings');
       $late_fees = $config->get('late_fees');
-      $title = $area->get('title')->value;
       $node = $this->entityTypeManager->getStorage('node')->create([
         'type' => 'annual_charges',
         'field_annual_charges' => ($previous_year_land_rent['amount'] * $late_fees) / 100,
@@ -177,12 +186,11 @@ class NfafmisSettingsForm extends ConfigFormBase {
       ]);
       $node->save();
       $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
-        ':area' => $title,
+        ':area' => $area->getTitle(),
         ':year' => $this->year,
       ]));
     }
     $annual_charges = $this->farmerService->calculateAnnualCharges($cfr, $area_allocated, $this->year);
-    $title = $area->get('title')->value;
     if ($annual_charges) {
       $node = $this->entityTypeManager->getStorage('node')->create([
         'type' => 'annual_charges',
@@ -193,7 +201,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
       ]);
       $node->save();
       $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
-        ':area' => $title,
+        ':area' => $area->getTitle(),
         ':year' => $this->year,
       ]));
     }

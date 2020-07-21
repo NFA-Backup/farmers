@@ -146,6 +146,7 @@
             tempElem.addClass('active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
+            $('.account-list-subtab-land-rent a').removeClass('active');
             $('.account-list-subtab-fees a').addClass('active');
             $('.views-field-field-itemise-charges').fadeIn('slow');
             $('section.fees').fadeIn('slow');
@@ -159,6 +160,7 @@
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
               $('.views-field-field-itemise-charges').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
+              $('.account-list-subtab-land-rent a').removeClass('active');
               $('.account-list-subtab-fees a').addClass('active');
               $('section.fees').fadeIn('slow');
               tempElem.addClass('active');
@@ -173,6 +175,7 @@
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
               $('.views-field-field-itemise-charges').fadeIn('slow');
+              $('.account-list-subtab-land-rent a').removeClass('active');
               $('.account-list-subtabs a').removeClass('active');
               $('.account-list-subtab-fees a').addClass('active');
               $('section.fees').fadeIn('slow');
