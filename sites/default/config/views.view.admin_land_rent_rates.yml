@@ -298,7 +298,19 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: views_autocomplete_filters_string
-      sorts: {  }
+      sorts:
+        field_rate_year_value:
+          id: field_rate_year_value
+          table: node__field_rate_year
+          field: field_rate_year_value
+          relationship: reverse__node__field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
       title: 'Land rent rates'
       header: {  }
       footer: {  }
@@ -358,7 +370,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/listing\">Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/listing\">Add Year</a>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/listing\">+ Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/listing\">+ Add Year</a>\r\n</div>"
           plugin_id: text_custom
       defaults:
         header: false
@@ -559,7 +571,7 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
-          label: Rate
+          label: 'Land Rate'
           exclude: false
           alter:
             alter_text: false
@@ -592,7 +604,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -789,6 +801,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
@@ -849,6 +863,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: numeric
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: Name
+            description: ''
+            use_operator: false
+            operator: name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '1'
+            autocomplete_items: '10'
+            autocomplete_field: name
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
