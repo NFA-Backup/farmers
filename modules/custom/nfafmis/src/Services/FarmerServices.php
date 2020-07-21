@@ -293,6 +293,8 @@ class FarmerServices {
           }
         }
       }
+      // Sort data according to the date.
+      krsort($data_array);
       $land_rent_data['data'] = array_merge($data_array, $land_rent_data['data']);
     }
   }
