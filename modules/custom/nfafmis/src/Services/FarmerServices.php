@@ -488,50 +488,6 @@ class FarmerServices {
   }
 
   /**
-   * Get total rent charges of all area for farmer year wise.
-   *
-   * @param string $farmer_id
-   *   The farmer ID.
-   *
-   * @return array
-   *   The rent total year wise.
-   */
-  public function getRentTotalYearWise($farmer_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $offer_license_nids = $query->condition('type', 'offer_license')
-      ->condition('field_farmer_name_ref.target_id', $farmer_id)
-      ->execute();
-
-    // Load each areas and calculate its changes for each year.
-    foreach ($offer_license_nids as $offer_licence_id) {
-      $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
-      $field_cfr = $area->get('field_central_forest_reserve')->target_id;
-      $overall_area_allocated = (int) $area->get('field_overall_area_allocated')->value;
-      $rent_charges[] = $this->getTotalYearWise($field_cfr, $overall_area_allocated);
-    }
-    $total_rent_charges = [];
-    $total_rent_charges['sub_total'] = 0;
-    foreach ($rent_charges as $rent_charge) {
-      foreach ($rent_charge as $key => $value) {
-        if (array_key_exists($key, $total_rent_charges)) {
-          $total_rent_charges[$key] += $value;
-        }
-        else {
-          $total_rent_charges[$key] = $value;
-        }
-      }
-    }
-    // Add sub total charges.
-    if (!empty($total_rent_charges)) {
-      foreach ($total_rent_charges as $key => $value) {
-        $total_rent_charges['sub_total'] += $value;
-        $total_rent_charges[$key] = number_format($value, 0, '.', ',');
-      }
-    }
-    return $total_rent_charges;
-  }
-
-  /**
    * Get total charges of area year wise.
    *
    * @param string $cfr
@@ -577,47 +533,6 @@ class FarmerServices {
       }
     }
     return $land_rent_rates_table;
-  }
-
-  /**
-   * Get total other charges of all area for farmer year wise.
-   *
-   * @param string $farmer_id
-   *   The farmer ID.
-   *
-   * @return array
-   *   The other charges year wise.
-   */
-  public function getOtherChargesYearWise($farmer_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $offer_license_nids = $query->condition('type', 'offer_license')
-      ->condition('field_farmer_name_ref.target_id', $farmer_id)
-      ->execute();
-
-    // Load each areas and calculate its changes for each year.
-    foreach ($offer_license_nids as $offer_licence_id) {
-      $other_amounts[] = $this->getOtherTotalYearWise($offer_licence_id);
-    }
-    // Add sub total charges.
-    $other_amounts_by_year = [];
-    $other_amounts_by_year['sub_total'] = 0;
-    if (!empty($other_amounts)) {
-      foreach ($other_amounts as $other_amount) {
-        foreach ($other_amount as $key => $value) {
-          if (array_key_exists($key, $other_amounts_by_year)) {
-            $other_amounts_by_year[$key] += $value;
-          }
-          else {
-            $other_amounts_by_year[$key] = $value;
-          }
-        }
-      }
-    }
-    foreach ($other_amounts_by_year as $key => $value) {
-      $other_amounts_by_year['sub_total'] += $value;
-      $other_amounts_by_year[$key] = number_format($value, 0, '.', ',');
-    }
-    return $other_amounts_by_year;
   }
 
   /**
@@ -790,73 +705,30 @@ class FarmerServices {
    *   The rendered summary charges.
    */
   public function getSummaryChargesData($farmer_id) {
-    // Get starting amount total for all area.
-    $starting_amount_data = $this->getStartingAmountTotalData($farmer_id);
-    $total_starting_amount = [];
-    if (!empty($starting_amount_data)) {
-      foreach ($starting_amount_data as $value) {
-        if (isset($value['data'])) {
-          foreach ($value['data'] as $key => $value) {
-            $total_starting_amount[$key] = isset($total_starting_amount[$key]) ? $total_starting_amount[$key] : 0;
-            $total_starting_amount[$key] += $value['amount'];
-          }
-        }
-      }
+    $summary_charges['balance'] = [
+      'overall' => 0,
+      'land_rent' => 0,
+      'fees' => 0,
+    ];
+    $summary_charges['fees'] = [
+      'charges' => 0,
+    ];
+    $summary_charges['land_rent'] = [
+      'charges' => 0,
+      'late_fee' => 0,
+      'due' => 0,
+    ];
+    $area_ids = $this->getFarmerAreaIds($farmer_id);
+    if (!empty($area_ids)) {
+      // Get overall oustanding fees & data.
+      $this->getOverallOutstandingFees($area_ids, $summary_charges);
+      // Get overall oustanding Land rent along with starting amount.
+      $this->getOverallOutstandingLandRent($area_ids, $summary_charges);
     }
-
-    $total_starting_amount_land_rent = 0;
-    if (isset($total_starting_amount['land_rent'])) {
-      $total_starting_amount_land_rent = $total_starting_amount['land_rent'];
-    }
-
-    $total_starting_amount_other_charges = 0;
-    if (isset($total_starting_amount['other_charges'])) {
-      $total_starting_amount_other_charges = $total_starting_amount['other_charges'];
-    }
-
-    // Get total rent charges of all area for farmer year wise.
-    $rent_total_data = $this->getRentTotalYearWise($farmer_id);
-    $rent_sub_total = 0;
-    if (isset($rent_total_data['sub_total'])) {
-      $rent_sub_total = $rent_total_data['sub_total'] + $total_starting_amount_land_rent;
-      unset($rent_total_data['sub_total']);
-    }
-    // Get total other charges of all area for farmer year wise.
-    $other_total_data = $this->getOtherChargesYearWise($farmer_id);
-    $other_sub_total = 0;
-    if (isset($other_total_data['sub_total'])) {
-      $other_sub_total = $other_total_data['sub_total'] + $total_starting_amount_other_charges;
-      unset($other_total_data['sub_total']);
-    }
-
-    $overall = $rent_sub_total + $other_sub_total;
-    $total = $rent_sub_total + $other_sub_total;
 
     $data = [
       'farmer_id' => $farmer_id,
-      'balance' => [
-        'overall' => number_format($overall, 0, '.', ','),
-        'land_rent' => number_format($rent_sub_total, 0, '.', ','),
-        'other_fee' => number_format($other_sub_total, 0, '.', ','),
-      ],
-      'charges' => [
-        'total' => number_format($total, 0, '.', ','),
-        'land_rent' => number_format($rent_sub_total, 0, '.', ','),
-        'other' => number_format($other_sub_total, 0, '.', ','),
-      ],
-      'land_rent' => [
-        'data' => $rent_total_data,
-        'total_starting_amount' => number_format($total_starting_amount_land_rent, 0, '.', ','),
-        'sub_total' => number_format($rent_sub_total, 0, '.', ','),
-      ],
-      'land_rent_areares' => [
-        'sub_total' => 0,
-      ],
-      'other_fees' => [
-        'data' => $other_total_data,
-        'total_starting_amount' => number_format($total_starting_amount_other_charges, 0, '.', ','),
-        'sub_total' => number_format($other_sub_total, 0, '.', ','),
-      ],
+      'summary_charges' => $summary_charges,
     ];
     $renderable = [
       '#theme' => 'tab__accounts__summary_charges_data',
@@ -866,25 +738,177 @@ class FarmerServices {
   }
 
   /**
-   * Get total starting amount for all area of a farmer.
+   * Get overall outstanding fee for all area of particular farmer.
+   *
+   * @param string $area_ids
+   *   The area ID.
+   * @param string $summary_charges
+   *   The summary_charges array.
+   */
+  public function getOverallOutstandingFees($area_ids, &$summary_charges) {
+    // Calculate outstanding fees.
+    $invoice_nids = $this->getInvoiceIds($area_ids);
+    foreach ($invoice_nids as $invoice_id) {
+      $payment = $this->invoiceHasPayment($invoice_id);
+      if (empty($payment)) {
+        $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+        $amount = $invoice->get('field_amount')->value;
+        $summary_charges['fees']['charges'] += $amount;
+        $summary_charges['balance']['overall'] += $amount;
+        $summary_charges['balance']['fees'] += $amount;
+
+        // Build data array.
+        $area = $invoice->get('field_areas_id')->referencedEntities()[0];
+        if (!empty($area)) {
+          $data_array['area'] = $area->getTitle();
+        }
+        $charge = $this->getChargeFromInvoice($invoice_id);
+        if (!empty($charge)) {
+          $data_array['date'] = $charge->get('field_charge_date')->value;
+          $data_array['desc'] = $charge->get('field_charge_description')->value;
+          $data_array['total_due'] = $charge->get('field_amount')->value;
+          $data_array['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+          $data_array['payment_advc_nid'] = $invoice->id();
+        }
+        $summary_charges['fees']['data'][] = $data_array;
+      }
+    }
+  }
+
+  /**
+   * Get chage for particular invoice.
+   *
+   * @param string $invoice_id
+   *   The invoice ID.
+   *
+   * @return object
+   *   The charge object.
+   */
+  public function getChargeFromInvoice($invoice_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $charge_nids = $query->condition('type', 'charge')
+      ->condition('field_payment_advice.target_id', $invoice_id)
+      ->execute();
+    $charge_nid = reset($charge_nids);
+    if (!empty($charge_nid)) {
+      $charge = $this->entityTypeManager->getStorage('node')->load($charge_nid);
+      return $charge;
+    }
+    return [];
+  }
+
+  /**
+   * Get annual charges for particular invoice.
+   *
+   * @param string $invoice_id
+   *   The invoice ID.
+   *
+   * @return object
+   *   The charge object.
+   */
+  public function getAnnualChargeFromInvoice($invoice_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $annual_charges_nids = $query->condition('type', 'annual_charges')
+      ->condition('field_payment_advice.target_id', $invoice_id)
+      ->execute();
+    $annual_charges_nid = reset($annual_charges_nids);
+    if (!empty($annual_charges_nid)) {
+      $annual_charges = $this->entityTypeManager->getStorage('node')->load($annual_charges_nid);
+      return $annual_charges;
+    }
+    return [];
+  }
+
+  /**
+   * Get overall outstanding land rent for all area of particular farmer.
+   *
+   * @param string $area_ids
+   *   The area ID.
+   * @param string $summary_charges
+   *   The summary_charges array.
+   */
+  public function getOverallOutstandingLandRent($area_ids, &$summary_charges) {
+    // Calculate outstanding land rent.
+    $invoice_nids = $this->getInvoiceIds($area_ids, '2');
+    foreach ($invoice_nids as $invoice_id) {
+      $payment = $this->invoiceHasPayment($invoice_id);
+      if (empty($payment)) {
+        $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+        $amount = $invoice->get('field_amount')->value;
+        $summary_charges['land_rent']['charges'] += $amount;
+        $summary_charges['balance']['overall'] += $amount;
+        $summary_charges['balance']['land_rent'] += $amount;
+
+        // Calculate land rent late_fee/due.
+        $annual_charges = $this->getAnnualChargeFromInvoice($invoice_id);
+        if ($annual_charges) {
+          $charge_type = $annual_charges->get('field_annual_charges_type')->value;
+          if ($charge_type == '1') {
+            $summary_charges['land_rent']['due'] += $amount;
+          }
+          else {
+            $summary_charges['land_rent']['late_fee'] += $amount;
+          }
+        }
+
+        // Build data array.
+      }
+    }
+    // Calculate outstanding starting amount as part of land rent.
+    $invoice_nids = $this->getInvoiceIds($area_ids, '3');
+    foreach ($invoice_nids as $invoice_id) {
+      $payment = $this->invoiceHasPayment($invoice_id);
+      if (empty($payment)) {
+        $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+        $amount = $invoice->get('field_amount')->value;
+        $summary_charges['land_rent']['charges'] += $amount;
+        $summary_charges['balance']['overall'] += $amount;
+        $summary_charges['balance']['land_rent'] += $amount;
+      }
+    }
+  }
+
+  /**
+   * Get all Invoice of particular type.
+   *
+   * @param array $area_ids
+   *   The area ids.
+   * @param string $type
+   *   - 1|Fees
+   *   - 2|Land rent
+   *   - 3|Starting amount
+   *   The type of invoice field_invoice_details.
+   *
+   * @return array
+   *   The array of area ids.
+   */
+  public function getInvoiceIds($area_ids, $type = '1') {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $invoice_nids = $query->condition('type', 'invoice')
+      ->condition('field_areas_id.target_id', $area_ids, 'IN')
+      ->condition('field_invoice_details', $type)
+      ->condition('status', '1')
+      ->execute();
+    $invoice_nids = array_values($invoice_nids);
+    return $invoice_nids ?? [];
+  }
+
+  /**
+   * Get all area of particular farmer.
    *
    * @param string $farmer_id
    *   The farmer ID.
    *
    * @return array
-   *   The other charges year wise.
+   *   The array of area ids.
    */
-  public function getStartingAmountTotalData($farmer_id) {
+  public function getFarmerAreaIds($farmer_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $offer_license_nids = $query->condition('type', 'offer_license')
+    $area_nids = $query->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref.target_id', $farmer_id)
       ->execute();
-
-    // Load each areas and calculate its changes for each year.
-    foreach ($offer_license_nids as $offer_licence_id) {
-      $other_amounts[] = $this->getStartingAmountData($offer_licence_id);
-    }
-    return $other_amounts ?? [];
+    $area_nids = array_values($area_nids);
+    return $area_nids ?? [];
   }
 
   /**
