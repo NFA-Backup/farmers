@@ -144,11 +144,8 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       // Set default value for invoice number dynamic if not already set.
       if ($entity->isNew()) {
         $form['field_amount']['#access'] = FALSE;
-        $default_timezone = new \DateTimeZone(date_default_timezone_get());
-        $date = new \DateTime('now', $default_timezone);
-        $time = Drupal::time()->getCurrentTime();
-        $field_invoice_number = $date->format('Ymd') . '-' . $time;
-        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = $field_invoice_number;
+
+        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = generate_inoice_number();
       }
 
       // Hide field_areas_id field based on field_invoice_details.
@@ -302,6 +299,12 @@ function nfafmis_node_presave(Node $node) {
   // Update field amount value as per area charges for that invoice.
   // @TODO: remove below code once implementaiton done.
   if ($node->bundle() == 'invoice') {
+    // Make sure field_invoice_number is up to date.
+    $field_invoice_number = $node->get('field_invoice_number')->value;
+    $latest_invoice_number = generate_inoice_number();
+    if ($field_invoice_number !== $latest_invoice_number) {
+      $node->field_invoice_number->value = $latest_invoice_number;
+    }
     $field_areas_id = $node->get('field_areas_id')->target_id;
     // Get field invoice for 1=Fee, 2=Land rent.
     $field_invoice_for = $node->get('field_invoice_details')->value;
@@ -321,7 +324,7 @@ function nfafmis_node_presave(Node $node) {
     'starting_amount' => '3',
   ];
   if (in_array($node->bundle(), $allowed_bundle) && $node->isNew()) {
-    if ($node->bundle()) {
+    if ($node->bundle() === 'annual_charges') {
       $field_amount = $node->get('field_annual_charges')->value;
       $area = $node->get('field_licence_id_ref')->referencedEntities()[0];
     }
@@ -332,8 +335,7 @@ function nfafmis_node_presave(Node $node) {
     $farmer_id = $area->get('field_farmer_name_ref')->target_id;
     $default_timezone = new \DateTimeZone(date_default_timezone_get());
     $date = new \DateTime('now', $default_timezone);
-    $time = Drupal::time()->getCurrentTime();
-    $field_invoice_number = $date->format('Ymd') . '-' . $time;
+    $field_invoice_number = generate_inoice_number();
     // Create Invoice(Payment Advice) for every $allowed_bundle automatically.
     $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->create([
       'type' => 'invoice',
@@ -638,4 +640,29 @@ function nfafmis_token_info_alter(&$info) {
       ];
     }
   }
+}
+
+/**
+ * Generate invoice number dynamically.
+ */
+function generate_inoice_number() {
+  $default_timezone = new \DateTimeZone(date_default_timezone_get());
+  $date = new \DateTime('now', $default_timezone);
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'invoice')
+    ->sort('created');
+  $invoice_id = $query->execute();
+  $invoice_id = end($invoice_id);
+  if ($invoice_id) {
+    $invoice = \Drupal::entityTypeManager()->getStorage('node')->load($invoice_id);
+    $invoice_serial = $invoice->get('field_invoice_serial')->value;
+    if ($invoice_serial) {
+      $invoice_serial += 1;
+      $field_invoice_number = $date->format('dmY') . '-' . sprintf("%04d", $invoice_serial);
+      return $field_invoice_number;
+    }
+    return $date->format('dmY') . '-' . sprintf("%04d", 1);
+  }
+  // Initial invoice_number like 0001.
+  return $date->format('dmY') . '-' . sprintf("%04d", 1);
 }

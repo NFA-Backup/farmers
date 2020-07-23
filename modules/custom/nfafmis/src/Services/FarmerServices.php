@@ -758,6 +758,7 @@ class FarmerServices {
         $summary_charges['balance']['fees'] += $amount;
 
         // Build data array.
+        $data_array = [];
         $area = $invoice->get('field_areas_id')->referencedEntities()[0];
         if (!empty($area)) {
           $data_array['area'] = $area->getTitle();
@@ -841,17 +842,30 @@ class FarmerServices {
 
         // Calculate land rent late_fee/due.
         $annual_charges = $this->getAnnualChargeFromInvoice($invoice_id);
+        $data_array = [];
+        // Build data array.
         if ($annual_charges) {
           $charge_type = $annual_charges->get('field_annual_charges_type')->value;
           if ($charge_type == '1') {
             $summary_charges['land_rent']['due'] += $amount;
+            $data_array['due'] = $amount;
           }
           else {
             $summary_charges['land_rent']['late_fee'] += $amount;
+            $data_array['late_fee_due'] = $amount;
+            $data_array['previous_arrears'] = $annual_charges->get('field_arrears')->value;
           }
+          $year = $annual_charges->get('field_rate_year')->value;
+          $data_array['date'] = '01-01-' . $year;
+          $data_array['total_due'] = $amount;
+          $data_array['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+          $data_array['payment_advc_nid'] = $invoice->id();
         }
-
-        // Build data array.
+        $area = $invoice->get('field_areas_id')->referencedEntities()[0];
+        if (!empty($area)) {
+          $data_array['area'] = $area->getTitle();
+        }
+        $summary_charges['land_rent']['data'][] = $data_array;
       }
     }
     // Calculate outstanding starting amount as part of land rent.

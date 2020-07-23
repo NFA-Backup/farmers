@@ -83,7 +83,7 @@
               <tbody>
                 {# if empty table #}
                 {% if data.summary_charges.fees.data is empty %}
-                <td class="view-empty" colspan="6">No Fee data found for this area.</td>
+                <td class="view-empty" colspan="6">No Fee data found.</td>
                 {% endif %}
                 {# if empty table #}
                 {% for data in data.summary_charges.fees.data %}
@@ -154,26 +154,26 @@
               </thead>
               <tbody>
                 {# if empty table #}
-                {% if data.summary.land_rent is empty %}
-                <td class="view-empty" colspan="8">No land rent data found for this area.</td>
+                {% if data.summary_charges.land_rent.data is empty %}
+                <td class="view-empty" colspan="8">No land rent data found.</td>
                 {% endif %}
                 {# if empty table #}
-                {% for rent_charge in data.summary.land_rent %}
+                {% for land_rent in data.summary_charges.land_rent.data %}
                 <tr>
                   <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
-                    {{rent_charge.date}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.land_rent_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.previous_arrears |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.late_fee_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.total_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.payment_advc_no }}
-                    {% if rent_charge.payment_advc_nid %}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>
+                    {{land_rent.date}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                    {{land_rent.area}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.due |number_format(0, '.', ',')}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.previous_arrears |number_format(0, '.', ',')}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.late_fee_due |number_format(0, '.', ',')}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.total_due |number_format(0, '.', ',')}}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ land_rent.payment_advc_no }}</td>
+                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                    {% if land_rent.payment_advc_nid %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_advc_nid }}">view/print</a>
                     {% endif %}
-                  </td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.payment_date }}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.receipt_number }}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{rent_charge.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{land_rent.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
                   </td>
                 </tr>
                 {% endfor %}
