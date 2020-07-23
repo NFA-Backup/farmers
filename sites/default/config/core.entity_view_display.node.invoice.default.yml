@@ -9,10 +9,12 @@ dependencies:
     - field.field.node.invoice.field_invoice_date
     - field.field.node.invoice.field_invoice_details
     - field.field.node.invoice.field_invoice_number
+    - field.field.node.invoice.field_invoice_serial
     - node.type.invoice
   module:
     - datetime
     - options
+    - serial
     - user
 id: node.invoice.default
 targetEntityType: node
@@ -69,6 +71,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_invoice_serial:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: serial_default_formatter
     region: content
   links:
     weight: 100

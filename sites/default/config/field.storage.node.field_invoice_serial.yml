@@ -1,0 +1,21 @@
+uuid: f421f882-2abf-44bc-9fbe-77067e0d58bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - serial
+id: node.field_invoice_serial
+field_name: field_invoice_serial
+entity_type: node
+type: serial
+settings:
+  start_value: 1
+  init_existing_entities: 0
+module: serial
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

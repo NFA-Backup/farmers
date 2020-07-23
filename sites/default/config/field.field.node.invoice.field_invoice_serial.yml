@@ -1,0 +1,23 @@
+uuid: 0d6b89c0-c9bb-4dbc-830f-27a2ffa6f202
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_invoice_serial
+    - node.type.invoice
+  module:
+    - serial
+id: node.invoice.field_invoice_serial
+field_name: field_invoice_serial
+entity_type: node
+bundle: invoice
+label: 'Invoice serial'
+description: 'This field will be use to keep track of invoice number.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: serial

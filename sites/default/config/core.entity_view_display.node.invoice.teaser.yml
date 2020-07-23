@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.invoice.field_invoice_date
     - field.field.node.invoice.field_invoice_details
     - field.field.node.invoice.field_invoice_number
+    - field.field.node.invoice.field_invoice_serial
     - node.type.invoice
   module:
     - user
@@ -30,3 +31,4 @@ hidden:
   field_invoice_date: true
   field_invoice_details: true
   field_invoice_number: true
+  field_invoice_serial: true

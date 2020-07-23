@@ -9,10 +9,12 @@ dependencies:
     - field.field.node.invoice.field_invoice_date
     - field.field.node.invoice.field_invoice_details
     - field.field.node.invoice.field_invoice_number
+    - field.field.node.invoice.field_invoice_serial
     - node.type.invoice
   module:
     - datetime
     - field_group
+    - serial
 third_party_settings:
   field_group:
     group_tree_farmer_details:
@@ -97,6 +99,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_invoice_serial:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: serial_default_widget
     region: content
   title:
     type: string_textfield
