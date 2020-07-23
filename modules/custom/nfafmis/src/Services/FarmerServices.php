@@ -935,113 +935,12 @@ class FarmerServices {
    *   The rendered payment data.
    */
   public function getPaymentsData($farmer_id) {
-    $payment_data = $this->getPaymentLandRentOtherFees($farmer_id);
-    $other_fees = $land_rent = 0;
-    foreach ($payment_data as $value) {
-      $other_fees += $value['other_fees']['raw_sub_total'] ?? 0;
-      $land_rent += $value['land_rent']['raw_sub_total'] ?? 0;
-    }
-    $overall = $other_fees + $land_rent;
-    $other_fees = number_format($other_fees, 0, '.', ',');
-    $land_rent = number_format($land_rent, 0, '.', ',');
-    $overall = number_format($overall, 0, '.', ',');
-    $data = [
-      'farmer_id' => $farmer_id,
-      'balance' => [
-        'overall' => $overall,
-        'land_rent' => $land_rent,
-        'other_fee' => $other_fees,
-      ],
-      'payments' => [
-        'total' => $overall,
-        'land_rent' => $land_rent,
-        'other_fee' => $other_fees,
-      ],
-      'payments_details' => $payment_data,
-    ];
+    $data = [];
     $renderable = [
       '#theme' => 'tab__accounts__payments_data',
       '#data' => $data,
     ];
     return $this->renderer->render($renderable);;
-  }
-
-  /**
-   * Get total starting amount for all area of a farmer.
-   *
-   * @param string $farmer_id
-   *   The farmer ID.
-   *
-   * @return array
-   *   The other charges year wise.
-   */
-  public function getPaymentLandRentOtherFees($farmer_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $payments_nids = $query->condition('type', 'payment')
-      ->condition('field_farmer_name_ref.target_id', $farmer_id)
-      ->condition('status', '1')
-      ->execute();
-
-    // Load each payment and calculate its changes for each year.
-    $data = [];
-    foreach ($payments_nids as $payments_id) {
-      $payment = $this->entityTypeManager->getStorage('node')->load($payments_id);
-      $invoice = $payment->get('field_invoice')->referencedEntities()[0];
-      $area = $invoice->get('field_areas_id')->referencedEntities()[0];
-      $payment_date = $payment->get('field_date_paid')->value;
-      $year = explode('-', $payment_date)[0];
-
-      // Get description as area name.
-      if (!empty($area)) {
-        $field_area_id = $area->get('field_area_id')->value;
-      }
-
-      // Check if invoce is there with payment.
-      if (!empty($invoice)) {
-        $field_invoice_details = $invoice->get('field_invoice_details')->value;
-        $field_amount = $invoice->get('field_amount')->value;
-        $data[$year]['raw_total'] = isset($data[$year]['raw_total']) ? $data[$year]['raw_total'] : 0;
-
-        // Data for other fees.
-        if ($field_invoice_details === '1') {
-          // Initialize variables.
-          $data[$year]['other_fees']['raw_sub_total'] = isset($data[$year]['other_fees']['raw_sub_total']) ? $data[$year]['other_fees']['raw_sub_total'] : 0;
-          $data[$year]['other_fees']['sub_total'] = isset($data[$year]['other_fees']['sub_total']) ? $data[$year]['other_fees']['sub_total'] : 0;
-
-          $data[$year]['raw_total'] += $field_amount;
-          $data[$year]['other_fees']['data'][] = [
-            'amount' => number_format($field_amount, 0, '.', ','),
-            'date' => $payment_date,
-            'field_invoice_number' => $invoice->get('field_invoice_number')->value,
-            'field_receipt_number' => $payment->get('field_receipt_number')->value,
-            'field_voucher_number' => $payment->get('field_receipt_scan')->value,
-            'details' => $field_area_id ?? '',
-          ];
-          $data[$year]['other_fees']['raw_sub_total'] += $field_amount;
-          $data[$year]['other_fees']['sub_total'] = number_format($data[$year]['other_fees']['raw_sub_total'], 0, '.', ',');;
-        }
-        // Data for land rent.
-        if ($field_invoice_details === '2') {
-          // Initialize variables.
-          $data[$year]['land_rent']['raw_sub_total'] = isset($data[$year]['land_rent']['raw_sub_total']) ? $data[$year]['land_rent']['raw_sub_total'] : 0;
-          $data[$year]['land_rent']['sub_total'] = isset($data[$year]['land_rent']['sub_total']) ? $data[$year]['land_rent']['sub_total'] : 0;
-
-          $data[$year]['raw_total'] += $field_amount;
-          $data[$year]['land_rent']['data'][] = [
-            'amount' => number_format($field_amount, 0, '.', ','),
-            'date' => $payment_date,
-            'field_invoice_number' => $invoice->get('field_invoice_number')->value,
-            'field_receipt_number' => $payment->get('field_receipt_number')->value,
-            'field_voucher_number' => $payment->get('field_receipt_scan')->value,
-            'details' => $field_area_id ?? '',
-          ];
-          $data[$year]['land_rent']['raw_sub_total'] += $field_amount;
-          $data[$year]['land_rent']['sub_total'] = number_format($data[$year]['land_rent']['raw_sub_total'], 0, '.', ',');
-        }
-      }
-      $data[$year]['total'] = number_format($data[$year]['raw_total'], 0, '.', ',');
-    }
-    return $data ?? [];
   }
 
 }

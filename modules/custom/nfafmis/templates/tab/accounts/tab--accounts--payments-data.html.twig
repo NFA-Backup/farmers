@@ -26,164 +26,54 @@
   <li class="account-list-tabs hidden">
     <a href="#">PAYMENTS</a>
   </li>
-  <div class="center-container view-label-data">
-    <div class="row">
-      <div class="col-md-4 views-field">Balances</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">OVERALL</span>
-        <div class="field-content">UGX {{ data.balance.overall }}</div>
-      </div>
-      <div class="col-md-4 views-field">&nbsp;</div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">1. LAND RENT</span>
-        <div class="field-content">UGX {{ data.balance.land_rent }}</div>
-      </div>
-      <div class="col-md-4 views-field">&nbsp;</div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">2. OTHER FEES</span>
-        <div class="field-content">UGX {{ data.balance.other_fee }}</div>
-      </div>
-      <div class="col-md-4 views-field">&nbsp;</div>
-    </div>
-  </div>
-  <div class="block-section">
-    <h5 class="title">Payments</h5>
-  </div>
-  <div class="center-container view-label-data">
-    <div class="row">
-      <div class="col-md-8 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">TOTAL PAYMENTS</span>
-        <div class="field-content">UGX {{ data.payments.total }}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 views-field">
-        <a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?farmer_id={{data.farmer_id}}&destination=/tree-farmer-overview/accounts">Add Payment</a>
-      </div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">1. LAND RENT</span>
-        <div class="field-content">UGX {{ data.payments.land_rent }}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">2. OTHER FEES</span>
-        <div class="field-content">UGX {{ data.payments.other_fee }}</div>
-      </div>
-    </div>
-  </div>
-  {% for key,charges in data.payments_details %}
-  <div class="block-section">
-    <h5 class="title"></h5>
-  </div>
-  <div class="center-container view-label-data">
-    <div class="row">
-      <div class="col-md-8 views-field">
-        <div class="row">
-          <div class="col-md-2 views-field">&nbsp;</div>
-          <div class="col-md-6 views-field">
-            <span class="views-label">Total payment for year ending</span>
-            <div class="field-content text-right">{{ key }}</div>
-          </div>
+  <section class="fees">
+    <div class="center-container view-label-data">
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label heading">Total Land Rent Balance</span>
+          <div class="field-content">UGX {{ data.payments.total }}</div>
         </div>
       </div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">&nbsp;</span>
-        <div class="field-content">UGX {{ charges.total }}</div>
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label">Area Land Rent Payments</span>
+          <div class="field-content">UGX {{ data.payments.land_rent }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label">Area Land Rent Charges</span>
+          <div class="field-content">UGX {{ data.payments.other_fee }}</div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">1. LAND RENT</div>
-    </div>
-    <div class="row">
-      <div class="table-responsive">
-        <table class="table table-hover table-striped">
-          <thead>
-            <tr>
-              <th id="view-field-charge-date-table-column" class="views-field" scope="col">Date</th>
-              <th id="view-field-amount-table-column" class="views-field" scope="col">Invoice No</th>
-              <th id="view-field-amount-table-column" class="views-field" scope="col">Receipt No</th>
-              <th id="view-field-charge-date-table-column" class="views-field" scope="col">Voucher Number</th>
-              <th id="view-field-amount-table-column" class="views-field" scope="col">Description</th>
-              <th id="view-field-charge-date-table-column" class="views-field" scope="col">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {# if empty table #}
-            {% if charges.land_rent.data is empty %}
-            <td class="view-empty" colspan="6">No data found for land rent.</td>
-            {% endif %}
-            {# if empty table #}
-            {% for key,land_rent in charges.land_rent.data %}
-            <tr>
-              <td headers="view-field-charge-date-table-column">{{ land_rent.date }}</td>
-              <td headers="view-field-amount-table-column">{{ land_rent.field_invoice_number }}</td>
-              <td headers="view-field-charge-date-table-column">{{ land_rent.field_receipt_number}}</td>
-              <td headers="view-field-amount-table-column">{{land_rent.field_voucher_number}}</td>
-              <td headers="view-field-charge-date-table-column">{{land_rent.details}}</td>
-              <td headers="view-field-amount-table-column">UGX {{land_rent.amount}}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+  </section>
+  <section class="land-rent">
+    <div class="center-container view-label-data">
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label heading">Total Land Rent Balance</span>
+          <div class="field-content">UGX {{ data.payments.total }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label">Area Land Rent Payments</span>
+          <div class="field-content">UGX {{ data.payments.land_rent }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 views-field">&nbsp;</div>
+        <div class="col-md-4 views-field">
+          <span class="views-label">Area Land Rent Charges</span>
+          <div class="field-content">UGX {{ data.payments.other_fee }}</div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-8 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">TOTAL LAND RENT PAYMENTS</span>
-        <div class="field-content">UGX {{ charges.land_rent.sub_total }}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">2. OTHER FEES</div>
-    </div>
-    <div class="row">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th id="view-field-charge-date-table-column" class="views-field" scope="col">Date</th>
-            <th id="view-field-amount-table-column" class="views-field" scope="col">Invoice No</th>
-            <th id="view-field-amount-table-column" class="views-field" scope="col">Receipt No</th>
-            <th id="view-field-charge-date-table-column" class="views-field" scope="col">Voucher Number</th>
-            <th id="view-field-amount-table-column" class="views-field" scope="col">Description</th>
-            <th id="view-field-charge-date-table-column" class="views-field" scope="col">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {# if empty table #}
-          {% if charges.other_fees.data is empty %}
-          <td class="view-empty" colspan="6">No data found for other fees.</td>
-          {% endif %}
-          {# if empty table #}
-          {% for key,other_fees in charges.other_fees.data %}
-          <tr>
-            <td headers="view-field-charge-date-table-column">{{ other_fees.date }}</td>
-            <td headers="view-field-amount-table-column">{{ other_fees.field_invoice_number }}</td>
-            <td headers="view-field-charge-date-table-column">{{ other_fees.field_receipt_number}}</td>
-            <td headers="view-field-amount-table-column">{{other_fees.field_voucher_number}}</td>
-            <td headers="view-field-charge-date-table-column">{{other_fees.details}}</td>
-            <td headers="view-field-amount-table-column">UGX {{other_fees.amount}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="row">
-      <div class="col-md-8 views-field">&nbsp;</div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">TOTAL FEE PAYMENTS</span>
-        <div class="field-content">UGX {{charges.other_fees.sub_total}}</div>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
+  </section>
 </div>
