@@ -1,0 +1,23 @@
+uuid: aebef4f4-cbea-4272-b4d1-37952266e9a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_serial_number
+    - node.type.offer_license
+  module:
+    - serial
+id: node.offer_license.field_area_serial_number
+field_name: field_area_serial_number
+entity_type: node
+bundle: offer_license
+label: 'Area serial number'
+description: 'This will be generated automatically we content added.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: serial

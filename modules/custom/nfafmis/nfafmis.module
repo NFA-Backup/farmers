@@ -604,8 +604,23 @@ function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state)
  * Implements hook_field_field_area_id_compute().
  */
 function computed_field_field_area_id_compute($entity_type_manager, $entity, $fields, $delta) {
-  $value = 'AREA/' . time();
-  return $value;
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'offer_license')
+    ->sort('created');
+  $area_id = $query->execute();
+  $area_id = end($area_id);
+  if ($area_id) {
+    $area = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
+    $area_serial_number = $area->get('field_area_serial_number')->value;
+    if ($area_serial_number) {
+      $area_serial_number += 1;
+      $value = 'AREA/' . sprintf("%06d", $area_serial_number);
+      return $value;
+    }
+    return 'AREA/' . sprintf("%06d", 1);
+  }
+  // Initial area serial numer like 000001.
+  return 'AREA/' . sprintf("%06d", 1);
 }
 
 /**

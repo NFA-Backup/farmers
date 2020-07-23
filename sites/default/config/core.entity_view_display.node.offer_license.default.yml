@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.offer_license.field_area_id
+    - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
     - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
@@ -21,6 +22,7 @@ dependencies:
     - datetime
     - datetime_range
     - options
+    - serial
     - user
 id: node.offer_license.default
 targetEntityType: node
@@ -36,6 +38,13 @@ content:
       cache_duration: 1
     third_party_settings: {  }
     type: computed_string
+    region: content
+  field_area_serial_number:
+    weight: 15
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: serial_default_formatter
     region: content
   field_block_id:
     weight: 8
