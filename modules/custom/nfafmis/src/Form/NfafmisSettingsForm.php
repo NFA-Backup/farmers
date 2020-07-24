@@ -63,6 +63,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $this->farmerService = $farmer_service;
 
     // Year for which annual charges has to be calculated.
+    $this->prev_year = date("Y") - 1;
     $this->year = date("Y");
   }
 
@@ -108,6 +109,12 @@ class NfafmisSettingsForm extends ConfigFormBase {
       '#description' => $this->t('By clicking the button you can generate annual charges for the year %year.  note annual charges will be calculated for the last year only.', ['%year' => $this->year]),
     ];
     $form['item-charges']['calculate_annual_charges'] = [
+      '#type' => 'submit',
+      '#button_type' => 'primary',
+      '#value' => $this->t('Calculate annual charges for year %year', ['%year' => $this->prev_year]),
+      '#submit' => ['::calculateAnnualChargesHandler'],
+    ];
+    $form['item-charges']['calculate_annual_charges_1'] = [
       '#type' => 'submit',
       '#button_type' => 'primary',
       '#value' => $this->t('Calculate annual charges for year %year', ['%year' => $this->year]),
@@ -169,13 +176,19 @@ class NfafmisSettingsForm extends ConfigFormBase {
   }
 
   /**
-   * Create node of annual charges programmatically for last year.
+   * Create annual charges for all area (offer license) lend by a farmer,
+   * it consists two part.
+   *
+   * - Land rent late fee.
+   * - Annual land rent.
    */
   public function createAnnualCharges($area, $cfr, $area_allocated) {
     $previous_year_land_rent = $this->farmerService->getPreviousYearLandRentDue($area, $this->year);
     if (!empty($previous_year_land_rent) && $previous_year_land_rent['charges_due']) {
       $config = $this->config('nfafmis.settings');
       $late_fees = $config->get('late_fees');
+      // Create land rent late fee, this will only happen if there is annual
+      // land rent unpaid for previous year.
       $node = $this->entityTypeManager->getStorage('node')->create([
         'type' => 'annual_charges',
         'field_annual_charges' => ($previous_year_land_rent['amount'] * $late_fees) / 100,
@@ -185,11 +198,14 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_annual_charges_type' => '2',
       ]);
       $node->save();
-      $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
+      $this->messenger()->addMessage($this->t('Annual charges (late fee) added against area :area for the year :year', [
         ':area' => $area->getTitle(),
         ':year' => $this->year,
       ]));
     }
+    // Create annual land rent, this will only happen if land_rent_rates is
+    // already added against Central Forest Reserve ($cfr) added for the year
+    // ($this->year).
     $annual_charges = $this->farmerService->calculateAnnualCharges($cfr, $area_allocated, $this->year);
     if ($annual_charges) {
       $node = $this->entityTypeManager->getStorage('node')->create([
@@ -200,7 +216,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_annual_charges_type' => '1',
       ]);
       $node->save();
-      $this->messenger()->addMessage($this->t('Annual charges added against area :area for the year :year', [
+      $this->messenger()->addMessage($this->t('Annual charges (land rent) added against area :area for the year :year', [
         ':area' => $area->getTitle(),
         ':year' => $this->year,
       ]));

@@ -371,12 +371,12 @@ class FarmerServices {
    * @param string $cfr
    *   The central forest reseve ID.
    * @param string $overall_area_allocated
-   *   The overall area alocated for the area.
+   *   The overall unit alocated for the area.
    * @param string $for_year
    *   Annual charges for the year.
    *
    * @return array
-   *   The rent sub total.
+   *   The annual land rent.
    */
   public function calculateAnnualCharges($cfr, $overall_area_allocated, $for_year) {
     // field_central_forest_reserve taxonomy term id.

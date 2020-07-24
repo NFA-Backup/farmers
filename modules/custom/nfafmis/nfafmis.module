@@ -88,7 +88,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
 
       $sub_areas = $nfafmis_service_farmer->getSubAreasIds($area_id);
-      // Provide area-id as agrumet to get sub-area ids.
+      // Provide area-id as argument to get sub-area ids.
       if ($sub_areas) {
         $form['field_charges_sub_area']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['offer_licence_id'];
       }
@@ -101,7 +101,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
     if (!empty($query_params) && isset($query_params['farmer_id'])) {
       // Provide farmer id as arguments to the reference views to filter result.
-      // This only works when widget is selected as autocompleted.
+      // This only works when widget is selected as autocomplete.
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
     }
 
@@ -112,7 +112,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
     $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
-    // This only works when widget is selected as autocompleted.
+    // This only works when widget is selected as autocomplete.
     if ($offer_license_id) {
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
     }
@@ -141,11 +141,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $form_object = $form_state->getFormObject();
       $entity = $form_object->getEntity();
 
-      // Set default value for invoice number dynamic if not already set.
+      // Set default value for invoice number dynamically.
       if ($entity->isNew()) {
         $form['field_amount']['#access'] = FALSE;
-
-        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = generate_inoice_number();
+        $form['field_invoice_number']['widget'][0]['value']['#default_value'] = 'Auto generated';
       }
 
       // Hide field_areas_id field based on field_invoice_details.
@@ -157,10 +156,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         ],
       ];
       // Provide farmer id as arguments to the reference views to filter result.
-      // This only works when widget is selected as autocompleted.
+      // This only works when widget is selected as autocomplete.
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $query_params['farmer_id'];
 
-      // Create farmer infomation container to show on invoice add page.
+      // Create farmer information container to show on invoice add page.
       $form['farmer_information'] = [
         '#type' => "container",
         '#theme' => 'section__farmer_infomation',
@@ -175,7 +174,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         ],
       ];
 
-      // Add ajax feature of area select autocomplet on add invoice page.
+      // Add ajax feature of area select autocomplete on add invoice page.
       $form['field_areas_id']['widget'][0]['target_id']['#attributes'] = ['placeholder' => t('AREA/123456')];
       $form['field_areas_id']['widget'][0]['target_id']['#ajax'] = [
         'callback' => 'get_area_details_ajax_callback',
@@ -207,7 +206,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $form['#fieldgroups']['group_invoice_details']->children[] = 'farmer_area_infomation';
     }
     else {
-      // Set error message if farmer id not availble in the param.
+      // Set error message if farmer id not available in the param.
     }
   }
 
@@ -236,10 +235,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $entity = $form_object->getEntity();
 
       // Provide farmer id as arguments to the reference views to filter result.
-      // This only works when widget is selected as autocompleted.
+      // This only works when widget is selected as auto-complete.
       $form['field_invoice']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $farmer_id;
 
-      // Create farmer infomation container to show on payment add page.
+      // Create farmer information container to show on payment add page.
       $form['farmer_information'] = [
         '#type' => "container",
         '#theme' => 'section__farmer_infomation',
@@ -254,7 +253,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         ],
       ];
 
-      // Add ajax feature of area select autocomplet on add payment page.
+      // Add Ajax feature of area select autocomplet on add payment page.
       $form['field_invoice']['widget'][0]['target_id']['#attributes'] = ['placeholder' => t('I687889324')];
       $form['field_invoice']['widget'][0]['target_id']['#ajax'] = [
         'callback' => 'get_area_details_for_payment_ajax_callback',
@@ -296,27 +295,23 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
  * Implements hook_node_presave().
  */
 function nfafmis_node_presave(Node $node) {
-  // Update field amount value as per area charges for that invoice.
-  // @TODO: remove below code once implementaiton done.
-  if ($node->bundle() == 'invoice') {
-    // Make sure field_invoice_number is up to date.
-    $field_invoice_number = $node->get('field_invoice_number')->value;
-    $latest_invoice_number = generate_inoice_number();
-    if ($field_invoice_number !== $latest_invoice_number) {
-      $node->field_invoice_number->value = $latest_invoice_number;
-    }
-    $field_areas_id = $node->get('field_areas_id')->target_id;
-    // Get field invoice for 1=Fee, 2=Land rent.
-    $field_invoice_for = $node->get('field_invoice_details')->value;
-    if ($field_areas_id) {
-      // Create nfafmis service object.
-      $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
-      $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, $field_invoice_for, TRUE);
-      // $node->field_amount->value = $area_data['total'];.
-    }
+  // Generate area number like: AREA/XXXXXXX.
+  if ($node->isNew() && $node->bundle() == 'offer_license') {
+    $area_serial_number = $node->get('field_area_serial_number')->value;
+    $node->field_area_id->value = 'AREA/' . sprintf("%06d", $area_serial_number);
+  }
+  // Generate field invoice number like: 01032020-0001.
+  if ($node->isNew() && $node->bundle() == 'invoice') {
+    $default_timezone = new \DateTimeZone(date_default_timezone_get());
+    $date = new \DateTime('now', $default_timezone);
+    $invoice_serial = $node->get('field_invoice_serial')->value;
+    $field_invoice_serial = $date->format('dmY') . '-' . sprintf("%04d", $invoice_serial);
+    $node->field_invoice_number->value = $field_invoice_serial;
+    $node->title->value = 'Payment Advice -' . $field_invoice_serial;
   }
 
-  // Automatically generate invoice against each charges & starting_amount.
+  // Automatically generate invoice automatically for each charges,
+  // starting_amount & annual_charges.
   $allowed_bundle = ['charge', 'starting_amount', 'annual_charges'];
   $field_invoice_details = [
     'charge' => '1',
@@ -335,15 +330,12 @@ function nfafmis_node_presave(Node $node) {
     $farmer_id = $area->get('field_farmer_name_ref')->target_id;
     $default_timezone = new \DateTimeZone(date_default_timezone_get());
     $date = new \DateTime('now', $default_timezone);
-    $field_invoice_number = generate_inoice_number();
     // Create Invoice(Payment Advice) for every $allowed_bundle automatically.
     $node_invoice = \Drupal::entityTypeManager()->getStorage('node')->create([
       'type' => 'invoice',
-      'title' => 'Payment Advice -' . $field_invoice_number,
       'field_amount' => $field_amount,
       'field_areas_id' => ['target_id' => $area->id()],
       'field_invoice_date' => $date->format('Y-m-d'),
-      'field_invoice_number' => $field_invoice_number,
       'field_invoice_details' => $field_invoice_details[$node->bundle()],
       'field_farmer_name_ref' => ['target_id' => $farmer_id],
     ]);
@@ -354,15 +346,12 @@ function nfafmis_node_presave(Node $node) {
 }
 
 /**
- * Get area details for payment using ajax.
+ * Get area details for payment using ajax. @TODO: remove below code.
  */
 function get_area_details_for_payment_ajax_callback(&$form, &$form_state) {
-  // Instantiate an AjaxResponse Object to return.
   $ajax_response = new AjaxResponse();
   $field_invoice = $form_state->getValue('field_invoice')[0]['target_id'];
-
   if ($field_invoice) {
-    // Create nfafmis service object.
     $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
     $area_data = $nfafmis_service_farmer->getInvoiceDetails($field_invoice);
     $element = [
@@ -373,28 +362,21 @@ function get_area_details_for_payment_ajax_callback(&$form, &$form_state) {
     ];
     $rendered_data = \Drupal::service('renderer')->render($element);
   }
-
   else {
     $rendered_data = [];
   }
   $ajax_response->addCommand(new HtmlCommand('#farmer-area-details', $rendered_data));
-
-  // Return the AjaxResponse Object.
   return $ajax_response;
 }
 
 /**
- * Get area details using ajax call.
+ * Get area details using Ajax call.
  */
 function get_area_details_ajax_callback(&$form, &$form_state) {
-  // Instantiate an AjaxResponse Object to return.
   $ajax_response = new AjaxResponse();
-  // Get area id.
   $field_areas_id = $form_state->getValue('field_areas_id')[0]['target_id'];
-  // Get field invoice for 1=Fee, 2=Land rent.
   $field_invoice_for = $form_state->getValue('field_invoice_details')[0]['value'];
   if ($field_areas_id && $field_invoice_for) {
-    // Create nfafmis service object.
     $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
     $area_data = $nfafmis_service_farmer->getOtherCharges($field_areas_id, $field_invoice_for);
     $element = [
@@ -405,13 +387,10 @@ function get_area_details_ajax_callback(&$form, &$form_state) {
     ];
     $rendered_data = \Drupal::service('renderer')->render($element);
   }
-
   else {
     $rendered_data = [];
   }
   $ajax_response->addCommand(new HtmlCommand('#farmer-area-details', $rendered_data));
-
-  // Return the AjaxResponse Object.
   return $ajax_response;
 }
 
@@ -436,7 +415,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $field_overall_area_allocated = $row->_entity->get('field_overall_area_allocated')->value;
     $area_panted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
-    // Override the view rewult.
+    // Override the view result.
     if ($field->field == 'field_offer_id') {
       $variables['output'] = $area_panted_values . 'ha';
     }
@@ -476,7 +455,7 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
   // Set Offer license IDs as view arguments.
   if ($view->id() == 'sub_areas_planting_status' &&
     ($display_id == 'block_4' || $display_id == 'block_6' || $display_id == 'block_8')) {
-    // We have pass farmer Id intentionaly to get offer license ID from that.
+    // We have pass farmer Id intentionally to get offer license ID from that.
     if (!empty($args)) {
       $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       if ($offer_license_ids) {
@@ -484,10 +463,10 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       }
     }
   }
-  // Set argument for Inventroy.
+  // Set argument for Inventory.
   if ($view->id() == 'sub_areas_planting_status' &&
    ($display_id == 'block_2' || $display_id == 'block_3')) {
-    // We have pass farmer Id intentionaly to get offer license ID from that.
+    // We have pass farmer Id intentionally to get offer license ID from that.
     if (!empty($args)) {
       $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       // Now get all sub-area ids based on area(offer license).
@@ -499,15 +478,6 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
         }
       }
     }
-  }
-  // Set default value for filter.
-  if ($view->id() == 'admin_land_rent_rates' && $display_id == 'page') {
-    // If (empty($view->getExposedInput()) ||
-    //   $view->getExposedInput()['field_rate_year_value'] == '') {
-    //   $date = date('Y') - 1;
-    //   $exposed_filters = ['field_rate_year_value' => $date];
-    //   $view->setExposedInput($exposed_filters);
-    // }
   }
 }
 
@@ -556,7 +526,7 @@ function nfafmis_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Submit handler for commnet form.
+ * Submit handler for comment form.
  */
 function nfafmis_comment_comment_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview');
@@ -580,7 +550,6 @@ function nfafmis_node_offer_license_form_validate($form, FormStateInterface &$fo
  * Submit handler for node_offer_license form.
  */
 function nfafmis_node_offer_license_form_submit($form, FormStateInterface &$form_state) {
-  // Create nfafmis service object.
   $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
   $url = Url::fromUri('internal:/tree-farmer-overview/licences');
   $response_data = $nfafmis_service_utility->getReffererAndQueryParams();
@@ -598,29 +567,6 @@ function nfafmis_node_offer_license_form_submit($form, FormStateInterface &$form
 function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
   $form_state->setRedirectUrl($url);
-}
-
-/**
- * Implements hook_field_field_area_id_compute().
- */
-function computed_field_field_area_id_compute($entity_type_manager, $entity, $fields, $delta) {
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', 'offer_license')
-    ->sort('created');
-  $area_id = $query->execute();
-  $area_id = end($area_id);
-  if ($area_id) {
-    $area = \Drupal::entityTypeManager()->getStorage('node')->load($area_id);
-    $area_serial_number = $area->get('field_area_serial_number')->value;
-    if ($area_serial_number) {
-      $area_serial_number += 1;
-      $value = 'AREA/' . sprintf("%06d", $area_serial_number);
-      return $value;
-    }
-    return 'AREA/' . sprintf("%06d", 1);
-  }
-  // Initial area serial numer like 000001.
-  return 'AREA/' . sprintf("%06d", 1);
 }
 
 /**
@@ -642,12 +588,10 @@ function nfafmis_token_info_alter(&$info) {
     if ($entity_key !== 'node') {
       continue;
     }
-
     foreach ($entity as $field_key => $field) {
       if ($field['type'] !== 'yearonly') {
         continue;
       }
-
       $token_key = sprintf('node-%s', $field_key);
       $info['tokens'][$token_key]['value'] = [
         'name' => t('Year Only'),
@@ -655,29 +599,4 @@ function nfafmis_token_info_alter(&$info) {
       ];
     }
   }
-}
-
-/**
- * Generate invoice number dynamically.
- */
-function generate_inoice_number() {
-  $default_timezone = new \DateTimeZone(date_default_timezone_get());
-  $date = new \DateTime('now', $default_timezone);
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', 'invoice')
-    ->sort('created');
-  $invoice_id = $query->execute();
-  $invoice_id = end($invoice_id);
-  if ($invoice_id) {
-    $invoice = \Drupal::entityTypeManager()->getStorage('node')->load($invoice_id);
-    $invoice_serial = $invoice->get('field_invoice_serial')->value;
-    if ($invoice_serial) {
-      $invoice_serial += 1;
-      $field_invoice_number = $date->format('dmY') . '-' . sprintf("%04d", $invoice_serial);
-      return $field_invoice_number;
-    }
-    return $date->format('dmY') . '-' . sprintf("%04d", 1);
-  }
-  // Initial invoice_number like 0001.
-  return $date->format('dmY') . '-' . sprintf("%04d", 1);
 }
