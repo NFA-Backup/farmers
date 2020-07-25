@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Accounts Detail'
+name: 'Accounts detail'
 type: accounts_detail
-description: ''
+description: 'Use to create <em>Accounts Detail</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

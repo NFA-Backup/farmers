@@ -1,5 +1,5 @@
 status: 1
-pattern: 'Payment Advice - [node:field_invoice_number]'
+pattern: 'Payment advice - [node:field_invoice_number]'
 escape: false
 dependencies:
   config:

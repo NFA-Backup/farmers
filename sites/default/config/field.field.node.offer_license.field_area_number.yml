@@ -1,0 +1,19 @@
+uuid: eaeb183b-2a56-4b80-a8e6-7ea9d0853b53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_number
+    - node.type.offer_license
+id: node.offer_license.field_area_number
+field_name: field_area_number
+entity_type: node
+bundle: offer_license
+label: 'Area number'
+description: 'Area number (for tracking charge rates etc), this will be generated automatically and the value will be "AREA/XXXXXX".'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_area_id
+    - field.storage.node.field_area_number
     - field.storage.node.field_block_id
     - field.storage.node.field_central_forest_reserve
     - field.storage.node.field_comments
@@ -15,7 +15,6 @@ dependencies:
     - field.storage.node.field_purpose
     - node.type.offer_license
   module:
-    - computed_field
     - datetime
     - datetime_range
     - node
@@ -373,10 +372,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -413,7 +412,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -422,11 +421,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -974,7 +971,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
         - 'config:field.storage.node.field_block_id'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
@@ -1174,10 +1171,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -1214,7 +1211,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1223,11 +1220,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1770,7 +1765,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
         - 'config:field.storage.node.field_block_id'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
@@ -1918,10 +1913,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -1958,7 +1953,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1967,11 +1962,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2439,7 +2432,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
         - 'config:field.storage.node.field_block_id'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_license_date'

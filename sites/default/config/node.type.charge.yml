@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: Charge
 type: charge
-description: 'Charges for Farmer against area/sub-area.'
+description: 'Use to create <em>Charges</em> for area.'
 help: ''
 new_revision: false
 preview_mode: 0

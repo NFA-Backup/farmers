@@ -1,5 +1,5 @@
 status: 1
-pattern: '[node:field_area_id]'
+pattern: '[node:field_area_number]'
 php: 0
 escape: false
 dependencies:

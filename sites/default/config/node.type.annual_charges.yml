@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Annual charges'
 type: annual_charges
-description: 'Annual charges used for adding Land rent or Land rent late fee that are created automatically on schedule date set by the administrator.'
+description: 'Use to create <em>Annual charges</em> for Land rent or Land rent late fee that are created automatically on schedule date set by the administrator.'
 help: ''
 new_revision: false
 preview_mode: 0

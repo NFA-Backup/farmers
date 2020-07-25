@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Farmer Details'
+name: 'Farmer details'
 type: farmer_details
-description: 'Section for creating Farmer Details.'
+description: 'Use to create  <em>Farmer details</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

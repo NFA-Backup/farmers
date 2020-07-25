@@ -3,12 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_area_id
+    - field.storage.node.field_area_number
     - field.storage.node.field_offer_id
     - node.type.offer_license
   module:
-    - computed_field
+    - entity_reference_revisions
     - node
+    - serial
     - user
 id: offer_id_reference
 label: 'Offer ID Reference'
@@ -82,10 +83,10 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
-        field_offer_id:
-          id: field_offer_id
-          table: node__field_offer_id
-          field: field_offer_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -131,12 +132,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_integer
+          type: string
           settings:
-            cache_unit: '-1'
-            cache_duration: '1'
-            thousand_separator: ''
-            prefix_suffix: 0
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -240,7 +238,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_offer_id'
+        - 'config:field.storage.node.field_area_number'
   entity_reference_1:
     display_plugin: entity_reference
     id: entity_reference_1
@@ -252,8 +250,8 @@ display:
         type: entity_reference
         options:
           search_fields:
-            title: title
             field_offer_id: field_offer_id
+            title: '0'
       row:
         type: entity_reference
         options:
@@ -343,7 +341,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ field_offer_id }} - ({{ title }})'
+            text: '{{  field_offer_id }} - {{ title }}'
             make_link: false
             path: ''
             absolute: false
@@ -381,12 +379,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_integer
-          settings:
-            cache_unit: '-1'
-            cache_duration: '1'
-            thousand_separator: ''
-            prefix_suffix: 0
+          type: serial_default_formatter
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -443,7 +437,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -500,71 +494,6 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_area_id }} - ({{ title }})'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: computed_string
-          settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
       defaults:
         fields: false
         sorts: false
@@ -573,7 +502,6 @@ display:
         options:
           search_fields:
             title: title
-            field_area_id: '0'
       sorts:
         title:
           id: title
@@ -594,6 +522,14 @@ display:
         options:
           items_per_page: 10
           offset: 0
+      row:
+        type: entity_reference_revisions
+        options:
+          default_field_elements: true
+          inline:
+            title: title
+          separator: '-'
+          hide_empty: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -602,5 +538,4 @@ display:
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_area_id'
+      tags: {  }

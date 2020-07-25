@@ -31,22 +31,22 @@
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
-          <span class="views-label heading">Total Land Rent Balance</span>
+          <span class="views-label heading">Area Fee Balance</span>
           <div class="field-content">UGX {{ data.payments.total }}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
-          <span class="views-label">Area Land Rent Payments</span>
-          <div class="field-content">UGX {{ data.payments.land_rent }}</div>
+          <span class="views-label">Area Fee Payments</span>
+          <div class="field-content payment">UGX {{ data.payments.land_rent }}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
-          <span class="views-label">Area Land Rent Charges</span>
-          <div class="field-content">UGX {{ data.payments.other_fee }}</div>
+          <span class="views-label">Area Fee Charges</span>
+          <div class="field-content balance">UGX {{ data.payments.other_fee }}</div>
         </div>
       </div>
     </div>
@@ -64,14 +64,24 @@
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Land Rent Payments</span>
-          <div class="field-content">UGX {{ data.payments.land_rent }}</div>
+          <div class="field-content payment">UGX {{ data.payments.land_rent }}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Land Rent Charges</span>
-          <div class="field-content">UGX {{ data.payments.other_fee }}</div>
+          <div class="field-content balance">UGX {{ data.payments.other_fee }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 views-field">Total balance brought forward: <br />(for all areas)</div>
+        <div class="col-md-4 views-field">
+          {% if data.starting_amount.land_rent %}
+          <div class="field-content">UGX {{ data.starting_amount.land_rent.amount }}</div>
+          {% else %}
+          <div class="field-content">UGX 0</div>
+          {% endif %}
         </div>
       </div>
     </div>

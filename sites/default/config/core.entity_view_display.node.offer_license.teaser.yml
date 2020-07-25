@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.offer_license.field_area_id
+    - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
     - field.field.node.offer_license.field_central_forest_reserve
@@ -31,7 +31,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_area_id: true
+  field_area_number: true
   field_area_serial_number: true
   field_block_id: true
   field_central_forest_reserve: true

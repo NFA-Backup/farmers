@@ -3,8 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_area_id
+    - field.storage.node.field_area_number
     - field.storage.node.field_area_planted
+    - field.storage.node.field_area_serial_number
     - field.storage.node.field_areas_id
     - field.storage.node.field_crop_maintenance_index
     - field.storage.node.field_crop_status_index
@@ -13,7 +14,6 @@ dependencies:
     - field.storage.node.field_date_of_inventory
     - field.storage.node.field_date_planted
     - field.storage.node.field_number_of_units
-    - field.storage.node.field_offer_id
     - field.storage.node.field_offtake_type
     - field.storage.node.field_product_type
     - field.storage.node.field_purpose
@@ -28,9 +28,9 @@ dependencies:
     - node.type.sub_area
     - node.type.thinning_harvest_details
   module:
-    - computed_field
     - datetime
     - node
+    - serial
     - user
 id: sub_areas_planting_status
 label: 'Sub-areas planting status'
@@ -659,10 +659,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -670,7 +670,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_id }}"></span>'
+            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_number }}"></span>'
             make_link: false
             path: ''
             absolute: false
@@ -708,11 +708,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -724,13 +722,13 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_offer_id:
-          id: field_offer_id
-          table: node__field_offer_id
-          field: field_offer_id
+        field_area_serial_number:
+          id: field_area_serial_number
+          table: node__field_area_serial_number
+          field: field_area_serial_number
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: 'Total area planted'
           label: 'Total area planted'
           exclude: false
           alter:
@@ -773,12 +771,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_integer
-          settings:
-            cache_unit: '-1'
-            cache_duration: '1'
-            thousand_separator: ''
-            prefix_suffix: 1
+          type: serial_default_formatter
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -796,7 +790,7 @@ display:
           field: title
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: 'Total area unplanted'
           label: 'Total area unplanted'
           exclude: false
           alter:
@@ -863,7 +857,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"center-container\">\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Planting status</h5>\r\n<div class=\"area-filter-sub-area-tab\"></div>\r\n</div>\r\n"
           plugin_id: text_custom
@@ -882,7 +876,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: true
           content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
           plugin_id: text_custom
@@ -899,8 +893,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
-        - 'config:field.storage.node.field_offer_id'
+        - 'config:field.storage.node.field_area_number'
+        - 'config:field.storage.node.field_area_serial_number'
   block_2:
     display_plugin: block
     id: block_2
@@ -2964,10 +2958,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -2975,7 +2969,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_id }}"></span>'
+            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_number }}"></span>'
             make_link: false
             path: ''
             absolute: false
@@ -3013,11 +3007,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3037,7 +3029,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"center-container\">\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Planting status</h5>\r\n<div class=\"area-filter-inventory-tab\"></div>\r\n<div class=\"area-filter-sub-area-inventory-tab\"></div>\r\n</div>\r\n"
           plugin_id: text_custom
@@ -3062,7 +3054,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
   block_6:
     display_plugin: block
     id: block_6
@@ -3298,7 +3290,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Inventories</h5>\r\n</div>"
           plugin_id: text_custom
@@ -3515,10 +3507,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -3526,7 +3518,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_id }}"></span>'
+            text: '<span class="sub-areas-{{ nid }}" id="{{ field_area_number }}"></span>'
             make_link: false
             path: ''
             absolute: false
@@ -3564,11 +3556,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3588,7 +3578,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"center-container\">\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Planting status</h5>\r\n<div class=\"area-filter-harvest-tab\"></div>\r\n<div class=\"area-filter-sub-area-harvest-tab\"></div>\r\n</div>\r\n"
           plugin_id: text_custom
@@ -3613,7 +3603,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
   block_8:
     display_plugin: block
     id: block_8
@@ -3849,7 +3839,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Thinning/Harvest</h5>\r\n</div>"
           plugin_id: text_custom

@@ -113,7 +113,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
     // This only works when widget is selected as autocomplete.
-    if ($offer_license_id) {
+    if (isset($offer_license_id)) {
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
     }
 
@@ -298,7 +298,7 @@ function nfafmis_node_presave(Node $node) {
   // Generate area number like: AREA/XXXXXXX.
   if ($node->isNew() && $node->bundle() == 'offer_license') {
     $area_serial_number = $node->get('field_area_serial_number')->value;
-    $node->field_area_id->value = 'AREA/' . sprintf("%06d", $area_serial_number);
+    $node->field_area_number->value = 'AREA/' . sprintf("%06d", $area_serial_number);
   }
   // Generate field invoice number like: 01032020-0001.
   if ($node->isNew() && $node->bundle() == 'invoice') {
@@ -415,8 +415,8 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $field_overall_area_allocated = $row->_entity->get('field_overall_area_allocated')->value;
     $area_panted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
-    // Override the view result.
-    if ($field->field == 'field_offer_id') {
+    // Override the views field result output to show custom value.
+    if ($field->field == 'field_area_serial_number') {
       $variables['output'] = $area_panted_values . 'ha';
     }
     if ($field->field == 'title') {

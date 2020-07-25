@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Thinning & harvest details'
 type: thinning_harvest_details
-description: 'Thinning & harvest details.'
+description: 'Use to create <em>thinning & harvest details</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

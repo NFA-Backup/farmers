@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: Inventory
 type: inventory
-description: 'Inventory content type.'
+description: 'Use to create <em>Inventory</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

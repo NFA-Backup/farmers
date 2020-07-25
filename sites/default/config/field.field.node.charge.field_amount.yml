@@ -13,12 +13,10 @@ label: Amount
 description: ''
 required: true
 translatable: false
-default_value:
-  -
-    value: !!float 0
+default_value: {  }
 default_value_callback: ''
 settings:
-  min: !!float 0
+  min: !!float 1
   max: null
   prefix: UGX
   suffix: ''

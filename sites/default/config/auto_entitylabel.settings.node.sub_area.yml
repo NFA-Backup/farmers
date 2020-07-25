@@ -1,7 +1,7 @@
-status: '1'
-pattern: 'Sub-area - [random:number]'
+status: 1
+pattern: 'Sub-area - [node:nid]'
 php: 0
-escape: 0
+escape: false
 dependencies:
   config:
     - node.type.sub_area

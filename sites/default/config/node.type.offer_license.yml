@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Offer & License'
+name: 'Offer & license'
 type: offer_license
-description: 'Use Offer & License for creating area'
+description: 'Use to create <em>Offer & license</em> also known as area.'
 help: ''
 new_revision: false
 preview_mode: 0

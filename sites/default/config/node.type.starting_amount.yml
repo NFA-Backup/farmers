@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Starting Amount'
+name: 'Starting amount'
 type: starting_amount
-description: 'This content type will be used for adding starting amount for Areas.'
+description: 'Use to create <em>Starting amount</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: Sub-area
 type: sub_area
-description: Sub-area
+description: 'Use this to create <em>Sub-area</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

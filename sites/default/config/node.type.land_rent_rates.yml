@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Land Rent Rates'
+name: 'Land rent rates'
 type: land_rent_rates
-description: 'Define land rates for each Central Forest Reserve(CFR).'
+description: 'Use to create <em>Land rent rates</em> for Central Forest Reserve (CFR).'
 help: ''
 new_revision: false
 preview_mode: 0

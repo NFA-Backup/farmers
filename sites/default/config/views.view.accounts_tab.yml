@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_amount
-    - field.storage.node.field_area_id
+    - field.storage.node.field_area_number
     - field.storage.node.field_central_forest_reserve
     - field.storage.node.field_invoice_date
     - field.storage.node.field_invoice_number
@@ -19,7 +19,6 @@ dependencies:
     - node.type.payment
   module:
     - better_exposed_filters
-    - computed_field
     - datetime
     - datetime_range
     - node
@@ -98,10 +97,10 @@ display:
           separator: ''
           hide_empty: false
       fields:
-        field_area_id_1:
-          id: field_area_id_1
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -109,7 +108,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="#" id="{{ field_area_id_1 }}">{{ field_area_id_1 }}</a>'
+            text: '<a href="#" id="{{ field_area_number }}">{{ field_area_number }}</a>'
             make_link: false
             path: ''
             absolute: false
@@ -147,11 +146,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -292,10 +289,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number_1:
+          id: field_area_number_1
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -341,11 +338,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -811,7 +806,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_licence_id_ref'
         - 'config:field.storage.node.field_license_date'
@@ -826,10 +821,10 @@ display:
       display_extenders: {  }
       display_description: ''
       fields:
-        field_area_id_1:
-          id: field_area_id_1
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number_1:
+          id: field_area_number_1
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -837,7 +832,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<li class=\"account-list-tabs hidden\">\r\n<a href=\"#\">{{ field_area_id_1 }}</a>\r\n</li>"
+            text: "<li class=\"account-list-tabs hidden\">\r\n<a href=\"#\">{{ field_area_number_1 }}</a>\r\n</li>"
             make_link: false
             path: ''
             absolute: false
@@ -863,11 +858,11 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: account-list-hidden-tabs
+          element_class: ''
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: '0'
+          element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
           empty: ''
@@ -875,11 +870,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1020,10 +1013,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_id:
-          id: field_area_id
-          table: node__field_area_id
-          field: field_area_id
+        field_area_number:
+          id: field_area_number
+          table: node__field_area_number
+          field: field_area_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -1060,7 +1053,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1069,11 +1062,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: computed_string
+          type: string
           settings:
-            sanitized: 1
-            cache_unit: '-1'
-            cache_duration: '1'
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1599,7 +1590,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_id'
+        - 'config:field.storage.node.field_area_number'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_license_id'

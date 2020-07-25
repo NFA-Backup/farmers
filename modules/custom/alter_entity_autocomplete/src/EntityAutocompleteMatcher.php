@@ -39,7 +39,7 @@ class EntityAutocompleteMatcher extends \Drupal\Core\Entity\EntityAutocompleteMa
            $entity->type->entity->label() : $entity->bundle();
 
           if ($entity->bundle() == 'offer_license') {
-            $label = $entity->get('field_area_id')->value;
+            $label = $entity->get('field_area_number')->value;
           }
 
          // Update key and lable as per field.

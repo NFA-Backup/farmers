@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.offer_license.field_area_id
+    - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
     - field.field.node.offer_license.field_central_forest_reserve
@@ -18,7 +18,6 @@ dependencies:
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
   module:
-    - computed_field
     - datetime
     - datetime_range
     - serial
@@ -27,32 +26,26 @@ targetEntityType: node
 bundle: offer_license
 mode: default
 content:
-  field_area_id:
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
-    type: computed_string_widget
-    region: content
   field_area_serial_number:
-    weight: 26
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: serial_default_widget
     region: content
   field_block_id:
-    weight: 10
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_central_forest_reserve:
-    weight: 7
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_comments:
-    weight: 12
+    weight: 10
     settings:
       rows: 5
       placeholder: ''
@@ -96,14 +89,8 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_offer_id:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    type: computed_number_widget
-    region: content
   field_overall_area_allocated:
-    weight: 8
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -111,7 +98,7 @@ content:
     type: string_textfield
     region: content
   field_purpose:
-    weight: 11
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -126,6 +113,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_area_number: true
+  field_offer_id: true
   path: true
   promote: true
   status: true

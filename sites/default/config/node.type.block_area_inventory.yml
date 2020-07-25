@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Block / Area inventory'
 type: block_area_inventory
-description: 'Block / Area inventory'
+description: 'Use to create <em>Block / Area inventory</em>'
 help: ''
 new_revision: false
 preview_mode: 0

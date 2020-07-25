@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Area Planting history'
+name: 'Area planting history'
 type: area_planting_history
-description: 'Section related to Area Planting history.'
+description: 'Use to create <em>Area planting history<em>.'
 help: ''
 new_revision: false
 preview_mode: 0

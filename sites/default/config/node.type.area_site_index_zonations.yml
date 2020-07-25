@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Area site index / zonations'
 type: area_site_index_zonations
-description: 'Area site index / zonations'
+description: 'Use to create <em>Area site index / zonations</em>'
 help: ''
 new_revision: false
 preview_mode: 0

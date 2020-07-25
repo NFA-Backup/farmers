@@ -303,7 +303,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: true
           content: '{{ edit_node }}'
           plugin_id: text_custom
@@ -693,17 +693,19 @@ display:
           plugin_id: custom
       exposed_block: true
       header:
-        area_text_custom:
-          id: area_text_custom
+        area:
+          id: area
           table: views
-          field: area_text_custom
+          field: area
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: true
-          content: '{{ view_node }}'
-          plugin_id: text_custom
+          content:
+            value: '{{ view_node }}'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -2710,8 +2712,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: true
+          empty: false
+          tokenize: false
           content: "<div class=\"block-section\" id=\"account-sub-tabs\">\r\n<h5 class=\"title\">Land Allocations</h5>\r\n</div>"
           plugin_id: text_custom
       css_class: account-tab-view
@@ -3097,7 +3099,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
           content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Land Allocations</h5>\r\n</div>"
           plugin_id: text_custom

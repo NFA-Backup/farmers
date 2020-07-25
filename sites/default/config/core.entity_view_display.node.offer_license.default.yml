@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.offer_license.field_area_id
+    - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
     - field.field.node.offer_license.field_central_forest_reserve
@@ -18,7 +18,6 @@ dependencies:
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
   module:
-    - computed_field
     - datetime
     - datetime_range
     - options
@@ -29,15 +28,13 @@ targetEntityType: node
 bundle: offer_license
 mode: default
 content:
-  field_area_id:
-    weight: 10
+  field_area_number:
+    weight: 16
     label: above
     settings:
-      sanitized: true
-      cache_unit: -1
-      cache_duration: 1
+      link_to_entity: false
     third_party_settings: {  }
-    type: computed_string
+    type: string
     region: content
   field_area_serial_number:
     weight: 15
@@ -114,15 +111,11 @@ content:
     type: datetime_default
     region: content
   field_offer_id:
-    weight: 9
+    weight: 17
     label: above
-    settings:
-      cache_unit: -1
-      cache_duration: 1
-      thousand_separator: ''
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: computed_integer
+    type: serial_default_formatter
     region: content
   field_overall_area_allocated:
     weight: 5

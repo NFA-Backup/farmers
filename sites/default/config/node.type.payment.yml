@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: Payment
 type: payment
-description: 'Will be use to create payment against invoice for particular area(offer license).'
+description: 'Use to create <em>Payment</em> against invoice for particular <em>area (offer license)</em>.'
 help: ''
 new_revision: false
 preview_mode: 0

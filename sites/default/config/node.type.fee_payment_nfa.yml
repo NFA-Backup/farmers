@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Fee payment - NFA'
 type: fee_payment_nfa
-description: 'Fee payment - NFA counter receipt '
+description: 'Use to create <em>Fee payment</em> - NFA counter receipt.'
 help: ''
 new_revision: false
 preview_mode: 0

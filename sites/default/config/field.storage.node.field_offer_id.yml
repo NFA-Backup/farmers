@@ -1,18 +1,18 @@
-uuid: d94356a9-8536-41a3-969f-249c77b12ff1
+uuid: d444a6b3-9fae-4a93-8cac-1c4c9eb16d8f
 langcode: en
 status: true
 dependencies:
   module:
-    - computed_field
     - node
+    - serial
 id: node.field_offer_id
 field_name: field_offer_id
 entity_type: node
-type: computed_integer
+type: serial
 settings:
-  unsigned: false
-  size: normal
-module: computed_field
+  start_value: 1
+  init_existing_entities: 0
+module: serial
 locked: false
 cardinality: 1
 translatable: true
