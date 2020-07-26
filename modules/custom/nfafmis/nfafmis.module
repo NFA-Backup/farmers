@@ -279,7 +279,6 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   // Prepare starting amount add edit form.
   if ($form_id == 'node_starting_amount_form' || $form_id == 'node_starting_amount_edit_form') {
     $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
-    $form['field_starting_amount_type']['#disabled'] = TRUE;
 
     // Set default farmer when adding offer license content.
     $query_params = $nfafmis_service_utility->getQueryParams();
@@ -429,7 +428,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $farmer_id = $view->args[0];
     $offer_licence_id = $row->nid;
     if ($field->field == 'field_purpose') {
-      $variables['output'] = $nfafmis_service_farmer->getLandRentAndFeesData($farmer_id, $offer_licence_id);;
+      $variables['output'] = $nfafmis_service_farmer->getAreaLandRentAndFeesData($farmer_id, $offer_licence_id);;
     }
   }
   // Preprocess views view field_physical_address to show SUMARY-CHARGES Tab.
@@ -486,11 +485,11 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
  */
 function nfafmis_theme($existing, $type, $theme, $path) {
   return [
-    'tab__accounts__land_rent_fees_data' => [
+    'tab__accounts__area__land_rent_fees_data' => [
       'variables' => [
         'data' => NULL,
       ],
-      'template' => 'tab/accounts/tab--accounts--land-rent-fees-data',
+      'template' => 'tab/accounts/tab--accounts--area--land-rent-fees-data',
     ],
     'tab__accounts__summary_charges_data' => [
       'variables' => [

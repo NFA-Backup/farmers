@@ -6,10 +6,8 @@ dependencies:
     - field.field.node.starting_amount.field_amount
     - field.field.node.starting_amount.field_areas_id
     - field.field.node.starting_amount.field_payment_advice
-    - field.field.node.starting_amount.field_starting_amount_type
     - node.type.starting_amount
   module:
-    - options
     - user
 id: node.starting_amount.default
 targetEntityType: node
@@ -42,13 +40,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  field_starting_amount_type:
-    weight: 103
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
   links:
     weight: 100

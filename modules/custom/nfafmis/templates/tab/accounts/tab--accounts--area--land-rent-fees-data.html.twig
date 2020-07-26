@@ -1,21 +1,18 @@
 {#
 /**
 * @file
-* Default theme implementation to display land rent and other data.
+* Default theme implementation to display area's fee & land rent tab.
 *
 * Available variables:
-* - $data['fees']: fees data.
-* - $data['land_rent']: fee data
-* - $data['total']: total sum.
-* - $data['rent_sub_total']: rent sub total.
-* - $data['other_sub_total']: other sub total.
+* - $data['fees']: fees data array.
+* - $data['land_rent']: fee data array.
 * - $data['farmer_id']: farmer id.
 * - $data['offer_licence_id']: area id.
-* - $data['starting_amount']: staring amount.
+* - $data['starting_amount']: staring data array.
 *
 * @ingroup templates
 *
-* @see Drupal\nfafmis\Services::getLandRentAndFeesData()
+* @see Drupal\nfafmis\Services::getAreaLandRentAndFeesData()
 * @see nfafmis_theme()
 */
 #}
@@ -85,15 +82,15 @@
     <div class="row">
       <div class="col-md-2 views-field">Balance brought forward: <br />(Starting amount)</div>
       <div class="col-md-4 views-field">
-        {% if data.starting_amount.land_rent %}
-        <div class="field-content">UGX {{ data.starting_amount.land_rent.amount }}</div>
+        {% if data.starting_amount %}
+        <div class="field-content">UGX {{ data.starting_amount.amount |number_format(0, '.', ',') }}</div>
         {% else %}
         <div class="field-content">UGX 0</div>
         {% endif %}
       </div>
       <div class="col-md-2 views-field">
-        {% if data.starting_amount.land_rent %}
-        <a class="use-ajax btn btn-info btn-sm" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.land_rent.nid}}/edit?destination=/tree-farmer-overview/accounts">Edit</a>
+        {% if data.starting_amount.amount %}
+        <a class="use-ajax btn btn-info btn-sm" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.nid}}/edit?destination=/tree-farmer-overview/accounts">Edit</a>
         {% else %}
         <a class="use-ajax btn btn-info btn-sm" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/starting_amount?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts">Add</a>
         {% endif %}

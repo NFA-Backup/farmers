@@ -56,53 +56,20 @@ class FarmerServices {
    * @return array
    *   The rendered array.
    */
-  public function getLandRentAndFeesData($farmer_id, $offer_licence_id) {
-    $rent_charges = $this->getRentSubTotal($offer_licence_id);
+  public function getAreaLandRentAndFeesData($farmer_id, $offer_licence_id) {
     $starting_amount = $this->getStartingAmountData($offer_licence_id);
-    $rent_sub_total = isset($rent_charges['sub_total']) ? $rent_charges['sub_total'] : 0;
-    $rent_charges_data = isset($rent_charges['data']) ? $rent_charges['data'] : [];
-    $other_subtotal = $this->getChargesSubTotal($offer_licence_id);
-
-    // Get fees data.
+    // Get fees & land rent data.
     $fees_data = $this->getFeesData($offer_licence_id);
-
-    // Get land rent data.
     $land_rent_data = $this->getLandRentData($offer_licence_id);
-
-    $land_rent_starting_amount = 0;
-    $other_charges_starting_amount = 0;
-
-    // Calculate starting amount for land rent.
-    if (isset($starting_amount['data']['land_rent']['amount'])) {
-      $land_rent_starting_amount = $starting_amount['data']['land_rent']['amount'];
-      $rent_sub_total += $land_rent_starting_amount;
-      $land_rent_starting_amount_format = number_format($land_rent_starting_amount, 0, '.', ',');
-      $starting_amount['data']['land_rent']['amount'] = $land_rent_starting_amount_format;
-    }
-
-    // Calculate starting amount for other charges amount.
-    // @INFO: this is useless now can be remove
-    if (isset($starting_amount['data']['other_charges']['amount'])) {
-      $other_charges_starting_amount = $starting_amount['data']['other_charges']['amount'];
-      $other_subtotal += $other_charges_starting_amount;
-      $other_charges_starting_amount_format = number_format($other_charges_starting_amount, 0, '.', ',');
-      $starting_amount['data']['other_charges']['amount'] = $other_charges_starting_amount_format;
-    }
-
-    $total = $rent_sub_total + $other_subtotal;
     $data = [
-      'total' => number_format($total, 0, '.', ','),
-      'rent_sub_total' => number_format($rent_sub_total, 0, '.', ','),
-      'other_sub_total' => number_format($other_subtotal, 0, '.', ','),
-      'rent_charges' => $rent_charges_data,
-      'starting_amount' => isset($starting_amount['data']) ? $starting_amount['data'] : [],
+      'starting_amount' => $starting_amount,
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
       'fees' => $fees_data,
       'land_rent' => $land_rent_data,
     ];
     $renderable = [
-      '#theme' => 'tab__accounts__land_rent_fees_data',
+      '#theme' => 'tab__accounts__area__land_rent_fees_data',
       '#data' => $data,
     ];
     $rendered = $this->renderer->render($renderable);
@@ -202,7 +169,6 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $starting_amount_nids = $query->condition('type', 'starting_amount')
       ->condition('field_areas_id.target_id', $offer_licence_id)
-      ->condition('field_starting_amount_type.value', 'land_rent')
       ->execute();
     $data_array = [];
     if (!empty($starting_amount_nids)) {
@@ -318,7 +284,7 @@ class FarmerServices {
   }
 
   /**
-   * Get Starting amound data for both land rent and other charges.
+   * Get Starting amound data for particular area.
    */
   protected function getStartingAmountData($offer_licence_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -327,42 +293,12 @@ class FarmerServices {
       ->execute();
     $starting_amount_data = [];
     if (!empty($starting_amount_nids)) {
-      $starting_amounts = $this->entityTypeManager->getStorage('node')->loadMultiple($starting_amount_nids);
-      foreach ($starting_amounts as $starting_amount) {
-        $sa_type = $starting_amount->get('field_starting_amount_type')->value;
-        $starting_amount_data['data'][$sa_type]['nid'] = $starting_amount->get('nid')->value;
-        $starting_amount_data['data'][$sa_type]['amount'] = $starting_amount->get('field_amount')->value;
-      }
+      $starting_amount_nid = reset($starting_amount_nids);
+      $starting_amount = $this->entityTypeManager->getStorage('node')->load($starting_amount_nid);
+      $starting_amount_data['nid'] = $starting_amount->get('nid')->value;
+      $starting_amount_data['amount'] = $starting_amount->get('field_amount')->value;
     }
     return $starting_amount_data;
-  }
-
-  /**
-   * Get rent-total from annual charges.
-   *
-   * @param string $offer_licence_id
-   *   The area ID.
-   *
-   * @return array
-   *   The rent sub total.
-   */
-  protected function getRentSubTotal($offer_licence_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $annual_charges_nids = $query->condition('type', 'annual_charges')
-      ->condition('field_licence_id_ref.target_id', $offer_licence_id)
-      ->execute();
-    $annual_charges_table = [];
-    $annual_charges_table['sub_total'] = 0;
-    if (!empty($annual_charges_nids)) {
-      $annual_charges = $this->entityTypeManager->getStorage('node')->loadMultiple($annual_charges_nids);
-      foreach ($annual_charges as $key => $annual_charge) {
-        $field_annual_charges = $annual_charge->get('field_annual_charges')->value;
-        $annual_charges_table['sub_total'] += $field_annual_charges;
-        $annual_charges_table['data'][$key]['field_rate'] = number_format($field_annual_charges, 0, '.', ',');
-        $annual_charges_table['data'][$key]['field_rate_year'] = $annual_charge->get('field_rate_year')->value;
-      }
-    }
-    return $annual_charges_table;
   }
 
   /**
@@ -437,32 +373,6 @@ class FarmerServices {
       }
     }
     return $land_rent_annual_charge;
-  }
-
-  /**
-   * Get sub-total from charges.
-   *
-   * @param string $offer_licence_id
-   *   The area ID.
-   *
-   * @return array
-   *   The charges sub total.
-   */
-  protected function getChargesSubTotal($offer_licence_id) {
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $charge_nids = $query->condition('type', 'charge')
-      ->condition('field_areas_id.target_id', $offer_licence_id)
-      ->execute();
-    $field_amount = 0;
-    if (!empty($charge_nids)) {
-      $nids = array_values($charge_nids);
-      $charges = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
-
-      foreach ($charges as $charge) {
-        $field_amount += $charge->get('field_amount')->value;
-      }
-    }
-    return $field_amount;
   }
 
   /**

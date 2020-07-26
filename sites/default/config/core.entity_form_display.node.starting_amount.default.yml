@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.starting_amount.field_amount
     - field.field.node.starting_amount.field_areas_id
     - field.field.node.starting_amount.field_payment_advice
-    - field.field.node.starting_amount.field_starting_amount_type
     - node.type.starting_amount
 id: node.starting_amount.default
 targetEntityType: node
@@ -29,12 +28,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_starting_amount_type:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   title:
     type: string_textfield

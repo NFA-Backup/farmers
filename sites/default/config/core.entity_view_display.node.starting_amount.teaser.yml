@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.starting_amount.field_amount
     - field.field.node.starting_amount.field_areas_id
     - field.field.node.starting_amount.field_payment_advice
-    - field.field.node.starting_amount.field_starting_amount_type
     - node.type.starting_amount
   module:
     - user
@@ -25,4 +24,3 @@ hidden:
   field_amount: true
   field_areas_id: true
   field_payment_advice: true
-  field_starting_amount_type: true
