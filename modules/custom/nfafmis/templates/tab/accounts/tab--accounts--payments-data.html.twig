@@ -4,13 +4,12 @@
 * Default theme implementation to display payment tab data.
 *
 * Available variables:
-* - $data['balance']: balance array contains overall,land_rent, other_fee.
-* - $data['payment']: array contains total, land_rent, other.
-* - $data['payments_details']: array contains data, land_rent, other.
+* - $data['payments']: array contains fees, land_rent.
+* - $data['due_starting_amount']: total due starting amount.
 *
 * @ingroup templates
 *
-* @see get_summary_charges_data()
+* @see Drupal\nfafmis\Services::getPaymentsData()
 * @see nfafmis_theme()
 */
 #}
@@ -30,23 +29,70 @@
     <div class="center-container view-label-data">
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
-        <div class="col-md-4 views-field">
-          <span class="views-label heading">Area Fee Balance</span>
-          <div class="field-content">UGX {{ data.payments.total }}</div>
+        <div class="col-md-4 views-field heading">
+          <span class="views-label">Area Fee Balance</span>
+          <div class="field-content balance">UGX {{ data.payments.fees.balance |number_format(0, '.', ',')}}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Fee Payments</span>
-          <div class="field-content payment">UGX {{ data.payments.land_rent }}</div>
+          <div class="field-content payment">UGX {{ data.payments.fees.payments |number_format(0, '.', ',')}}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Fee Charges</span>
-          <div class="field-content balance">UGX {{ data.payments.other_fee }}</div>
+          <div class="field-content balance">UGX {{ data.payments.fees.charges |number_format(0, '.', ',')}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="center-container">
+      <div class="row">
+        <div class="col-md-12 views-field">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Area</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Payment Advice Number</th>
+                  <th>Payment Date</th>
+                  <th>Receipt Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {# if empty table #}
+                {% if data.payments.fees.data is empty %}
+                <td class="view-empty" colspan="6">No Fee data found.</td>
+                {% endif %}
+                {# if empty table #}
+                {% for data in data.payments.fees.data %}
+                <tr>
+                  <td>{{data.date}}</td>
+                  <td>{{ data.area}}</td>
+                  <td>{{ data.desc}}</td>
+                  <td>UGX {{ data.amount |number_format(0, '.', ',')}}</td>
+                  <td>{{ data.payment_advc_no }}
+                    {% if data.payment_advc_nid %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ data.payment_advc_nid }}">view/print</a>
+                    {% endif%}
+                  </td>
+                  <td>{{ data.payment_date }}</td>
+                  <td>{{ data.payment_receipt_number }}
+                    {% if data.payment_advc_nid %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{data.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
+                    {% endif%}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -55,33 +101,95 @@
     <div class="center-container view-label-data">
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
-        <div class="col-md-4 views-field">
-          <span class="views-label heading">Total Land Rent Balance</span>
-          <div class="field-content">UGX {{ data.payments.total }}</div>
+        <div class="col-md-4 views-field heading">
+          <span class="views-label">Total Land Rent Balance</span>
+          <div class="field-content balance">UGX {{ data.payments.land_rent.balance |number_format(0, '.', ',')}}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Land Rent Payments</span>
-          <div class="field-content payment">UGX {{ data.payments.land_rent }}</div>
+          <div class="field-content payment">UGX {{ data.payments.land_rent.payments |number_format(0, '.', ',')}}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 views-field">&nbsp;</div>
         <div class="col-md-4 views-field">
           <span class="views-label">Area Land Rent Charges</span>
-          <div class="field-content balance">UGX {{ data.payments.other_fee }}</div>
+          <div class="field-content balance">UGX {{ data.payments.land_rent.charges |number_format(0, '.', ',')}}</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3 views-field">Total balance brought forward: <br />(for all areas)</div>
         <div class="col-md-4 views-field">
-          {% if data.starting_amount.land_rent %}
-          <div class="field-content">UGX {{ data.starting_amount.land_rent.amount }}</div>
+          {% if data.payments.due_starting_amount %}
+          <div class="field-content">UGX {{ data.payments.due_starting_amount |number_format(0, '.', ',')}}</div>
           {% else %}
           <div class="field-content">UGX 0</div>
           {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="center-container view-label-data">
+      <div class="row">
+        <div class="col-md-12 views-field">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Area</th>
+                  <th>Land rent due</th>
+                  <th>Previous Arrears</th>
+                  <th>Late fee due</th>
+                  <th>Total due</th>
+                  <th>Payment Advice Number</th>
+                  <th>Payment Date</th>
+                  <th>Receipt Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {# if empty table #}
+                {% if data.payments.land_rent.data is empty %}
+                <td class="view-empty" colspan="8">No land rent data found.</td>
+                {% endif %}
+                {# if empty table #}
+                {% for land_rent in data.payments.land_rent.data %}
+                <tr>
+                  <td>
+                    {%if land_rent.date == 'Starting amount' %}
+                    <strong>{{land_rent.date}}</strong>
+                    {% else %}
+                    {{land_rent.date}}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {{land_rent.area}}</td>
+                  <td>UGX {{ land_rent.due |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.previous_arrears |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.late_fee_due |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.total_due |number_format(0, '.', ',')}}</td>
+                  <td>
+                    {{ land_rent.payment_advc_no }}
+                    {% if land_rent.payment_advc_nid %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_advc_nid }}">view/print</a>
+                    {% endif %}
+                  </td>
+                  <td>{{ land_rent.payment_date }}</td>
+                  <td>
+                    {{ land_rent.payment_receipt_number }}
+                    {% if land_rent.payment_nid %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_nid }}">view</a>
+                    {% else %}
+                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{land_rent.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

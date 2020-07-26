@@ -845,12 +845,164 @@ class FarmerServices {
    *   The rendered payment data.
    */
   public function getPaymentsData($farmer_id) {
-    $data = [];
+    $payments = [
+      'fees' => [
+        'balance' => 0,
+        'payments' => 0,
+        'charges' => 0,
+        'data' => [],
+      ],
+      'land_rent' => [
+        'balance' => 0,
+        'payments' => 0,
+        'charges' => 0,
+        'data' => [],
+      ],
+      'due_starting_amount' => 0,
+    ];
+    $area_ids = $this->getFarmerAreaIds($farmer_id);
+    if (!empty($area_ids)) {
+      $this->getAllFeesData($area_ids, $payments);
+      // Get all Land rent along with starting amount.
+      $this->getAllLandRentData($area_ids, $payments);
+    }
+    // dump($payments);die;
     $renderable = [
       '#theme' => 'tab__accounts__payments_data',
-      '#data' => $data,
+      '#data' => ['payments' => $payments],
     ];
     return $this->renderer->render($renderable);;
+  }
+
+  /**
+   * Get fee for all area of particular farmer.
+   *
+   * @param string $area_ids
+   *   The area ID.
+   * @param string $payment
+   *   The $payment array.
+   */
+  public function getAllFeesData($area_ids, &$payment) {
+    $invoice_nids = $this->getInvoiceIds($area_ids);
+    foreach ($invoice_nids as $invoice_id) {
+      $payment_nids = $this->invoiceHasPayment($invoice_id);
+      $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+      $amount = $invoice->get('field_amount')->value;
+      $payment['fees']['charges'] += $amount;
+      $data_array = [];
+      if (!empty($payment_nids)) {
+        $payment_nid = reset($payment_nids);
+        $payment_node = $this->entityTypeManager->getStorage('node')->load($payment_nid);
+        $payment['fees']['payments'] += $amount;
+        $data_array['payment_date'] = $payment_node->get('field_date_paid')->value;
+        $data_array['payment_receipt_number'] = $payment_node->get('field_receipt_number')->value;
+      }
+      else {
+        $payment['fees']['balance'] += $amount;
+      }
+      $area = $invoice->get('field_areas_id')->referencedEntities()[0];
+      if (!empty($area)) {
+        $data_array['area'] = $area->getTitle();
+      }
+      $charge = $this->getChargeFromInvoice($invoice_id);
+      if (!empty($charge)) {
+        $data_array['date'] = $charge->get('field_charge_date')->value;
+        $data_array['desc'] = $charge->get('field_charge_description')->value;
+        $data_array['amount'] = $charge->get('field_amount')->value;
+        $data_array['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+        $data_array['payment_advc_nid'] = $invoice->id();
+      }
+      $payment['fees']['data'][] = $data_array;
+    }
+    krsort($payment['fees']['data']);
+  }
+
+  /**
+   * Get land rent for all area of particular farmer.
+   *
+   * @param string $area_ids
+   *   The area ID.
+   * @param string $payments
+   *   The $payments array.
+   */
+  public function getAllLandRentData($area_ids, &$payment) {
+    $invoice_nids = $this->getInvoiceIds($area_ids, '2');
+    foreach ($invoice_nids as $invoice_id) {
+      $payment_nids = $this->invoiceHasPayment($invoice_id);
+      $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+      $amount = $invoice->get('field_amount')->value;
+      $payment['land_rent']['charges'] += $amount;
+      $data_array = [];
+      if (!empty($payment_nids)) {
+        $payment_nid = reset($payment_nids);
+        $payment_node = $this->entityTypeManager->getStorage('node')->load($payment_nid);
+        $payment['land_rent']['payments'] += $amount;
+        $data_array['payment_date'] = $payment_node->get('field_date_paid')->value;
+        $data_array['payment_receipt_number'] = $payment_node->get('field_receipt_number')->value;
+        $data_array['payment_nid'] = $payment_nid;
+      }
+      else {
+        $payment['land_rent']['balance'] += $amount;
+      }
+      // Calculate land rent late_fee/due.
+      $annual_charges = $this->getAnnualChargeFromInvoice($invoice_id);
+      if ($annual_charges) {
+        $charge_type = $annual_charges->get('field_annual_charges_type')->value;
+        if ($charge_type == '1') {
+          $data_array['due'] = $amount;
+        }
+        else {
+          $data_array['late_fee_due'] = $amount;
+          $data_array['previous_arrears'] = $annual_charges->get('field_arrears')->value;
+        }
+        $year = $annual_charges->get('field_rate_year')->value;
+        $data_array['date'] = '01-01-' . $year;
+        $data_array['total_due'] = $amount;
+        $data_array['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+        $data_array['payment_advc_nid'] = $invoice->id();
+      }
+      $area = $invoice->get('field_areas_id')->referencedEntities()[0];
+      if (!empty($area)) {
+        $data_array['area'] = $area->getTitle();
+      }
+      $payment['land_rent']['data'][] = $data_array;
+    }
+    krsort($payment['land_rent']['data']);
+
+    // Starting amount as part of land rent.
+    $sm_invoice_nids = $this->getInvoiceIds($area_ids, '3');
+    $sm_data_array = [];
+    foreach ($sm_invoice_nids as $invoice_id) {
+      $invoice = $this->entityTypeManager->getStorage('node')->load($invoice_id);
+      $amount = $invoice->get('field_amount')->value;
+      $sm_data_array['date'] = 'Starting amount';
+      $sm_data_array['due'] = $amount;
+      $sm_data_array['late_fee_due'] = 0;
+      $sm_data_array['previous_arrears'] = 0;
+      $sm_data_array['total_due'] = $amount;
+      $sm_data_array['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+      $sm_data_array['payment_advc_nid'] = $invoice->id();
+      $area = $invoice->get('field_areas_id')->referencedEntities()[0];
+      if (!empty($area)) {
+        $sm_data_array['area'] = $area->getTitle();
+      }
+      $payment_nids = $this->invoiceHasPayment($invoice_id);
+      if (!empty($payment_nids)) {
+        $payment_nid = reset($payment_nids);
+        $payment_node = $this->entityTypeManager->getStorage('node')->load($payment_nid);
+        $sm_data_array['payment_date'] = $payment_node->get('field_date_paid')->value;
+        $sm_data_array['payment_receipt_number'] = $payment_node->get('field_receipt_number')->value;
+        $sm_data_array['payment_nid'] = $payment_nid;
+      }
+      else {
+        $payment['due_starting_amount'] += $amount;
+        $sm_data_array['payment_date'] = NULL;
+        $sm_data_array['payment_receipt_number'] = NULL;
+        $sm_data_array['payment_nid'] = NULL;
+      }
+      $payment['land_rent']['data'][] = $sm_data_array;
+    }
+
   }
 
 }
