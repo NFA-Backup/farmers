@@ -72,12 +72,12 @@
             <table class="table table-hover table-striped">
               <thead>
                 <tr>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Date</th>
-                  <th id="view-field-amount-table-column" class="views-field views-field-field-amount" scope="col">Area</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Description</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Total due</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Payment Advice Number</th>
-                  <th id="view-field-amount-table-column" class="views-field views-field-field-amount" scope="col"></th>
+                  <th>Date</th>
+                  <th>Area</th>
+                  <th>Description</th>
+                  <th>Total due</th>
+                  <th>Payment Advice Number</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -88,13 +88,13 @@
                 {# if empty table #}
                 {% for data in data.summary_charges.fees.data %}
                 <tr>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                  <td>
                     {{data.date}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ data.area}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ data.desc}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ data.total_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ data.payment_advc_no }}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ data.receipt_number }}
+                  <td>{{ data.area}}</td>
+                  <td>{{ data.desc}}</td>
+                  <td>UGX {{ data.total_due |number_format(0, '.', ',')}}</td>
+                  <td>{{ data.payment_advc_no }}</td>
+                  <td>{{ data.receipt_number }}
                     {% if data.payment_advc_nid %}
                     <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ data.payment_advc_nid }}">view/print</a>
                     <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{data.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
@@ -142,14 +142,14 @@
             <table class="table table-hover table-striped">
               <thead>
                 <tr>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Year</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Area</th>
-                  <th id="view-field-amount-table-column" class="views-field views-field-field-amount" scope="col">Land rent due</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Previous Arrears</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Late fee due</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Total due</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Payment Advice Number</th>
-                  <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col"></th>
+                  <th>Year</th>
+                  <th>Area</th>
+                  <th>Land rent due</th>
+                  <th>Previous Arrears</th>
+                  <th>Late fee due</th>
+                  <th>Total due</th>
+                  <th>Payment Advice Number</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -160,16 +160,16 @@
                 {# if empty table #}
                 {% for land_rent in data.summary_charges.land_rent.data %}
                 <tr>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                  <td>
                     {{land_rent.date}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                  <td>
                     {{land_rent.area}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.previous_arrears |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.late_fee_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ land_rent.total_due |number_format(0, '.', ',')}}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ land_rent.payment_advc_no }}</td>
-                  <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+                  <td>UGX {{ land_rent.due |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.previous_arrears |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.late_fee_due |number_format(0, '.', ',')}}</td>
+                  <td>UGX {{ land_rent.total_due |number_format(0, '.', ',')}}</td>
+                  <td>{{ land_rent.payment_advc_no }}</td>
+                  <td>
                     {% if land_rent.payment_advc_nid %}
                     <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_advc_nid }}">view/print</a>
                     {% endif %}

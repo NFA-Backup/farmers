@@ -684,6 +684,7 @@ class FarmerServices {
         $summary_charges['fees']['data'][] = $data_array;
       }
     }
+    krsort($summary_charges['fees']['data']);
   }
 
   /**
@@ -778,6 +779,7 @@ class FarmerServices {
         $summary_charges['land_rent']['data'][] = $data_array;
       }
     }
+    krsort($summary_charges['land_rent']['data']);
     // Calculate outstanding starting amount as part of land rent.
     $invoice_nids = $this->getInvoiceIds($area_ids, '3');
     foreach ($invoice_nids as $invoice_id) {

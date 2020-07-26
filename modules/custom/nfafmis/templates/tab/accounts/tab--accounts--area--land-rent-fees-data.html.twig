@@ -103,14 +103,14 @@
         <table class="table table-hover table-striped">
           <thead>
             <tr>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Year</th>
-              <th id="view-field-amount-table-column" class="views-field views-field-field-amount" scope="col">Land rent due</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Previous Arrears</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Late fee due</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Total due</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Payment Advice Number</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Payment Date</th>
-              <th id="view-field-charge-date-table-column" class="views-field views-field-field-charge-date" scope="col">Receipt Number</th>
+              <th>Year</th>
+              <th>Land rent due</th>
+              <th>Previous Arrears</th>
+              <th>Late fee due</th>
+              <th>Total due</th>
+              <th>Payment Advice Number</th>
+              <th>Payment Date</th>
+              <th>Receipt Number</th>
             </tr>
           </thead>
           <tbody>
@@ -122,23 +122,23 @@
             {% for rent_charge in data.land_rent.data %}
             <tr>
               {% if rent_charge.date == 'Starting amount' %}
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+              <td>
                 <strong>{{rent_charge.date}}</strong></td>
               {% else %}
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">
+              <td>
                 {{rent_charge.date}}</td>
               {%endif%}
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.land_rent_due |number_format(0, '.', ',')}}</td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.previous_arrears |number_format(0, '.', ',')}}</td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.late_fee_due |number_format(0, '.', ',')}}</td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">UGX {{ rent_charge.total_due |number_format(0, '.', ',')}}</td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.payment_advc_no }}
+              <td>UGX {{ rent_charge.land_rent_due |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ rent_charge.previous_arrears |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ rent_charge.late_fee_due |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ rent_charge.total_due |number_format(0, '.', ',')}}</td>
+              <td>{{ rent_charge.payment_advc_no }}
                 {% if rent_charge.payment_advc_nid %}
                 <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>
                 {% endif %}
               </td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.payment_date }}</td>
-              <td headers="view-field-charge-date-table-column" class="views-field views-field-field-charge-date">{{ rent_charge.receipt_number }}
+              <td>{{ rent_charge.payment_date }}</td>
+              <td>{{ rent_charge.receipt_number }}
                 {% if rent_charge.payment_nid %}
                 <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ rent_charge.payment_nid }}">view</a>
                 {% else %}
