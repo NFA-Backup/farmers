@@ -2,7 +2,7 @@
 
 namespace Drupal\blocktabs;
 
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Component\Plugin\ContextAwarePluginInterface;
 use Drupal\blocktabs\BlocktabsInterface;
@@ -17,7 +17,7 @@ use Drupal\blocktabs\BlocktabsInterface;
  * @see \Drupal\blocktabs\TabManager
  * @see plugin_api
  */
-interface TabInterface extends PluginInspectionInterface, ConfigurablePluginInterface, ContextAwarePluginInterface {
+interface TabInterface extends PluginInspectionInterface, ConfigurableInterface, ContextAwarePluginInterface {
 
   /**
    * Applies a tab to the blocktabs.

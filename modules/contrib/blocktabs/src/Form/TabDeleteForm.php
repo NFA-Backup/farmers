@@ -43,7 +43,7 @@ class TabDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return $this->blockTabs->urlInfo('edit-form');
+    return $this->blockTabs->toUrl('edit-form');
   }
 
   /**
@@ -68,8 +68,8 @@ class TabDeleteForm extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->blockTabs->deleteTab($this->tab);
-    drupal_set_message($this->t('The tab %name has been deleted.', ['%name' => $this->tab->label()]));
-    $form_state->setRedirectUrl($this->blockTabs->urlInfo('edit-form'));
+    \Drupal::messenger()->addMessage($this->t('The tab %name has been deleted.', ['%name' => $this->tab->label()]));
+    $form_state->setRedirectUrl($this->blockTabs->toUrl('edit-form'));
   }
 
 }

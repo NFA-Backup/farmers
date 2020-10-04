@@ -4,9 +4,9 @@ blocktabs:
     js/blocktabs.js: {}
   css:
     theme:
-      css/blocktabs.css: {}    
+      css/blocktabs.css: {}
   dependencies:
-    - core/jquery.ui.tabs
+    - jquery_ui_tabs/tabs
     - core/drupal
 admin:
   version: VERSION
@@ -18,5 +18,5 @@ accordion:
   js:
     js/blocktabs.accordion.js: {}
   dependencies:
-    - core/jquery.ui.accordion
+    - jquery_ui_accordion/accordion
     - core/drupal

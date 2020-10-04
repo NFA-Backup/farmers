@@ -51,7 +51,7 @@ class BlockContentTab extends ConfigurableTabBase {
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $sql = "SELECT bd.info, b.uuid FROM {block_content_field_data} bd LEFT JOIN {block_content} b ON bd.id = b.id";
-    $result = db_query($sql);
+    $result = \Drupal::database()->query($sql);
     $block_uuid_options = [
       '' => $this->t('- Select -'),
     ];
@@ -84,8 +84,8 @@ class BlockContentTab extends ConfigurableTabBase {
     $block_render_array = NULL;
     $block_uuid = $this->configuration['block_uuid'];
     if (!empty($block_uuid)) {
-      $block = \Drupal::entityManager()->loadEntityByUuid('block_content', $block_uuid);
-      $block_render_array = \Drupal::entityManager()
+      $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $block_uuid);
+      $block_render_array = \Drupal::entityTypeManager()
         ->getViewBuilder($block->getEntityTypeId())
         ->view($block, 'default');
     }

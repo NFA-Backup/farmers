@@ -41,7 +41,7 @@ abstract class BlocktabsFormBase extends EntityForm {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('blocktabs')
+      $container->get('entity_type.manager')->getStorage('blocktabs')
     );
   }
 
@@ -108,7 +108,7 @@ abstract class BlocktabsFormBase extends EntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
-    $form_state->setRedirectUrl($this->entity->urlInfo('edit-form'));
+    $form_state->setRedirectUrl($this->entity->toUrl('edit-form'));
   }
 
 }

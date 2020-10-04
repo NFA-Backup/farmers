@@ -39,7 +39,7 @@ class BlocktabsEditForm extends BlocktabsFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('blocktabs'),
+      $container->get('entity_type.manager')->getStorage('blocktabs'),
       $container->get('plugin.manager.blocktabs.tab')
     );
   }
@@ -219,7 +219,7 @@ class BlocktabsEditForm extends BlocktabsFormBase {
       $tab_id = $this->entity->addTab($tab);
       $this->entity->save();
       if (!empty($tab_id)) {
-        drupal_set_message($this->t('The tab was successfully added.'));
+        \Drupal::messenger()->addMessage($this->t('The tab was successfully added.'));
       }
     }
   }
@@ -242,7 +242,7 @@ class BlocktabsEditForm extends BlocktabsFormBase {
    */
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
-    drupal_set_message($this->t('Changes to the blocktabs have been saved.'));
+    \Drupal::messenger()->addMessage($this->t('Changes to the blocktabs have been saved.'));
   }
 
   /**

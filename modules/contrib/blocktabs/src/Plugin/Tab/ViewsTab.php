@@ -108,7 +108,8 @@ class ViewsTab extends ConfigurableTabBase {
    */
   public function updateDisplay(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
-    $response->addCommand(new ReplaceCommand('#edit-view-display-wrapper', drupal_render($form['data']['view_display'])));
+    $renderer = \Drupal::service('renderer');
+    $response->addCommand(new ReplaceCommand('#edit-view-display-wrapper', $renderer->render($form['data']['view_display'])));
     return $response;
   }
 
@@ -135,10 +136,11 @@ class ViewsTab extends ConfigurableTabBase {
     $view->setDisplay($view_display);
     $view->execute();
     $count = count($view->result);
-    $tab_view = $view->render();
+    //$tab_view = $view->render();
 
     if ($count > 0) {
-      $tab_content = \Drupal::service('renderer')->render($tab_view);
+      $view_arg = !empty($this->configuration['view_arg']) ? $this->configuration['view_arg'] : NULL;
+      $tab_content = views_embed_view($view_name, $view_display, $view_arg);
     }
     else {
       $tab_content = NULL;

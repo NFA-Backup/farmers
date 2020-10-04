@@ -97,7 +97,7 @@ abstract class TabFormBase extends FormBase {
     $form['actions']['cancel'] = [
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
-      '#url' => $this->blocktabs->urlInfo('edit-form'),
+      '#url' => $this->blocktabs->toUrl('edit-form'),
       '#attributes' => ['class' => ['button']],
     ];
     return $form;
@@ -149,9 +149,9 @@ abstract class TabFormBase extends FormBase {
     // $logger->notice('$config:' . var_export($config1, true));
     // $tab = $this->tab;
     $this->blocktabs->save();
-   
-    drupal_set_message($this->t('The tab was successfully applied.'));
-    $form_state->setRedirectUrl($this->blocktabs->urlInfo('edit-form'));
+
+    \Drupal::messenger()->addMessage($this->t('The tab was successfully applied.'));
+    $form_state->setRedirectUrl($this->blocktabs->toUrl('edit-form'));
   }
 
   /**

@@ -53,7 +53,7 @@ class BlockTab extends ConfigurableTabBase {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, BlockManagerInterface $block_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $logger);
 
-    $config = [];
+    $config = $this->configuration['config'];
     $this->blockManager = $block_manager;
     $this->blockPlugin = $this->blockManager->createInstance($this->configuration['block_id'], $config);
   }
@@ -81,6 +81,7 @@ class BlockTab extends ConfigurableTabBase {
   public function defaultConfiguration() {
     return [
       'block_id' => NULL,
+      'config' => [],
     ];
   }
 
@@ -106,6 +107,11 @@ class BlockTab extends ConfigurableTabBase {
       '#default_value' => $this->configuration['block_id'],
       '#required' => TRUE,
     ];
+
+    if ($this->configuration['block_id']) {
+      $form += $this->blockPlugin->blockForm([], $form_state);
+    }
+
     return $form;
   }
 
@@ -116,6 +122,9 @@ class BlockTab extends ConfigurableTabBase {
     parent::submitConfigurationForm($form, $form_state);
 
     $this->configuration['block_id'] = $form_state->getValue('block_id');
+
+    $this->blockPlugin->blockSubmit($form, $form_state);
+    $this->configuration['config'] = $this->blockPlugin->getConfiguration();
   }
 
   /**
