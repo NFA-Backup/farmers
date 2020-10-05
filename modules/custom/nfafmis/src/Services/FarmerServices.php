@@ -61,12 +61,14 @@ class FarmerServices {
     // Get fees & land rent data.
     $fees_data = $this->getFeesData($offer_licence_id);
     $land_rent_data = $this->getLandRentData($offer_licence_id);
+    $historical_data = $this->getHistoricalData($offer_licence_id);
     $data = [
       'starting_amount' => $starting_amount,
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
       'fees' => $fees_data,
       'land_rent' => $land_rent_data,
+      'historical' => $historical_data,
     ];
     $renderable = [
       '#theme' => 'tab__accounts__area__land_rent_fees_data',
@@ -155,6 +157,23 @@ class FarmerServices {
     $this->getLandRentStartingAmountData($offer_licence_id, $land_rent_data);
     $this->getLandRentAnnulChargesData($offer_licence_id, $land_rent_data);
     return $land_rent_data;
+  }
+
+  /**
+   * Get historical payment information data for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   *
+   * @return array
+   *   The historical payment information data.
+   */
+  public function getHistoricalData($offer_licence_id) {
+    $historical_data = [
+      'data' => [],
+    ];
+    $this->getLandRentAnnulChargesHistoricalData($offer_licence_id, $historical_data);
+    return $historical_data;
   }
 
   /**
@@ -281,6 +300,19 @@ class FarmerServices {
       krsort($data_array);
       $land_rent_data['data'] = array_merge($data_array, $land_rent_data['data']);
     }
+  }
+
+  /**
+   * Get historical payment infirmation for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   * @param array $historical_data
+   *   The historical payment infirmation.
+   */
+  protected function getLandRentAnnulChargesHistoricalData($offer_licence_id, &$historical_data) {
+    // @todo write logic to get historical payment information.
+    $historical_data['data'] = [];
   }
 
   /**

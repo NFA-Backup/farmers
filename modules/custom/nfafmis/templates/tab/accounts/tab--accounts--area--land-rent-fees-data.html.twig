@@ -6,6 +6,7 @@
 * Available variables:
 * - $data['fees']: fees data array.
 * - $data['land_rent']: fee data array.
+* - $data['historical']: historical payment data array.
 * - $data['farmer_id']: farmer id.
 * - $data['offer_licence_id']: area id.
 * - $data['starting_amount']: staring data array.
@@ -144,6 +145,49 @@
                 {% else %}
                 <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{rent_charge.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
                 {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Historical pyments information</h4>
+    </div>
+  </div>
+  <div class="block-section">
+    <h5 class="title"></h5>
+  </div>
+  <div class="row">
+    <div class="col-md-12 views-field">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount chargeable</th>
+              <th>Amount paid</th>
+              <th>Balance</th>
+              <th>Arrears</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if data.historical.data is empty %}
+            <td class="view-empty" colspan="6">No historical pyments information found for this area.</td>
+            {% endif %}
+            {% for historical in data.historical.data %}
+            <tr>
+              <td>{{ historical.date }}</td>
+              <td>{{ historical.description }}</td>
+              <td>UGX {{ historical.amount_chargeable |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ historical.balance |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ historical.arrears |number_format(0, '.', ',')}}</td>
+              <td>
+                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ historical.payment_nid }}">Edit</a>
               </td>
             </tr>
             {% endfor %}
