@@ -2125,7 +2125,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">Edit log</a>'
+            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">Edit log</a></p>'
             make_link: false
             path: ''
             absolute: false
