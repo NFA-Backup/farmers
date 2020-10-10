@@ -297,7 +297,9 @@ class FarmerServices {
         }
       }
       // Sort data according to the date.
-      krsort($data_array);
+      if (!empty($data_array)) {
+        krsort($data_array);
+      }
       $land_rent_data['data'] = array_merge($data_array, $land_rent_data['data']);
     }
   }
@@ -716,7 +718,9 @@ class FarmerServices {
         $summary_charges['fees']['data'][] = $data_array;
       }
     }
-    krsort($summary_charges['fees']['data']);
+    if (!empty($summary_charges['fees']['data'])) {
+      krsort($summary_charges['fees']['data']);
+    }
   }
 
   /**
@@ -811,7 +815,10 @@ class FarmerServices {
         $summary_charges['land_rent']['data'][] = $data_array;
       }
     }
-    krsort($summary_charges['land_rent']['data']);
+    if (isset($summary_charges['land_rent']['data'])) {
+      krsort($summary_charges['land_rent']['data']);
+    }
+
     // Calculate outstanding starting amount as part of land rent.
     $invoice_nids = $this->getInvoiceIds($area_ids, '3');
     foreach ($invoice_nids as $invoice_id) {
@@ -948,7 +955,9 @@ class FarmerServices {
       }
       $payment['fees']['data'][] = $data_array;
     }
-    krsort($payment['fees']['data']);
+    if (isset($payment['fees']['data'])) {
+      krsort($payment['fees']['data']);
+    }
   }
 
   /**
@@ -1001,7 +1010,9 @@ class FarmerServices {
       }
       $payment['land_rent']['data'][] = $data_array;
     }
-    krsort($payment['land_rent']['data']);
+    if (isset($payment['land_rent']['data'])) {
+      krsort($payment['land_rent']['data']);
+    }
 
     // Starting amount as part of land rent.
     $sm_invoice_nids = $this->getInvoiceIds($area_ids, '3');

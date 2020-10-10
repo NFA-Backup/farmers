@@ -113,7 +113,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
     // This only works when widget is selected as autocomplete.
-    if (isset($offer_license_id)) {
+    if (isset($offer_license_id['offer_licence_id'])) {
       $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
     }
 
