@@ -244,7 +244,7 @@ class FarmerServices {
   }
 
   /**
-   * Get land rent annual charges for particular area.
+   * Get land rent annual charges for particular area of last two years.
    *
    * @param string $offer_licence_id
    *   The area ID.
@@ -252,9 +252,12 @@ class FarmerServices {
    *   The $land_rent_data.
    */
   protected function getLandRentAnnulChargesData($offer_licence_id, &$land_rent_data) {
+    $year = date("Y");
+    $archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $offer_licence_id)
+      ->condition('field_rate_year.value', $archiveYear, '>')
       ->execute();
     $data_array = [];
     if (!empty($annual_charges_nids)) {
@@ -313,8 +316,48 @@ class FarmerServices {
    *   The historical payment infirmation.
    */
   protected function getLandRentAnnulChargesHistoricalData($offer_licence_id, &$historical_data) {
-    // @todo write logic to get historical payment information.
-    $historical_data['data'] = [];
+    $year = date("Y");
+    $archiveYear = $year - 2;
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $annual_charges_nids = $query->condition('type', 'annual_charges')
+      ->condition('field_licence_id_ref.target_id', $offer_licence_id)
+      ->condition('field_rate_year.value', $archiveYear, '<=')
+      ->execute();
+    $data_array = [];
+    if (!empty($annual_charges_nids)) {
+      $annual_charges = $this->entityTypeManager->getStorage('node')->loadMultiple($annual_charges_nids);
+      foreach ($annual_charges as $key => $annual_charge) {
+        $amount = $annual_charge->get('field_annual_charges')->value;
+        $year = $annual_charge->get('field_rate_year')->value;
+        $arrears = $annual_charge->get('field_arrears')->value;
+        $data_array[$key]['nid'] = $annual_charge->id();
+        $data_array[$key]['date'] = '01-01-' . $year;
+        $data_array[$key]['amount_chargeable'] = $amount;
+        $data_array[$key]['previous_arrears'] = $arrears;
+        $data_array[$key]['description'] = t('Land rent for whole area');
+        $invoice = $annual_charge->get('field_payment_advice')->referencedEntities()[0];
+        // Get incove for annual charges.
+        if ($invoice) {
+          $data_array[$key]['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
+          $data_array[$key]['payment_advc_nid'] = $invoice->id();
+          $invoice_payment_id = $this->invoiceHasPayment($invoice->id());
+          // Get payment data for annual charges.
+          if (!empty($invoice_payment_id)) {
+            $data_array[$key]['amount_paid'] = $amount;
+            $payment_id = reset($invoice_payment_id);
+          }
+          else {
+            $data_array[$key]['amount_paid'] = 0;
+            $data_array[$key]['total_due'] = $amount;
+          }
+        }
+      }
+      // Sort data according to the date.
+      if (!empty($data_array)) {
+        krsort($data_array);
+        $historical_data['data'] = $data_array;
+      }
+    }
   }
 
   /**

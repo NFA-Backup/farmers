@@ -184,10 +184,11 @@
               <td>{{ historical.date }}</td>
               <td>{{ historical.description }}</td>
               <td>UGX {{ historical.amount_chargeable |number_format(0, '.', ',')}}</td>
-              <td>UGX {{ historical.balance |number_format(0, '.', ',')}}</td>
-              <td>UGX {{ historical.arrears |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ historical.amount_paid |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ historical.total_due |number_format(0, '.', ',')}}</td>
+              <td>UGX {{ historical.previous_arrears |number_format(0, '.', ',')}}</td>
               <td>
-                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ historical.payment_nid }}">Edit</a>
+                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ historical.nid }}">Edit</a>
               </td>
             </tr>
             {% endfor %}
