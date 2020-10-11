@@ -6,3 +6,29 @@
  *
  * Place your custom PHP code in this file.
  */
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function nfa_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $suggestions[] = 'page__' . $node->bundle();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function nfa_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  $area_node = $node->get('field_areas_id')->referencedEntities()[0];
+  if (!empty($area_node)) {
+    $cfr_node_id = $area_node->get('field_central_forest_reserve')->target_id;//->referencedEntities()[0];
+
+    // Get taxonomy term name
+    if ($cfr_node_id) {
+      $cfr_node = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($cfr_node_id);
+      $variables['content']['field_central_forest_reserve'] = $cfr_node->getName();
+    }
+  }
+}

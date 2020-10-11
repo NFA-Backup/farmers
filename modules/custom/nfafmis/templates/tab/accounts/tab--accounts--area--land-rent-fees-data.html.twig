@@ -135,7 +135,7 @@
               <td>UGX {{ rent_charge.total_due |number_format(0, '.', ',')}}</td>
               <td>{{ rent_charge.payment_advc_no }}
                 {% if rent_charge.payment_advc_nid %}
-                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>
+                <a target="_blank" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>
                 {% endif %}
               </td>
               <td>{{ rent_charge.payment_date }}</td>

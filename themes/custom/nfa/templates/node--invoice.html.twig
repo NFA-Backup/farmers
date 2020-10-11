@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Payment Advice Number:</span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_number[0]['#context']['value']}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Date of issue: </span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_date[0]['#text']}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Farmer name:</span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_farmer_name_ref[0]['#title']}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Central Forest Reserve:</span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_central_forest_reserve}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Area: </span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_areas_id[0]['#title']}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Invoice for: </span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_details[0]['#markup']}}</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Description:</span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">&nbsp;</span></div>
+  </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">PLEASE PAY: </span></div>
+    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_amount[0]['#markup']}}</span></div>
+  </div>
+</div>
