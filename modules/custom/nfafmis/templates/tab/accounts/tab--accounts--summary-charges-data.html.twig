@@ -96,7 +96,7 @@
                   <td>{{ data.payment_advc_no }}</td>
                   <td>{{ data.receipt_number }}
                     {% if data.payment_advc_nid %}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ data.payment_advc_nid }}">view/print</a>
+                    <a href="/node/{{ data.payment_advc_nid }}" target="_blank">view/print</a>
                     <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{data.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
                     {% endif %}
                   </td>
@@ -171,7 +171,7 @@
                   <td>{{ land_rent.payment_advc_no }}</td>
                   <td>
                     {% if land_rent.payment_advc_nid %}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_advc_nid }}">view/print</a>
+                    <a href="/node/{{ land_rent.payment_advc_nid }}" target="_blank">view/print</a>
                     {% endif %}
                     <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{land_rent.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
                   </td>

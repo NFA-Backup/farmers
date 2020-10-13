@@ -79,7 +79,7 @@
                   <td>UGX {{ data.amount |number_format(0, '.', ',')}}</td>
                   <td>{{ data.payment_advc_no }}
                     {% if data.payment_advc_nid %}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ data.payment_advc_nid }}">view/print</a>
+                    <a href="/node/{{ data.payment_advc_nid }}" target="_blank">view/print</a>
                     {% endif%}
                   </td>
                   <td>{{ data.payment_date }}</td>
@@ -173,7 +173,7 @@
                   <td>
                     {{ land_rent.payment_advc_no }}
                     {% if land_rent.payment_advc_nid %}
-                    <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ land_rent.payment_advc_nid }}">view/print</a>
+                    <a href="/node/{{ land_rent.payment_advc_nid }}" target="_blank">view/print</a>
                     {% endif %}
                   </td>
                   <td>{{ land_rent.payment_date }}</td>

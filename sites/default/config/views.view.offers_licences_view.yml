@@ -999,8 +999,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: '<a href'
+            alter_text: true
+            text: '<a class="use-modal" href="{{ edit_node }}">edit</a>'
             make_link: false
             path: ''
             absolute: false
@@ -1038,7 +1038,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           text: edit
-          output_url_as_text: false
+          output_url_as_text: true
           absolute: false
           entity_type: node
           plugin_id: entity_link_edit

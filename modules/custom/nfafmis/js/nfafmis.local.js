@@ -209,7 +209,7 @@
 
       $(context).find("td.views-field").once("nfamis").each(function() {
         let editLink = $(this).find('a');
-        if (editLink.length) {
+        if (editLink.length && editLink.hasClass('use-modal')) {
           editLink.addClass('use-ajax');
           editLink.attr("data-dialog-options", '{"width":800}');
           editLink.attr("data-dialog-type", "modal");
