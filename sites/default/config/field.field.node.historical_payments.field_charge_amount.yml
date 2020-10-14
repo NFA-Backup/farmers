@@ -1,0 +1,23 @@
+uuid: 51fb3c73-0c4f-4837-87d7-e88e23fc0c4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_charge_amount
+    - node.type.historical_payments
+id: node.historical_payments.field_charge_amount
+field_name: field_charge_amount
+entity_type: node
+bundle: historical_payments
+label: 'Amount chargeable'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: decimal

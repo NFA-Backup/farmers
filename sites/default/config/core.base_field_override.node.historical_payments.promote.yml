@@ -1,0 +1,22 @@
+uuid: 5888c57f-b5df-46b1-8718-b25042b60da6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.historical_payments
+id: node.historical_payments.promote
+field_name: promote
+entity_type: node
+bundle: historical_payments
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

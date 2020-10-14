@@ -1,0 +1,87 @@
+uuid: 54c3fec0-3552-4fec-9a43-1aea6f0ae475
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.historical_payments.field_amount_paid_as
+    - field.field.node.historical_payments.field_areas_id
+    - field.field.node.historical_payments.field_arrears
+    - field.field.node.historical_payments.field_balance
+    - field.field.node.historical_payments.field_charge_amount
+    - field.field.node.historical_payments.field_charge_date
+    - field.field.node.historical_payments.field_description
+    - node.type.historical_payments
+  module:
+    - datetime
+id: node.historical_payments.default
+targetEntityType: node
+bundle: historical_payments
+mode: default
+content:
+  field_amount_paid_as:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_areas_id:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_arrears:
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_balance:
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_charge_amount:
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_charge_date:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_description:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

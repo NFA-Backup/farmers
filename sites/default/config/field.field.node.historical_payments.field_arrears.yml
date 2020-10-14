@@ -1,0 +1,23 @@
+uuid: 809e894d-739f-44c5-b07e-5de1a0e0b056
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_arrears
+    - node.type.historical_payments
+id: node.historical_payments.field_arrears
+field_name: field_arrears
+entity_type: node
+bundle: historical_payments
+label: Arrears
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: integer

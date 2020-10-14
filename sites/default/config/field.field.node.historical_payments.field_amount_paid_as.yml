@@ -1,0 +1,23 @@
+uuid: efc3fc6f-1738-4246-a03b-6f716d9efe8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_amount_paid_as
+    - node.type.historical_payments
+id: node.historical_payments.field_amount_paid_as
+field_name: field_amount_paid_as
+entity_type: node
+bundle: historical_payments
+label: 'Amount paid'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: integer

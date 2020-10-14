@@ -1,0 +1,34 @@
+uuid: 2ac5f721-44bc-460a-9b95-19071d62535e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.historical_payments.field_amount_paid_as
+    - field.field.node.historical_payments.field_areas_id
+    - field.field.node.historical_payments.field_arrears
+    - field.field.node.historical_payments.field_balance
+    - field.field.node.historical_payments.field_charge_amount
+    - field.field.node.historical_payments.field_charge_date
+    - field.field.node.historical_payments.field_description
+    - node.type.historical_payments
+  module:
+    - user
+id: node.historical_payments.teaser
+targetEntityType: node
+bundle: historical_payments
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_amount_paid_as: true
+  field_areas_id: true
+  field_arrears: true
+  field_balance: true
+  field_charge_amount: true
+  field_charge_date: true
+  field_description: true

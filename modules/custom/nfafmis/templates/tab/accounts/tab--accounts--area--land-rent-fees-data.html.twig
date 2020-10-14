@@ -157,6 +157,9 @@
     <div class="col-md-12">
       <h4>Historical pyments information</h4>
     </div>
+    <div class="col-md-12">
+      <a class="btn btn-info use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/historical_payments?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts">Add</a>
+    </div>
   </div>
   <div class="block-section">
     <h5 class="title"></h5>
@@ -181,7 +184,7 @@
             {% endif %}
             {% for historical in data.historical.data %}
             <tr>
-              <td>{{ historical.date }}</td>
+              <td>{{ historical.date |date('m/d/Y') }}</td>
               <td>{{ historical.description }}</td>
               <td>UGX {{ historical.amount_chargeable |number_format(0, '.', ',')}}</td>
               <td>UGX {{ historical.amount_paid |number_format(0, '.', ',')}}</td>

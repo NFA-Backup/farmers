@@ -352,11 +352,38 @@ class FarmerServices {
           }
         }
       }
-      // Sort data according to the date.
-      if (!empty($data_array)) {
-        krsort($data_array);
-        $historical_data['data'] = $data_array;
+    }
+
+    // Conmbine Historical pyments information with annual historical charges.
+    // Fetch data from historical_payments content type and merge it.
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $historical_payments_nid = $query->condition('type', 'historical_payments')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->execute();
+    if (!empty($historical_payments_nid)) {
+      $historical_payments = $this->entityTypeManager->getStorage('node')->loadMultiple($historical_payments_nid);
+      foreach ($historical_payments as $key => $historical_payment) {
+        $amount = $historical_payment->get('field_charge_amount')->value;
+        $date = $historical_payment->get('field_charge_date')->value;
+        $body = $historical_payment->get('field_description')->value;
+        $arrears = $historical_payment->get('field_arrears')->value;
+        $amount_paid = $historical_payment->get('field_amount_paid_as')->value;
+        $field_balance = $historical_payment->get('field_balance')->value;
+
+
+        $data_array[$key]['nid'] = $historical_payment->id();
+        $data_array[$key]['date'] = $date;
+        $data_array[$key]['amount_chargeable'] = $amount;
+        $data_array[$key]['previous_arrears'] = $arrears;
+        $data_array[$key]['description'] = $body;
+        $data_array[$key]['amount_paid'] = $amount_paid;
+        $data_array[$key]['total_due'] = $field_balance;
       }
+    }
+    // Sort data according to the date.
+    if (!empty($data_array)) {
+      krsort($data_array);
+      $historical_data['data'] = $data_array;
     }
   }
 

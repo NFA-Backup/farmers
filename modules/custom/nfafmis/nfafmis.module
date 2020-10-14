@@ -288,6 +288,16 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
   }
 
+  // Set default area-id when adding Historical pyments content.
+  if ($form_id == 'node_historical_payments_form' || $form_id == 'node_historical_payments_edit_form') {
+    $query_params = $nfafmis_service_utility->getQueryParams();
+    if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
+      $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
+      $area_id = $query_params['offer_licence_id'];
+      $area_data = $entity_type_manager->getStorage('node')->load($area_id);
+      $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
+    }
+  }
 }
 
 /**

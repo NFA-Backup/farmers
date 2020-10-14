@@ -1,0 +1,23 @@
+uuid: e5e16dfa-f29a-48fe-8c62-58c9624640a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_balance
+    - node.type.historical_payments
+id: node.historical_payments.field_balance
+field_name: field_balance
+entity_type: node
+bundle: historical_payments
+label: Balance
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: float
