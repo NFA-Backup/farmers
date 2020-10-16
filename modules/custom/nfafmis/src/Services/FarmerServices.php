@@ -370,7 +370,6 @@ class FarmerServices {
         $amount_paid = $historical_payment->get('field_amount_paid_as')->value;
         $field_balance = $historical_payment->get('field_balance')->value;
 
-
         $data_array[$key]['nid'] = $historical_payment->id();
         $data_array[$key]['date'] = $date;
         $data_array[$key]['amount_chargeable'] = $amount;

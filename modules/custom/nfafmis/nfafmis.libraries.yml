@@ -1,5 +1,8 @@
 nfafmis:
   version: version
+  css:
+    theme:
+      css/print-css.css: {}
   js:
     js/nfafmis.local.js: {}
   dependencies:

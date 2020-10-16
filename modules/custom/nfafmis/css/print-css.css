@@ -1,0 +1,134 @@
+/* print.css */
+
+.page-node-type-invoice .main-container h1 {
+  margin-bottom: 40px;
+  margin-top: 40px;
+  font-size: 48px;
+}
+
+.page-node-type-invoice .header-section {
+  margin-top: 80px;
+}
+
+.page-node-type-invoice .top-section {
+  display: flex;
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+section .row {
+  margin-bottom: 20px;
+}
+
+.page-node-type-invoice .col-md-6 span {
+  display: block;
+  background: #d7d3d3;
+  padding: 10px;
+}
+
+.page-node-type-invoice .print-section {
+  margin-bottom: 80px;
+}
+
+/* override styles when printing */
+@media print {
+
+  .col-md-1,
+  .col-md-2,
+  .col-md-3,
+  .col-md-4,
+  .col-md-5,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .col-md-9,
+  .col-md-10,
+  .col-md-11,
+  .col-md-12 {
+    float: left;
+  }
+
+  .col-md-1 {
+    width: 8%;
+  }
+
+  .col-md-2 {
+    width: 16%;
+  }
+
+  .col-md-3 {
+    width: 25%;
+  }
+
+  .col-md-4 {
+    width: 33%;
+  }
+
+  .col-md-5 {
+    width: 42%;
+  }
+
+  .col-md-6 {
+    width: 50%;
+  }
+
+  .col-md-7 {
+    width: 58%;
+  }
+
+  .col-md-8 {
+    width: 66%;
+  }
+
+  .col-md-9 {
+    width: 75%;
+  }
+
+  .col-md-10 {
+    width: 83%;
+  }
+
+  .col-md-11 {
+    width: 92%;
+  }
+
+  .col-md-12 {
+    width: 100%;
+  }
+
+  .main-container h1 {
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 48px;
+  }
+
+  .page-node-type-invoice .header-section {
+    margin-top: 20px;
+  }
+
+  .page-node-type-invoice .top-section {
+    display: flex;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  section .row {
+    margin-bottom: 20px !important;
+  }
+
+  .page-node-type-invoice .col-md-6 span {
+    background: #d7d3d3 !important;
+    padding: 10px !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page-node-type-invoice .print-section {
+    display: none;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+}

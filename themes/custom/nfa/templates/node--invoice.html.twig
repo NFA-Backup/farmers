@@ -1,39 +1,38 @@
-<div class="container">
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Payment Advice Number:</span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_number[0]['#context']['value']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Date of issue: </span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_date[0]['#text']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Farmer name:</span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_farmer_name_ref[0]['#title']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Central Forest Reserve:</span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_central_forest_reserve}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Area: </span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_areas_id[0]['#title']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Invoice for: </span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_invoice_details[0]['#markup']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">Description:</span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">&nbsp;</span></div>
-  </div>
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">PLEASE PAY: </span></div>
-    <div class="col-md-6"><span style="display: block;background: #d7d3d3;padding: 10px;">{{content.field_amount[0]['#markup']}}</span></div>
-  </div>
-  <div class="row" style="margin-bottom:80px;">
-    <div class="col-md-12 text-right" onclick="window.print()">
-      <a class="btn btn-info"href="#">Print</a>
-    </div>
+{{ attach_library('nfafmis/nfafmis') }}
+<div class="row">
+  <div class="col-md-6"><span>Payment Advice Number:</span></div>
+  <div class="col-md-6"><span>{{content.field_invoice_number[0]['#context']['value']}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Date of issue: </span></div>
+  <div class="col-md-6"><span>{{content.field_invoice_date[0]['#text']}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Farmer name:</span></div>
+  <div class="col-md-6"><span>{{content.field_farmer_name_ref[0]['#title']}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Central Forest Reserve:</span></div>
+  <div class="col-md-6"><span>{{content.field_central_forest_reserve}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Area: </span></div>
+  <div class="col-md-6"><span>{{content.field_areas_id[0]['#title']}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Invoice for: </span></div>
+  <div class="col-md-6"><span>{{content.field_invoice_details[0]['#markup']}}</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>Description:</span></div>
+  <div class="col-md-6"><span>&nbsp;</span></div>
+</div>
+<div class="row">
+  <div class="col-md-6"><span>PLEASE PAY: </span></div>
+  <div class="col-md-6"><span>{{content.field_amount[0]['#markup']}}</span></div>
+</div>
+<div class="row print-section">
+  <div class="col-md-12 text-right" onclick="window.print()">
+    <a class="btn btn-info">Print</a>
   </div>
 </div>
