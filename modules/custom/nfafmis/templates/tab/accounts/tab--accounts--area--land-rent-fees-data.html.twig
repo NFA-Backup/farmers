@@ -141,7 +141,7 @@
               <td>{{ rent_charge.payment_date }}</td>
               <td>{{ rent_charge.receipt_number }}
                 {% if rent_charge.payment_nid %}
-                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ rent_charge.payment_nid }}">view</a>
+                <a href="{{ rent_charge.receipt_uri }}">view</a>
                 {% else %}
                 <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{rent_charge.payment_advc_nid}}&destination=/tree-farmer-overview/accounts">payment</a>
                 {% endif %}

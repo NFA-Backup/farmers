@@ -215,6 +215,14 @@ class FarmerServices {
             $data_array += ['payment_nid' => $payment->id()];
             $data_array += ['payment_date' => $payment->get('field_date_paid')->value];
             $data_array += ['receipt_number' => $payment->get('field_receipt_number')->value];
+
+            // Get receipt file uri.
+            $file = $payment->field_receipt_scan->entity;
+            if ($file) {
+              $file_uri = $payment->field_receipt_scan->entity->getFileUri();
+              $file_download_uri = file_create_url($file_uri);
+              $data_array += ['receipt_uri' => $file_download_uri];
+            }
           }
           else {
             $land_rent_data['balance'] += $amount;
@@ -293,6 +301,14 @@ class FarmerServices {
             $data_array[$key]['payment_nid'] = $payment->id();
             $data_array[$key]['payment_date'] = $payment->get('field_date_paid')->value;
             $data_array[$key]['receipt_number'] = $payment->get('field_receipt_number')->value;
+
+            // Get receipt file url.
+            $file = $payment->field_receipt_scan->entity;
+            if ($file) {
+              $file_uri = $payment->field_receipt_scan->entity->getFileUri();
+              $file_download_uri = file_create_url($file_uri);
+              $data_array[$key]['receipt_uri'] = $file_download_uri;
+            }
           }
           else {
             $land_rent_data['balance'] += $amount;

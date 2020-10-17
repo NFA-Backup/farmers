@@ -221,9 +221,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['field_receipt_number']['widget'][0]['value']['#default_value'] = $time;
 
     // Set default farmer when adding offer license content.
-    $query_params = $nfafmis_service_utility->getQueryParams();
-    if (!empty($query_params['invoice_id'])) {
-      $node_invoice = $entity_type_manager->getStorage('node')->load($query_params['invoice_id']);
+    // $query_params = $nfafmis_service_utility->getQueryParams();
+    $invoice_id = \Drupal::request()->query->get('invoice_id');
+    if ($invoice_id) {
+      $node_invoice = $entity_type_manager->getStorage('node')->load($invoice_id);
       $farmer_id = $node_invoice->get('field_farmer_name_ref')->target_id;
       $farmer = $entity_type_manager->getStorage('node')->load($farmer_id);
       $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer;
