@@ -191,7 +191,7 @@
               <td>UGX {{ historical.total_due |number_format(0, '.', ',')}}</td>
               <td>UGX {{ historical.previous_arrears |number_format(0, '.', ',')}}</td>
               <td>
-                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ historical.nid }}">Edit</a>
+                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ historical.nid }}/edit?destination=/tree-farmer-overview/accounts">Edit</a>
               </td>
             </tr>
             {% endfor %}

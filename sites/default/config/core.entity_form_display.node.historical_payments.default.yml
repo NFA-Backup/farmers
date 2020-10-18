@@ -19,7 +19,7 @@ bundle: historical_payments
 mode: default
 content:
   field_amount_paid_as:
-    weight: 4
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -36,34 +36,27 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_arrears:
-    weight: 6
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_balance:
-    weight: 5
+    weight: 4
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_charge_amount:
-    weight: 3
+    weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_charge_date:
-    weight: 26
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_description:
-    weight: 27
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -80,6 +73,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_balance: true
   path: true
   promote: true
   status: true

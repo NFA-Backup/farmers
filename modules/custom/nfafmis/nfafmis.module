@@ -292,8 +292,8 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   // Set default area-id when adding Historical pyments content.
   if ($form_id == 'node_historical_payments_form' || $form_id == 'node_historical_payments_edit_form') {
     $query_params = $nfafmis_service_utility->getQueryParams();
+    $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
     if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
-      $form['field_areas_id']['widget'][0]['#disabled'] = TRUE;
       $area_id = $query_params['offer_licence_id'];
       $area_data = $entity_type_manager->getStorage('node')->load($area_id);
       $form['field_areas_id']['widget'][0]['target_id']['#default_value'] = $area_data;
@@ -318,6 +318,14 @@ function nfafmis_node_presave(Node $node) {
     $field_invoice_serial = $date->format('dmY') . '-' . sprintf("%04d", $invoice_serial);
     $node->field_invoice_number->value = $field_invoice_serial;
     $node->title->value = 'Payment Advice -' . $field_invoice_serial;
+  }
+
+  // Auto calculate balance amount while adding historical payments.
+  if ($node->bundle() == 'historical_payments') {
+    $field_charge_amount = $node->get('field_charge_amount')->value;
+    $field_amount_paid_as = $node->get('field_amount_paid_as')->value;
+    $field_balance = $field_charge_amount - $field_amount_paid_as;
+    $node->field_balance->value = $field_balance;
   }
 
   // Automatically generate invoice automatically for each charges,
