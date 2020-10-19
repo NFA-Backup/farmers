@@ -237,6 +237,11 @@
         $(this).hide();
       });
 
+      // Add green color if balance is zero.
+      $(context).find('.center-container .row .views-field').once("nfamis").each(function() {
+        $('div.field-content:contains("UGX 0")').removeClass('balance').addClass('payment');
+      });
+
       $(".offers-letter-dates-tabs").tabsMapper();
       $(".licence-number-tabs").tabsMapper();
     }
