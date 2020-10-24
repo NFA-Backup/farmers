@@ -375,6 +375,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $historical_payments_nid = $query->condition('type', 'historical_payments')
       ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->sort('field_charge_date.value', 'DESC')
       ->execute();
     if (!empty($historical_payments_nid)) {
       $historical_payments = $this->entityTypeManager->getStorage('node')->loadMultiple($historical_payments_nid);
@@ -385,6 +386,7 @@ class FarmerServices {
         $arrears = $historical_payment->get('field_arrears')->value;
         $amount_paid = $historical_payment->get('field_amount_paid_as')->value;
         $field_balance = $historical_payment->get('field_balance')->value;
+        $key = $date . '_' . $key;
 
         $data_array[$key]['nid'] = $historical_payment->id();
         $data_array[$key]['date'] = $date;
@@ -1133,6 +1135,31 @@ class FarmerServices {
       $payment['land_rent']['data'][] = $sm_data_array;
     }
 
+  }
+
+  /**
+   * Get arrears which is also know as starting amount for land rent.
+   *
+   * Note payment history data should be added in historical order.
+   *
+   * @param $offer_licence_id
+   *   The area id for which arears need to find.
+   */
+  public function getArrears($offer_licence_id) {
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $historical_payments_nid = $query->condition('type', 'historical_payments')
+      ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->sort('field_charge_date.value', 'DESC')
+      ->range(0, 1)
+      ->execute();
+
+    if (!empty($historical_payments_nid)) {
+      $historical_payments_nid = reset($historical_payments_nid);
+      $historical_payments = $this->entityTypeManager->getStorage('node')->load($historical_payments_nid);
+      $field_balance = $historical_payments->get('field_balance')->value;
+      return $field_balance;
+    }
+    return 0;
   }
 
 }

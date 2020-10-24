@@ -10,6 +10,9 @@ use Drupal\node\Entity\Node;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -275,6 +278,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_information';
       $form['#fieldgroups']['group_receipt_details']->children[] = 'farmer_area_infomation';
     }
+    nfafmis_add_ajax_form($form_id, $form);
   }
 
   // Prepare starting amount add edit form.
@@ -320,8 +324,15 @@ function nfafmis_node_presave(Node $node) {
     $node->title->value = 'Payment Advice -' . $field_invoice_serial;
   }
 
-  // Auto calculate balance amount while adding historical payments.
+  // Auto calculate balance & arrears amount while adding historical payments.
   if ($node->bundle() == 'historical_payments') {
+    $field_areas_id = $node->get('field_areas_id')->target_id;
+    if ($field_areas_id) {
+      $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
+      $arrears = $nfafmis_service_farmer->getArrears($field_areas_id);
+      $node->field_arrears->value = $arrears;
+    }
+
     $field_charge_amount = $node->get('field_charge_amount')->value;
     $field_amount_paid_as = $node->get('field_amount_paid_as')->value;
     $field_balance = $field_charge_amount - $field_amount_paid_as;
@@ -617,4 +628,52 @@ function nfafmis_token_info_alter(&$info) {
       ];
     }
   }
+}
+
+/**
+ * Add Ajax handler on add payment page.
+ */
+function nfafmis_add_ajax_form($form_id, &$form) {
+
+  $form['#prefix'] = '<div id="modal-form">';
+  $form['#suffix'] = '</div>';
+  $form['messages'] = [
+    '#weight' => -9999,
+    '#type' => 'status_messages',
+  ];
+
+  $form['actions']['submit']['#ajax'] = [
+    'callback' => 'nfafmis_form_ajax_validate',
+    'wrapper' => 'modal-form',
+    'progress' => [
+      'type' => 'throbber',
+      'message' => t('Saving...'),
+    ],
+  ];
+  $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
+  return $form;
+}
+
+/**
+ * Handle errors in the modal.
+ *
+ * @param array $form
+ *   The form passed by reference.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Symfony\Component\HttpFoundation\Response
+ *   The response object.
+ */
+function nfafmis_form_ajax_validate(&$form, $form_state) {
+  $response = new AjaxResponse();
+
+  if (!empty($form_state->getErrors())) {
+    $response->addCommand(new ReplaceCommand('#modal-form', $form));
+    return $response;
+  }
+  $response->addCommand(new CloseModalDialogCommand());
+  $response->addCommand(new RedirectCommand(\Drupal::request()->query->get('destination')));
+  $form_state->setResponse($response);
+  return $response;
 }
