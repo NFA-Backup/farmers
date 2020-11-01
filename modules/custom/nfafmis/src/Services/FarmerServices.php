@@ -34,6 +34,10 @@ class FarmerServices {
 
   /**
    * Constructs a new FarmerServices object.
+   *
+   * @param \Drupal\Core\Session\AccountProxy $current_user
+   * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   * @param \Drupal\Core\Render\Renderer $renderer
    */
   public function __construct(
     AccountProxy $current_user,
@@ -53,10 +57,12 @@ class FarmerServices {
    * @param string $offer_licence_id
    *   The area ID.
    *
-   * @return array
+   * @return array|\Drupal\Component\Render\MarkupInterface|string
    *   The rendered array.
+   *
+   * @throws \Exception
    */
-  public function getAreaLandRentAndFeesData($farmer_id, $offer_licence_id) {
+  public function getAreaLandRentAndFeesData(string $farmer_id, string $offer_licence_id) {
     $starting_amount = $this->getStartingAmountData($offer_licence_id);
     // Get fees & land rent data.
     $fees_data = $this->getFeesData($offer_licence_id);
@@ -74,8 +80,7 @@ class FarmerServices {
       '#theme' => 'tab__accounts__area__land_rent_fees_data',
       '#data' => $data,
     ];
-    $rendered = $this->renderer->render($renderable);
-    return $rendered;
+    return $this->renderer->render($renderable);
   }
 
   /**
@@ -86,8 +91,11 @@ class FarmerServices {
    *
    * @return array
    *   The fee data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getFeesData($offer_licence_id) {
+  public function getFeesData(string $offer_licence_id) {
     $fees_data = [
       'balance' => 0,
       'charges' => 0,
@@ -129,8 +137,11 @@ class FarmerServices {
    *
    * @return array
    *   The array of payment id.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function invoiceHasPayment($invoice_id) {
+  public function invoiceHasPayment(string $invoice_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $payment_nid = $query->condition('type', 'payment')
       ->condition('field_invoice.target_id', $invoice_id)
@@ -146,8 +157,11 @@ class FarmerServices {
    *
    * @return array
    *   The land rent data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getLandRentData($offer_licence_id) {
+  public function getLandRentData(string $offer_licence_id) {
     $land_rent_data = [
       'balance' => 0,
       'charges' => 0,
@@ -167,8 +181,11 @@ class FarmerServices {
    *
    * @return array
    *   The historical payment information data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getHistoricalData($offer_licence_id) {
+  public function getHistoricalData(string $offer_licence_id) {
     $historical_data = [
       'data' => [],
     ];
@@ -183,6 +200,9 @@ class FarmerServices {
    *   The area ID.
    * @param array $land_rent_data
    *   The $land_rent_data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   protected function getLandRentStartingAmountData($offer_licence_id, &$land_rent_data) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -240,8 +260,13 @@ class FarmerServices {
    *   The area object.
    * @param string $for_year
    *   The year.
+   *
+   * @return array|int
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function chekForExistingAnnualCharges($area, $for_year) {
+  public function chekForExistingAnnualCharges($area, string $for_year) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nid = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $area->id())
@@ -258,8 +283,11 @@ class FarmerServices {
    *   The area ID.
    * @param array $land_rent_data
    *   The $land_rent_data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getLandRentAnnulChargesData($offer_licence_id, &$land_rent_data) {
+  protected function getLandRentAnnulChargesData(string $offer_licence_id, array &$land_rent_data) {
     $year = date("Y");
     $archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -288,7 +316,7 @@ class FarmerServices {
         $data_array[$key]['previous_arrears'] = $arrears;
         $data_array[$key]['total_due'] = $amount;
         $invoice = $annual_charge->get('field_payment_advice')->referencedEntities()[0];
-        // Get incove for annual charges.
+        // Get invoice for annual charges.
         if ($invoice) {
           $data_array[$key]['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
           $data_array[$key]['payment_advc_nid'] = $invoice->id();
@@ -324,14 +352,17 @@ class FarmerServices {
   }
 
   /**
-   * Get historical payment infirmation for particular area.
+   * Get historical payment information for particular area.
    *
    * @param string $offer_licence_id
    *   The area ID.
    * @param array $historical_data
-   *   The historical payment infirmation.
+   *   The historical payment information.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getLandRentAnnulChargesHistoricalData($offer_licence_id, &$historical_data) {
+  protected function getLandRentAnnulChargesHistoricalData(string $offer_licence_id, array &$historical_data) {
     $year = date("Y");
     $archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -352,7 +383,7 @@ class FarmerServices {
         $data_array[$key]['previous_arrears'] = $arrears;
         $data_array[$key]['description'] = t('Land rent for whole area');
         $invoice = $annual_charge->get('field_payment_advice')->referencedEntities()[0];
-        // Get incove for annual charges.
+        // Get invoice for annual charges.
         if ($invoice) {
           $data_array[$key]['payment_advc_no'] = $invoice->get('field_invoice_number')->value;
           $data_array[$key]['payment_advc_nid'] = $invoice->id();
@@ -370,7 +401,7 @@ class FarmerServices {
       }
     }
 
-    // Conmbine Historical pyments information with annual historical charges.
+    // Combine Historical payments information with annual historical charges.
     // Fetch data from historical_payments content type and merge it.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $historical_payments_nid = $query->condition('type', 'historical_payments')
@@ -405,7 +436,14 @@ class FarmerServices {
   }
 
   /**
-   * Get Starting amound data for particular area.
+   * Get Starting amount data for particular area.
+   *
+   * @param $offer_licence_id
+   *
+   * @return array
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   protected function getStartingAmountData($offer_licence_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -426,23 +464,25 @@ class FarmerServices {
    * Calculate annual charges for area.
    *
    * @param string $cfr
-   *   The central forest reseve ID.
-   * @param string $overall_area_allocated
-   *   The overall unit alocated for the area.
+   *   The central forest reserve ID.
+   * @param int $overall_area_allocated
+   *   The overall unit allocated for the area.
    * @param string $for_year
    *   Annual charges for the year.
    *
-   * @return array
+   * @return float|int The annual land rent.
    *   The annual land rent.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function calculateAnnualCharges($cfr, $overall_area_allocated, $for_year) {
+  public function calculateAnnualCharges(string $cfr, int $overall_area_allocated, string $for_year) {
     // field_central_forest_reserve taxonomy term id.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'land_rent_rates');
     $query->condition('field_central_forest_reserve.target_id', $cfr);
     $query->condition('field_rate_year.value', $for_year);
     $land_rent_rates_nid = $query->execute();
-    $land_rent_annual_charge = [];
 
     if (!empty($land_rent_rates_nid)) {
       $nid = reset($land_rent_rates_nid);
@@ -450,23 +490,23 @@ class FarmerServices {
       // Make sure overall area is not zero.
       // land_rent_rate x overall_area_allocated.
       $rent_rate = $land_rent_rate_node->get('field_rate')->value;
-      $land_rent = $rent_rate * $overall_area_allocated;
-      $land_rent_annual_charge = $land_rent;
-      return $land_rent_annual_charge;
+      return $rent_rate * $overall_area_allocated;
     }
     return 0;
   }
 
   /**
-   * Get previous year unpaid land rent for paticular area.
+   * Get previous year unpaid land rent for particular area.
    *
    * @param object $area
    *   The area object.
-   * @param string $for_year
-   *   Annual charges for the year.
+   * @param $year
    *
    * @return array
    *   The land rent total.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getPreviousYearLandRentDue($area, $year) {
     $year = $year - 1;
@@ -484,7 +524,7 @@ class FarmerServices {
       $land_rent_annual_charge['amount'] = $annual_charges->get('field_annual_charges')->value;
       $land_rent_annual_charge['charges_due'] = TRUE;
       $invoice = $annual_charges->get('field_payment_advice')->referencedEntities()[0];
-      // Get incove for annual charges.
+      // Get invoice for annual charges.
       if ($invoice) {
         $invoice_payment_id = $this->invoiceHasPayment($invoice->id());
         // Get payment data for annual charges.
@@ -503,9 +543,12 @@ class FarmerServices {
    *   The area ID.
    *
    * @return mixed
-   *   The list of sub aread ids.
+   *   The list of sub area ids.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getSubAreasIds($offer_licence_ids) {
+  public function getSubAreasIds(string $offer_licence_ids) {
     $offer_licence_ids = explode(',', $offer_licence_ids);
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $sub_area_nids = $query->condition('type', 'sub_area')
@@ -522,14 +565,17 @@ class FarmerServices {
    * Get total charges of area year wise.
    *
    * @param string $cfr
-   *   The central forest reseve ID.
-   * @param string $overall_area_allocated
-   *   The overall area alocated for the area.
+   *   The central forest reserve ID.
+   * @param int $overall_area_allocated
+   *   The overall area allocated for the area.
    *
    * @return array
-   *   The chages total year wise.
+   *   The charges total year wise.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getTotalYearWise($cfr, $overall_area_allocated) {
+  protected function getTotalYearWise(string $cfr, int $overall_area_allocated) {
     // field_central_forest_reserve taxonomy term id.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
@@ -544,8 +590,8 @@ class FarmerServices {
         // land_rent_rate x overall_area_allocated.
         $rent_rate = $land_rent_rate->get('field_rate')->value;
         $for_year = $land_rent_rate->get('field_rate_year')->value;
+        $land_rent = $rent_rate * $overall_area_allocated;
         if ($overall_area_allocated) {
-          $land_rent = $rent_rate * $overall_area_allocated;
           if (array_key_exists($for_year, $land_rent_rates_table)) {
             $land_rent_rates_table[$for_year] += $land_rent;
           }
@@ -574,8 +620,11 @@ class FarmerServices {
    *
    * @return array
    *   The other charges total year wise.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getOtherTotalYearWise($offer_licence_id) {
+  public function getOtherTotalYearWise(string $offer_licence_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $charge_nids = $query->condition('type', 'charge')
       ->condition('field_areas_id.target_id', $offer_licence_id)
@@ -610,8 +659,11 @@ class FarmerServices {
    *
    * @return array
    *   The result array.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getInvoiceDetails($field_invoice_id) {
+  public function getInvoiceDetails(string $field_invoice_id) {
     $invoice = $this->entityTypeManager->getStorage('node')->load($field_invoice_id);
     $field_areas_id = $invoice->get('field_areas_id')->target_id;
     $field_invoice_for = $invoice->get('field_invoice_details')->value;
@@ -632,8 +684,11 @@ class FarmerServices {
    *
    * @return array
    *   The detail array result.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getOtherCharges($offer_licence_id, $charge_type, $unformatted = FALSE) {
+  public function getOtherCharges(string $offer_licence_id, string $charge_type, $unformatted = FALSE) {
 
     $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
     $charges_data['title'] = $area->getTitle();
@@ -686,8 +741,11 @@ class FarmerServices {
    *
    * @return mixed
    *   The area ids.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getOfferLicenseIds($farmer_id) {
+  public function getOfferLicenseIds(string $farmer_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $nids = $query->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref.target_id', $farmer_id)
@@ -705,10 +763,13 @@ class FarmerServices {
    * @param string $offer_license_id
    *   The area ID.
    *
-   * @return array
-   *   The area planted unplanted count.
+   * @return int
+   *   The area planted un-planted count.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getAreaPlantedUnPlantedValue($offer_license_id) {
+  public function getAreaPlantedUnPlantedValue(string $offer_license_id) {
     // Get sub-area entity Ids based on area ID.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $nids = $query->condition('type', 'sub_area')
@@ -732,10 +793,12 @@ class FarmerServices {
    * @param string $farmer_id
    *   The farmer ID.
    *
-   * @return array
+   * @return array|\Drupal\Component\Render\MarkupInterface|string
    *   The rendered summary charges.
+   *
+   * @throws \Exception
    */
-  public function getSummaryChargesData($farmer_id) {
+  public function getSummaryChargesData(string $farmer_id) {
     $summary_charges['balance'] = [
       'overall' => 0,
       'land_rent' => 0,
@@ -751,9 +814,9 @@ class FarmerServices {
     ];
     $area_ids = $this->getFarmerAreaIds($farmer_id);
     if (!empty($area_ids)) {
-      // Get overall oustanding fees & data.
+      // Get overall outstanding fees & data.
       $this->getOverallOutstandingFees($area_ids, $summary_charges);
-      // Get overall oustanding Land rent along with starting amount.
+      // Get overall outstanding Land rent along with starting amount.
       $this->getOverallOutstandingLandRent($area_ids, $summary_charges);
     }
 
@@ -771,12 +834,15 @@ class FarmerServices {
   /**
    * Get overall outstanding fee for all area of particular farmer.
    *
-   * @param string $area_ids
+   * @param array $area_ids
    *   The area ID.
-   * @param string $summary_charges
+   * @param array $summary_charges
    *   The summary_charges array.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getOverallOutstandingFees($area_ids, &$summary_charges) {
+  public function getOverallOutstandingFees(array $area_ids, array &$summary_charges) {
     // Calculate outstanding fees.
     $invoice_nids = $this->getInvoiceIds($area_ids);
     foreach ($invoice_nids as $invoice_id) {
@@ -811,23 +877,25 @@ class FarmerServices {
   }
 
   /**
-   * Get chage for particular invoice.
+   * Get charge for particular invoice.
    *
    * @param string $invoice_id
    *   The invoice ID.
    *
-   * @return object
+   * @return \Drupal\Core\Entity\EntityInterface|array
    *   The charge object.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getChargeFromInvoice($invoice_id) {
+  public function getChargeFromInvoice(string $invoice_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $charge_nids = $query->condition('type', 'charge')
       ->condition('field_payment_advice.target_id', $invoice_id)
       ->execute();
     $charge_nid = reset($charge_nids);
     if (!empty($charge_nid)) {
-      $charge = $this->entityTypeManager->getStorage('node')->load($charge_nid);
-      return $charge;
+      return $this->entityTypeManager->getStorage('node')->load($charge_nid);
     }
     return [];
   }
@@ -838,18 +906,20 @@ class FarmerServices {
    * @param string $invoice_id
    *   The invoice ID.
    *
-   * @return object
+   * @return \Drupal\Core\Entity\EntityInterface|array
    *   The charge object.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getAnnualChargeFromInvoice($invoice_id) {
+  public function getAnnualChargeFromInvoice(string $invoice_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_payment_advice.target_id', $invoice_id)
       ->execute();
     $annual_charges_nid = reset($annual_charges_nids);
     if (!empty($annual_charges_nid)) {
-      $annual_charges = $this->entityTypeManager->getStorage('node')->load($annual_charges_nid);
-      return $annual_charges;
+      return $this->entityTypeManager->getStorage('node')->load($annual_charges_nid);
     }
     return [];
   }
@@ -857,12 +927,15 @@ class FarmerServices {
   /**
    * Get overall outstanding land rent for all area of particular farmer.
    *
-   * @param string $area_ids
+   * @param array $area_ids
    *   The area ID.
-   * @param string $summary_charges
+   * @param array $summary_charges
    *   The summary_charges array.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getOverallOutstandingLandRent($area_ids, &$summary_charges) {
+  public function getOverallOutstandingLandRent(array $area_ids, array &$summary_charges) {
     // Calculate outstanding land rent.
     $invoice_nids = $this->getInvoiceIds($area_ids, '2');
     foreach ($invoice_nids as $invoice_id) {
@@ -933,8 +1006,11 @@ class FarmerServices {
    *
    * @return array
    *   The array of area ids.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getInvoiceIds($area_ids, $type = '1') {
+  public function getInvoiceIds(array $area_ids, $type = '1') {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $invoice_nids = $query->condition('type', 'invoice')
       ->condition('field_areas_id.target_id', $area_ids, 'IN')
@@ -953,8 +1029,11 @@ class FarmerServices {
    *
    * @return array
    *   The array of area ids.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getFarmerAreaIds($farmer_id) {
+  public function getFarmerAreaIds(string $farmer_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $area_nids = $query->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref.target_id', $farmer_id)
@@ -969,10 +1048,14 @@ class FarmerServices {
    * @param string $farmer_id
    *   The farmer ID.
    *
-   * @return array
+   * @return array|\Drupal\Component\Render\MarkupInterface|string
    *   The rendered payment data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Exception
    */
-  public function getPaymentsData($farmer_id) {
+  public function getPaymentsData(string $farmer_id) {
     $payments = [
       'fees' => [
         'balance' => 0,
@@ -1005,12 +1088,15 @@ class FarmerServices {
   /**
    * Get fee for all area of particular farmer.
    *
-   * @param string $area_ids
+   * @param array $area_ids
    *   The area ID.
-   * @param string $payment
+   * @param array $payment
    *   The $payment array.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getAllFeesData($area_ids, &$payment) {
+  public function getAllFeesData(array $area_ids, array &$payment) {
     $invoice_nids = $this->getInvoiceIds($area_ids);
     foreach ($invoice_nids as $invoice_id) {
       $payment_nids = $this->invoiceHasPayment($invoice_id);
@@ -1050,12 +1136,14 @@ class FarmerServices {
   /**
    * Get land rent for all area of particular farmer.
    *
-   * @param string $area_ids
+   * @param array $area_ids
    *   The area ID.
-   * @param string $payments
-   *   The $payments array.
+   * @param $payment
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getAllLandRentData($area_ids, &$payment) {
+  public function getAllLandRentData(array $area_ids, &$payment) {
     $invoice_nids = $this->getInvoiceIds($area_ids, '2');
     foreach ($invoice_nids as $invoice_id) {
       $payment_nids = $this->invoiceHasPayment($invoice_id);
@@ -1144,6 +1232,11 @@ class FarmerServices {
    *
    * @param $offer_licence_id
    *   The area id for which arears need to find.
+   *
+   * @return int|null
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getArrears($offer_licence_id) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -1156,8 +1249,7 @@ class FarmerServices {
     if (!empty($historical_payments_nid)) {
       $historical_payments_nid = reset($historical_payments_nid);
       $historical_payments = $this->entityTypeManager->getStorage('node')->load($historical_payments_nid);
-      $field_balance = $historical_payments->get('field_balance')->value;
-      return $field_balance;
+      return $historical_payments->get('field_balance')->value;
     }
     return 0;
   }

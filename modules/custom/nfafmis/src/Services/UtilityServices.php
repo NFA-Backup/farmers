@@ -26,6 +26,9 @@ class UtilityServices {
 
   /**
    * Constructs a new UtilityServices object.
+   *
+   * @param \Drupal\Core\Session\AccountProxy $current_user
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request
    */
   public function __construct(AccountProxy $current_user, RequestStack $request) {
     $this->currentUser = $current_user;
@@ -39,7 +42,7 @@ class UtilityServices {
    *   The array of Query params.
    */
   public function getQueryParams() {
-    $response = $this->getReffererAndQueryParams();
+    $response = $this->getReferrerAndQueryParams();
     if (!empty($response)) {
       if (isset($response['query_params'])) {
         return $response['query_params'];
@@ -49,12 +52,12 @@ class UtilityServices {
   }
 
   /**
-   * Get refferer and query params.
+   * Get referrer and query params.
    *
    * @return array
    *   The array of Query params.
    */
-  public function getReffererAndQueryParams() {
+  public function getReferrerAndQueryParams() {
     $currentRequest = $this->requestStack->getCurrentRequest();
     $referer = $currentRequest->headers->get('referer');
     $baseUrl = $currentRequest->createFromGlobals()->getSchemeAndHttpHost();

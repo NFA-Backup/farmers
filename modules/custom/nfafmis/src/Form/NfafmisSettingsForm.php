@@ -53,6 +53,10 @@ class NfafmisSettingsForm extends ConfigFormBase {
 
   /**
    * Class constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   * @param \Drupal\nfafmis\Services\FarmerServices $farmer_service
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
@@ -183,6 +187,15 @@ class NfafmisSettingsForm extends ConfigFormBase {
    *
    * - Land rent late fee.
    * - Annual land rent.
+   *
+   * @param $area
+   * @param $cfr
+   * @param $area_allocated
+   * @param $for_year
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function createAnnualCharges($area, $cfr, $area_allocated, $for_year) {
     $previous_year_land_rent = $this->farmerService->getPreviousYearLandRentDue($area, $for_year);
