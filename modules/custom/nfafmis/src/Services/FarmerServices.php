@@ -1249,9 +1249,9 @@ class FarmerServices {
     if (!empty($historical_payments_nid)) {
       $historical_payments_nid = reset($historical_payments_nid);
       $historical_payments = $this->entityTypeManager->getStorage('node')->load($historical_payments_nid);
-      return $historical_payments->get('field_balance')->value;
+      return $historical_payments->get('field_arrears')->value;
     }
-    return 0;
+    return 'starting_entry';
   }
 
 }
