@@ -593,9 +593,10 @@ function nfafmis_theme() {
 /**
  * Submit handler for comment form.
  *
+ * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function nfafmis_comment_comment_form_submit(FormStateInterface &$form_state) {
+function nfafmis_comment_comment_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview');
   $form_state->setRedirectUrl($url);
 }
@@ -603,9 +604,10 @@ function nfafmis_comment_comment_form_submit(FormStateInterface &$form_state) {
 /**
  * Validate handler for node_offer_license form.
  *
+ * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function nfafmis_node_offer_license_form_validate(FormStateInterface &$form_state) {
+function nfafmis_node_offer_license_form_validate($form, FormStateInterface &$form_state) {
   $field_overall_area_allocated = $form_state->getValue('field_overall_area_allocated');
   if (isset($field_overall_area_allocated[0]['value'])) {
     $value = $field_overall_area_allocated[0]['value'];
@@ -618,9 +620,10 @@ function nfafmis_node_offer_license_form_validate(FormStateInterface &$form_stat
 /**
  * Submit handler for node_offer_license form.
  *
+ * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function nfafmis_node_offer_license_form_submit(FormStateInterface &$form_state) {
+function nfafmis_node_offer_license_form_submit($form, FormStateInterface $form_state) {
   $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
   $url = Url::fromUri('internal:/tree-farmer-overview/licences');
   $response_data = $nfafmis_service_utility->getReferrerAndQueryParams();
@@ -635,9 +638,10 @@ function nfafmis_node_offer_license_form_submit(FormStateInterface &$form_state)
 /**
  * Submit handler for node_charge form.
  *
+ * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function nfafmis_node_charge_form_submit(FormStateInterface &$form_state) {
+function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
   $form_state->setRedirectUrl($url);
 }
@@ -718,7 +722,7 @@ function nfafmis_add_ajax_form(&$form) {
  * @return \Symfony\Component\HttpFoundation\Response
  *   The response object.
  */
-function nfafmis_form_ajax_validate(&$form, $form_state) {
+function nfafmis_form_ajax_validate(array &$form, FormStateInterface $form_state) {
   $response = new AjaxResponse();
 
   if (!empty($form_state->getErrors())) {
