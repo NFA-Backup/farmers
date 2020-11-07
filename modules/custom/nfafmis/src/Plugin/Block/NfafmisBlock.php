@@ -5,8 +5,11 @@ namespace Drupal\nfafmis\Plugin\Block;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Path\CurrentPathStack;
+use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -36,6 +39,13 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $currentPathStack;
 
   /**
+   * An instance of the entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * Constructor of NfafmisBlock.
    *
    * @param array $configuration
@@ -48,17 +58,20 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The request service.
    * @param \Drupal\Core\Path\CurrentPathStack $current_path_stack
    *   The current path stack service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
   public function __construct(
     array $configuration,
-    $plugin_id,
+    string $plugin_id,
     $plugin_definition,
     RequestStack $request_stack,
-    CurrentPathStack $current_path_stack
+    CurrentPathStack $current_path_stack,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->requestStack = $request_stack;
     $this->currentPathStack = $current_path_stack;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
@@ -70,7 +83,8 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $plugin_id,
       $plugin_definition,
       $container->get('request_stack'),
-      $container->get('path.current')
+      $container->get('path.current'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -130,6 +144,21 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $build['#cache']['contexts'][] = 'url.query_args:title';
     $build['#cache']['contexts'][] = 'url.path';
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function blockAccess(AccountInterface $account) {
+    // Hide block if no farmer data available.
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $nids = $query->condition('type', 'farmer_details')
+      ->condition('status', '1')
+      ->execute();
+    if (empty($nids)) {
+      return AccessResult::forbidden()->addCacheableDependency($nids);
+    }
+    return AccessResult::allowed();
   }
 
 }
