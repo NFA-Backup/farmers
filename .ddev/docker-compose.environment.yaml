@@ -1,0 +1,9 @@
+version: "3.6"
+services:
+  web:
+    environment:
+      - PHP_IDE_CONFIG=serverName=$DDEV_HOSTNAME
+      - DRUSH_ALLOW_XDEBUG=1
+      - SIMPLETEST_BASE_URL=http://$DDEV_HOSTNAME
+      - SIMPLETEST_DB=mysql://db:db@db/db
+      - BROWSERTEST_OUTPUT_DIRECTORY=/tmp
