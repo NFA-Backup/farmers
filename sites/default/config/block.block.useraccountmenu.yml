@@ -1,0 +1,25 @@
+uuid: 6b77726b-a9f1-43d3-8407-4ac4a85f0ff4
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - nfa
+id: useraccountmenu
+theme: nfa
+region: navigation_collapsible
+weight: -9
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }
