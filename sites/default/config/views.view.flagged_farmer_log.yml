@@ -703,6 +703,7 @@ display:
           entity_field: nid
           plugin_id: node_nid
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -1374,7 +1375,20 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       header: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content:
+            value: '<h5 class="title">Flagged Farmer logs</h5>'
+            format: basic_html
+          plugin_id: text
       css_class: view-label-data
     cache_metadata:
       max-age: -1

@@ -7,6 +7,15 @@
   Drupal.behaviors.nfamis = {
     attach: function(context, settings) {
 
+      // Whenever a farmer log flag is triggered, make sure views whose content
+      // might need to update are also refreshed.
+      $('.view-flagged-farmer-log .flag a').on('click', function (e) {
+        $(this)
+          .closest('.view-farmer-main-tab')
+          .find('.view-flagged-farmer-log')
+          .trigger('RefreshView');
+      });
+
       $(".sub-areas-planting", context).once("nfamis").each(function() {
 
         let filterSubAreaTab = $(this).find('.center-container .area-filter-sub-area-tab');
