@@ -835,7 +835,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"block-section\">\r\n  <h5 class=\"title\">Key data</h5>\r\n<p><a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/add/fee_payment_nfa\">Add a receipt</a></p>\r\n</div>\r\n"
+            value: "<div class=\"block-section\">\r\n  <h5 class=\"title\">Key data</h5>\r\n</div>\r\n"
             format: full_html
           plugin_id: text
       css_class: view-label-data
