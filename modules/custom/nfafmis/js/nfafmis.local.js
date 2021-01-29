@@ -37,7 +37,7 @@
         filterHarvestTab.append(filterSubElem);
 
         // Add inventory link.
-        let addInventroyElem = `<a class="btn btn-info btn-xs"
+        let addInventroyElem = `<a class="use-ajax btn btn-info btn-xs"
         data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
         id="add-invenotry-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventroyElem);
