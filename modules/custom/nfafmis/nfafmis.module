@@ -27,6 +27,44 @@ use Drupal\Core\Ajax\CloseModalDialogCommand;
  */
 function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
 
+  // Propagate ?destination= from the request into the form action path, if
+  // necessary.
+  $affected_forms = [
+    'node_farmer_details_form',
+    'node_farmer_details_edit_form',
+    'comment_comment_form',
+    'node_offer_license_form',
+    'node_offer_license_edit_form',
+    'node_sub_area_form',
+    'node_sub_area_edit_form',
+    'node_inventory_form',
+    'node_inventory_edit_form',
+    'node_thinning_harvest_details_form',
+    'node_thinning_harvest_details_edit_form',
+    'node_charge_form',
+    'node_charge_edit_form',
+    'node_starting_amount_form',
+    'node_starting_amount_edit_form',
+    'node_historical_payments_form',
+    'node_historical_payments_edit_form',
+  ];
+  if (in_array($form_id, $affected_forms, TRUE)) {
+    $request_destination = \Drupal::request()->query->get('destination');
+    if (!empty($request_destination)) {
+      $action_query = parse_url($form['#action'], PHP_URL_QUERY);
+      parse_str((string) $action_query, $action_params);
+      if (empty($action_params['destination'])) {
+        if (strpos($form['#action'], 'form_action_p_') === 0) {
+          $form_state->setRedirect($request_destination);
+        }
+        else {
+          $action_path = parse_url($form['#action'], PHP_URL_PATH);
+          $form['#action'] = $action_path . '?destination=' . urlencode($request_destination);
+        }
+      }
+    }
+  }
+
   // Create nfafmis service object.
   $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
   $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
@@ -588,6 +626,13 @@ function nfafmis_theme() {
       'template' => 'section/section--area-information-payment',
     ],
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for tab__accounts__area__land_rent_fees_data().
+ */
+function nfafmis_preprocess_tab__accounts__area__land_rent_fees_data(&$variables) {
+  $variables['title_query_param'] = (string) \Drupal::request()->query->get('title');
 }
 
 /**

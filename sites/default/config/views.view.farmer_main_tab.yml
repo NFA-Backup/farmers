@@ -313,7 +313,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      use_ajax: false
+      use_ajax: true
       css_class: ''
     cache_metadata:
       max-age: -1
@@ -330,7 +330,9 @@ display:
     display_title: 'Farmer Log'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       path: tree-farmer-overview
       menu:
         type: none
@@ -353,7 +355,7 @@ display:
         filters: true
         filter_groups: true
         header: false
-        use_ajax: false
+        use_ajax: true
       display_description: ''
       fields:
         title_1:
@@ -408,6 +410,71 @@ display:
           type: string
           settings:
             link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -602,7 +669,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/reply/node/{{nid}}/comment">Add a log</a>'
+            text: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/reply/node/{{nid}}/comment?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Add a log</a>'
             make_link: false
             path: ''
             absolute: false
@@ -708,7 +775,6 @@ display:
             value: '{{ view_node }}'
             format: full_html
           plugin_id: text
-      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -724,7 +790,9 @@ display:
     display_title: 'Farmer Details'
     position: 2
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       path: tree-farmer-overview/details
       menu:
         type: none
@@ -743,6 +811,7 @@ display:
         filters: true
         filter_groups: true
         css_class: false
+        header: false
       fields:
         edit_node:
           id: edit_node
@@ -797,6 +866,71 @@ display:
           absolute: false
           entity_type: node
           plugin_id: entity_link_edit
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -1430,6 +1564,18 @@ display:
           plugin_id: field
       exposed_block: true
       css_class: view-label-data
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: true
+          content: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Edit farmer</a>'
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
@@ -1453,7 +1599,9 @@ display:
     display_title: Offers/Licences
     position: 3
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       display_description: ''
       title: Offers/Licences
       defaults:
@@ -1673,7 +1821,9 @@ display:
     display_title: Sub-areas
     position: 4
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       display_description: ''
       title: Sub-areas
       defaults:
@@ -2008,7 +2158,9 @@ display:
     display_title: Inventory
     position: 5
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       display_description: ''
       title: Inventory
       defaults:
@@ -2392,7 +2544,9 @@ display:
     display_title: Accounts
     position: 7
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       display_description: ''
       title: Accounts
       defaults:
@@ -2800,7 +2954,9 @@ display:
     display_title: Harvest
     position: 6
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history:
+          enable_history: true
       display_description: ''
       title: 'Thinning & harvest details'
       defaults:
