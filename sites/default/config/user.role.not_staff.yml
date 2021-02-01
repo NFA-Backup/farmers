@@ -9,7 +9,6 @@ is_admin: null
 permissions:
   - 'access content'
   - 'administer comment types'
-  - 'administer comments'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
   - 'create annual_charges content'
