@@ -29,6 +29,7 @@ dependencies:
     - node.type.thinning_harvest_details
   module:
     - datetime
+    - nfafmis
     - node
     - serial
     - user
@@ -849,6 +850,55 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
+        nfafmis_title_query_param:
+          id: nfafmis_title_query_param
+          table: views
+          field: nfafmis_title_query_param
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: nfafmis_title_query_param
       header:
         area_text_custom:
           id: area_text_custom
@@ -878,7 +928,7 @@ display:
           admin_label: ''
           empty: false
           tokenize: true
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
           plugin_id: text_custom
       cache:
         type: none
@@ -2250,6 +2300,55 @@ display:
           1: AND
       use_ajax: true
       fields:
+        nfafmis_title_query_param:
+          id: nfafmis_title_query_param
+          table: views
+          field: nfafmis_title_query_param
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: nfafmis_title_query_param
         field_areas_id:
           id: field_areas_id
           table: node__field_areas_id
@@ -2323,7 +2422,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=/tree-farmer-overview/sub-areas\">Edit</a>\r\n"
+            text: "<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param}}\">Edit</a>\r\n"
             make_link: false
             path: ''
             absolute: false
