@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.accounts_detail.body
+    - field.field.node.accounts_detail.field_account_area_allocated
+    - field.field.node.accounts_detail.field_account_area_planted
     - field.field.node.accounts_detail.field_area_allocated
     - field.field.node.accounts_detail.field_area_planted
     - field.field.node.accounts_detail.field_charge_amount
@@ -28,21 +30,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_area_allocated:
+  field_account_area_allocated:
     weight: 9
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
-  field_area_planted:
+  field_account_area_planted:
     weight: 11
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
   field_charge_amount:
     weight: 14
@@ -138,4 +138,6 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  field_area_allocated: true
+  field_area_planted: true
   title: true

@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Update functions.
+ */
+
+use Drupal\Core\Site\Settings;
+use Drupal\Core\Serialization\Yaml;
+
+/**
+ * Replace area fields with new decimal fields.
+ */
+function nfafmis_update_8001(&$sandbox) {
+  // Import the new and modified configuration files.
+  $files = [
+    'field.storage.node.field_account_area_allocated',
+    'field.storage.node.field_account_area_planted',
+    'field.storage.node.field_overall_area',
+    'field.storage.node.field_subarea_planted',
+    'field.field.node.accounts_detail.field_account_area_allocated',
+    'field.field.node.accounts_detail.field_account_area_planted',
+    'field.field.node.offer_license.field_overall_area',
+    'field.field.node.sub_area.field_subarea_planted',
+  ];
+  $config_manger = \Drupal::service('config.manager');
+  foreach ($files as $file) {
+    $raw = file_get_contents(Settings::get('config_sync_directory') . '/' . $file . '.yml');
+    $value = Yaml::decode($raw);
+    $type = $config_manger->getEntityTypeIdByName(basename($file));
+    $entity_manager = $config_manger->getEntityManager();
+    $definition = $entity_manager->getDefinition($type);
+    $id_key = $definition->getKey('id');
+    $id = $value[$id_key];
+    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorage $entity_storage */
+    $entity_storage = $entity_manager->getStorage($type);
+    $entity = $entity_storage->load($id);
+    if ($entity) {
+      $entity = $entity_storage->updateFromStorageRecord($entity, $value);
+      $entity->save();
+    }
+    else {
+      $entity = $entity_storage->createFromStorageRecord($value);
+      $entity->save();
+    }
+  }
+}

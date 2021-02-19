@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_account_area_allocated
+    - field.storage.node.field_account_area_planted
     - field.storage.node.field_amount_paid
-    - field.storage.node.field_area_allocated
-    - field.storage.node.field_area_planted
     - field.storage.node.field_charge_amount
     - field.storage.node.field_charge_type
     - field.storage.node.field_date_of_ura_receipt
@@ -2222,14 +2222,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_allocated:
-          id: field_area_allocated
-          table: node__field_area_allocated
-          field: field_area_allocated
+        field_account_area_allocated:
+          id: field_account_area_allocated
+          table: node__field_account_area_allocated
+          field: field_account_area_allocated
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Allocated'
+          label: 'Area allocated'
           exclude: false
           alter:
             alter_text: false
@@ -2271,9 +2271,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2349,14 +2352,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_planted:
-          id: field_area_planted
-          table: node__field_area_planted
-          field: field_area_planted
+        field_account_area_planted:
+          id: field_account_area_planted
+          table: node__field_account_area_planted
+          field: field_account_area_planted
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Planted'
+          label: 'Area planted'
           exclude: false
           alter:
             alter_text: false
@@ -2398,9 +2401,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2937,8 +2943,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_allocated'
-        - 'config:field.storage.node.field_area_planted'
+        - 'config:field.storage.node.field_account_area_allocated'
+        - 'config:field.storage.node.field_account_area_planted'
         - 'config:field.storage.node.field_charge_amount'
         - 'config:field.storage.node.field_charge_type'
         - 'config:field.storage.node.field_due_date'
@@ -3152,14 +3158,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_allocated:
-          id: field_area_allocated
-          table: node__field_area_allocated
-          field: field_area_allocated
+        field_account_area_allocated:
+          id: field_account_area_allocated
+          table: node__field_account_area_allocated
+          field: field_account_area_allocated
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Allocated'
+          label: 'Area allocated'
           exclude: false
           alter:
             alter_text: false
@@ -3201,9 +3207,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3279,14 +3288,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_area_planted:
-          id: field_area_planted
-          table: node__field_area_planted
-          field: field_area_planted
+        field_account_area_planted:
+          id: field_account_area_planted
+          table: node__field_account_area_planted
+          field: field_account_area_planted
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Planted'
+          label: 'Area planted'
           exclude: false
           alter:
             alter_text: false
@@ -3328,9 +3337,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3828,8 +3840,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_allocated'
-        - 'config:field.storage.node.field_area_planted'
+        - 'config:field.storage.node.field_account_area_allocated'
+        - 'config:field.storage.node.field_account_area_planted'
         - 'config:field.storage.node.field_charge_amount'
         - 'config:field.storage.node.field_charge_type'
         - 'config:field.storage.node.field_due_date'

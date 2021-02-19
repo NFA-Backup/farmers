@@ -1,0 +1,23 @@
+uuid: 49df0776-37b8-4341-9aaf-9ef78850ac6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_account_area_planted
+    - node.type.accounts_detail
+id: node.accounts_detail.field_account_area_planted
+field_name: field_account_area_planted
+entity_type: node
+bundle: accounts_detail
+label: 'Area planted'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ha
+field_type: decimal

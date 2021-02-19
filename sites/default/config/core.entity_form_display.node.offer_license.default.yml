@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.offer_license.field_license_issued
     - field.field.node.offer_license.field_offer_date
     - field.field.node.offer_license.field_offer_id
+    - field.field.node.offer_license.field_overall_area
     - field.field.node.offer_license.field_overall_area_allocated
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
@@ -89,13 +90,12 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_overall_area_allocated:
+  field_overall_area:
     weight: 7
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
   field_purpose:
     weight: 9
@@ -115,6 +115,7 @@ hidden:
   created: true
   field_area_number: true
   field_offer_id: true
+  field_overall_area_allocated: true
   path: true
   promote: true
   status: true

@@ -1,0 +1,20 @@
+uuid: 37629e86-8c77-4e2b-9bd6-ba5dbb129400
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_account_area_planted
+field_name: field_account_area_planted
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

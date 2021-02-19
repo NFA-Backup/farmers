@@ -5,6 +5,17 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.accounts_detail.body
+    - field.field.node.accounts_detail.field_account_area_allocated
+    - field.field.node.accounts_detail.field_account_area_planted
+    - field.field.node.accounts_detail.field_area_allocated
+    - field.field.node.accounts_detail.field_area_planted
+    - field.field.node.accounts_detail.field_charge_amount
+    - field.field.node.accounts_detail.field_charge_type
+    - field.field.node.accounts_detail.field_due_date
+    - field.field.node.accounts_detail.field_farmer_name_ref
+    - field.field.node.accounts_detail.field_licence_id_ref
+    - field.field.node.accounts_detail.field_offer_id_ref
+    - field.field.node.accounts_detail.field_year
     - node.type.accounts_detail
   module:
     - text
@@ -27,4 +38,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_account_area_allocated: true
+  field_account_area_planted: true
+  field_area_allocated: true
+  field_area_planted: true
+  field_charge_amount: true
+  field_charge_type: true
+  field_due_date: true
+  field_farmer_name_ref: true
+  field_licence_id_ref: true
+  field_offer_id_ref: true
+  field_year: true
