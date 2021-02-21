@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.sub_area.field_purpose
     - field.field.node.sub_area.field_species_variety
     - field.field.node.sub_area.field_sub_area_planted
+    - field.field.node.sub_area.field_subarea_planted
     - node.type.sub_area
   module:
     - datetime
@@ -79,14 +80,17 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_sub_area_planted:
+  field_subarea_planted:
     weight: 5
     label: above
     settings:
       thousand_separator: ''
+      decimal_separator: .
+      scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    type: number_decimal
     region: content
 hidden:
+  field_sub_area_planted: true
   links: true

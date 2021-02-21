@@ -1,0 +1,23 @@
+uuid: c874d5e6-28b7-4c57-9e9a-5ffd38d75179
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_overall_area
+    - node.type.offer_license
+id: node.offer_license.field_overall_area
+field_name: field_overall_area
+entity_type: node
+bundle: offer_license
+label: 'Overall area allocated'
+description: 'Area allocated in hectare - (ha)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ha
+field_type: decimal

@@ -12,7 +12,7 @@ dependencies:
     - field.storage.node.field_license_date
     - field.storage.node.field_license_id
     - field.storage.node.field_offer_date
-    - field.storage.node.field_overall_area_allocated
+    - field.storage.node.field_overall_area
     - field.storage.node.field_purpose
     - field.storage.node.field_receipt_number
     - node.type.offer_license
@@ -415,14 +415,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_overall_area_allocated:
-          id: field_overall_area_allocated
-          table: node__field_overall_area_allocated
-          field: field_overall_area_allocated
+        field_overall_area:
+          id: field_overall_area
+          table: node__field_overall_area
+          field: field_overall_area
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Total area alocated'
+          label: 'Total area allocated'
           exclude: false
           alter:
             alter_text: false
@@ -464,9 +464,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -811,7 +814,7 @@ display:
         - 'config:field.storage.node.field_licence_id_ref'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_offer_date'
-        - 'config:field.storage.node.field_overall_area_allocated'
+        - 'config:field.storage.node.field_overall_area'
   block_1:
     display_plugin: block
     id: block_1
@@ -1139,14 +1142,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_overall_area_allocated:
-          id: field_overall_area_allocated
-          table: node__field_overall_area_allocated
-          field: field_overall_area_allocated
+        field_overall_area:
+          id: field_overall_area
+          table: node__field_overall_area
+          field: field_overall_area
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Total area alocated'
+          label: 'Total area allocated'
           exclude: false
           alter:
             alter_text: false
@@ -1188,9 +1191,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1595,7 +1601,7 @@ display:
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'
-        - 'config:field.storage.node.field_overall_area_allocated'
+        - 'config:field.storage.node.field_overall_area'
         - 'config:field.storage.node.field_purpose'
   block_2:
     display_plugin: block

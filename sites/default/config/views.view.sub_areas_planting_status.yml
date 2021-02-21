@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_area_number
-    - field.storage.node.field_area_planted
     - field.storage.node.field_area_serial_number
     - field.storage.node.field_areas_id
     - field.storage.node.field_crop_maintenance_index
@@ -21,7 +20,7 @@ dependencies:
     - field.storage.node.field_stocking_rate
     - field.storage.node.field_stocking_volume
     - field.storage.node.field_sub_area_id
-    - field.storage.node.field_sub_area_planted
+    - field.storage.node.field_subarea_planted
     - field.storage.node.field_unit
     - node.type.inventory
     - node.type.offer_license
@@ -157,69 +156,6 @@ display:
           group_type: group
           admin_label: ''
           label: 'Sub-area ID'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_area_planted:
-          id: field_area_planted
-          table: node__field_area_planted
-          field: field_area_planted
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Area Planted'
           exclude: false
           alter:
             alter_text: false
@@ -472,7 +408,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_planted'
         - 'config:field.storage.node.field_date_harvested'
         - 'config:field.storage.node.field_date_planted'
   block_1:
@@ -2530,14 +2465,14 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_sub_area_planted:
-          id: field_sub_area_planted
-          table: node__field_sub_area_planted
-          field: field_sub_area_planted
+        field_subarea_planted:
+          id: field_subarea_planted
+          table: node__field_subarea_planted
+          field: field_subarea_planted
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Area Planted'
+          label: 'Area planted'
           exclude: false
           alter:
             alter_text: false
@@ -2579,10 +2514,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: number_integer
+          type: number_decimal
           settings:
             thousand_separator: ','
             prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2871,7 +2808,7 @@ display:
         - 'config:field.storage.node.field_date_planted'
         - 'config:field.storage.node.field_purpose'
         - 'config:field.storage.node.field_species_variety'
-        - 'config:field.storage.node.field_sub_area_planted'
+        - 'config:field.storage.node.field_subarea_planted'
   block_5:
     display_plugin: block
     id: block_5

@@ -1,0 +1,23 @@
+uuid: ee4fbcbb-168e-430f-899f-76336e10150d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_account_area_allocated
+    - node.type.accounts_detail
+id: node.accounts_detail.field_account_area_allocated
+field_name: field_account_area_allocated
+entity_type: node
+bundle: accounts_detail
+label: 'Area allocated'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ha
+field_type: decimal

@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.offer_license.field_license_issued
     - field.field.node.offer_license.field_offer_date
     - field.field.node.offer_license.field_offer_id
+    - field.field.node.offer_license.field_overall_area
     - field.field.node.offer_license.field_overall_area_allocated
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
@@ -42,5 +43,6 @@ hidden:
   field_license_issued: true
   field_offer_date: true
   field_offer_id: true
+  field_overall_area: true
   field_overall_area_allocated: true
   field_purpose: true
