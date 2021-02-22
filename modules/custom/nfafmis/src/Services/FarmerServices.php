@@ -780,7 +780,7 @@ class FarmerServices {
       $field_sub_area_planted = 0;
       $sub_areas = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
       foreach ($sub_areas as $area) {
-        $field_sub_area_planted += $area->get('field_sub_area_planted')->value;
+        $field_sub_area_planted += $area->get('field_subarea_planted')->value;
       }
       return $field_sub_area_planted;
     }

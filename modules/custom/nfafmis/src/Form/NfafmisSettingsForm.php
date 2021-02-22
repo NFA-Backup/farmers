@@ -163,7 +163,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
       ->execute();
     $areas_object = $this->entityTypeManager->getStorage('node')->loadMultiple($offer_license_ids);
     foreach ($areas_object as $area) {
-      $area_allocated = $area->get('field_overall_area_allocated')->value;
+      $area_allocated = $area->get('field_overall_area')->value;
       $cfr = $area->get('field_central_forest_reserve')->target_id;
       if ($cfr && $area_allocated) {
         $annual_charges = $this->farmerService->chekForExistingAnnualCharges($area, $for_year);
