@@ -509,7 +509,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
   $field = $variables['field'];
   $row = $variables['row'];
   if ($view->storage->id() == 'sub_areas_planting_status' && $view->current_display == 'block_1') {
-    $field_overall_area_allocated = $row->_entity->get('field_overall_area_allocated')->value;
+    $field_overall_area_allocated = $row->_entity->get('field_overall_area')->value;
     $area_panted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
     // Override the views field result output to show custom value.
@@ -644,22 +644,6 @@ function nfafmis_preprocess_tab__accounts__area__land_rent_fees_data(&$variables
 function nfafmis_comment_comment_form_submit($form, FormStateInterface &$form_state) {
   $url = Url::fromUri('internal:/tree-farmer-overview');
   $form_state->setRedirectUrl($url);
-}
-
-/**
- * Validate handler for node_offer_license form.
- *
- * @param $form
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- */
-function nfafmis_node_offer_license_form_validate($form, FormStateInterface &$form_state) {
-  $field_overall_area_allocated = $form_state->getValue('field_overall_area_allocated');
-  if (isset($field_overall_area_allocated[0]['value'])) {
-    $value = $field_overall_area_allocated[0]['value'];
-    if (!is_numeric($value) || $value == 0) {
-      $form_state->setErrorByName('field_overall_area_allocated', t('Value must numeric and greater than zero.'));
-    }
-  }
 }
 
 /**
