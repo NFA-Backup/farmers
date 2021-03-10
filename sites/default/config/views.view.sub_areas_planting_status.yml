@@ -863,7 +863,7 @@ display:
           admin_label: ''
           empty: false
           tokenize: true
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
           plugin_id: text_custom
       cache:
         type: none
@@ -2357,7 +2357,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param}}\">Edit</a>\r\n"
+            text: "<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Edit</a>\r\n"
             make_link: false
             path: ''
             absolute: false
