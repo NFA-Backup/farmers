@@ -332,7 +332,7 @@ display:
     display_options:
       display_extenders:
         ajax_history:
-          enable_history: true
+          enable_history: false
       path: tree-farmer-overview
       menu:
         type: none
@@ -355,7 +355,7 @@ display:
         filters: true
         filter_groups: true
         header: false
-        use_ajax: true
+        use_ajax: false
       display_description: ''
       fields:
         title_1:
@@ -775,6 +775,7 @@ display:
             value: '{{ view_node }}'
             format: full_html
           plugin_id: text
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -824,7 +825,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
+            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -1574,7 +1575,7 @@ display:
           admin_label: ''
           empty: false
           tokenize: true
-          content: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Edit farmer</a>'
+          content: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid|render|striptags|trim}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title|render|striptags|trim}}">Edit farmer</a>'
           plugin_id: text_custom
     cache_metadata:
       max-age: -1
