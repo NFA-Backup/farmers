@@ -1,0 +1,8 @@
+uuid: 63cbe995-ed1d-49fa-81c1-8412d3f914c0
+langcode: en
+status: true
+dependencies: {  }
+name: 'Management Unit'
+vid: management_unit
+description: 'A region containing one or more forest reserves (CFRs)'
+weight: 0

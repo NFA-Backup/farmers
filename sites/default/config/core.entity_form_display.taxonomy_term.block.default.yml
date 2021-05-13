@@ -1,19 +1,20 @@
-uuid: 88862001-78bf-4580-b423-87113fbd7628
+uuid: 954918e7-e045-4212-bc86-8c4b7b77f01c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.central_forest_reserve.management_unit
-    - taxonomy.vocabulary.central_forest_reserve
+    - field.field.taxonomy_term.block.cfr
+    - taxonomy.vocabulary.block
   module:
     - path
-id: taxonomy_term.central_forest_reserve.default
+    - text
+id: taxonomy_term.block.default
 targetEntityType: taxonomy_term
-bundle: central_forest_reserve
+bundle: block
 mode: default
 content:
-  management_unit:
-    weight: 3
+  cfr:
+    weight: 1
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -22,6 +23,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+      rows: 5
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -32,10 +41,15 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 1
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  description: true
-  status: true
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+hidden: {  }

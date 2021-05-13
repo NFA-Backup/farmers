@@ -1,0 +1,30 @@
+uuid: 7ffd5f7c-9791-4cfc-8e69-4bb610739480
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.block.cfr
+    - taxonomy.vocabulary.block
+  module:
+    - text
+id: taxonomy_term.block.default
+targetEntityType: taxonomy_term
+bundle: block
+mode: default
+content:
+  cfr:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

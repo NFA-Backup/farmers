@@ -1,0 +1,29 @@
+uuid: 877bc0ff-7679-474d-9cf7-83a2afddd939
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.cfr
+    - taxonomy.vocabulary.block
+    - taxonomy.vocabulary.central_forest_reserve
+id: taxonomy_term.block.cfr
+field_name: cfr
+entity_type: taxonomy_term
+bundle: block
+label: CFR
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      central_forest_reserve: central_forest_reserve
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: a10c7ebe-ac52-4f90-9d46-654f93a7443a
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: management_unit
+label: 'Management Unit'
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:name]'
+selection_criteria:
+  a9cd4f04-7ce0-4bf1-a275-34eb014644ce:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      management_unit: management_unit
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: a9cd4f04-7ce0-4bf1-a275-34eb014644ce
+selection_logic: and
+weight: -5
+relationships: {  }

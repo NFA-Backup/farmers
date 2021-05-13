@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
+    - field.field.node.offer_license.field_block_ref
     - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
     - field.field.node.offer_license.field_farmer_name_ref
@@ -28,25 +29,39 @@ bundle: offer_license
 mode: default
 content:
   field_area_serial_number:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: serial_default_widget
     region: content
   field_block_id:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_block_ref:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_central_forest_reserve:
     weight: 6
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+    type: entity_reference_autocomplete
     region: content
   field_comments:
-    weight: 10
+    weight: 11
     settings:
       rows: 5
       placeholder: ''
@@ -98,7 +113,7 @@ content:
     type: number
     region: content
   field_purpose:
-    weight: 9
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select

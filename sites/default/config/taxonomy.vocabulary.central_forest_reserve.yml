@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Central Forest Reserve (CFR)'
 vid: central_forest_reserve
-description: 'Central Forest Reserve (CFR)'
+description: 'An area declared to be a central forest reserve under section 6 of the National Forestry and Tree Planting Act, 2003'
 weight: 0

@@ -1,0 +1,41 @@
+id: nfafmis_migrate_cfrs
+label: Update existing CFRs
+status: true
+source:
+  plugin: spreadsheet
+  file: modules/custom/nfafmis_migrate/files/NFA_CFRs.xlsx
+  worksheet: 'Sheet1'
+  origin: A2
+  header_row: 1
+  columns:
+    - 'Management Unit'
+    - CFR
+  row_index_column: 'Row no.'
+  keys:
+    CFR:
+      type: string
+      max_length: 32
+      is_ascii: true
+process:
+  tid:
+    plugin: entity_generate
+    source: CFR
+    entity_type: taxonomy_term
+    value_key: name
+    bundle_key: vid
+    bundle: central_forest_reserve
+  unit_tid:
+    plugin: entity_lookup
+    source: 'Management Unit'
+    entity_type: taxonomy_term
+    value_key: name
+    bundle_key: vid
+    bundle: management_unit
+  management_unit: '@unit_tid'
+  vid:
+    plugin: default_value
+    default_value: management_unit
+destination:
+  plugin: entity:taxonomy_term
+  overwrite_properties:
+    - management_unit

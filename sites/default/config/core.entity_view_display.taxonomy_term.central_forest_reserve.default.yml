@@ -1,0 +1,30 @@
+uuid: 85c12ff6-2262-43be-909b-19d00925a5bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.central_forest_reserve.management_unit
+    - taxonomy.vocabulary.central_forest_reserve
+  module:
+    - text
+id: taxonomy_term.central_forest_reserve.default
+targetEntityType: taxonomy_term
+bundle: central_forest_reserve
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  management_unit:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

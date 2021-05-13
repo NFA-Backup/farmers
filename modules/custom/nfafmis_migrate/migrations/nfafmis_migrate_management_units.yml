@@ -1,0 +1,35 @@
+id: nfafmis_migrate_management_units
+label: Import NFA Management Units
+status: true
+source:
+  plugin: spreadsheet
+  file: modules/custom/nfafmis_migrate/files/NFA_CFRs.xlsx
+  worksheet: 'Sheet1'
+  origin: A2
+  header_row: 1
+  columns:
+    - 'Management Unit'
+    - CFR
+  row_index_column: 'Row no.'
+  keys:
+    CFR:
+      type: string
+      max_length: 32
+      is_ascii: true
+process:
+  skip:
+    - plugin: entity_lookup
+      source: 'Management Unit'
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: management_unit
+    - plugin: skip_on_not_empty
+      method: row
+      message: 'Skipping management unit that already exists'
+  name: 'Management Unit'
+  vid:
+    plugin: default_value
+    default_value: management_unit
+destination:
+  plugin: entity:taxonomy_term

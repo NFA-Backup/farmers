@@ -1,0 +1,29 @@
+uuid: 4b05ea27-143f-4594-9cc7-779aecd53ed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_ref
+    - node.type.offer_license
+    - taxonomy.vocabulary.block
+id: node.offer_license.field_block_ref
+field_name: field_block_ref
+entity_type: node
+bundle: offer_license
+label: 'Block ID'
+description: 'Block number (if available) '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      block: block
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
