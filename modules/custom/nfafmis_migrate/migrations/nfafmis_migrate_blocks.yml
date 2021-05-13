@@ -24,11 +24,14 @@ process:
     plugin: default_value
     default_value: block
   cfr:
-    source: 'Forest Reserve'
-    plugin: entity_lookup
-    entity_type: taxonomy_term
-    value_key: name
-    bundle_key: vid
-    bundle: central_forest_reserve
+    - plugin: entity_lookup
+      source: 'Forest Reserve'
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: central_forest_reserve
+    - plugin: skip_on_empty
+      method: row
+      message: "CFR not found"
 destination:
   plugin: entity:taxonomy_term
