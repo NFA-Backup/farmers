@@ -1,0 +1,40 @@
+uuid: 2687f47b-e2e6-40b8-983f-30418318e2dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.fmis-administration
+  module:
+    - system
+    - user
+  theme:
+    - nfa
+id: fmisadministration
+theme: nfa
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:fmis-administration'
+settings:
+  id: 'system_menu_block:fmis-administration'
+  label: 'FMIS Admin'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    pages: '/fmis/admin/*'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      nfa_staff: nfa_staff
+      not_staff: not_staff
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

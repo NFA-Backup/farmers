@@ -245,6 +245,11 @@ function nfafmis_post_update_b() {
     538 => 'Mt. Kei',
     542 => 'Otzi (East)',
     543 => 'Otzi (West)',
+    141 => 'Kagogo (Budongo System)',
+    157 => 'Kitonya (Budongo System)',
+    164 => 'Mbale (Katuugo Plantations)',
+    165 => 'Mpanga (Budongo System)',
+    321 => 'Kyampisi (Lakeshore)',
   ];
 
   // Rename the CFR terms.

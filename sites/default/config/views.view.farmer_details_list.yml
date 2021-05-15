@@ -6,7 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_farmer_category_type
     - node.type.farmer_details
-    - system.menu.main
+    - system.menu.fmis-reports
   module:
     - csv_serialization
     - node
@@ -442,7 +442,7 @@ display:
       display_extenders:
         ajax_history: {  }
       display_description: ''
-      path: farmers-export
+      path: fmis/reports/farmers-export
       filename: farmers-by-cfr
       automatic_download: true
       store_in_public_file_directory: false
@@ -802,7 +802,7 @@ display:
     display_options:
       display_extenders:
         ajax_history: {  }
-      path: farmers-by-cfr
+      path: fmis/reports/farmers-by-cfr
       display_description: ''
       relationships:
         reverse__node__field_farmer_name_ref:
@@ -1261,13 +1261,13 @@ display:
       title: 'Farmers by Central Forest Reserve'
       menu:
         type: normal
-        title: Reports
+        title: 'Farmers by CFR'
         description: ''
         expanded: false
         parent: ''
-        weight: -50
+        weight: -48
         context: '0'
-        menu_name: main
+        menu_name: fmis-reports
       header:
         area:
           id: area

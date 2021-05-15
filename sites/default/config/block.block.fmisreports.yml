@@ -1,0 +1,40 @@
+uuid: b5c38265-dc5f-4e9e-becf-c2208f0d1716
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.fmis-reports
+  module:
+    - system
+    - user
+  theme:
+    - nfa
+id: fmisreports
+theme: nfa
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:fmis-reports'
+settings:
+  id: 'system_menu_block:fmis-reports'
+  label: 'FMIS Reports'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    pages: '/fmis/reports/*'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      nfa_staff: nfa_staff
+      not_staff: not_staff
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
