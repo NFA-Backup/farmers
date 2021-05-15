@@ -9,6 +9,7 @@ module:
   block_content: 0
   blocktabs: 0
   breakpoint: 0
+  business_rules: 0
   ckeditor: 0
   color: 0
   comment: 0
@@ -22,6 +23,7 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  dbug: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0

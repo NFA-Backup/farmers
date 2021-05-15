@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.report_row
   module:
     - node
     - taxonomy
@@ -226,7 +226,8 @@ display:
       row:
         type: 'entity:node'
         options:
-          view_mode: teaser
+          relationship: none
+          view_mode: report_row
       header:
         entity_taxonomy_term:
           id: entity_taxonomy_term
@@ -306,7 +307,8 @@ display:
         type: views_query
         options: {  }
       path: taxonomy/term/%
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       contexts:
         - 'languages:language_interface'

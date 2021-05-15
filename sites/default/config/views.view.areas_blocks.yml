@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_block_id
+    - field.storage.node.field_block_ref
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_inventory
     - field.storage.node.field_phone_number
@@ -14,7 +14,6 @@ dependencies:
     - system.menu.main
   module:
     - node
-    - options
     - user
     - views_autocomplete_filters
     - views_field_view
@@ -747,10 +746,10 @@ display:
           absolute: false
           entity_type: node
           plugin_id: entity_link
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -795,10 +794,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -819,7 +819,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
   block_2:
     display_plugin: block
     id: block_2
@@ -1161,10 +1161,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -1201,7 +1201,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1209,10 +1209,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1458,7 +1459,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
         - 'config:field.storage.node.field_sub_area_content'
         - 'config:field.storage.node.field_thinning_harvest_details'
   block_3:
@@ -1802,10 +1803,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -1842,7 +1843,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1850,10 +1851,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1987,15 +1989,16 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
         - 'config:field.storage.node.field_sub_area_content'
   block_4:
     display_plugin: block
     id: block_4
-    display_title: 'Sub-are & Inventory'
+    display_title: 'Sub-area & Inventory'
     position: 2
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
       arguments:
         field_farmer_name_ref_target_id:
           id: field_farmer_name_ref_target_id
@@ -2330,10 +2333,10 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -2370,7 +2373,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -2378,10 +2381,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2627,7 +2631,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
         - 'config:field.storage.node.field_inventory'
         - 'config:field.storage.node.field_sub_area_content'
   page_1:

@@ -7,6 +7,14 @@
 // Base-theme overrides.
 @import 'overrides';
 
+// Mixins and Utility classes.
+@import "nfa/mixins/breakpoints";
+@import "nfa/utilities/borders";
+@import "nfa/utilities/display";
+@import "nfa/utilities/flex";
+@import "nfa/utilities/position";
+@import "nfa/utilities/sizing";
+@import "nfa/utilities/spacing";
 
 // nfa theme design
 @import "nfa/content";

@@ -22,6 +22,7 @@
     "drupal/better_exposed_filters": "^4.0@beta",
     "drupal/blocktabs": "^1.0@beta",
     "drupal/bootstrap": "^3.19",
+    "drupal/business_rules": "^2.0@beta",
     "drupal/computed_field": "^2.0@beta",
     "drupal/core-composer-scaffold": "^8.8",
     "drupal/core-project-message": "^8.8",

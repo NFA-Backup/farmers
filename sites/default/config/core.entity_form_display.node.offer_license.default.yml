@@ -29,39 +29,25 @@ bundle: offer_license
 mode: default
 content:
   field_area_serial_number:
-    weight: 12
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: serial_default_widget
     region: content
-  field_block_id:
-    weight: 9
+  field_block_ref:
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_block_ref:
-    weight: 8
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_central_forest_reserve:
     weight: 6
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_comments:
-    weight: 11
+    weight: 10
     settings:
       rows: 5
       placeholder: ''
@@ -106,14 +92,14 @@ content:
     type: datetime_default
     region: content
   field_overall_area:
-    weight: 7
+    weight: 8
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_purpose:
-    weight: 10
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -129,6 +115,7 @@ content:
 hidden:
   created: true
   field_area_number: true
+  field_block_id: true
   field_offer_id: true
   field_overall_area_allocated: true
   path: true

@@ -1,0 +1,10 @@
+uuid: dd75f51d-071b-4867-ba6b-0e6be3b0b436
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.report_row
+label: 'Report row'
+targetEntityType: node
+cache: true
