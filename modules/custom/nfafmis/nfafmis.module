@@ -493,6 +493,18 @@ function get_area_details_ajax_callback(&$form_state) {
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
   $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+
+  // On first load of Farmer Filter the farmer name is not set and the most
+  // recent farmer is returned. We don't want that, so don't show farmer details
+  // if the name filter was not set.
+  if ($view->id() == 'farmer_filter') {
+    if (empty($view->getExposedInput()['title'])) {
+      $result = $view->result;
+      foreach ($result as $i => $row) {
+        $view->result[$i]->_entity = null;
+      }
+    }
+  }
 }
 
 /**
