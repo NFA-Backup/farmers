@@ -1,0 +1,27 @@
+uuid: 3a2a9724-909b-4d65-b29b-ef889d379cca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year_planted
+    - node.type.sub_area
+  module:
+    - yearonly
+id: node.sub_area.field_year_planted
+field_name: field_year_planted
+entity_type: node
+bundle: sub_area
+label: 'Year planted'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_type: now
+    default_relative: now
+    default_specific: ''
+default_value_callback: ''
+settings:
+  yearonly_from: '1990'
+  yearonly_to: now
+field_type: yearonly

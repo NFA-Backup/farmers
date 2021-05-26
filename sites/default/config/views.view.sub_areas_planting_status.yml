@@ -11,7 +11,6 @@ dependencies:
     - field.storage.node.field_date
     - field.storage.node.field_date_harvested
     - field.storage.node.field_date_of_inventory
-    - field.storage.node.field_date_planted
     - field.storage.node.field_number_of_units
     - field.storage.node.field_offtake_type
     - field.storage.node.field_product_type
@@ -22,6 +21,7 @@ dependencies:
     - field.storage.node.field_sub_area_id
     - field.storage.node.field_subarea_planted
     - field.storage.node.field_unit
+    - field.storage.node.field_year_planted
     - node.type.inventory
     - node.type.offer_license
     - node.type.sub_area
@@ -32,6 +32,7 @@ dependencies:
     - node
     - serial
     - user
+    - yearonly
 id: sub_areas_planting_status
 label: 'Sub-areas planting status'
 module: views
@@ -275,70 +276,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_date_planted:
-          id: field_date_planted
-          table: node__field_date_planted
-          field: field_date_planted
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Date planted'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_default
-          settings:
-            timezone_override: ''
-            format_type: html_date
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
       filters:
         status:
           value: '1'
@@ -409,7 +346,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_date_harvested'
-        - 'config:field.storage.node.field_date_planted'
   block_1:
     display_plugin: block
     id: block_1
@@ -2595,14 +2531,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_date_planted:
-          id: field_date_planted
-          table: node__field_date_planted
-          field: field_date_planted
+        field_year_planted:
+          id: field_year_planted
+          table: node__field_year_planted
+          field: field_year_planted
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Date planted'
+          label: 'Year planted'
           exclude: false
           alter:
             alter_text: false
@@ -2635,7 +2571,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -2644,10 +2580,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: datetime_default
-          settings:
-            timezone_override: ''
-            format_type: html_date
+          type: yearonly_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2805,10 +2739,10 @@ display:
       tags:
         - 'config:field.storage.node.field_areas_id'
         - 'config:field.storage.node.field_date_harvested'
-        - 'config:field.storage.node.field_date_planted'
         - 'config:field.storage.node.field_purpose'
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'
+        - 'config:field.storage.node.field_year_planted'
   block_5:
     display_plugin: block
     id: block_5

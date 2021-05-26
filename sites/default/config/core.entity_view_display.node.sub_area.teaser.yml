@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.sub_area.field_species_variety
     - field.field.node.sub_area.field_sub_area_planted
     - field.field.node.sub_area.field_subarea_planted
+    - field.field.node.sub_area.field_year_planted
     - node.type.sub_area
   module:
     - user
@@ -38,3 +39,4 @@ hidden:
   field_species_variety: true
   field_sub_area_planted: true
   field_subarea_planted: true
+  field_year_planted: true
