@@ -12,10 +12,12 @@ dependencies:
     - field.field.node.sub_area.field_species_variety
     - field.field.node.sub_area.field_sub_area_planted
     - field.field.node.sub_area.field_subarea_planted
+    - field.field.node.sub_area.field_year_planted
     - node.type.sub_area
   module:
     - datetime
     - file
+    - yearonly
 id: node.sub_area.default
 targetEntityType: node
 bundle: sub_area
@@ -40,12 +42,6 @@ content:
     region: content
   field_date_harvested:
     weight: 8
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_date_planted:
-    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -76,6 +72,12 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  field_year_planted:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: yearonly_default
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -86,6 +88,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_date_planted: true
   field_sub_area_planted: true
   path: true
   promote: true

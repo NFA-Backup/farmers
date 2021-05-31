@@ -15,6 +15,7 @@ use Drupal\Core\Field\FieldItemInterface;
  * id = "yearonly",
  * label = @Translation("Year only"),
  * description = @Translation("This field provide the ways to collect year only in provided date range."),
+ * list_class = "\Drupal\yearonly\Plugin\Field\FieldType\YearOnlyFieldItemList",
  * default_widget = "yearonly_default",
  * default_formatter = "yearonly_default",
  * )
