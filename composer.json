@@ -43,7 +43,7 @@
     "drupal/views_field_view": "^1.0@beta",
     "drupal/views_flipped_table": "^1.4",
     "drupal/yearonly": "^9.0",
-    "drush/drush": "^10.3"
+    "drush/drush": "^10.5"
   },
   "conflict": {
     "drupal/drupal": "*"
