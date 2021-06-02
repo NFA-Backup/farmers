@@ -12,7 +12,7 @@ dependencies:
 id: exposedformfarmer_main_taboverview
 theme: nfa
 region: content
-weight: -6
+weight: -7
 provider: null
 plugin: 'views_exposed_filter_block:farmer_main_tab-overview'
 settings:

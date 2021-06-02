@@ -11,15 +11,15 @@ dependencies:
     - nfa
 id: fmisadministration
 theme: nfa
-region: sidebar_first
-weight: 0
+region: highlighted
+weight: -8
 provider: null
 plugin: 'system_menu_block:fmis-administration'
 settings:
   id: 'system_menu_block:fmis-administration'
   label: 'FMIS Admin'
   provider: system
-  label_display: visible
+  label_display: '0'
   level: 1
   depth: 0
   expand_all_items: false

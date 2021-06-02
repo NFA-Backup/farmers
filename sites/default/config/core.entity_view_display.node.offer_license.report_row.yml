@@ -21,51 +21,94 @@ dependencies:
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
   module:
+    - datetime
+    - datetime_range
+    - serial
     - user
 id: node.offer_license.report_row
 targetEntityType: node
 bundle: offer_license
 mode: report_row
 content:
-  field_area_number:
-    weight: 2
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_block_ref:
-    weight: 3
-    label: hidden
+    weight: 2
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_farmer_name_ref:
     weight: 1
-    label: hidden
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_license_date:
+    type: daterange_default
+    weight: 5
+    region: content
+    label: inline
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_license_id:
+    type: string
+    weight: 6
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_offer_date:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_offer_id:
+    type: serial_default_formatter
+    weight: 3
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+  field_overall_area:
+    type: number_decimal
+    weight: 7
+    region: content
+    label: inline
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_purpose:
+    type: entity_reference_label
+    weight: 8
+    region: content
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
   links:
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_area_number: true
   field_area_serial_number: true
   field_block_id: true
   field_central_forest_reserve: true
   field_comments: true
-  field_license_date: true
-  field_license_id: true
   field_license_issued: true
-  field_offer_date: true
-  field_offer_id: true
-  field_overall_area: true
   field_overall_area_allocated: true
-  field_purpose: true

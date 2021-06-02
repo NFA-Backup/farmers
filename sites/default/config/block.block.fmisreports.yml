@@ -11,15 +11,15 @@ dependencies:
     - nfa
 id: fmisreports
 theme: nfa
-region: sidebar_first
-weight: 0
+region: highlighted
+weight: -9
 provider: null
 plugin: 'system_menu_block:fmis-reports'
 settings:
   id: 'system_menu_block:fmis-reports'
   label: 'FMIS Reports'
   provider: system
-  label_display: visible
+  label_display: '0'
   level: 1
   depth: 0
   expand_all_items: false

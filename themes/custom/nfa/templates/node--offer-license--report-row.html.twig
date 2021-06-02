@@ -73,9 +73,7 @@
 ] %}
 <div{{ attributes.addClass(classes) }}>
   <div class="row w-100">
-    <span class="col-sm-3">{{ content.field_farmer_name_ref }}</span>
-    <span class="col-sm-3">{{ content.field_area_number }}</span>
-    <span class="col-sm-3"> {{ content.field_block_ref }}</span>
-    {{ content|without('field_farmer_name_ref', 'field_area_number', 'field_block_ref') }}
+
+    {{ content }}
   </div>
 </div>

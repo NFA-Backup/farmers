@@ -217,9 +217,9 @@ display:
         - url.query_args
         - user.roles
       tags: {  }
-  page_1:
+  blocks:
     display_plugin: page
-    id: page_1
+    id: blocks
     display_title: Blocks
     position: 1
     display_options:
@@ -758,9 +758,9 @@ display:
       tags:
         - 'config:field.storage.taxonomy_term.cfr'
         - 'config:field.storage.taxonomy_term.management_unit'
-  page_2:
+  cfrs:
     display_plugin: page
-    id: page_2
+    id: cfrs
     display_title: CFRs
     position: 1
     display_options:
@@ -1165,9 +1165,9 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.taxonomy_term.management_unit'
-  page_3:
+  management_units:
     display_plugin: page
-    id: page_3
+    id: management_units
     display_title: 'Management Units'
     position: 1
     display_options:
