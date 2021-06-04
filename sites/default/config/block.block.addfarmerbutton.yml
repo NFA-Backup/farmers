@@ -9,7 +9,7 @@ dependencies:
 id: addfarmerbutton
 theme: nfa
 region: content
-weight: -1
+weight: -2
 provider: null
 plugin: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
 settings:

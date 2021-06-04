@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_id
+    - field.field.node.offer_license.field_block_ref
     - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
     - field.field.node.offer_license.field_farmer_name_ref
@@ -35,6 +36,7 @@ hidden:
   field_area_number: true
   field_area_serial_number: true
   field_block_id: true
+  field_block_ref: true
   field_central_forest_reserve: true
   field_comments: true
   field_farmer_name_ref: true

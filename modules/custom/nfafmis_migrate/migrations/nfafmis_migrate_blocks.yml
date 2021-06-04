@@ -1,0 +1,37 @@
+id: nfafmis_migrate_blocks
+label: Import NFA Blocks
+status: true
+source:
+  plugin: spreadsheet
+  file: modules/custom/nfafmis_migrate/files/NFA_Blocks.xlsx
+  worksheet: 'Sheet1'
+  origin: A2
+  header_row: 1
+  columns:
+    - 'Management Unit'
+    - 'Forest Reserve'
+    - 'Block No.'
+    - 'Area (Hectares)'
+  row_index_column: 'Row no.'
+  keys:
+    'Block No.':
+      type: string
+      max_length: 12
+      is_ascii: true
+process:
+  name: 'Block No.'
+  vid:
+    plugin: default_value
+    default_value: block
+  cfr:
+    - plugin: entity_lookup
+      source: 'Forest Reserve'
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: central_forest_reserve
+    - plugin: skip_on_empty
+      method: row
+      message: "CFR not found"
+destination:
+  plugin: entity:taxonomy_term

@@ -8,3 +8,15 @@ nfafmis.settings:
   parent: nfafmis.admin_index
   description: 'Annual charges date & late fee calculation settings'
   route_name: nfafmis.settings
+nfafmis.reports:
+  title: 'FMIS Reports'
+  menu_name: main
+  description: 'FMIS Reports'
+  route_name: view.fmis_reports.page_1
+  weight: 9
+nfafmis.admin:
+  title: 'FMIS Admin'
+  menu_name: main
+  description: 'Administer CFRS, Blocks and other admin entities.'
+  route_name: view.fmis_administration.blocks
+  weight: 10

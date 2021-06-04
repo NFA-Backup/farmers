@@ -1,0 +1,27 @@
+uuid: 4b05ea27-143f-4594-9cc7-779aecd53ed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_ref
+    - node.type.offer_license
+id: node.offer_license.field_block_ref
+field_name: field_block_ref
+entity_type: node
+bundle: offer_license
+label: 'Block number'
+description: 'Block number (if available) '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: business_rules_views
+  handler_settings:
+    business_rules_view:
+      view_name: blocks_by_cfr
+      display_name: entity_reference_1
+      arguments: {  }
+      parent_field: field_central_forest_reserve
+      reference_parent_by_uuid: false
+field_type: entity_reference

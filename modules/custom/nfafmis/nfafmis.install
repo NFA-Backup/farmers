@@ -45,3 +45,10 @@ function nfafmis_update_8001(&$sandbox) {
     }
   }
 }
+
+/**
+ * Removed orphaned module entry in system schema.
+ */
+function nfafmis_update_8002(&$sandbox) {
+  \Drupal::keyValue("system.schema")->delete("kint");
+}

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_area_number
-    - field.storage.node.field_block_id
+    - field.storage.node.field_block_ref
     - field.storage.node.field_central_forest_reserve
     - field.storage.node.field_comments
     - field.storage.node.field_licence_id_ref
@@ -19,7 +19,6 @@ dependencies:
     - datetime_range
     - nfafmis
     - node
-    - options
     - user
     - views_flipped_table
 id: offers_licences_view
@@ -95,7 +94,6 @@ display:
             field_offer_date: field_offer_date
             field_area_id: field_area_id
             field_licence_id_ref: field_licence_id_ref
-            field_block_id: field_block_id
             field_license_date: field_license_date
             field_license_date_1: field_license_date_1
             field_forest_reserve_id: field_forest_reserve_id
@@ -124,13 +122,6 @@ display:
               empty_column: 0
               responsive: ''
             field_licence_id_ref:
-              sortable: 0
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: 0
-              responsive: ''
-            field_block_id:
               sortable: 0
               default_sort_order: asc
               align: ''
@@ -491,68 +482,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Block ID allocated'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_license_date:
           id: field_license_date
           table: node__field_license_date
@@ -902,7 +831,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_area_number'
-        - 'config:field.storage.node.field_block_id'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
         - 'config:field.storage.node.field_licence_id_ref'
@@ -918,6 +846,55 @@ display:
       path: offers-licences-view
       display_description: ''
       fields:
+        nfafmis_title_query_param:
+          id: nfafmis_title_query_param
+          table: views
+          field: nfafmis_title_query_param
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: nfafmis_title_query_param
         edit_node:
           id: edit_node
           table: node
@@ -929,7 +906,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a class="use-modal" href="{{ edit_node }}">edit</a>'
+            text: '<a class="use-modal" href="{{ edit_node }}?destination=/tree-farmer-overview/licences?title={{nfafmis_title_query_param|render|striptags|trim}}">edit</a>'
             make_link: false
             path: ''
             absolute: false
@@ -1226,10 +1203,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -1266,7 +1243,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1274,10 +1251,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1672,55 +1650,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        nfafmis_title_query_param:
-          id: nfafmis_title_query_param
-          table: views
-          field: nfafmis_title_query_param
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          plugin_id: nfafmis_title_query_param
       defaults:
         fields: false
         header: false
@@ -1747,7 +1676,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_area_number'
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_comments'
         - 'config:field.storage.node.field_license_date'
@@ -2020,10 +1949,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -2060,7 +1989,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -2068,10 +1997,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2417,7 +2347,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_area_number'
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
         - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_license_id'

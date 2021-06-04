@@ -11,7 +11,7 @@ _core:
 id: nfa_search
 theme: nfa
 region: sidebar_first
-weight: -6
+weight: -9
 provider: null
 plugin: search_form_block
 settings:

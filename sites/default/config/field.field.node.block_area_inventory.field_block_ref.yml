@@ -1,0 +1,29 @@
+uuid: 22297ead-b5d6-43d5-a7d9-aa3d140bb136
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_ref
+    - node.type.block_area_inventory
+    - taxonomy.vocabulary.block
+id: node.block_area_inventory.field_block_ref
+field_name: field_block_ref
+entity_type: node
+bundle: block_area_inventory
+label: 'Block ID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      block: block
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

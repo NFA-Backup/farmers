@@ -3,14 +3,34 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.central_forest_reserve.management_unit
     - taxonomy.vocabulary.central_forest_reserve
   module:
     - path
+    - text
 id: taxonomy_term.central_forest_reserve.default
 targetEntityType: taxonomy_term
 bundle: central_forest_reserve
 mode: default
 content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  management_unit:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -21,10 +41,9 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 1
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  description: true
   status: true

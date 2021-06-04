@@ -1,0 +1,8 @@
+uuid: d7333214-d5f3-4c59-a018-b432ccc235e1
+langcode: en
+status: true
+dependencies: {  }
+name: Block
+vid: block
+description: 'A section of a forest designated to represent a territorial division in a forest reserve.'
+weight: 0

@@ -9,6 +9,7 @@ module:
   block_content: 0
   blocktabs: 0
   breakpoint: 0
+  business_rules: 0
   ckeditor: 0
   color: 0
   comment: 0
@@ -22,6 +23,7 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  dbug: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
@@ -38,7 +40,12 @@ module:
   inline_entity_form: 0
   link: 0
   menu_ui: 0
+  migrate: 0
+  migrate_plus: 0
+  migrate_spreadsheet: 0
+  migrate_tools: 0
   nfafmis: 0
+  nfafmis_migrate: 0
   node: 0
   options: 0
   page_cache: 0

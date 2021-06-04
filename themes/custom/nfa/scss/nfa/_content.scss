@@ -149,3 +149,9 @@ table {
     text-align: right;
   }
 }
+
+.views-exposed-form {
+  .align-items-end .form-group {
+    margin-bottom: 0;
+  }
+}

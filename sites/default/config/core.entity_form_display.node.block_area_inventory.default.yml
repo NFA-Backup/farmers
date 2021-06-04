@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.block_area_inventory.field_block_id
+    - field.field.node.block_area_inventory.field_block_ref
     - field.field.node.block_area_inventory.field_farmer_name_ref
     - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
@@ -19,11 +19,15 @@ targetEntityType: node
 bundle: block_area_inventory
 mode: default
 content:
-  field_block_id:
-    weight: 3
-    settings: {  }
+  field_block_ref:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+    type: entity_reference_autocomplete
     region: content
   field_farmer_name_ref:
     weight: 0
@@ -36,7 +40,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_inventory:
-    weight: 5
+    weight: 6
     settings:
       form_mode: default
       override_labels: true
@@ -48,23 +52,26 @@ content:
       collapsed: false
       allow_existing: false
       allow_duplicate: false
+      revision: false
     third_party_settings: {  }
     type: inline_entity_form_complex
     region: content
   field_licence_id_ref:
     weight: 2
-    settings: {  }
+    settings:
+      empty_value: '- None -'
     third_party_settings: {  }
     type: erviews_options_select
     region: content
   field_offer_id_ref:
     weight: 1
-    settings: {  }
+    settings:
+      empty_value: '- None -'
     third_party_settings: {  }
     type: erviews_options_select
     region: content
   field_sub_area_content:
-    weight: 4
+    weight: 5
     settings:
       form_mode: default
       override_labels: true
@@ -76,11 +83,12 @@ content:
       collapsed: false
       allow_existing: false
       allow_duplicate: false
+      revision: false
     third_party_settings: {  }
     type: inline_entity_form_complex
     region: content
   field_thinning_harvest_details:
-    weight: 6
+    weight: 7
     settings:
       form_mode: default
       override_labels: true
@@ -92,6 +100,7 @@ content:
       collapsed: false
       allow_existing: false
       allow_duplicate: false
+      revision: false
     third_party_settings: {  }
     type: inline_entity_form_complex
     region: content

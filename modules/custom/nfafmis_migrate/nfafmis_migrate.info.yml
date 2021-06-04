@@ -1,0 +1,8 @@
+name: NFA-FMI migrate
+type: module
+description: A module for data migrations.
+core_version_requirement: ^8.8 || ^9
+package: NFA-FMI
+dependencies:
+  - migrate
+  - migrate_tools

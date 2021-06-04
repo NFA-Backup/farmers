@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.block_area_inventory.field_block_id
+    - field.field.node.block_area_inventory.field_block_ref
     - field.field.node.block_area_inventory.field_farmer_name_ref
     - field.field.node.block_area_inventory.field_inventory
     - field.field.node.block_area_inventory.field_licence_id_ref
@@ -25,7 +25,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_block_id: true
+  field_block_ref: true
   field_farmer_name_ref: true
   field_inventory: true
   field_licence_id_ref: true

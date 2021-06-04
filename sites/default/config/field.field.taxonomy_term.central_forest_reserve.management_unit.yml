@@ -1,0 +1,29 @@
+uuid: 85dc7763-99c6-483d-9fb6-b7dfc631bfe1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.management_unit
+    - taxonomy.vocabulary.central_forest_reserve
+    - taxonomy.vocabulary.management_unit
+id: taxonomy_term.central_forest_reserve.management_unit
+field_name: management_unit
+entity_type: taxonomy_term
+bundle: central_forest_reserve
+label: 'Management Unit'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      management_unit: management_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

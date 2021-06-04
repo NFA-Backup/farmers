@@ -11,7 +11,7 @@ id: node.offer_license.field_block_id
 field_name: field_block_id
 entity_type: node
 bundle: offer_license
-label: 'Block ID'
+label: 'Block ID (legacy)'
 description: 'Block number (if available) – single use'
 required: false
 translatable: false
