@@ -70,6 +70,26 @@ table {
   }
 }
 
+.view-sub-area-map {
+  .view-content {
+    min-height: 450px;
+  }
+  .field-content {
+    margin-left: 0 !important;
+  }
+  .subarea-map {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    z-index: 0;
+    visibility: hidden;
+    &.active {
+      z-index: 1;
+      visibility: visible;
+    }
+  }
+}
+
 /*--- flagged-comment --*/
 .block-section {
   margin-bottom: 15px;

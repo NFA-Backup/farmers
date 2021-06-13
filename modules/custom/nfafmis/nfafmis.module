@@ -157,13 +157,17 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
 
   // Prepare sub_area add edit form.
   if ($form_id == 'node_sub_area_form' || $form_id == 'node_sub_area_edit_form') {
-    $offer_license_id = $nfafmis_service_utility->getQueryParams();
     // Provide farmer id as arguments to the reference views to filter result.
     // This only works when widget is selected as autocomplete.
-    if (isset($offer_license_id['offer_licence_id'])) {
-      $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
-    }
+    // Don't do this if we are here during an ajax callback, such as when a file
+    // is being uploaded.
+    if (!$form_state->getTriggeringElement()) {
+      $offer_license_id = $nfafmis_service_utility->getQueryParams();
 
+      if (isset($offer_license_id['offer_licence_id'])) {
+        $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
+      }
+    }
     $form['field_date_harvested']['#states'] = [
       'visible' => [
         ':input[name="field_area_harvested[value]"]' => ['checked' => TRUE],

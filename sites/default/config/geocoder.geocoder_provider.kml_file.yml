@@ -1,0 +1,10 @@
+uuid: a1af1c04-f95f-47ca-b5a8-a96dd3343e13
+langcode: en
+status: true
+dependencies:
+  module:
+    - geocoder_geofield
+id: kml_file
+label: 'KML File'
+plugin: kmlfile
+configuration: {  }
