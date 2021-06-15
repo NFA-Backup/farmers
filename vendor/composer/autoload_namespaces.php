@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
+    'Stiphle' => array($vendorDir . '/davedevelopment/stiphle/src'),
     'Stack' => array($vendorDir . '/stack/builder/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'EasyRdf_' => array($vendorDir . '/easyrdf/easyrdf/lib'),

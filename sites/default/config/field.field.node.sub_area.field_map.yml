@@ -1,0 +1,38 @@
+uuid: 4233e57a-a6fe-4330-bac9-d68b0a011037
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map
+    - node.type.sub_area
+  module:
+    - geocoder_field
+    - geofield
+third_party_settings:
+  geocoder_field:
+    method: geocode
+    weight: 0
+    skip_not_empty_value: false
+    disabled: false
+    hidden: false
+    providers:
+      - kml_file
+    dumper: wkt
+    failure:
+      handling: preserve
+      status_message: true
+      log: true
+    field: field_kml_file
+    delta_handling: default
+id: node.sub_area.field_map
+field_name: field_map
+entity_type: node
+bundle: sub_area
+label: 'Sub-area map'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

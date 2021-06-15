@@ -7,7 +7,8 @@ dependencies:
     - field.field.node.sub_area.field_areas_id
     - field.field.node.sub_area.field_date_harvested
     - field.field.node.sub_area.field_date_planted
-    - field.field.node.sub_area.field_kml_upload
+    - field.field.node.sub_area.field_kml_file
+    - field.field.node.sub_area.field_map
     - field.field.node.sub_area.field_purpose
     - field.field.node.sub_area.field_species_variety
     - field.field.node.sub_area.field_sub_area_planted
@@ -17,6 +18,7 @@ dependencies:
   module:
     - datetime
     - file
+    - leaflet
     - yearonly
 id: node.sub_area.default
 targetEntityType: node
@@ -24,7 +26,7 @@ bundle: sub_area
 mode: default
 content:
   field_area_harvested:
-    weight: 7
+    weight: 6
     settings:
       display_label: true
     third_party_settings: {  }
@@ -41,17 +43,68 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_date_harvested:
-    weight: 8
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_kml_upload:
-    weight: 6
+  field_kml_file:
+    weight: 8
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
+  field_map:
+    weight: 9
+    settings:
+      map:
+        leaflet_map: 'OSM Mapnik'
+        height: 400
+        auto_center: true
+        map_position:
+          force: false
+          center:
+            lat: 0
+            lon: 0
+          zoom: 12
+          minZoom: 1
+          maxZoom: 18
+          zoomFiner: 0
+        locate: true
+        scroll_zoom_enabled: true
+        fullscreen_control: true
+      input:
+        show: true
+        readonly: false
+      toolbar:
+        position: topright
+        marker: defaultMarker
+        drawPolyline: true
+        drawRectangle: true
+        drawPolygon: true
+        drawCircle: false
+        editMode: true
+        dragMode: true
+        cutPolygon: false
+        removalMode: true
+      reset_map:
+        control: false
+        position: topright
+      path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+      geocoder:
+        control: false
+        settings:
+          position: topright
+          input_size: 25
+          providers: {  }
+          min_terms: 4
+          delay: 800
+          zoom: 16
+          popup: false
+          options: ''
+    third_party_settings: {  }
+    type: leaflet_widget_default
     region: content
   field_purpose:
     weight: 5
