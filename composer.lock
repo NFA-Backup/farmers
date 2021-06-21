@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ad66a2b48723eba9c3ca6d258954acf",
+    "content-hash": "a05d70dbdae9bae43f887a5b8520de88",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3759,8 +3759,7 @@
                 "source": "https://git.drupalcode.org/project/migrate_tools",
                 "issues": "https://www.drupal.org/project/issues/migrate_tools",
                 "slack": "#migrate"
-            },
-            "time": "2021-04-16T19:57:16+00:00"
+            }
         },
         {
             "name": "drupal/paragraphs",
