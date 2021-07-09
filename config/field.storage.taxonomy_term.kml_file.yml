@@ -1,0 +1,23 @@
+uuid: 1eb2e423-bcd2-4df5-862e-47027766a830
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - taxonomy
+id: taxonomy_term.kml_file
+field_name: kml_file
+entity_type: taxonomy_term
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

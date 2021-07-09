@@ -17,8 +17,8 @@ dependencies:
     - node.type.sub_area
   module:
     - datetime
+    - farm_map
     - file
-    - leaflet
     - yearonly
 id: node.sub_area.default
 targetEntityType: node
@@ -49,62 +49,17 @@ content:
     type: datetime_default
     region: content
   field_kml_file:
-    weight: 8
+    type: file_generic
+    weight: 9
+    region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
-    type: file_generic
-    region: content
   field_map:
-    weight: 9
-    settings:
-      map:
-        leaflet_map: 'OSM Mapnik'
-        height: 400
-        auto_center: true
-        map_position:
-          force: false
-          center:
-            lat: 0
-            lon: 0
-          zoom: 12
-          minZoom: 1
-          maxZoom: 18
-          zoomFiner: 0
-        locate: true
-        scroll_zoom_enabled: true
-        fullscreen_control: true
-      input:
-        show: true
-        readonly: false
-      toolbar:
-        position: topright
-        marker: defaultMarker
-        drawPolyline: true
-        drawRectangle: true
-        drawPolygon: true
-        drawCircle: false
-        editMode: true
-        dragMode: true
-        cutPolygon: false
-        removalMode: true
-      reset_map:
-        control: false
-        position: topright
-      path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
-      geocoder:
-        control: false
-        settings:
-          position: topright
-          input_size: 25
-          providers: {  }
-          min_terms: 4
-          delay: 800
-          zoom: 16
-          popup: false
-          options: ''
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
-    type: leaflet_widget_default
+    type: farm_map_geofield
     region: content
   field_purpose:
     weight: 5

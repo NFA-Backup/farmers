@@ -3,9 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.central_forest_reserve.geofield_map
+    - field.field.taxonomy_term.central_forest_reserve.kml_file
     - field.field.taxonomy_term.central_forest_reserve.management_unit
     - taxonomy.vocabulary.central_forest_reserve
   module:
+    - farm_map
+    - file
     - path
     - text
 id: taxonomy_term.central_forest_reserve.default
@@ -21,6 +25,19 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  geofield_map:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: farm_map_geofield
+    region: content
+  kml_file:
+    weight: 7
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
   management_unit:
     weight: 1
     settings:
@@ -41,7 +58,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 3
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
