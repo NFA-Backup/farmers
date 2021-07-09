@@ -5,7 +5,7 @@ farmOS-map:
     url: https://github.com/farmOS/farmOS-map/blob/master/LICENSE
     gpl-compatible: true
   js:
-    /libraries/farmOS-map/dist/farmOS-map.js:
+    /libraries/custom/farmOS-map/dist/farmOS-map.js:
       minified: true
   dependencies:
     - core/drupalSettings

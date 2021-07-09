@@ -4,7 +4,7 @@ vendor
 web/core
 web/modules/contrib
 web/themes/contrib
-web/libraries
+web/libraries/contrib
 web/profiles/contrib
 
 # Ignore paths that contain user-generated content.
