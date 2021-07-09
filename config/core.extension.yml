@@ -1,5 +1,6 @@
 module:
   admin_toolbar: 0
+  admin_toolbar_tools: 0
   alter_entity_autocomplete: 0
   auto_entitylabel: 0
   automated_cron: 0
@@ -28,6 +29,8 @@ module:
   editor: 0
   entity_reference_revisions: 0
   entity_reference_views_select: 0
+  farm_map: 0
+  farm_map_mapbox: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -42,7 +45,6 @@ module:
   history: 0
   image: 0
   inline_entity_form: 0
-  leaflet: 0
   link: 0
   menu_ui: 0
   migrate: 0

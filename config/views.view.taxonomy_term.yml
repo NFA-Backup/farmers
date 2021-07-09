@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.report_row
+    - taxonomy.vocabulary.central_forest_reserve
   module:
     - node
     - taxonomy
@@ -219,9 +220,8 @@ display:
       style:
         type: default
         options:
-          grouping: {  }
           row_class: ''
-          default_row_class: true
+          default_row_class: false
           uses_fields: false
       row:
         type: 'entity:node'
@@ -249,6 +249,7 @@ display:
       display_extenders: {  }
       link_url: ''
       link_display: page_1
+      title: ''
     cache_metadata:
       contexts:
         - 'languages:language_interface'

@@ -1,20 +1,20 @@
-uuid: f0b8e49c-ffa5-4e08-87f2-5dac433e7c47
+uuid: 0d86a2f5-2627-4bc5-adea-1d43fb5d1a70
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_kml_file
-    - node.type.sub_area
+    - field.storage.taxonomy_term.kml_file
+    - taxonomy.vocabulary.central_forest_reserve
   module:
     - file
-id: node.sub_area.field_kml_file
-field_name: field_kml_file
-entity_type: node
-bundle: sub_area
+id: taxonomy_term.central_forest_reserve.kml_file
+field_name: kml_file
+entity_type: taxonomy_term
+bundle: central_forest_reserve
 label: 'KML file'
 description: 'The uploaded KML will be used as the source for the Sub-area map field and <strong>will overwrite any existing Geometry data.</strong>'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

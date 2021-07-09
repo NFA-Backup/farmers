@@ -1,10 +1,10 @@
-uuid: 4233e57a-a6fe-4330-bac9-d68b0a011037
+uuid: 8d376f72-03e8-4545-9b2f-d1df800f3968
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_map
-    - node.type.sub_area
+    - field.storage.taxonomy_term.geofield_map
+    - taxonomy.vocabulary.central_forest_reserve
   module:
     - geocoder_field
     - geofield
@@ -22,13 +22,13 @@ third_party_settings:
       handling: preserve
       status_message: true
       log: true
-    field: field_kml_file
+    field: kml_file
     delta_handling: default
-id: node.sub_area.field_map
-field_name: field_map
-entity_type: node
-bundle: sub_area
-label: 'Sub-area map'
+id: taxonomy_term.central_forest_reserve.geofield_map
+field_name: geofield_map
+entity_type: taxonomy_term
+bundle: central_forest_reserve
+label: Map
 description: 'You can enter WKT geometry data here. Alternatively you can upload a KML file.'
 required: false
 translatable: false
