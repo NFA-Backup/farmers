@@ -28,6 +28,7 @@
     {% endif %}
   {% endfor %}
 {% endif %}
+<div class="position-relative">
 {% for key, row in rows %}
   {% if subareas[key] and not firstmap %}
     {% set classes = 'subarea-map active' %}
@@ -39,3 +40,4 @@
     {{- row.content -}}
   </div>
 {% endfor %}
+</div>
