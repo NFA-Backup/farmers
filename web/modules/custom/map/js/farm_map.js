@@ -35,6 +35,22 @@
         // when the field's visible state changes,
         const formWrapper = element.closest('div.form-wrapper');
         if (formWrapper != null) {
+
+          // When on the modal edit form the map dimensions are not set soon
+          // enough so we need to refresh by forcing updateSize.
+          const modal = element.closest('div#drupal-modal');
+          if (modal != null) {
+            setTimeout(function () {
+              // Update the map size of the map widget.
+              farmOS.map.instances.forEach(function (instance) {
+                if (instance.target.startsWith('farm-map-geofield-widget')) {
+                  instance.map.updateSize();
+                  instance.map.getView().setZoom(14);
+                }
+              });
+            }, 200);
+          }
+
           const formWrapperObserver = new MutationObserver((mutations) => {
 
             // Only update the map size if the wrapper was previously hidden.
@@ -54,7 +70,7 @@
         // the details element is toggled.
         const details = element.closest('details');
         if (details != null) {
-          details.addEventListener('toggle', function() {
+          details.addEventListener('toggle', function () {
             instance.map.updateSize();
           });
         }
@@ -62,7 +78,7 @@
 
       // Add an event listener to update the map size when the Gin toolbar is toggled.
       if (context === document) {
-        document.addEventListener('toolbar-toggle', function(e) {
+        document.addEventListener('toolbar-toggle', function (e) {
 
           // Only continue if map instances are provided.
           if (typeof farmOS !== 'undefined' && farmOS.map.instances !== 'undefined') {

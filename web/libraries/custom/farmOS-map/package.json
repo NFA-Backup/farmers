@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "build": "npm run lint && webpack --config webpack.config.js --mode production",
+    "build": "webpack --config webpack.config.js --mode production",
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config webpack.config.js --mode development"
   },
   "devDependencies": {

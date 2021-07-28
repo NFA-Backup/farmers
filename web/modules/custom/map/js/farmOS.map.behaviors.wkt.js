@@ -27,11 +27,12 @@
         }
 
         // Add the snappingGrid behavior.
-        instance.addBehavior('snappingGrid');
+        // @todo this causes js error relating to getChangeEventType on node forms.
+        //instance.addBehavior('snappingGrid');
       }
 
       // Enable the line/polygon measure behavior.
-      instance.addBehavior('measure', { layer: layer });
+      //instance.addBehavior('measure', { layer: layer });
 
       // If the layer has features, zoom to them.
       // Otherwise, zoom to all vectors.

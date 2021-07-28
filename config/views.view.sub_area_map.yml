@@ -238,6 +238,7 @@ display:
         relationships: false
         fields: false
         arguments: false
+        pager: false
       fields:
         field_map:
           id: field_map
@@ -410,6 +411,10 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: string
+      pager:
+        type: none
+        options:
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:

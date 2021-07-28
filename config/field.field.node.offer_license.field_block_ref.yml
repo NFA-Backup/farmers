@@ -16,9 +16,9 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: business_rules_views
+  handler: dependent_fields_selection
   handler_settings:
-    business_rules_view:
+    dependent_fields_view:
       view_name: blocks_by_cfr
       display_name: entity_reference_1
       arguments: {  }

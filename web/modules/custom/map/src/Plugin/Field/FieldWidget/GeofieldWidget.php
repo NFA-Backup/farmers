@@ -40,7 +40,7 @@ class GeofieldWidget extends GeofieldBaseWidget {
         'wkt' => $current_value,
         'behaviors' => [
           'wkt' => [
-            'edit' => TRUE,
+            'edit' => FALSE,
             'zoom' => TRUE,
           ],
         ],
