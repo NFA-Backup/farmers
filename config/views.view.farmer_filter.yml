@@ -400,7 +400,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: contains
+          operator: '='
           value: ''
           group: 1
           exposed: true
@@ -410,6 +410,8 @@ display:
             description: ''
             use_operator: false
             operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: title
             required: false
             remember: false
@@ -418,6 +420,8 @@ display:
               anonymous: anonymous
               authenticated: authenticated
               administrator: administrator
+              nfa_staff: '0'
+              not_staff: '0'
             placeholder: 'Search for farmer name'
             autocomplete_filter: 1
             autocomplete_min_chars: '0'
@@ -426,8 +430,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
