@@ -119,6 +119,9 @@
       ]
     },
     "patches": {
+      "drupal/core": {
+        "2836054-51: Allow configuring of datelist year range date_year_range via UI": "https://www.drupal.org/files/issues/2020-09-21/2836054-51.patch"
+      },
       "drupal/yearonly": {
         "3172745-2: Provide default year options": "https://www.drupal.org/files/issues/2020-09-23/yearonly-default-options-3172745-2.patch"
       }

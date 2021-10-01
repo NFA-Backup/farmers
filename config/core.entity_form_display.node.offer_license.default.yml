@@ -66,7 +66,8 @@ content:
     region: content
   field_license_date:
     weight: 5
-    settings: {  }
+    settings:
+      year_range: '1900:+100'
     third_party_settings: {  }
     type: daterange_default
     region: content
@@ -87,7 +88,8 @@ content:
     region: content
   field_offer_date:
     weight: 2
-    settings: {  }
+    settings:
+      year_range: '1900:+100'
     third_party_settings: {  }
     type: datetime_default
     region: content

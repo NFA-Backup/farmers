@@ -9,6 +9,7 @@ use Drupal\Core\Site\Settings;
 use Drupal\node\Entity\Node;
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
+use Drupal\area_summary\Entity\AreaSummary;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -198,4 +199,79 @@ function nfafmis_deploy_004(&$sandbox = NULL) {
       Drupal::service('pathauto.generator')->createEntityAlias(Term::load($id), 'insert');
     }
   }
+}
+
+/**
+ * Initialise CFR summary data by adding area_summary entities.
+ */
+function nfafmis_deploy_005(&$sandbox = NULL) {
+  // Use the sandbox to update nodes in batches.
+  if (!isset($sandbox['progress'])) {
+    // This is the first run. Initialize the sandbox.
+    $sandbox['progress'] = 0;
+
+    // Load Offer/License node ids.
+    $nids = Drupal::entityQuery('node')
+      ->condition('type', 'offer_license')
+      ->accessCheck(FALSE)
+      ->execute();
+
+    foreach ($nids as $result) {
+      $sandbox['nodes'][] = $result;
+    }
+    if (!empty($sandbox['nodes'])) {
+      $sandbox['max'] = count($sandbox['nodes']);
+    }
+  }
+
+  $batch_size = Settings::get('entity_update_batch_size', 50);
+  if (!empty($sandbox['nodes'])) {
+    // Handle nodes in batches.
+    $nids = array_slice($sandbox['nodes'], $sandbox['progress'], $batch_size);
+
+    $area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+    foreach ($area_storage as $area) {
+      $farmer = $area->field_farmer_name_ref->entity;
+      $cfr = $area->field_central_forest_reserve->entity;
+      $management_unit = $cfr->management_unit->entity;
+
+      // Calculate the total area planted in sub-areas.
+      $sub_nids = Drupal::entityQuery('node')
+        ->condition('type', 'sub_area')
+        ->condition('field_areas_id', $area->id())
+        ->accessCheck(FALSE)
+        ->execute();
+
+      $sub_area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($sub_nids);
+      $area_planted = 0;
+      foreach ($sub_area_storage as $sub_area) {
+        $area_planted += $sub_area->field_subarea_planted->value;
+      }
+
+      // Create reserve summary records for the area.
+      $summary = AreaSummary::create([
+        'area' => $area->id(),
+        'farmer' => $farmer->id(),
+        'cfr' => $cfr->id(),
+        'management_unit' => $management_unit->id(),
+        'area_allocated' => $area->field_overall_area,
+        'area_planted' => $area_planted,
+      ]);
+      $summary->save();
+      $sandbox['progress']++;
+    }
+
+    // Tell Drupal what percentage of the batch is completed.
+    $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+
+    Drupal::logger('NFA-FMIS')
+      ->debug(
+        'Created @progress of @max area_summary records.',
+        [
+          '@progress' => $sandbox['progress'],
+          '@max' => $sandbox['max'],
+        ]
+      );
+  }
+
 }

@@ -89,7 +89,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   }
 
   // Prepare offer license add edit form.
-  if ($form_id == 'node_offer_license_form' || $form_id == 'node_offer_license__edit_form') {
+  if ($form_id == 'node_offer_license_form' || $form_id == 'node_offer_license_edit_form') {
     $form['field_license_id']['#states'] = [
       'visible' => [
         ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
@@ -525,14 +525,14 @@ function nfafmis_preprocess_views_view_field(&$variables) {
   $row = $variables['row'];
   if ($view->storage->id() == 'sub_areas_planting_status' && $view->current_display == 'block_1') {
     $field_overall_area_allocated = $row->_entity->get('field_overall_area')->value;
-    $area_panted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
+    $area_planted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
     // Override the views field result output to show custom value.
     if ($field->field == 'field_area_serial_number') {
-      $variables['output'] = $area_panted_values . 'ha';
+      $variables['output'] = $area_planted_values . 'ha';
     }
     if ($field->field == 'title') {
-      $variables['output'] = $field_overall_area_allocated - $area_panted_values . 'ha';
+      $variables['output'] = $field_overall_area_allocated - $area_planted_values . 'ha';
     }
   }
 
