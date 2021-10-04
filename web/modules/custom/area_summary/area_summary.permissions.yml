@@ -1,0 +1,4 @@
+administer area_summary entity:
+  title: 'Administer area_summary entities'
+  description: 'Edit and delete area summary entities.'
+  restrict access: true
