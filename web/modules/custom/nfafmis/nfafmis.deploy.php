@@ -245,7 +245,7 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
       $sub_area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($sub_nids);
       $area_planted = 0;
       foreach ($sub_area_storage as $sub_area) {
-        $area_planted += $sub_area->field_subarea_planted->value;
+        $area_planted += $sub_area->get('field_subarea_planted')->value;
       }
 
       // Create reserve summary records for the area.

@@ -5,7 +5,6 @@ namespace Drupal\area_summary\Entity;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines the area summary entity class for storing summary data for forest reserves.
@@ -15,10 +14,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("Area summary data"),
  *   handlers = {
  *     "list_builder" = "Drupal\area_summary\Controller\AreaSummaryListBuilder",
- *     "form" = {
- *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
- *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *     },
@@ -37,8 +32,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   },
  *   links = {
  *     "canonical" = "/area_summary/{area_summary}",
- *     "edit-form" = "/area_summary/{area_summary}/edit",
- *     "delete-form" = "/area_summary/area_summary/{area_summary}/delete",
  *     "collection" = "/admin/content/area_summary",
  *   },
  * )
@@ -51,14 +44,14 @@ class AreaSummary extends ContentEntityBase {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
 
     $fields[$entity_type->getKey('id')] = BaseFieldDefinition::create('integer')
-      ->setLabel(new TranslatableMarkup('ID'))
-      ->setDescription(new TranslatableMarkup('The ID of the area summary entity.'))
+      ->setLabel(t('ID'))
+      ->setDescription(t('The ID of the area summary entity.'))
       ->setReadOnly(TRUE)
       ->setSetting('unsigned', TRUE);
 
     $fields[$entity_type->getKey('uuid')] = BaseFieldDefinition::create('uuid')
-      ->setLabel(new TranslatableMarkup('UUID'))
-      ->setDescription(new TranslatableMarkup('The UUID of the area summary entity.'))
+      ->setLabel(t('UUID'))
+      ->setDescription(t('The UUID of the area summary entity.'))
       ->setReadOnly(TRUE);
 
     $fields['area'] = BaseFieldDefinition::create('entity_reference')
@@ -90,21 +83,34 @@ class AreaSummary extends ContentEntityBase {
       ->setDisplayOptions('form', ['weight' => 0]);
 
     $fields['area_allocated'] = BaseFieldDefinition::create('decimal')
-      ->setLabel(new TranslatableMarkup('Total area allocated'))
+      ->setLabel(t('Total area allocated'))
       ->setRevisionable(TRUE)
       ->setDisplayOptions('form', ['weight' => 0]);
 
     $fields['area_planted'] = BaseFieldDefinition::create('decimal')
-      ->setLabel(new TranslatableMarkup('Total area planted'))
+      ->setLabel(t('Total area planted'))
       ->setRevisionable(TRUE)
       ->setDisplayOptions('form', ['weight' => 0]);
 
     $fields['average_stems'] = BaseFieldDefinition::create('decimal')
-      ->setLabel(new TranslatableMarkup('Average stems/ha'))
+      ->setLabel(t('Average stems/ha'))
       ->setRevisionable(TRUE)
       ->setDisplayOptions('form', ['weight' => 0]);
 
     return $fields;
+  }
+
+  /**
+   * Sets the area planted value for the area.
+   *
+   * @param float $area_planted
+   *   The commerce checkout flow plugin manager.
+   *
+   * @return $this
+   */
+  public function setAreaPlanted(float $area_planted) {
+    $this->set('area_planted', $area_planted);
+    return $this;
   }
 
 }

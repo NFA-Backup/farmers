@@ -7,7 +7,6 @@
 
 use Drupal\area_summary\Entity\AreaSummary;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_ENTITY_TYPE_update().
@@ -25,7 +24,7 @@ function area_summary_node_update(EntityInterface $entity) {
         $summary = \Drupal::entityTypeManager()
           ->getStorage('area_summary')
           ->load($id);
-        $summary->area_allocated = $entity->field_overall_area->value;
+        $summary->area_allocated = $entity->get('field_overall_area')->value;
         $summary->save();
       }
     }
@@ -86,7 +85,7 @@ function _area_summary_update_area_planted(EntityInterface $area) {
   $sub_area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($sub_nids);
   $area_planted = 0;
   foreach ($sub_area_storage as $sub_area) {
-    $area_planted += $sub_area->field_subarea_planted->value;
+    $area_planted += $sub_area->get('field_subarea_planted')->value;
   }
 
   // A summary should already exist for the area so update it.
@@ -96,8 +95,9 @@ function _area_summary_update_area_planted(EntityInterface $area) {
     ->execute();
 
   foreach ($results as $id) {
+    /** @var Drupal\area_summary\Entity\AreaSummary $summary */
     $summary = \Drupal::entityTypeManager()->getStorage('area_summary')->load($id);
-    $summary->area_planted = $area_planted;
+    $summary->setAreaPlanted($area_planted);
     $summary->save();
   }
 }
