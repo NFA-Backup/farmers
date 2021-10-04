@@ -30,11 +30,15 @@ function area_summary_node_update(EntityInterface $entity) {
     }
     else {
       $farmer = $entity->field_farmer_name_ref->entity;
+      if (!$farmer) {
+        Drupal::logger('NFA-FMIS')
+          ->warning('Area with nid @id has no assigned farmer', ['@id' => $entity->id()]);
+      }
       $cfr = $entity->field_central_forest_reserve->entity;
       $management_unit = $cfr->management_unit->entity;
       $summary = AreaSummary::create([
         'area' => $entity->id(),
-        'farmer' => $farmer->id(),
+        'farmer' => $farmer ? $farmer->id() : 0,
         'cfr' => $cfr->id(),
         'management_unit' => $management_unit->id(),
         'area_allocated' => $entity->field_overall_area,

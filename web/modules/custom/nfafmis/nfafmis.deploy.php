@@ -231,6 +231,11 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
 
     $area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
     foreach ($area_storage as $area) {
+
+      if (!$area->field_farmer_name_ref->entity) {
+        Drupal::logger('NFA-FMIS')
+          ->warning('Area with nid @id has no assigned farmer', ['@id' => $area->id()]);
+      }
       $farmer = $area->field_farmer_name_ref->entity;
       $cfr = $area->field_central_forest_reserve->entity;
       $management_unit = $cfr->management_unit->entity;
@@ -242,7 +247,9 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
         ->accessCheck(FALSE)
         ->execute();
 
-      $sub_area_storage = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($sub_nids);
+      $sub_area_storage = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadMultiple($sub_nids);
       $area_planted = 0;
       foreach ($sub_area_storage as $sub_area) {
         $area_planted += $sub_area->get('field_subarea_planted')->value;
@@ -251,7 +258,7 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
       // Create reserve summary records for the area.
       $summary = AreaSummary::create([
         'area' => $area->id(),
-        'farmer' => $farmer->id(),
+        'farmer' => $farmer ? $farmer->id() : 0,
         'cfr' => $cfr->id(),
         'management_unit' => $management_unit->id(),
         'area_allocated' => $area->field_overall_area,
