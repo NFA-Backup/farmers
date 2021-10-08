@@ -5,7 +5,6 @@ module:
   area_summary: 0
   auto_entitylabel: 0
   automated_cron: 0
-  better_exposed_filters: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -20,7 +19,6 @@ module:
   contextual: 0
   csv_serialization: 0
   ctools: 0
-  date_range_formatter: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
