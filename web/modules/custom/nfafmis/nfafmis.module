@@ -697,7 +697,7 @@ function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state)
  *
  * @return mixed
  */
-function computed_field_field_amount_due_compute($entity) {
+function computed_field_field_amount_due_compute($entity_type_manager, $entity, $fields, $delta) {
   return ($entity->field_assessment_amount->value - $entity->field_amount_paid_as->value);
 }
 

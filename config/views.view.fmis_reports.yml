@@ -33,8 +33,8 @@ dependencies:
     - taxonomy.vocabulary.farmer_category_type
   module:
     - csv_serialization
-    - date_range_formatter
     - datetime
+    - datetime_range
     - node
     - options
     - rest
@@ -1415,15 +1415,11 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: date_range_without_time
+          type: daterange_custom
           settings:
             timezone_override: ''
-            single: 'd F Y'
-            single_all_day: 'd F Y'
-            one_day: 'd F Y'
-            one_month: 'd - {d} F Y'
-            several_months: 'd F - {d} {F} Y'
-            several_years: 'd F Y - {d} {F} {Y}'
+            date_format: 'd F Y'
+            separator: '-'
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -4093,15 +4089,11 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: date_range_without_time
+          type: daterange_custom
           settings:
             timezone_override: ''
-            single: 'd F Y'
-            single_all_day: 'd F Y'
-            one_day: 'd F Y'
-            one_month: 'd - {d} F Y'
-            several_months: 'd F - {d} {F} Y'
-            several_years: 'd F Y - {d} {F} {Y}'
+            date_format: 'd F Y'
+            separator: '-'
           group_column: value
           group_columns: {  }
           group_rows: true
