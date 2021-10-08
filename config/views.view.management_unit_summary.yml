@@ -8,13 +8,17 @@ dependencies:
     - system.menu.fmis-reports
     - taxonomy.vocabulary.management_unit
   content:
-    - 'taxonomy_term:management_unit:97090f7f-36e6-4668-8990-006b1aeaeb74'
+    - 'taxonomy_term:management_unit:86058692-5b6b-47ca-b3b2-7728e20311e3'
   module:
     - area_summary
+    - csv_serialization
     - node
     - options
+    - rest
+    - serialization
     - taxonomy
     - user
+    - views_data_export
 id: management_unit_summary
 label: 'Management unit summary'
 module: views
@@ -86,28 +90,29 @@ display:
           summary: ''
           description: ''
           columns:
-            area: area
-            management_unit: management_unit
             cfr: cfr
+            field_farmer_category_type: field_farmer_category_type
+            field_gender: field_gender
             farmer: farmer
             area_allocated: area_allocated
             area_planted: area_planted
+            nothing: nothing
           info:
-            area:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            management_unit:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             cfr:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_farmer_category_type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_gender:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -122,20 +127,27 @@ display:
               empty_column: false
               responsive: ''
             area_allocated:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             area_planted:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+          default: cfr
           empty_table: false
       row:
         type: fields
@@ -401,445 +413,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-      tags: {  }
-  attachment_1:
-    display_plugin: attachment
-    id: attachment_1
-    display_title: 'Report totals'
-    position: 2
-    display_options:
-      display_extenders:
-        ajax_history: {  }
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      defaults:
-        access: false
-        group_by: false
-        filters: false
-        filter_groups: false
-        sorts: false
-        fields: false
-        title: false
-      enabled: true
-      display_description: ''
-      group_by: true
-      filters:
-        tid:
-          id: tid
-          table: taxonomy_term_field_data
-          field: tid
-          relationship: management_unit
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            - 597
-          group: 1
-          exposed: true
-          expose:
-            operator_id: tid_op
-            label: 'Management unit'
-            description: ''
-            use_operator: false
-            operator: tid_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: mu
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              nfa_staff: '0'
-              not_staff: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: management_unit
-          hierarchy: false
-          error_message: true
-          entity_type: taxonomy_term
-          entity_field: tid
-          plugin_id: taxonomy_index_tid
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      sorts: {  }
-      fields:
-        cfr:
-          id: cfr
-          table: area_summary
-          field: cfr
-          relationship: none
-          group_type: count_distinct
-          admin_label: ''
-          label: 'Number of CFRs'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ', '
-          format_plural: 0
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: null
-          group_columns: null
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          field_api_classes: false
-          entity_type: area_summary
-          entity_field: cfr
-          plugin_id: field
-        area_allocated:
-          id: area_allocated
-          table: area_summary
-          field: area_allocated
-          relationship: none
-          group_type: sum
-          admin_label: ''
-          label: 'Total area allocated (Ha)'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ''
-          format_plural: 0
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
-          click_sort_column: value
-          type: number_decimal
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-            decimal_separator: .
-            scale: 2
-          group_column: null
-          group_columns: null
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          field_api_classes: false
-          entity_type: area_summary
-          entity_field: area_allocated
-          plugin_id: field
-        area_planted:
-          id: area_planted
-          table: area_summary
-          field: area_planted
-          relationship: none
-          group_type: sum
-          admin_label: ''
-          label: 'Total area planted (Ha)'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ''
-          format_plural: 0
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
-          click_sort_column: value
-          type: number_decimal
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-            decimal_separator: .
-            scale: 2
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          field_api_classes: false
-          entity_type: area_summary
-          entity_field: area_planted
-          plugin_id: field
-        tid:
-          id: tid
-          table: taxonomy_term_field_data
-          field: tid
-          relationship: management_unit
-          group_type: group
-          admin_label: ''
-          label: 'Term ID'
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: taxonomy_term
-          entity_field: tid
-          plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Performance (%)'
-          exclude: false
-          alter:
-            alter_text: true
-            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
-      displays:
-        report: report
-      inherit_arguments: false
-      inherit_exposed_filters: true
-      attachment_position: both
-      pager:
-        type: none
-        options:
-          offset: 0
-      title: 'Management unit summary totals'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-        - user.permissions
       tags: {  }
   attachment_2:
     display_plugin: attachment
@@ -1244,7 +817,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n"
+            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n%\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -1302,15 +875,509 @@ display:
         - user
         - user.permissions
       tags: {  }
-  detailed_report:
-    display_plugin: page
-    id: detailed_report
-    display_title: 'Detailed report'
-    position: 3
+  data_export_1:
+    display_plugin: data_export
+    id: data_export_1
+    display_title: 'Management unit summary export'
+    position: 2
     display_options:
       display_extenders:
         ajax_history: {  }
-      path: fmis/reports/mu-detailed
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      defaults:
+        access: false
+        group_by: false
+        filters: false
+        filter_groups: false
+        sorts: false
+        fields: false
+        title: false
+        style: false
+        row: false
+      enabled: true
+      display_description: ''
+      group_by: true
+      filters: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      sorts: {  }
+      fields:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: management_unit
+          group_type: group
+          admin_label: ''
+          label: 'Management unit'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+        cfr:
+          id: cfr
+          table: area_summary
+          field: cfr
+          relationship: none
+          group_type: count_distinct
+          admin_label: ''
+          label: 'Number of CFRs'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ', '
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: cfr
+          plugin_id: field
+        farmer:
+          id: farmer
+          table: area_summary
+          field: farmer
+          relationship: none
+          group_type: count_distinct
+          admin_label: ''
+          label: 'No. of farmers'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ', '
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: farmer
+          plugin_id: field
+        area_allocated:
+          id: area_allocated
+          table: area_summary
+          field: area_allocated
+          relationship: none
+          group_type: sum
+          admin_label: ''
+          label: 'Total area allocated (Ha)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: area_allocated
+          plugin_id: field
+        area_planted:
+          id: area_planted
+          table: area_summary
+          field: area_planted
+          relationship: none
+          group_type: sum
+          admin_label: ''
+          label: 'Total area planted (Ha)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: area_planted
+          plugin_id: field
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Performance (%)'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+      pager:
+        type: none
+        options:
+          offset: 0
+      title: 'Management unit summary report'
+      path: fmis/reports/mu-report/export
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      row:
+        type: data_field
+        options:
+          field_options:
+            name:
+              alias: ''
+              raw_output: false
+            cfr:
+              alias: ''
+              raw_output: false
+            farmer:
+              alias: ''
+              raw_output: false
+            area_allocated:
+              alias: ''
+              raw_output: false
+            area_planted:
+              alias: ''
+              raw_output: false
+      filename: mu-summary.csv
+      automatic_download: true
+      store_in_public_file_directory: false
+      redirect_to_display: page_2
+      custom_redirect_path: false
+      include_query_params: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - user.permissions
+      tags: {  }
+  data_export_2:
+    display_plugin: data_export
+    id: data_export_2
+    display_title: 'Detailed report export'
+    position: 5
+    display_options:
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/mu-detailed/export
       access:
         type: perm
         options:
@@ -1325,6 +1392,8 @@ display:
         pager: false
         title: false
         empty: false
+        style: false
+        row: false
       enabled: true
       display_description: ''
       group_by: true
@@ -1832,7 +1901,654 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}"
+            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n%"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+      pager:
+        type: none
+        options:
+          offset: 0
+      title: 'Management unit detailed report'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There is currently no available data for this Management unit.'
+            format: basic_html
+          plugin_id: text
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      row:
+        type: data_field
+        options:
+          field_options:
+            cfr:
+              alias: ''
+              raw_output: false
+            field_farmer_category_type:
+              alias: ''
+              raw_output: false
+            field_gender:
+              alias: ''
+              raw_output: false
+            farmer:
+              alias: ''
+              raw_output: false
+            area_allocated:
+              alias: ''
+              raw_output: false
+            area_planted:
+              alias: ''
+              raw_output: false
+            nothing:
+              alias: ''
+              raw_output: false
+      filename: mu-detailed.csv
+      automatic_download: false
+      store_in_public_file_directory: false
+      redirect_to_display: detailed_report
+      custom_redirect_path: false
+      include_query_params: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - user
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_farmer_category_type'
+        - 'config:field.storage.node.field_gender'
+  detailed_report:
+    display_plugin: page
+    id: detailed_report
+    display_title: 'Detailed report'
+    position: 3
+    display_options:
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/mu-detailed
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      defaults:
+        access: false
+        group_by: false
+        filters: false
+        filter_groups: false
+        relationships: false
+        fields: false
+        pager: false
+        title: false
+        empty: false
+        style: false
+        row: false
+        header: false
+      enabled: true
+      display_description: ''
+      group_by: true
+      filters:
+        tid:
+          id: tid
+          table: taxonomy_term_field_data
+          field: tid
+          relationship: management_unit
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            - 597
+          group: 1
+          exposed: true
+          expose:
+            operator_id: tid_op
+            label: 'Management unit'
+            description: ''
+            use_operator: false
+            operator: tid_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: mu
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: management_unit
+          hierarchy: false
+          error_message: true
+          entity_type: taxonomy_term
+          entity_field: tid
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      relationships:
+        farmer:
+          id: farmer
+          table: area_summary
+          field: farmer
+          relationship: none
+          group_type: group
+          admin_label: Content
+          required: true
+          entity_type: area_summary
+          entity_field: farmer
+          plugin_id: standard
+        management_unit:
+          id: management_unit
+          table: area_summary
+          field: management_unit
+          relationship: none
+          group_type: group
+          admin_label: 'Management unit'
+          required: true
+          entity_type: area_summary
+          entity_field: management_unit
+          plugin_id: standard
+      fields:
+        cfr:
+          id: cfr
+          table: area_summary
+          field: cfr
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: CFR
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: cfr
+          plugin_id: field
+        field_farmer_category_type:
+          id: field_farmer_category_type
+          table: node__field_farmer_category_type
+          field: field_farmer_category_type
+          relationship: farmer
+          group_type: group
+          admin_label: ''
+          label: 'Farmer category / type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_gender:
+          id: field_gender
+          table: node__field_gender
+          field: field_gender
+          relationship: farmer
+          group_type: group
+          admin_label: ''
+          label: Gender
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        farmer:
+          id: farmer
+          table: area_summary
+          field: farmer
+          relationship: none
+          group_type: count_distinct
+          admin_label: ''
+          label: 'No. of farmers'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: farmer
+          plugin_id: field
+        area_allocated:
+          id: area_allocated
+          table: area_summary
+          field: area_allocated
+          relationship: none
+          group_type: sum
+          admin_label: ''
+          label: 'Area allocated (Ha)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: area_allocated
+          plugin_id: field
+        area_planted:
+          id: area_planted
+          table: area_summary
+          field: area_planted
+          relationship: none
+          group_type: sum
+          admin_label: ''
+          label: 'Area planted (Ha)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: area_planted
+          plugin_id: field
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Performance (%)'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n%"
             make_link: false
             path: ''
             absolute: false
@@ -1898,6 +2614,94 @@ display:
             value: 'There is currently no available data for this Management unit.'
             format: basic_html
           plugin_id: text
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            cfr: cfr
+            field_farmer_category_type: field_farmer_category_type
+            field_gender: field_gender
+            farmer: farmer
+            area_allocated: area_allocated
+            area_planted: area_planted
+            nothing: nothing
+          info:
+            cfr:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_farmer_category_type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_gender:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            farmer:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            area_allocated:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            area_planted:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: cfr
+          empty_table: false
+      row:
+        type: fields
+        options: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/mu-detailed/export">Export to CSV &raquo;</a></div>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -1914,7 +2718,7 @@ display:
     display_plugin: page
     id: page_1
     display_title: Page
-    position: 5
+    position: 6
     display_options:
       display_extenders:
         ajax_history: {  }
@@ -2349,15 +3153,14 @@ display:
         - url.query_args
         - user.permissions
       tags: {  }
-  report:
+  page_2:
     display_plugin: page
-    id: report
-    display_title: 'Management unit report'
+    id: page_2
+    display_title: 'Management unit summary'
     position: 1
     display_options:
       display_extenders:
         ajax_history: {  }
-      path: fmis/reports/mu-report
       access:
         type: perm
         options:
@@ -2367,81 +3170,30 @@ display:
         group_by: false
         filters: false
         filter_groups: false
-        footer: false
+        sorts: false
         fields: false
         title: false
-        empty: false
-        pager: false
+        style: false
+        row: false
+        header: false
       enabled: true
       display_description: ''
       group_by: true
-      filters:
-        tid:
-          id: tid
-          table: taxonomy_term_field_data
-          field: tid
-          relationship: management_unit
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            - 597
-          group: 1
-          exposed: true
-          expose:
-            operator_id: tid_op
-            label: 'Management unit'
-            description: ''
-            use_operator: false
-            operator: tid_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: mu
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              nfa_staff: '0'
-              not_staff: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: management_unit
-          hierarchy: false
-          error_message: true
-          entity_type: taxonomy_term
-          entity_field: tid
-          plugin_id: taxonomy_index_tid
+      filters: {  }
       filter_groups:
         operator: AND
         groups:
           1: AND
-      footer: {  }
+      sorts: {  }
       fields:
-        cfr:
-          id: cfr
-          table: area_summary
-          field: cfr
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: management_unit
           group_type: group
           admin_label: ''
-          label: CFR
+          label: 'Management unit'
           exclude: false
           alter:
             alter_text: false
@@ -2482,11 +3234,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2496,8 +3248,153 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+        cfr:
+          id: cfr
+          table: area_summary
+          field: cfr
+          relationship: none
+          group_type: count_distinct
+          admin_label: ''
+          label: 'Number of CFRs'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ', '
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
           entity_type: area_summary
           entity_field: cfr
+          plugin_id: field
+        farmer:
+          id: farmer
+          table: area_summary
+          field: farmer
+          relationship: none
+          group_type: count_distinct
+          admin_label: ''
+          label: 'No. of farmers'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ', '
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          entity_type: area_summary
+          entity_field: farmer
           plugin_id: field
         area_allocated:
           id: area_allocated
@@ -2506,7 +3403,7 @@ display:
           relationship: none
           group_type: sum
           admin_label: ''
-          label: 'Area allocated (Ha)'
+          label: 'Total area allocated (Ha)'
           exclude: false
           alter:
             alter_text: false
@@ -2581,7 +3478,7 @@ display:
           relationship: none
           group_type: sum
           admin_label: ''
-          label: 'Area planted (Ha)'
+          label: 'Total area planted (Ha)'
           exclude: false
           alter:
             alter_text: false
@@ -2660,7 +3557,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n"
+            text: "{% set planted = area_planted |trim %}\r\n{% set allocated = area_allocated|trim %}\r\n{% if allocated > 0 %}\r\n  {{ ((planted/allocated) * 100)|number_format(2) }}\r\n{% else %}\r\n  0\r\n{% endif %}\r\n%"
             make_link: false
             path: ''
             absolute: false
@@ -2698,7 +3595,12 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
+      pager:
+        type: none
+        options:
+          offset: 0
       title: 'Management unit summary report'
+      path: fmis/reports/mu-report
       menu:
         type: normal
         title: 'Management unit summary'
@@ -2708,29 +3610,91 @@ display:
         weight: 20
         context: '0'
         menu_name: fmis-reports
-      empty:
-        area_text_custom:
-          id: area_text_custom
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            name: name
+            cfr: cfr
+            farmer: farmer
+            area_allocated: area_allocated
+            area_planted: area_planted
+            nothing: nothing
+          info:
+            name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            cfr:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            farmer:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            area_allocated:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            area_planted:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: name
+          empty_table: false
+      row:
+        type: fields
+        options: {  }
+      header:
+        area:
+          id: area
           table: views
-          field: area_text_custom
+          field: area
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
+          empty: false
           tokenize: false
-          content: 'There is currently no available data for this Management unit.'
-          plugin_id: text_custom
-      pager:
-        type: none
-        options:
-          offset: 0
+          content:
+            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/mu-report/export">Export to CSV &raquo;</a></div>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
-        - user
         - user.permissions
       tags: {  }

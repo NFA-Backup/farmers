@@ -499,8 +499,8 @@ display:
       display_extenders:
         ajax_history: {  }
       display_description: ''
-      path: fmis/reports/farmers-with-offer-license-export
-      filename: farmers-offer-license-export
+      path: fmis/reports/farmers-with-offer-license/export
+      filename: farmers-offer-license-export.csv
       automatic_download: true
       store_in_public_file_directory: false
       redirect_to_display: farmers_with_offer_license
@@ -2044,7 +2044,7 @@ display:
     display_options:
       display_extenders:
         ajax_history: {  }
-      path: fmis/reports/farmers-sub-area-export
+      path: fmis/reports/farmers-sub-area/export
       display_description: ''
       relationships:
         reverse__node__field_farmer_name_ref:
@@ -3073,7 +3073,7 @@ display:
             edit_node:
               alias: ''
               raw_output: false
-      filename: farmers-sub-area-export
+      filename: farmers-sub-area-export.csv
       automatic_download: true
       store_in_public_file_directory: false
       redirect_to_display: farmers_with_sub_area
@@ -3105,8 +3105,8 @@ display:
       display_extenders:
         ajax_history: {  }
       display_description: ''
-      path: fmis/reports/farmers-export
-      filename: farmers-export
+      path: fmis/reports/farmers/export
+      filename: farmers-export.csv
       automatic_download: true
       store_in_public_file_directory: false
       redirect_to_display: page_1
@@ -4690,7 +4690,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers-with-offer-license-export">Export to CSV &raquo;</a></div>'
+            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers-with-offer-license/export">Export to CSV &raquo;</a></div>'
             format: full_html
           plugin_id: text
         result:
@@ -5765,7 +5765,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers-sub-area-export">Export to CSV &raquo;</a></div>'
+            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers-sub-area/export">Export to CSV &raquo;</a></div>'
             format: full_html
           plugin_id: text
         result:
@@ -6969,7 +6969,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers-export">Export all to CSV &raquo;</a></div>'
+            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/farmers/export">Export to CSV &raquo;</a></div>'
             format: full_html
           plugin_id: text
         result:
