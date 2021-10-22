@@ -11,6 +11,7 @@ dependencies:
     - field.storage.node.field_date
     - field.storage.node.field_date_harvested
     - field.storage.node.field_date_of_inventory
+    - field.storage.node.field_farmer_name_ref
     - field.storage.node.field_number_of_units
     - field.storage.node.field_offtake_type
     - field.storage.node.field_product_type
@@ -799,7 +800,7 @@ display:
           admin_label: ''
           empty: false
           tokenize: true
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?offer_licence_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/sub_area?farmer_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
           plugin_id: text_custom
       cache:
         type: none
@@ -2282,6 +2283,68 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_farmer_name_ref:
+          id: field_farmer_name_ref
+          table: node__field_farmer_name_ref
+          field: field_farmer_name_ref
+          relationship: field_areas_id
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_id
+          settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -2293,7 +2356,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node }}?destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Edit</a>\r\n"
+            text: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="{{ edit_node }}?farmer_id={{ field_farmer_name_ref }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}">Edit</a>'
             make_link: false
             path: ''
             absolute: false
@@ -2721,7 +2784,16 @@ display:
           plugin_id: field
       header: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        field_areas_id:
+          id: field_areas_id
+          table: node__field_areas_id
+          field: field_areas_id
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          required: false
+          plugin_id: standard
       title: Sub-areas
       pager:
         type: none
@@ -2739,6 +2811,7 @@ display:
       tags:
         - 'config:field.storage.node.field_areas_id'
         - 'config:field.storage.node.field_date_harvested'
+        - 'config:field.storage.node.field_farmer_name_ref'
         - 'config:field.storage.node.field_purpose'
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'

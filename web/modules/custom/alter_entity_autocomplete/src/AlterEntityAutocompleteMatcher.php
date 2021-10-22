@@ -15,15 +15,10 @@ class AlterEntityAutocompleteMatcher extends EntityAutocompleteMatcher {
 
     $matches = [];
 
-    $options = [
-      'target_type'      => $target_type,
-      'handler'          => $selection_handler,
-      'handler_settings' => $selection_settings,
+    $options = $selection_settings + [
+      'target_type' => $target_type,
+      'handler' => $selection_handler,
     ];
-
-    if ($selection_handler == 'views') {
-      $options['view'] = $selection_settings['view'];
-    }
 
     /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
     $handler = $this->selectionManager->getInstance($options);
