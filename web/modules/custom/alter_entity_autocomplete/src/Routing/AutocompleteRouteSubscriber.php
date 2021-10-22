@@ -9,7 +9,7 @@ class AutocompleteRouteSubscriber extends RouteSubscriberBase {
 
   public function alterRoutes(RouteCollection $collection) {
     if ($route = $collection->get('system.entity_autocomplete')) {
-      $route->setDefault('_controller', '\Drupal\alter_entity_autocomplete\Controller\EntityAutocompleteController::handleAutocomplete');
+      $route->setDefault('_controller', '\Drupal\alter_entity_autocomplete\Controller\AlterEntityAutocompleteController::handleAutocomplete');
     }
   }
 

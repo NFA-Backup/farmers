@@ -4,8 +4,9 @@ namespace Drupal\alter_entity_autocomplete;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Tags;
+use Drupal\Core\Entity\EntityAutocompleteMatcher;
 
-class EntityAutocompleteMatcher extends \Drupal\Core\Entity\EntityAutocompleteMatcher {
+class AlterEntityAutocompleteMatcher extends EntityAutocompleteMatcher {
 
   /**
    * Gets matched labels based on a given search string.
@@ -20,6 +21,11 @@ class EntityAutocompleteMatcher extends \Drupal\Core\Entity\EntityAutocompleteMa
       'handler_settings' => $selection_settings,
     ];
 
+    if ($selection_handler == 'views') {
+      $options['view'] = $selection_settings['view'];
+    }
+
+    /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
     $handler = $this->selectionManager->getInstance($options);
 
     if (isset($string)) {
@@ -33,14 +39,11 @@ class EntityAutocompleteMatcher extends \Drupal\Core\Entity\EntityAutocompleteMa
 
           $entity = \Drupal::entityTypeManager()->getStorage($target_type)->load($entity_id);
 
-          $type = !empty($entity->type->entity) ?
-          $entity->type->entity->label() : $entity->bundle();
-
           if ($entity->bundle() == 'offer_license') {
             $label = $entity->get('field_area_number')->value;
           }
 
-          // Update key and lable as per field.
+          // Update key and label as per field.
           $key = $label . ' (' . $entity_id . ')';
           $label = $label . ' (' . $entity_id . ')';
 
