@@ -62,12 +62,18 @@ function nfa_preprocess_page_title(&$variables) {
  */
 function nfa_preprocess_views_view(&$variables) {
   $view = $variables['view'];
-  if ($view->id() == 'farmer_filter' ) {
+  if ($view->id() == 'farmer_filter') {
     // Load the Maps block for the current farmer.
     $filter = $view->getExposedInput();
     if (!empty($filter['title'])) {
       $variables['maps'] = views_embed_view('sub_area_map', 'farmer_maps', $filter['title']);
     }
+  }
+
+  // Move the export feed button to the top of results.
+  if (isset($variables['feed_icons'])) {
+    $variables['attachment_before'] = array_merge($variables['feed_icons'], $variables['attachment_before']);
+    unset($variables['feed_icons']);
   }
 }
 

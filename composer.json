@@ -20,17 +20,15 @@
     "cweagans/composer-patches": "^1.7",
     "drupal/admin_toolbar": "^3.0",
     "drupal/auto_entitylabel": "^3.0@beta",
-    "drupal/better_exposed_filters": "5.x",
     "drupal/blocktabs": "^1.0@beta",
     "drupal/bootstrap": "^3.19",
     "drupal/business_rules": "^2.0@beta",
     "drupal/computed_field": "3.x",
-    "drupal/core-composer-scaffold": "^8.8",
-    "drupal/core-project-message": "^8.8",
-    "drupal/core-recommended": "^8.8",
+    "drupal/core-composer-scaffold": "^9",
+    "drupal/core-project-message": "^9",
+    "drupal/core-recommended": "^9",
     "drupal/core-vendor-hardening": "^8.8",
     "drupal/ctools": "^3.7",
-    "drupal/date_range_formatter": "^3.1",
     "drupal/dependent_fields": "^1.0",
     "drupal/entity_reference_views_select": "^1.4",
     "drupal/field_group": "^3.0",
@@ -119,8 +117,7 @@
     },
     "patches": {
       "drupal/core": {
-        "2836054-51: Allow configuring of datelist year range date_year_range via UI": "https://www.drupal.org/files/issues/2020-09-21/2836054-51.patch",
-        "2648950-234: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2020-10-22/2648950-234_drupal8_9_x.patch"
+        "2648950-253: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2021-06-07/2648950-253.patch"
       },
       "drupal/yearonly": {
         "3172745-2: Provide default year options": "https://www.drupal.org/files/issues/2020-09-23/yearonly-default-options-3172745-2.patch"

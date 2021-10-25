@@ -1361,6 +1361,11 @@ display:
       redirect_to_display: page_2
       custom_redirect_path: false
       include_query_params: false
+      displays:
+        page_2: page_2
+        default: '0'
+        detailed_report: '0'
+        page_1: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -2003,6 +2008,11 @@ display:
       redirect_to_display: detailed_report
       custom_redirect_path: false
       include_query_params: false
+      displays:
+        detailed_report: detailed_report
+        default: '0'
+        page_1: '0'
+        page_2: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -2688,20 +2698,7 @@ display:
       row:
         type: fields
         options: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/mu-detailed/export">Export to CSV &raquo;</a></div>'
-            format: full_html
-          plugin_id: text
+      header: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -3676,20 +3673,7 @@ display:
       row:
         type: fields
         options: {  }
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: '<div class="mb-5"><a class="btn btn-info" href="/fmis/reports/mu-report/export">Export to CSV &raquo;</a></div>'
-            format: full_html
-          plugin_id: text
+      header: {  }
     cache_metadata:
       max-age: -1
       contexts:

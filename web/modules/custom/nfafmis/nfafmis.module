@@ -162,10 +162,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     // Don't do this if we are here during an ajax callback, such as when a file
     // is being uploaded.
     if (!$form_state->getTriggeringElement()) {
-      $offer_license_id = $nfafmis_service_utility->getQueryParams();
+      $farmer_id = $nfafmis_service_utility->getQueryParams();
 
-      if (isset($offer_license_id['offer_licence_id'])) {
-        $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $offer_license_id['offer_licence_id'];
+      if (isset($farmer_id['farmer_id'])) {
+        $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $farmer_id['farmer_id'];
       }
     }
     $form['field_date_harvested']['#states'] = [

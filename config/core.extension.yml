@@ -86,8 +86,6 @@ module:
   paragraphs: 11
   standard: 1000
 theme:
-  stable: 0
-  classy: 0
   bootstrap: 0
   nfa: 0
   seven: 0
