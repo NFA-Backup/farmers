@@ -2,12 +2,10 @@
 
 namespace Drupal\nfafmis\Plugin\Block;
 
-use Drupal\Core\Url;
-use Drupal\Core\Link;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Path\CurrentPathStack;
-use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -46,7 +44,15 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
   protected $entityTypeManager;
 
   /**
-   * Constructor of NfafmisBlock.
+   * Farmer id.
+   *
+   * @var int
+   */
+  protected $farmer_id;
+
+
+  /**
+   * Constructor of FarmerMapBlock.
    *
    * @param array $configuration
    *   The configuration array.
@@ -72,6 +78,22 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
     $this->requestStack = $request_stack;
     $this->currentPathStack = $current_path_stack;
     $this->entityTypeManager = $entityTypeManager;
+
+    // @todo we need to refactor the farmer pages to use the farmer nid instead
+    // of the title query parameter in the url
+    $farmer_name = $this->requestStack->getCurrentRequest()->query->get('title');
+    if ($farmer_name) {
+      $nids = $this->entityTypeManager->getStorage('node')->getQuery()
+        ->condition('type', 'farmer_details')
+        ->condition('status', NodeInterface::PUBLISHED)
+        ->condition('title', $farmer_name)
+        ->execute();
+
+      // @todo if we have more than one farmer with the same name we will get
+      // multiple results. Use the first one for now. When we refactor the
+      // farmer views to use the node id instead of title this will be resolved.
+      $this->farmer_id = reset($nids);
+    }
   }
 
   /**
@@ -92,35 +114,46 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function build() {
-    $farmer_name = $this->requestStack->getCurrentRequest()->query->get('title');
-
-    if ($farmer_name) {
+    if ($this->farmer_id) {
       // Check does farmer have sub area map data.
-      $query = \Drupal::entityQuery('node')
+      $query = $this->entityTypeManager->getStorage('node')->getQuery()
         ->condition('type', 'sub_area')
+        ->condition('status', NodeInterface::PUBLISHED)
         ->exists('field_map')
-        ->condition('field_areas_id.entity:node.field_farmer_name_ref.entity:node.title', $farmer_name);
+        ->condition('field_areas_id.entity:node.field_farmer_name_ref.entity:node', $this->farmer_id);
 
-      $nids = $query->execute();
-      if ($nids) {
-        $url = '/tree-farmer-overview/geojson?title=' . $farmer_name;
+      $sub_areas_nids = $query->count()->execute();
+      if ($sub_areas_nids) {
+        $url = '/tree-farmer-overview/geojson?id=' . $this->farmer_id;
         $build['item_list'] = [
           '#type' => 'farm_map',
           '#map_settings' => [
             'url' => $url,
-            'title' => $this->t('@farmer sub areas', ['@farmer' => $farmer_name]),
+            'title' => $this->t('Sub areas'),
             'geojson' => TRUE,
             'popup' => TRUE,
           ],
         ];
 
-        // Set cache contexts on query_args.
-        $build['#cache']['contexts'][] = 'url.query_args:title';
-        $build['#cache']['contexts'][] = 'url.path';
-
         return $build;
       }
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      ['url.query_args:title', 'url.path']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return ['node_list:sub_area'];
   }
 
 }
