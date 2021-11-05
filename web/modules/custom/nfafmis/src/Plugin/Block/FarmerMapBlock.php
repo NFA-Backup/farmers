@@ -144,9 +144,7 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function getCacheContexts() {
-    return Cache::mergeContexts(
-      parent::getCacheContexts(),
-      ['url.query_args:title', 'url.path']);
+    return ['url.query_args:title', 'url.path'];
   }
 
   /**
