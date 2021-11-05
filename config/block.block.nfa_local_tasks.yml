@@ -9,7 +9,7 @@ _core:
 id: nfa_local_tasks
 theme: nfa
 region: content
-weight: -10
+weight: -11
 provider: null
 plugin: local_tasks_block
 settings:

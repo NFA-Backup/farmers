@@ -61,38 +61,9 @@ function nfa_preprocess_page_title(&$variables) {
  * Implements template_preprocess_views_view().
  */
 function nfa_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
-  if ($view->id() == 'farmer_filter') {
-    // Load the Maps block for the current farmer.
-    $filter = $view->getExposedInput();
-    if (!empty($filter['title'])) {
-      $variables['maps'] = views_embed_view('sub_area_map', 'farmer_maps', $filter['title']);
-    }
-  }
-
   // Move the export feed button to the top of results.
   if (isset($variables['feed_icons'])) {
     $variables['attachment_before'] = array_merge($variables['feed_icons'], $variables['attachment_before']);
     unset($variables['feed_icons']);
-  }
-}
-
-/**
- * Implements template_preprocess_views_view_unformatted().
- */
-function nfa_preprocess_views_view_unformatted(&$variables) {
-  $view = $variables['view'];
-  if ($view->id() == 'sub_area_map' && $view->current_display == 'farmer_maps') {
-    // If the sub-area has a map set variables for the tabs display on the
-    // farmer overview page.
-    foreach ($view->result as $result) {
-      $subarea = $result->_entity;
-      if (!empty($subarea->field_map->getValue())) {
-        $variables['subareas'][] = $subarea->getTitle();
-      }
-      else {
-        $variables['subareas'][] = '';
-      }
-    }
   }
 }

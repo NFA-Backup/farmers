@@ -48,6 +48,16 @@ class MapRenderEventSubscriber implements EventSubscriberInterface {
       $event->addBehavior('wkt');
       $event->addBehavior('geofield');
     }
+
+    // Add the popop behavior.
+    if (!empty($event->element['#map_settings']['popup'])) {
+      $event->addBehavior('popup');
+    }
+
+    // Add the geoJSON behavior if the map source is geoJSON.
+    if (!empty($event->element['#map_settings']['geojson'])) {
+      $event->addBehavior('geojson');
+    }
   }
 
 }

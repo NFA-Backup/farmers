@@ -9,7 +9,7 @@ _core:
 id: nfa_page_title
 theme: nfa
 region: content
-weight: -9
+weight: -10
 provider: null
 plugin: page_title_block
 settings:

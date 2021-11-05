@@ -41,7 +41,7 @@
           var description = feature.get('description') || '';
           var measurement = instance.measureGeometry(feature.getGeometry(), instance.units);
           if (name !== '' || measurement !== '' || description !== '') {
-            content = '<h4 class="ol-popup-name">' + name + '</h4><div class="ol-popup-measurement"><small>' + measurement + '</small></div><div class="ol-popup-description">' + description + '</div>';
+            content = '<h4 class="ol-popup-name">' + name + '</h4><div class="ol-popup-measurement"><strong>Allocated:</strong> ' + measurement + '</div><div class="ol-popup-description">' + description + '</div>';
           }
         }
         return content;

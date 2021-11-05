@@ -78,6 +78,7 @@ module:
   views_data_export: 0
   views_field_view: 0
   views_flipped_table: 0
+  views_geojson: 0
   views_ui: 0
   yearonly: 0
   menu_link_content: 1

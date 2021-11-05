@@ -34,3 +34,8 @@ behavior_popup:
     js/farmOS.map.behaviors.popup.js: { }
   dependencies:
     - farm_map/farm_map
+behavior_geojson:
+  js:
+    js/farmOS.map.behaviors.geojson.js: { }
+  dependencies:
+    - farm_map/farm_map
