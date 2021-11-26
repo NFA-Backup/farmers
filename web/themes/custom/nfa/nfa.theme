@@ -35,6 +35,16 @@ function nfa_preprocess_node(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_page().
+ */
+function nfa_preprocess_page__tree_farmer_overview__sub_areas(&$variables) {
+  // Display the sub area map aon the sub areas page.
+  $variables['map_block'] = \Drupal::service('plugin.manager.block')
+    ->createInstance('farmer_map_block', [])
+    ->build();
+}
+
+/**
  * Implements hook_preprocess_page_title().
  */
 function nfa_preprocess_page_title(&$variables) {
