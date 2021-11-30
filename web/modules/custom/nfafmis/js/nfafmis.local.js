@@ -58,30 +58,35 @@
         filterHarvestTab.append(addHarvestElem);
 
         // Event handler for area select list.
-        $(this).find('#filter-sub-area').change(function() {
+        $(this).find('#filter-sub-area').change(function () {
           let filterVal = $(this).children("option:selected").val();
 
+          // Hide the list of sub areas and map before determining which ones to show.
           $(".sub-areas-planting .views-row").hide();
-          $('.view-id-sub_areas_planting_status .views-row').hide();
+          $('.view-id-sub_areas_planting_status tr').hide();
+          $('.farm-map').hide();
 
           let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
           let filterClass = $('#' + filtered_name).attr('class');
+          let $subareas = $('.view-id-sub_areas_planting_status tr td:first-child').find('span.' + filterClass).parents('tr');
 
-          $(".sub-areas-planting .views-row").
-          find('span.' + filterClass).parents('.views-row').fadeIn('slow');
-          $('.view-id-sub_areas_planting_status .views-row')
-            .find('span.' + filterClass).parents('.views-row').fadeIn('slow');
+          // Show the subareas and map if the area has subareas.
+          $(".sub-areas-planting .views-row").find('span.' + filterClass).parents('.views-row').fadeIn('slow');
+          if ($subareas.length !== 0) {
+            $subareas.fadeIn('slow');
+            $('.farm-map').fadeIn('slow');
+          }
 
-          // Remove all option and create new based on area selection.
+          // Remove all subarea select options and create new list based on area selection.
           $('#filter-sub-area-id option').remove();
           $('.view-id-sub_areas_planting_status .views-row')
-            .find('span.' + filterClass).parents('.views-col').each(function(index) {
+            .find('span.' + filterClass).parents('.views-col').each(function (index) {
               let subAreaId = $(this).find('span.' + filterClass).attr('data-sub-area-id');
 
               // Append option in sub-area-id select list.
               if (subAreaId !== undefined) {
                 $('.view-id-sub_areas_planting_status .views-row')
-                  .find('span.sub-area-id-' + subAreaId).parents('.views-row').fadeIn('slow');
+                  .find('span.sub-area-id-' + subAreaId).parents('.views-col').fadeIn('slow');
                 $('#filter-sub-area-id').append('<option value="' + subAreaId + '">' + subAreaId + '</option>');
                 if (index == 0) {
                   $('#filter-sub-area-id').val(subAreaId).change();
