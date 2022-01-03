@@ -49,7 +49,9 @@ function area_summary_node_update(EntityInterface $entity) {
   elseif ($entity->bundle() == 'sub_area') {
     // Sum the area planted values for all sub areas of the parent area.
     $area = $entity->field_areas_id->entity;
-    _area_summary_update_area_planted($area);
+    if ($area) {
+      _area_summary_update_area_planted($area);
+    }
   }
 }
 

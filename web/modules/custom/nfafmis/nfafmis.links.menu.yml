@@ -12,7 +12,7 @@ nfafmis.reports:
   title: 'FMIS Reports'
   menu_name: main
   description: 'FMIS Reports'
-  route_name: view.fmis_reports.page_1
+  route_name: view.fmis_reports.farmers_full
   weight: 9
 nfafmis.admin:
   title: 'FMIS Admin'

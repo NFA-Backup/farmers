@@ -257,3 +257,57 @@ function nfafmis_post_update_b() {
     Term::load($tid)->setName($name)->save();
   }
 }
+
+/**
+ * Reset the Date harvested date for sub areas that have not been harvested.
+ */
+function nfafmis_post_update_c(&$sandbox = NULL) {
+
+  // Use the sandbox to update nodes in batches.
+  if (!isset($sandbox['progress'])) {
+    // This is the first run. Initialize the sandbox.
+    $sandbox['progress'] = 0;
+
+    // Load Sub area nodes ids.
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'sub_area')
+      ->condition('field_area_harvested', FALSE)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    foreach ($nids as $result) {
+      $sandbox['nodes'][] = $result;
+    }
+    if (!empty($sandbox['nodes'])) {
+      $sandbox['max'] = count($sandbox['nodes']);
+    }
+  }
+
+  $batch_size = Settings::get('entity_update_batch_size', 50);
+  if (!empty($sandbox['nodes'])) {
+    // Handle nodes in batches.
+    $nids = array_slice($sandbox['nodes'], $sandbox['progress'], $batch_size);
+
+    foreach ($nids as $id) {
+      /** @var \Drupal\node\NodeInterface $node */
+      $node = Node::load($id);
+      $node->field_date_harvested->value = 0;
+      $node->setNewRevision(FALSE);
+      $node->save();
+
+      $sandbox['progress']++;
+    }
+
+    // Tell Drupal what percentage of the batch is completed.
+    $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+
+    \Drupal::logger('NFA-FMIS')
+      ->debug(
+        'Reset date harvested of @progress of @max Sub areas.',
+        [
+          '@progress' => $sandbox['progress'],
+          '@max' => $sandbox['max'],
+        ]
+      );
+  }
+}
