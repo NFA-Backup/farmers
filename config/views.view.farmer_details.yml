@@ -26,50 +26,12 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: some
-        options:
-          items_per_page: 1
-          offset: 0
-      style:
-        type: default
-      row:
-        type: fields
-        options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: true
+      title: 'Farmer Details'
       fields:
         edit_node:
           id: edit_node
@@ -78,6 +40,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: ''
           exclude: false
           alter:
@@ -122,8 +86,6 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
         title:
           id: title
           table: node_field_data
@@ -131,6 +93,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Farmer name'
           exclude: false
           alter:
@@ -186,7 +149,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -194,6 +156,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Farmer type'
           exclude: false
           alter:
@@ -249,7 +212,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -257,6 +219,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone numbers'
           exclude: false
           alter:
@@ -312,7 +275,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -320,6 +282,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -374,7 +337,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -382,6 +344,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -436,7 +399,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_gender:
           id: field_gender
           table: node__field_gender
@@ -444,6 +406,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Gender
           exclude: false
           alter:
@@ -498,7 +461,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         nid:
           id: nid
           table: node_field_data
@@ -506,6 +468,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
           label: SIN
           exclude: false
           alter:
@@ -562,9 +527,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
         field_tax_identification_number:
           id: field_tax_identification_number
           table: node__field_tax_identification_number
@@ -572,6 +534,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: TIN
           exclude: false
           alter:
@@ -627,7 +590,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_national_identification_no:
           id: field_national_identification_no
           table: node__field_national_identification_no
@@ -635,6 +597,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: NIN
           exclude: false
           alter:
@@ -690,7 +653,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         view:
           id: view
           table: views
@@ -698,6 +660,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: view
           label: 'Flagged farmer log'
           exclude: true
           alter:
@@ -742,7 +705,6 @@ display:
           view: flagged_farmer_log
           display: block_1
           arguments: '{{ raw_fields.nid }}'
-          plugin_id: view
         view_1:
           id: view_1
           table: views
@@ -750,6 +712,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: view
           label: 'Farmer logs'
           exclude: true
           alter:
@@ -794,7 +757,6 @@ display:
           view: flagged_farmer_log
           display: block_2
           arguments: '{{ raw_fields.nid }}'
-          plugin_id: view
         nothing:
           id: nothing
           table: views
@@ -802,6 +764,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: custom
           label: ''
           exclude: false
           alter:
@@ -843,30 +806,70 @@ display:
           hide_empty: true
           empty_zero: false
           hide_alter_empty: false
-          plugin_id: custom
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 1
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: created
+          exposed: false
+          granularity: second
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
           expose:
             operator_limit_selection: false
             operator_list: {  }
@@ -877,6 +880,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ' '
           group: 1
@@ -887,6 +893,8 @@ display:
             description: ''
             use_operator: false
             operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: title
             required: false
             remember: false
@@ -903,8 +911,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -917,26 +923,25 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
-      title: 'Farmer Details'
+      style:
+        type: default
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: true
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      css_class: view-label-data
       header:
         area_text_custom_1:
           id: area_text_custom_1
@@ -945,10 +950,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
-          tokenize: false
-          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
           plugin_id: text_custom
+          empty: false
+          content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
+          tokenize: false
         area_text_custom:
           id: area_text_custom
           table: views
@@ -956,16 +961,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<div class=\"block-section\">\r\n<span>Add a New Farmer or Select a Farmer</span> \r\n<a href=\"/node/add/farmer_details\" class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\">Add New Farmer</a>\r\n</div>"
           plugin_id: text_custom
+          empty: true
+          content: "<div class=\"block-section\">\r\n<span>Add a New Farmer or Select a Farmer</span> \r\n<a href=\"/node/add/farmer_details\" class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\">Add New Farmer</a>\r\n</div>"
+          tokenize: false
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      css_class: view-label-data
     cache_metadata:
       max-age: -1
       contexts:
@@ -983,14 +984,14 @@ display:
         - 'config:field.storage.node.field_postal_address'
         - 'config:field.storage.node.field_tax_identification_number'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: 'Farmer Details'
+    display_plugin: page
     position: 1
     display_options:
+      display_description: ''
       display_extenders: {  }
       path: farmer-details
-      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

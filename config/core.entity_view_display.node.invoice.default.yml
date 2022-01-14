@@ -22,7 +22,7 @@ bundle: invoice
 mode: default
 content:
   field_amount:
-    weight: 105
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ','
@@ -30,58 +30,58 @@ content:
       scale: 0
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_decimal
+    weight: 105
     region: content
   field_areas_id:
-    weight: 106
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 106
     region: content
   field_farmer_name_ref:
-    weight: 101
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 101
     region: content
   field_invoice_date:
-    weight: 102
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 102
     region: content
   field_invoice_details:
-    weight: 104
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 104
     region: content
   field_invoice_number:
-    weight: 103
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 103
     region: content
   field_invoice_serial:
-    weight: 107
+    type: serial_default_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: serial_default_formatter
+    weight: 107
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden: {  }

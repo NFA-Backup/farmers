@@ -26,28 +26,28 @@ bundle: sub_area
 mode: default
 content:
   field_area_harvested:
+    type: boolean_checkbox
     weight: 6
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_areas_id:
+    type: entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: 'Area Id'
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_date_harvested:
+    type: datetime_default
     weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_kml_file:
     type: file_generic
     weight: 9
@@ -56,36 +56,36 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
   field_map:
-    weight: 8
-    settings: {  }
-    third_party_settings: {  }
     type: farm_map_geofield
+    weight: 8
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_purpose:
+    type: options_select
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_species_variety:
+    type: options_select
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_subarea_planted:
+    type: number
     weight: 3
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_year_planted:
+    type: yearonly_default
     weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: yearonly_default
-    region: content
   title:
     type: string_textfield
     weight: 0

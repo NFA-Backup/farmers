@@ -18,23 +18,23 @@ plugin: 'system_menu_block:fmis-administration'
 settings:
   id: 'system_menu_block:fmis-administration'
   label: 'FMIS Admin'
-  provider: system
   label_display: '0'
+  provider: system
   level: 1
   depth: 0
   expand_all_items: false
 visibility:
   request_path:
     id: request_path
-    pages: '/fmis/admin/*'
     negate: false
     context_mapping: {  }
+    pages: '/fmis/admin/*'
   user_role:
     id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
     roles:
       administrator: administrator
       nfa_staff: nfa_staff
       not_staff: not_staff
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'

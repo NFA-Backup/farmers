@@ -15,28 +15,28 @@ bundle: sub_area
 mode: default
 content:
   field_sub_area_area_under_planta:
+    type: number
     weight: 0
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_sub_area_date_area_planted:
+    type: datetime_default
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_sub_area_species_variety:
+    type: entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
 hidden:
   created: true
   status: true

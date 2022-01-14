@@ -16,9 +16,9 @@ bundle: land_rent_rates
 mode: teaser
 content:
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   field_central_forest_reserve: true

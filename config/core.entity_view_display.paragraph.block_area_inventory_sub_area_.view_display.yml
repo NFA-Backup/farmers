@@ -24,53 +24,53 @@ bundle: block_area_inventory_sub_area_
 mode: view_display
 content:
   field_sub_area_crop_status:
-    weight: 5
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 5
     region: content
   field_sub_area_harvest_details:
-    weight: 8
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 8
     region: content
   field_sub_area_maintenance:
-    weight: 6
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 6
     region: content
   field_sub_area_observations:
-    weight: 7
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 7
     region: content
   field_sub_area_purpose:
-    weight: 2
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_sub_area_species_and_varie:
-    weight: 1
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
   field_sub_area_stocking_rate:
-    weight: 3
+    type: computed_decimal
     label: above
     settings:
       cache_unit: -1
@@ -80,10 +80,10 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_decimal
+    weight: 3
     region: content
   field_sub_area_stocking_volume:
-    weight: 4
+    type: computed_decimal
     label: above
     settings:
       cache_unit: -1
@@ -93,10 +93,10 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_decimal
+    weight: 4
     region: content
   field_sub_area_under_plantation:
-    weight: 0
+    type: computed_decimal
     label: above
     settings:
       cache_unit: -1
@@ -106,15 +106,15 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_decimal
+    weight: 0
     region: content
   field_year:
-    weight: 9
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 9
     region: content
 hidden: {  }

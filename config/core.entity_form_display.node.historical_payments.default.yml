@@ -19,43 +19,43 @@ bundle: historical_payments
 mode: default
 content:
   field_amount_paid_as:
+    type: number
     weight: 3
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_areas_id:
+    type: entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_charge_amount:
+    type: number
     weight: 2
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_charge_date:
+    type: datetime_default
     weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_description:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   title:
     type: string_textfield
     weight: 0

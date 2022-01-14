@@ -12,18 +12,18 @@ third_party_settings:
   geocoder_field:
     method: geocode
     weight: 0
+    field: kml_file
     skip_not_empty_value: false
     disabled: false
     hidden: false
     providers:
       - kml_file
     dumper: wkt
+    delta_handling: default
     failure:
       handling: preserve
       status_message: true
       log: true
-    field: kml_file
-    delta_handling: default
 id: taxonomy_term.central_forest_reserve.geofield_map
 field_name: geofield_map
 entity_type: taxonomy_term

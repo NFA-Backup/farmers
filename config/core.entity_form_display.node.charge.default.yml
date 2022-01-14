@@ -24,68 +24,68 @@ third_party_settings:
         - field_change_type
         - field_amount
         - field_charge_description
+      label: 'Charge details'
+      region: content
       parent_name: ''
       weight: 0
       format_type: fieldset
-      region: content
       format_settings:
-        description: ''
-        id: ''
         classes: ''
+        id: ''
+        description: ''
         required_fields: false
-      label: 'Charge details'
 id: node.charge.default
 targetEntityType: node
 bundle: charge
 mode: default
 content:
   field_amount:
-    weight: 12
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
     type: number
+    weight: 12
     region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_areas_id:
+    type: entity_reference_autocomplete
     weight: 9
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_change_type:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 11
     region: content
-  field_charge_date:
-    weight: 8
     settings: {  }
     third_party_settings: {  }
+  field_charge_date:
     type: datetime_default
+    weight: 8
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_charge_description:
+    type: string_textfield
     weight: 13
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_charges_sub_area:
+    type: entity_reference_autocomplete
     weight: 10
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
 hidden:
   created: true
   field_payment_advice: true

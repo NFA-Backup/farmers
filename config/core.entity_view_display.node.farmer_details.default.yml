@@ -25,84 +25,84 @@ bundle: farmer_details
 mode: default
 content:
   comment:
-    weight: 13
+    type: comment_default
     label: above
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-    type: comment_default
+    weight: 13
     region: content
   field_email:
-    weight: 9
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 9
     region: content
   field_farmer_category_type:
-    weight: 2
+    type: entity_reference_label
     label: above
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_gender:
-    weight: 6
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 6
     region: content
   field_historical_information:
-    weight: 10
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 10
     region: content
   field_national_identification_no:
-    weight: 7
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 7
     region: content
   field_phone_number:
-    weight: 8
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 8
     region: content
   field_physical_address:
-    weight: 12
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 12
     region: content
   field_postal_address:
-    weight: 11
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 11
     region: content
   field_tax_identification_number:
-    weight: 3
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 3
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden: {  }

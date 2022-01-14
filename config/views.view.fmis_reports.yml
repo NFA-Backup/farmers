@@ -53,46 +53,257 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Filter
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+      title: 'Farmer Details - List'
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Name
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_farmer_category_type:
+          id: field_farmer_category_type
+          table: node__field_farmer_category_type
+          field: field_farmer_category_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Category / type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: entity_link
+          label: 'Link to Content'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: false
+          absolute: false
+        edit_node:
+          id: edit_node
+          table: node
+          field: edit_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
+          label: Action
+          exclude: false
+          alter:
+            alter_text: true
+            text: ' {{ edit_node }} | {{ view_node }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          output_url_as_text: false
+          absolute: false
       pager:
         type: full
         options:
-          items_per_page: 20
           offset: 0
-          id: 0
+          items_per_page: 20
           total_pages: null
+          id: 0
           tags:
-            previous: ‹‹
             next: ››
+            previous: ‹‹
             first: '« First'
             last: 'Last »'
           expose:
@@ -104,17 +315,73 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Filter
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
       style:
         type: table
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
           columns:
             title: title
             field_farmer_category_type: field_farmer_category_type
@@ -135,6 +402,7 @@ display:
             field_date_harvested: field_date_harvested
             field_purpose: field_purpose
             field_species_variety: field_species_variety
+          default: '-1'
           info:
             title:
               sortable: true
@@ -269,289 +537,25 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: 'entity:node'
         options:
           view_mode: teaser
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Name
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-        field_farmer_category_type:
-          id: field_farmer_category_type
-          table: node__field_farmer_category_type
-          field: field_farmer_category_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Category / type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        view_node:
-          id: view_node
-          table: node
-          field: view_node
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Link to Content'
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: view
-          output_url_as_text: false
-          absolute: false
-          entity_type: node
-          plugin_id: entity_link
-        edit_node:
-          id: edit_node
-          table: node
-          field: edit_node
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Action
-          exclude: false
-          alter:
-            alter_text: true
-            text: ' {{ edit_node }} | {{ view_node }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: edit
-          output_url_as_text: false
-          absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            farmer_details: farmer_details
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-      sorts:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: standard
-      title: 'Farmer Details - List'
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
       header:
         result:
           id: result
@@ -560,13 +564,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total farmers'
-          plugin_id: result
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -579,62 +580,11 @@ display:
       tags:
         - 'config:field.storage.node.field_farmer_category_type'
   data_export_1:
-    display_plugin: data_export
     id: data_export_1
     display_title: 'Export Farmers with Offer/License'
+    display_plugin: data_export
     position: 6
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
-      path: fmis/reports/farmers-with-offer-license/export
-      filename: farmers-offer-license-export.csv
-      automatic_download: true
-      store_in_public_file_directory: false
-      redirect_to_display: farmers_with_offer_license
-      custom_redirect_path: false
-      include_query_params: false
-      style:
-        type: data_export
-        options:
-          formats:
-            csv: csv
-          csv_settings:
-            delimiter: ','
-            enclosure: '"'
-            escape_char: \
-            strip_tags: true
-            trim: true
-            encoding: utf8
-            utf8_bom: '0'
-            use_serializer_encode_only: false
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-        reverse__node__field_areas_id:
-          id: reverse__node__field_areas_id
-          table: node_field_data
-          field: reverse__node__field_areas_id
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: 'Sub area'
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-      defaults:
-        relationships: false
-        fields: false
-        sorts: false
-        filters: false
-        filter_groups: false
       fields:
         title:
           id: title
@@ -643,6 +593,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -698,9 +651,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -708,6 +658,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Category / type'
           exclude: false
           alter:
@@ -763,7 +714,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_gender:
           id: field_gender
           table: node__field_gender
@@ -771,6 +721,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Gender
           exclude: false
           alter:
@@ -825,7 +776,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_email:
           id: field_email
           table: node__field_email
@@ -833,6 +783,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Email
           exclude: false
           alter:
@@ -887,7 +838,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -895,6 +845,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone number'
           exclude: false
           alter:
@@ -950,7 +901,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -958,6 +908,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -1012,7 +963,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -1020,6 +970,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -1074,7 +1025,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_national_identification_no:
           id: field_national_identification_no
           table: node__field_national_identification_no
@@ -1082,6 +1032,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'National Identification Number'
           exclude: false
           alter:
@@ -1137,7 +1088,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_tax_identification_number:
           id: field_tax_identification_number
           table: node__field_tax_identification_number
@@ -1145,6 +1095,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Tax Identification Number'
           exclude: false
           alter:
@@ -1200,7 +1151,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -1208,6 +1158,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -1263,7 +1214,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -1271,6 +1221,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: CFR
           exclude: false
           alter:
@@ -1326,7 +1277,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_offer_date:
           id: field_offer_date
           table: node__field_offer_date
@@ -1334,6 +1284,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Offer date'
           exclude: false
           alter:
@@ -1390,7 +1341,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_id:
           id: field_license_id
           table: node__field_license_id
@@ -1398,6 +1348,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License ID'
           exclude: false
           alter:
@@ -1453,7 +1404,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_date:
           id: field_license_date
           table: node__field_license_date
@@ -1461,6 +1411,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License Date'
           exclude: false
           alter:
@@ -1518,7 +1469,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_overall_area:
           id: field_overall_area
           table: node__field_overall_area
@@ -1526,6 +1476,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Overall area allocated'
           exclude: false
           alter:
@@ -1571,9 +1522,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1584,7 +1535,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_year_planted:
           id: field_year_planted
           table: node__field_year_planted
@@ -1592,6 +1542,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Year planted'
           exclude: false
           alter:
@@ -1646,7 +1597,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_subarea_planted:
           id: field_subarea_planted
           table: node__field_subarea_planted
@@ -1654,6 +1604,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area planted'
           exclude: false
           alter:
@@ -1699,9 +1650,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1712,7 +1663,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_area_harvested:
           id: field_area_harvested
           table: node__field_area_harvested
@@ -1720,6 +1670,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area harvested ?'
           exclude: false
           alter:
@@ -1765,8 +1716,8 @@ display:
           type: boolean
           settings:
             format: yes-no
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1777,7 +1728,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_date_harvested:
           id: field_date_harvested
           table: node__field_date_harvested
@@ -1785,6 +1735,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date harvested'
           exclude: false
           alter:
@@ -1841,7 +1792,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_purpose:
           id: field_purpose
           table: node__field_purpose
@@ -1849,6 +1799,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Purpose
           exclude: false
           alter:
@@ -1904,7 +1855,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_species_variety:
           id: field_species_variety
           table: node__field_species_variety
@@ -1912,6 +1862,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Species/variety
           exclude: false
           alter:
@@ -1967,7 +1918,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         title:
           id: title
@@ -1976,47 +1926,41 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
           entity_type: node
           entity_field: title
           plugin_id: standard
-      displays:
-        farmers_with_offer_license: farmers_with_offer_license
-        default: '0'
-        farmers_with_sub_area: '0'
-        farmers_without_offer_license: '0'
-      export_method: batch
-      export_batch_size: 1000
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type_1:
           id: type_1
           table: node_field_data
@@ -2024,6 +1968,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             offer_license: offer_license
@@ -2056,9 +2003,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_central_forest_reserve_target_id:
           id: field_central_forest_reserve_target_id
           table: node__field_central_forest_reserve
@@ -2066,6 +2010,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -2102,12 +2047,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: central_forest_reserve
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_block_ref_target_id:
           id: field_block_ref_target_id
           table: node__field_block_ref
@@ -2115,6 +2059,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -2151,12 +2096,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: block
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_license_id_value:
           id: field_license_id_value
           table: node__field_license_id
@@ -2164,6 +2108,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -2206,11 +2151,68 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
           1: AND
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      defaults:
+        relationships: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+        reverse__node__field_areas_id:
+          id: reverse__node__field_areas_id
+          table: node_field_data
+          field: reverse__node__field_areas_id
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: 'Sub area'
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      display_description: ''
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-with-offer-license/export
+      displays:
+        farmers_with_offer_license: farmers_with_offer_license
+        default: '0'
+        farmers_with_sub_area: '0'
+        farmers_without_offer_license: '0'
+      filename: farmers-offer-license-export.csv
+      automatic_download: true
+      export_method: batch
+      export_batch_size: 1000
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: farmers_with_offer_license
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -2243,56 +2245,12 @@ display:
         - 'config:field.storage.node.field_tax_identification_number'
         - 'config:field.storage.node.field_year_planted'
   data_export_2:
-    display_plugin: data_export
     id: data_export_2
     display_title: 'Export farmers with Sub-area'
+    display_plugin: data_export
     position: 10
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      path: fmis/reports/farmers-sub-area/export
-      display_description: ''
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: true
-          entity_type: node
-          plugin_id: entity_reverse
-        field_central_forest_reserve:
-          id: field_central_forest_reserve
-          table: node__field_central_forest_reserve
-          field: field_central_forest_reserve
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: CFR
-          required: true
-          plugin_id: standard
-        reverse__node__field_areas_id:
-          id: reverse__node__field_areas_id
-          table: node_field_data
-          field: reverse__node__field_areas_id
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: 'Sub area'
-          required: true
-          entity_type: node
-          plugin_id: entity_reverse
-      defaults:
-        relationships: false
-        fields: false
-        sorts: false
-        group_by: false
-        filters: false
-        filter_groups: false
-        title: false
-        header: false
-        style: false
-        row: false
+      title: 'Farmers with sub-area'
       fields:
         title:
           id: title
@@ -2301,6 +2259,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Farmer name'
           exclude: false
           alter:
@@ -2356,9 +2317,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         name:
           id: name
           table: taxonomy_term_field_data
@@ -2366,6 +2324,9 @@ display:
           relationship: field_central_forest_reserve
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: CFR
           exclude: false
           alter:
@@ -2422,9 +2383,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         title_1:
           id: title_1
           table: node_field_data
@@ -2432,6 +2390,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Offer/License
           exclude: false
           alter:
@@ -2487,9 +2448,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -2497,6 +2455,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -2552,7 +2511,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_2:
           id: title_2
           table: node_field_data
@@ -2560,6 +2518,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Sub-area ID'
           exclude: false
           alter:
@@ -2615,9 +2576,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_year_planted:
           id: field_year_planted
           table: node__field_year_planted
@@ -2625,6 +2583,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Year planted'
           exclude: false
           alter:
@@ -2679,7 +2638,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_subarea_planted:
           id: field_subarea_planted
           table: node__field_subarea_planted
@@ -2687,6 +2645,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area planted'
           exclude: false
           alter:
@@ -2732,9 +2691,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2745,7 +2704,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_area_harvested:
           id: field_area_harvested
           table: node__field_area_harvested
@@ -2753,6 +2711,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area harvested ?'
           exclude: false
           alter:
@@ -2798,8 +2757,8 @@ display:
           type: boolean
           settings:
             format: yes-no
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2810,7 +2769,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_date_harvested:
           id: field_date_harvested
           table: node__field_date_harvested
@@ -2818,6 +2776,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date harvested'
           exclude: false
           alter:
@@ -2874,7 +2833,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_purpose:
           id: field_purpose
           table: node__field_purpose
@@ -2882,6 +2840,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Purpose
           exclude: false
           alter:
@@ -2937,7 +2896,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_species_variety:
           id: field_species_variety
           table: node__field_species_variety
@@ -2945,6 +2903,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Species/variety
           exclude: false
           alter:
@@ -3000,7 +2959,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         title:
           id: title
@@ -3009,28 +2967,28 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
           entity_type: node
           entity_field: title
           plugin_id: standard
-      group_by: true
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -3038,6 +2996,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             farmer_details: farmer_details
@@ -3070,9 +3031,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         name:
           id: name
           table: taxonomy_term_field_data
@@ -3080,6 +3038,9 @@ display:
           relationship: field_central_forest_reserve
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -3122,9 +3083,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: views_autocomplete_filters_string
         type_1:
           id: type_1
           table: node_field_data
@@ -3132,6 +3090,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             offer_license: offer_license
@@ -3164,9 +3125,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         type_2:
           id: type_2
           table: node_field_data
@@ -3174,6 +3132,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             sub_area: sub_area
@@ -3206,25 +3167,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
       filter_groups:
         operator: AND
         groups:
           1: AND
-      title: 'Farmers with sub-area'
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total farmer sub-areas'
-          plugin_id: result
       style:
         type: data_export
         options:
@@ -3279,17 +3225,74 @@ display:
             edit_node:
               alias: ''
               raw_output: false
-      filename: farmers-sub-area-export.csv
-      automatic_download: true
-      store_in_public_file_directory: false
-      redirect_to_display: farmers_with_sub_area
-      custom_redirect_path: false
-      include_query_params: false
+      defaults:
+        title: false
+        group_by: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: true
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: true
+        reverse__node__field_areas_id:
+          id: reverse__node__field_areas_id
+          table: node_field_data
+          field: reverse__node__field_areas_id
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: 'Sub area'
+          entity_type: node
+          plugin_id: entity_reverse
+          required: true
+      group_by: true
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total farmer sub-areas'
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-sub-area/export
       displays:
         farmers_with_sub_area: farmers_with_sub_area
         default: '0'
         farmers_with_offer_license: '0'
         farmers_without_offer_license: '0'
+      filename: farmers-sub-area-export.csv
+      automatic_download: true
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: farmers_with_sub_area
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -3308,33 +3311,12 @@ display:
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
   data_export_3:
-    display_plugin: data_export
     id: data_export_3
     display_title: 'Export farmers without Offer/License'
+    display_plugin: data_export
     position: 8
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers without Offer/License'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-      path: fmis/reports/farmers-without-offer-license/export
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
       fields:
         title:
           id: title
@@ -3343,6 +3325,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -3398,9 +3383,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -3408,6 +3390,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Title
           exclude: true
           alter:
@@ -3463,9 +3448,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -3473,6 +3455,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: Actions
           exclude: false
           alter:
@@ -3517,35 +3501,33 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -3553,6 +3535,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: empty
           value: ''
           group: 1
@@ -3591,24 +3576,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
           1: AND
-      filename: farmers-without-offer-license-export.csv
-      automatic_download: true
-      store_in_public_file_directory: false
-      redirect_to_display: farmers_without_offer_license
-      custom_redirect_path: false
-      include_query_params: false
-      displays:
-        farmers_without_offer_license: farmers_without_offer_license
-        default: '0'
-        farmers_with_offer_license: '0'
-        farmers_with_sub_area: '0'
       style:
         type: data_export
         options:
@@ -3623,6 +3594,38 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
+      defaults:
+        title: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      display_description: ''
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-without-offer-license/export
+      displays:
+        farmers_without_offer_license: farmers_without_offer_license
+        default: '0'
+        farmers_with_offer_license: '0'
+        farmers_with_sub_area: '0'
+      filename: farmers-without-offer-license-export.csv
+      automatic_download: true
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: farmers_without_offer_license
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -3633,35 +3636,12 @@ display:
         - user.permissions
       tags: {  }
   farmers_contacts:
-    display_plugin: page
     id: farmers_contacts
     display_title: 'Farmers contact details'
+    display_plugin: page
     position: 2
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers contact details'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-        header: false
-      path: fmis/reports/farmers-contact-details
-      relationships:
-        uid:
-          id: uid
-          table: node_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: User
-          required: false
-          entity_type: node
-          entity_field: uid
-          plugin_id: standard
       fields:
         title:
           id: title
@@ -3670,6 +3650,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -3725,9 +3708,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -3735,6 +3715,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Category / type'
           exclude: false
           alter:
@@ -3790,7 +3771,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -3798,6 +3778,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone number'
           exclude: false
           alter:
@@ -3853,7 +3834,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -3861,6 +3841,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -3915,7 +3896,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -3923,6 +3903,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -3977,7 +3958,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         uid:
           id: uid
           table: node_field_data
@@ -3985,6 +3965,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: uid
+          plugin_id: field
           label: 'FMIS user'
           exclude: false
           alter:
@@ -4040,9 +4023,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: uid
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -4050,6 +4030,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: Action
           exclude: false
           alter:
@@ -4094,8 +4076,6 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       filters:
         status:
           id: status
@@ -4104,6 +4084,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -4134,22 +4117,19 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -4157,6 +4137,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -4199,9 +4182,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
         combine:
           id: combine
           table: views
@@ -4209,6 +4189,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -4253,7 +4234,6 @@ display:
           fields:
             field_physical_address: field_physical_address
             field_postal_address: field_postal_address
-          plugin_id: views_autocomplete_filters_combine
         field_phone_number_value:
           id: field_phone_number_value
           table: node__field_phone_number
@@ -4261,6 +4241,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -4303,7 +4284,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_farmer_category_type_target_id:
           id: field_farmer_category_type_target_id
           table: node__field_farmer_category_type
@@ -4311,6 +4291,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -4347,12 +4328,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: farmer_category_type
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         uid:
           id: uid
           table: users_field_data
@@ -4360,6 +4340,9 @@ display:
           relationship: uid
           group_type: group
           admin_label: ''
+          entity_type: user
+          entity_field: uid
+          plugin_id: user_name
           operator: in
           value: {  }
           group: 1
@@ -4395,22 +4378,30 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
       filter_groups:
         operator: AND
         groups:
           1: AND
-      menu:
-        type: normal
-        title: 'Farmers contact details'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 0
-        context: '0'
-        menu_name: fmis-reports
+      defaults:
+        title: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        uid:
+          id: uid
+          table: node_field_data
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: User
+          entity_type: node
+          entity_field: uid
+          plugin_id: standard
+          required: false
+      display_description: ''
       header:
         result:
           id: result
@@ -4419,9 +4410,21 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total farmers'
-          plugin_id: result
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-contact-details
+      menu:
+        type: normal
+        title: 'Farmers contact details'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: fmis-reports
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -4438,53 +4441,11 @@ display:
         - 'config:field.storage.node.field_physical_address'
         - 'config:field.storage.node.field_postal_address'
   farmers_export:
-    display_plugin: data_export
     id: farmers_export
     display_title: 'Export farmers contact details'
+    display_plugin: data_export
     position: 3
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
-      path: fmis/reports/farmers-contact-details/export
-      filename: farmers-contact-details-export.csv
-      automatic_download: true
-      store_in_public_file_directory: false
-      redirect_to_display: farmers_contacts
-      custom_redirect_path: false
-      include_query_params: false
-      style:
-        type: data_export
-        options:
-          formats:
-            csv: csv
-          csv_settings:
-            delimiter: ','
-            enclosure: '"'
-            escape_char: \
-            strip_tags: true
-            trim: true
-            encoding: utf8
-            utf8_bom: '0'
-            use_serializer_encode_only: false
-      relationships:
-        uid:
-          id: uid
-          table: node_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: User
-          required: false
-          entity_type: node
-          entity_field: uid
-          plugin_id: standard
-      defaults:
-        relationships: false
-        fields: false
-        sorts: false
-        filters: false
-        filter_groups: false
       fields:
         title:
           id: title
@@ -4493,6 +4454,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -4548,9 +4512,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -4558,6 +4519,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Category / type'
           exclude: false
           alter:
@@ -4613,7 +4575,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_gender:
           id: field_gender
           table: node__field_gender
@@ -4621,6 +4582,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Gender
           exclude: false
           alter:
@@ -4675,7 +4637,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_email:
           id: field_email
           table: node__field_email
@@ -4683,6 +4644,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Email
           exclude: false
           alter:
@@ -4737,7 +4699,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -4745,6 +4706,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone number'
           exclude: false
           alter:
@@ -4800,7 +4762,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -4808,6 +4769,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -4862,7 +4824,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -4870,6 +4831,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -4924,7 +4886,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_national_identification_no:
           id: field_national_identification_no
           table: node__field_national_identification_no
@@ -4932,6 +4893,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'National Identification Number'
           exclude: false
           alter:
@@ -4987,7 +4949,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_tax_identification_number:
           id: field_tax_identification_number
           table: node__field_tax_identification_number
@@ -4995,6 +4956,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Tax Identification Number'
           exclude: false
           alter:
@@ -5050,7 +5012,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         title:
           id: title
@@ -5059,22 +5020,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
           entity_type: node
           entity_field: title
           plugin_id: standard
-      displays:
-        farmers_contacts: farmers_contacts
-        default: '0'
-        farmers_full: '0'
-        farmers_with_offer_license: '0'
-        farmers_with_sub_area: '0'
-        farmers_without_offer_license: '0'
-      export_method: batch
-      export_batch_size: 1000
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
       filters:
         status:
           id: status
@@ -5083,6 +5036,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -5113,22 +5069,19 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -5136,6 +5089,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -5178,9 +5134,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
         combine:
           id: combine
           table: views
@@ -5188,6 +5141,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -5232,7 +5186,6 @@ display:
           fields:
             field_physical_address: field_physical_address
             field_postal_address: field_postal_address
-          plugin_id: views_autocomplete_filters_combine
         field_phone_number_value:
           id: field_phone_number_value
           table: node__field_phone_number
@@ -5240,6 +5193,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -5282,7 +5236,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_farmer_category_type_target_id:
           id: field_farmer_category_type_target_id
           table: node__field_farmer_category_type
@@ -5290,6 +5243,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -5326,12 +5280,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: farmer_category_type
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         uid:
           id: uid
           table: users_field_data
@@ -5339,6 +5292,9 @@ display:
           relationship: uid
           group_type: group
           admin_label: ''
+          entity_type: user
+          entity_field: uid
+          plugin_id: user_name
           operator: in
           value: {  }
           group: 1
@@ -5374,13 +5330,61 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
       filter_groups:
         operator: AND
         groups:
           1: AND
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      defaults:
+        relationships: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+      relationships:
+        uid:
+          id: uid
+          table: node_field_data
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: User
+          entity_type: node
+          entity_field: uid
+          plugin_id: standard
+          required: false
+      display_description: ''
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-contact-details/export
+      displays:
+        farmers_contacts: farmers_contacts
+        default: '0'
+        farmers_full: '0'
+        farmers_with_offer_license: '0'
+        farmers_with_sub_area: '0'
+        farmers_without_offer_license: '0'
+      filename: farmers-contact-details-export.csv
+      automatic_download: true
+      export_method: batch
+      export_batch_size: 1000
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: farmers_contacts
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -5401,44 +5405,12 @@ display:
         - 'config:field.storage.node.field_postal_address'
         - 'config:field.storage.node.field_tax_identification_number'
   farmers_full:
-    display_plugin: page
     id: farmers_full
     display_title: 'Farmers full backup'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers full'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-        header: false
-      path: fmis/reports/farmers-full
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-        reverse__node__field_areas_id:
-          id: reverse__node__field_areas_id
-          table: node_field_data
-          field: reverse__node__field_areas_id
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: Sub-area
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
       fields:
         title:
           id: title
@@ -5447,6 +5419,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -5502,9 +5477,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -5512,6 +5484,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Category / type'
           exclude: false
           alter:
@@ -5567,7 +5540,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -5575,6 +5547,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone number'
           exclude: false
           alter:
@@ -5630,7 +5603,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -5638,6 +5610,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -5692,7 +5665,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -5700,6 +5672,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -5754,7 +5727,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -5762,6 +5734,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: CFR
           exclude: false
           alter:
@@ -5817,7 +5790,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -5825,6 +5797,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Offer/License
           exclude: false
           alter:
@@ -5880,9 +5855,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_offer_date:
           id: field_offer_date
           table: node__field_offer_date
@@ -5890,6 +5862,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Offer date'
           exclude: false
           alter:
@@ -5946,7 +5919,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_id:
           id: field_license_id
           table: node__field_license_id
@@ -5954,6 +5926,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License ID'
           exclude: false
           alter:
@@ -6009,7 +5982,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_date:
           id: field_license_date
           table: node__field_license_date
@@ -6017,6 +5989,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License Date'
           exclude: false
           alter:
@@ -6074,7 +6047,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -6082,6 +6054,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -6137,7 +6110,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_overall_area:
           id: field_overall_area
           table: node__field_overall_area
@@ -6145,6 +6117,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Overall area allocated'
           exclude: false
           alter:
@@ -6190,9 +6163,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -6203,7 +6176,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_2:
           id: title_2
           table: node_field_data
@@ -6211,6 +6183,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Sub-area
           exclude: false
           alter:
@@ -6266,9 +6241,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_subarea_planted:
           id: field_subarea_planted
           table: node__field_subarea_planted
@@ -6276,6 +6248,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area planted'
           exclude: false
           alter:
@@ -6321,9 +6294,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -6334,7 +6307,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_year_planted:
           id: field_year_planted
           table: node__field_year_planted
@@ -6342,6 +6314,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Year planted'
           exclude: false
           alter:
@@ -6396,7 +6369,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_area_harvested:
           id: field_area_harvested
           table: node__field_area_harvested
@@ -6404,6 +6376,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area harvested?'
           exclude: false
           alter:
@@ -6449,8 +6422,8 @@ display:
           type: boolean
           settings:
             format: yes-no
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -6461,7 +6434,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_date_harvested:
           id: field_date_harvested
           table: node__field_date_harvested
@@ -6469,6 +6441,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date harvested'
           exclude: false
           alter:
@@ -6525,7 +6498,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_purpose:
           id: field_purpose
           table: node__field_purpose
@@ -6533,6 +6505,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Purpose
           exclude: false
           alter:
@@ -6588,7 +6561,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_species_variety:
           id: field_species_variety
           table: node__field_species_variety
@@ -6596,6 +6568,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Species/variety
           exclude: false
           alter:
@@ -6651,7 +6624,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       filters:
         status:
           id: status
@@ -6660,6 +6632,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -6690,22 +6665,19 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -6713,6 +6685,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -6755,9 +6730,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
         combine:
           id: combine
           table: views
@@ -6765,6 +6737,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -6809,7 +6782,6 @@ display:
           fields:
             field_physical_address: field_physical_address
             field_postal_address: field_postal_address
-          plugin_id: views_autocomplete_filters_combine
         field_phone_number_value:
           id: field_phone_number_value
           table: node__field_phone_number
@@ -6817,6 +6789,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -6859,7 +6832,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_farmer_category_type_target_id:
           id: field_farmer_category_type_target_id
           table: node__field_farmer_category_type
@@ -6867,6 +6839,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -6903,25 +6876,44 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: farmer_category_type
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
           1: AND
-      menu:
-        type: normal
-        title: 'All Farmers'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 0
-        context: '0'
-        menu_name: fmis-reports
+      defaults:
+        title: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+        reverse__node__field_areas_id:
+          id: reverse__node__field_areas_id
+          table: node_field_data
+          field: reverse__node__field_areas_id
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: Sub-area
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      display_description: ''
       header:
         result:
           id: result
@@ -6930,9 +6922,21 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total results'
-          plugin_id: result
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-full
+      menu:
+        type: normal
+        title: 'All Farmers'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: fmis-reports
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -6961,44 +6965,12 @@ display:
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
   farmers_full_export:
-    display_plugin: data_export
     id: farmers_full_export
     display_title: 'Export farmers full backup'
+    display_plugin: data_export
     position: 1
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers full'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-        header: false
-      path: fmis/reports/farmers-full/export
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-        reverse__node__field_areas_id:
-          id: reverse__node__field_areas_id
-          table: node_field_data
-          field: reverse__node__field_areas_id
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: Sub-area
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
       fields:
         title:
           id: title
@@ -7007,6 +6979,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -7062,9 +7037,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_farmer_category_type:
           id: field_farmer_category_type
           table: node__field_farmer_category_type
@@ -7072,6 +7044,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Category / type'
           exclude: false
           alter:
@@ -7127,7 +7100,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_phone_number:
           id: field_phone_number
           table: node__field_phone_number
@@ -7135,6 +7107,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Phone number'
           exclude: false
           alter:
@@ -7190,7 +7163,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_physical_address:
           id: field_physical_address
           table: node__field_physical_address
@@ -7198,6 +7170,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Physical address'
           exclude: false
           alter:
@@ -7252,7 +7225,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_postal_address:
           id: field_postal_address
           table: node__field_postal_address
@@ -7260,6 +7232,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Postal address'
           exclude: false
           alter:
@@ -7314,7 +7287,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -7322,6 +7294,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: CFR
           exclude: false
           alter:
@@ -7377,7 +7350,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -7385,6 +7357,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Offer/License
           exclude: false
           alter:
@@ -7440,9 +7415,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_offer_date:
           id: field_offer_date
           table: node__field_offer_date
@@ -7450,6 +7422,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Offer date'
           exclude: false
           alter:
@@ -7506,7 +7479,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_id:
           id: field_license_id
           table: node__field_license_id
@@ -7514,6 +7486,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License ID'
           exclude: false
           alter:
@@ -7569,7 +7542,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_date:
           id: field_license_date
           table: node__field_license_date
@@ -7577,6 +7549,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License Date'
           exclude: false
           alter:
@@ -7634,7 +7607,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -7642,6 +7614,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -7697,7 +7670,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_overall_area:
           id: field_overall_area
           table: node__field_overall_area
@@ -7705,6 +7677,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Overall area allocated'
           exclude: false
           alter:
@@ -7750,9 +7723,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -7763,7 +7736,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_2:
           id: title_2
           table: node_field_data
@@ -7771,6 +7743,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Sub-area
           exclude: false
           alter:
@@ -7826,9 +7801,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_subarea_planted:
           id: field_subarea_planted
           table: node__field_subarea_planted
@@ -7836,6 +7808,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area planted'
           exclude: false
           alter:
@@ -7881,9 +7854,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -7894,7 +7867,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_year_planted:
           id: field_year_planted
           table: node__field_year_planted
@@ -7902,6 +7874,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Year planted'
           exclude: false
           alter:
@@ -7956,7 +7929,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_area_harvested:
           id: field_area_harvested
           table: node__field_area_harvested
@@ -7964,6 +7936,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area harvested?'
           exclude: false
           alter:
@@ -8009,8 +7982,8 @@ display:
           type: boolean
           settings:
             format: yes-no
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -8021,7 +7994,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_date_harvested:
           id: field_date_harvested
           table: node__field_date_harvested
@@ -8029,6 +8001,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date harvested'
           exclude: false
           alter:
@@ -8085,7 +8058,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_purpose:
           id: field_purpose
           table: node__field_purpose
@@ -8093,6 +8065,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Purpose
           exclude: false
           alter:
@@ -8148,7 +8121,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_species_variety:
           id: field_species_variety
           table: node__field_species_variety
@@ -8156,6 +8128,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Species/variety
           exclude: false
           alter:
@@ -8211,7 +8184,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       filters:
         status:
           id: status
@@ -8220,6 +8192,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -8250,22 +8225,19 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -8273,6 +8245,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -8315,9 +8290,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
         combine:
           id: combine
           table: views
@@ -8325,6 +8297,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -8369,7 +8342,6 @@ display:
           fields:
             field_physical_address: field_physical_address
             field_postal_address: field_postal_address
-          plugin_id: views_autocomplete_filters_combine
         field_phone_number_value:
           id: field_phone_number_value
           table: node__field_phone_number
@@ -8377,6 +8349,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -8419,7 +8392,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_farmer_category_type_target_id:
           id: field_farmer_category_type_target_id
           table: node__field_farmer_category_type
@@ -8427,6 +8399,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -8463,27 +8436,15 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: farmer_category_type
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
           1: AND
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total results'
-          plugin_id: result
       style:
         type: data_export
         options:
@@ -8498,12 +8459,49 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
-      filename: farmers-full-backup-export.csv
-      automatic_download: false
-      store_in_public_file_directory: false
-      redirect_to_display: farmers_full
-      custom_redirect_path: false
-      include_query_params: false
+      defaults:
+        title: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+        reverse__node__field_areas_id:
+          id: reverse__node__field_areas_id
+          table: node_field_data
+          field: reverse__node__field_areas_id
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: Sub-area
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total results'
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-full/export
       displays:
         farmers_full: farmers_full
         default: '0'
@@ -8511,8 +8509,14 @@ display:
         farmers_with_offer_license: '0'
         farmers_with_sub_area: '0'
         farmers_without_offer_license: '0'
+      filename: farmers-full-backup-export.csv
+      automatic_download: false
       export_method: batch
       export_batch_size: 1000
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: farmers_full
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -8541,36 +8545,12 @@ display:
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
   farmers_with_offer_license:
-    display_plugin: page
     id: farmers_with_offer_license
     display_title: 'Farmers with Offer/License'
+    display_plugin: page
     position: 5
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers with Offer/License'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-        style: false
-        row: false
-        header: false
-      path: fmis/reports/farmers-with-offer-license
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: true
-          entity_type: node
-          plugin_id: entity_reverse
       fields:
         title:
           id: title
@@ -8579,6 +8559,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -8634,9 +8617,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -8644,6 +8624,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Title
           exclude: true
           alter:
@@ -8699,9 +8682,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_offer_date:
           id: field_offer_date
           table: node__field_offer_date
@@ -8709,6 +8689,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Offer date'
           exclude: false
           alter:
@@ -8765,7 +8746,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_id:
           id: field_license_id
           table: node__field_license_id
@@ -8773,6 +8753,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License ID'
           exclude: false
           alter:
@@ -8828,7 +8809,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_license_date:
           id: field_license_date
           table: node__field_license_date
@@ -8836,6 +8816,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'License Date'
           exclude: false
           alter:
@@ -8893,7 +8874,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -8901,6 +8881,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -8956,7 +8937,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_overall_area:
           id: field_overall_area
           table: node__field_overall_area
@@ -8964,6 +8944,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Total area allocated'
           exclude: false
           alter:
@@ -9009,9 +8990,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -9022,7 +9003,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -9030,6 +9010,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: CFR
           exclude: false
           alter:
@@ -9085,7 +9066,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -9093,6 +9073,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: Actions
           exclude: false
           alter:
@@ -9137,35 +9119,33 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type_1:
           id: type_1
           table: node_field_data
@@ -9173,6 +9153,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             offer_license: offer_license
@@ -9205,9 +9188,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_central_forest_reserve_target_id:
           id: field_central_forest_reserve_target_id
           table: node__field_central_forest_reserve
@@ -9215,6 +9195,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -9251,12 +9232,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: central_forest_reserve
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_block_ref_target_id:
           id: field_block_ref_target_id
           table: node__field_block_ref
@@ -9264,6 +9244,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -9300,12 +9281,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: block
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_license_id_value:
           id: field_license_id_value
           table: node__field_license_id
@@ -9313,6 +9293,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -9355,31 +9336,16 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
           1: AND
-      menu:
-        type: normal
-        title: 'Farmers with Offer/License'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 0
-        context: '0'
-        menu_name: fmis-reports
       style:
         type: table
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
           columns:
             title: title
             title_1: title_1
@@ -9390,6 +9356,7 @@ display:
             field_overall_area: field_overall_area
             field_central_forest_reserve: field_central_forest_reserve
             edit_node: edit_node
+          default: '-1'
           info:
             title:
               sortable: true
@@ -9454,12 +9421,37 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: 'entity:node'
         options:
           view_mode: teaser
+      defaults:
+        title: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: true
+      display_description: ''
       header:
         result:
           id: result
@@ -9468,9 +9460,21 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total farmers'
-          plugin_id: result
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-with-offer-license
+      menu:
+        type: normal
+        title: 'Farmers with Offer/License'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: fmis-reports
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -9489,56 +9493,12 @@ display:
         - 'config:field.storage.node.field_offer_date'
         - 'config:field.storage.node.field_overall_area'
   farmers_with_sub_area:
-    display_plugin: page
     id: farmers_with_sub_area
     display_title: 'Farmers with Sub-area'
+    display_plugin: page
     position: 9
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      path: fmis/reports/farmers-sub-area
-      display_description: ''
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: true
-          entity_type: node
-          plugin_id: entity_reverse
-        field_central_forest_reserve:
-          id: field_central_forest_reserve
-          table: node__field_central_forest_reserve
-          field: field_central_forest_reserve
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: CFR
-          required: true
-          plugin_id: standard
-        reverse__node__field_areas_id:
-          id: reverse__node__field_areas_id
-          table: node_field_data
-          field: reverse__node__field_areas_id
-          relationship: reverse__node__field_farmer_name_ref
-          group_type: group
-          admin_label: 'Sub area'
-          required: true
-          entity_type: node
-          plugin_id: entity_reverse
-      defaults:
-        relationships: false
-        fields: false
-        sorts: false
-        group_by: false
-        filters: false
-        filter_groups: false
-        title: false
-        header: false
-        style: false
-        row: false
+      title: 'Farmers with sub-area'
       fields:
         title:
           id: title
@@ -9547,6 +9507,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Farmer name'
           exclude: false
           alter:
@@ -9602,9 +9565,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         name:
           id: name
           table: taxonomy_term_field_data
@@ -9612,6 +9572,9 @@ display:
           relationship: field_central_forest_reserve
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: CFR
           exclude: false
           alter:
@@ -9668,9 +9631,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         title_1:
           id: title_1
           table: node_field_data
@@ -9678,6 +9638,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Offer/License
           exclude: false
           alter:
@@ -9733,9 +9696,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_block_ref:
           id: field_block_ref
           table: node__field_block_ref
@@ -9743,6 +9703,7 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Block ID'
           exclude: false
           alter:
@@ -9798,7 +9759,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title_2:
           id: title_2
           table: node_field_data
@@ -9806,6 +9766,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Sub-area ID'
           exclude: false
           alter:
@@ -9861,9 +9824,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_year_planted:
           id: field_year_planted
           table: node__field_year_planted
@@ -9871,6 +9831,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Year planted'
           exclude: false
           alter:
@@ -9925,7 +9886,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_subarea_planted:
           id: field_subarea_planted
           table: node__field_subarea_planted
@@ -9933,6 +9893,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area planted'
           exclude: false
           alter:
@@ -9978,9 +9939,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -9991,7 +9952,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_area_harvested:
           id: field_area_harvested
           table: node__field_area_harvested
@@ -9999,6 +9959,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Area harvested ?'
           exclude: false
           alter:
@@ -10044,8 +10005,8 @@ display:
           type: boolean
           settings:
             format: yes-no
-            format_custom_true: ''
             format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -10056,7 +10017,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_date_harvested:
           id: field_date_harvested
           table: node__field_date_harvested
@@ -10064,6 +10024,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date harvested'
           exclude: false
           alter:
@@ -10120,7 +10081,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_purpose:
           id: field_purpose
           table: node__field_purpose
@@ -10128,6 +10088,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Purpose
           exclude: false
           alter:
@@ -10183,7 +10144,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_species_variety:
           id: field_species_variety
           table: node__field_species_variety
@@ -10191,6 +10151,7 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Species/variety
           exclude: false
           alter:
@@ -10246,7 +10207,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -10254,6 +10214,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: Actions
           exclude: false
           alter:
@@ -10298,8 +10260,6 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       sorts:
         title:
           id: title
@@ -10308,28 +10268,28 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
           entity_type: node
           entity_field: title
           plugin_id: standard
-      group_by: true
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -10337,6 +10297,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             farmer_details: farmer_details
@@ -10369,9 +10332,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         name:
           id: name
           table: taxonomy_term_field_data
@@ -10379,6 +10339,9 @@ display:
           relationship: field_central_forest_reserve
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -10421,9 +10384,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: views_autocomplete_filters_string
         type_1:
           id: type_1
           table: node_field_data
@@ -10431,6 +10391,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             offer_license: offer_license
@@ -10463,9 +10426,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         type_2:
           id: type_2
           table: node_field_data
@@ -10473,6 +10433,9 @@ display:
           relationship: reverse__node__field_areas_id
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             sub_area: sub_area
@@ -10505,45 +10468,16 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
       filter_groups:
         operator: AND
         groups:
           1: AND
-      title: 'Farmers with sub-area'
-      menu:
-        type: normal
-        title: 'Farmers with Sub-area'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 10
-        context: '0'
-        menu_name: fmis-reports
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total farmer sub-areas'
-          plugin_id: result
       style:
         type: table
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
           columns:
             title: title
             name: name
@@ -10557,6 +10491,7 @@ display:
             field_purpose: field_purpose
             field_species_variety: field_species_variety
             edit_node: edit_node
+          default: '-1'
           info:
             title:
               sortable: true
@@ -10642,12 +10577,82 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: 'entity:node'
         options:
           view_mode: teaser
+      defaults:
+        title: false
+        group_by: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: true
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: true
+        reverse__node__field_areas_id:
+          id: reverse__node__field_areas_id
+          table: node_field_data
+          field: reverse__node__field_areas_id
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: 'Sub area'
+          entity_type: node
+          plugin_id: entity_reverse
+          required: true
+      group_by: true
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total farmer sub-areas'
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-sub-area
+      menu:
+        type: normal
+        title: 'Farmers with Sub-area'
+        description: ''
+        weight: 10
+        expanded: false
+        menu_name: fmis-reports
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -10666,33 +10671,12 @@ display:
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
   farmers_without_offer_license:
-    display_plugin: page
     id: farmers_without_offer_license
     display_title: 'Farmers without Offer/License'
+    display_plugin: page
     position: 7
     display_options:
-      display_extenders:
-        ajax_history: {  }
-      display_description: ''
       title: 'Farmers without Offer/License'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-        filters: false
-        filter_groups: false
-      path: fmis/reports/farmers-without-offer-license
-      relationships:
-        reverse__node__field_farmer_name_ref:
-          id: reverse__node__field_farmer_name_ref
-          table: node_field_data
-          field: reverse__node__field_farmer_name_ref
-          relationship: none
-          group_type: group
-          admin_label: Offer/License
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
       fields:
         title:
           id: title
@@ -10701,6 +10685,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Name
           exclude: false
           alter:
@@ -10756,9 +10743,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         title_1:
           id: title_1
           table: node_field_data
@@ -10766,6 +10750,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: Title
           exclude: true
           alter:
@@ -10821,9 +10808,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -10831,6 +10815,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: Actions
           exclude: false
           alter:
@@ -10875,35 +10861,33 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            farmer_details: farmer_details
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         title:
           id: title
           table: node_field_data
@@ -10911,6 +10895,9 @@ display:
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
           operator: empty
           value: ''
           group: 1
@@ -10949,22 +10936,40 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        title: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+      relationships:
+        reverse__node__field_farmer_name_ref:
+          id: reverse__node__field_farmer_name_ref
+          table: node_field_data
+          field: reverse__node__field_farmer_name_ref
+          relationship: none
+          group_type: group
+          admin_label: Offer/License
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      display_description: ''
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/farmers-without-offer-license
       menu:
         type: normal
         title: 'Farmers without Offer/License'
         description: ''
-        expanded: false
-        parent: ''
         weight: 0
-        context: '0'
+        expanded: false
         menu_name: fmis-reports
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

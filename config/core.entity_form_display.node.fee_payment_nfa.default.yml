@@ -27,110 +27,110 @@ bundle: fee_payment_nfa
 mode: default
 content:
   field_amount_paid:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
     type: computed_number_widget
+    weight: 10
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_block_id_ref:
+    type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_date_of_nfa_receipt:
+    type: datetime_default
     weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_date_of_ura_receipt:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 7
     region: content
-  field_description:
-    weight: 27
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_farmer_name_ref:
-    weight: 0
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_licence_id_ref:
-    weight: 1
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_name_of_person:
-    weight: 6
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_nfa_counter_receipt_number:
-    weight: 5
     settings: {  }
     third_party_settings: {  }
+  field_description:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_farmer_name_ref:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_licence_id_ref:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_name_of_person:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_nfa_counter_receipt_number:
     type: computed_string_widget
+    weight: 5
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_offer_id_ref:
+    type: entity_reference_autocomplete
     weight: 3
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_receipt_agaings_account_bi:
+    type: entity_reference_autocomplete
     weight: 26
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_scan_of_ura_receipt:
+    type: file_generic
     weight: 9
+    region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
-    type: file_generic
-    region: content
   field_ura_receipt_number:
+    type: string_textfield
     weight: 8
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   path: true

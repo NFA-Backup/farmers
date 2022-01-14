@@ -12,12 +12,12 @@ pattern: '[term:name]'
 selection_criteria:
   a9cd4f04-7ce0-4bf1-a275-34eb014644ce:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      management_unit: management_unit
     negate: false
+    uuid: a9cd4f04-7ce0-4bf1-a275-34eb014644ce
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: a9cd4f04-7ce0-4bf1-a275-34eb014644ce
+    bundles:
+      management_unit: management_unit
 selection_logic: and
 weight: -5
 relationships: {  }
