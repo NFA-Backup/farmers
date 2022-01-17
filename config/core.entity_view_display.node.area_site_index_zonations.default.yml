@@ -18,43 +18,43 @@ bundle: area_site_index_zonations
 mode: default
 content:
   field_area_id_zonations:
-    weight: 103
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 103
     region: content
   field_block_id_zonations:
-    weight: 102
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 102
     region: content
   field_cfr:
-    weight: 104
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 104
     region: content
   field_site_index:
-    weight: 105
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 105
     region: content
   field_zone_designation:
-    weight: 106
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 106
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden: {  }

@@ -13,8 +13,8 @@ bundle: index_zone_annual_rent_charges
 mode: teaser
 content:
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden: {  }

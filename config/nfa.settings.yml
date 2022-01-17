@@ -1,4 +1,3 @@
-cdn_provider: ''
 _core:
   default_config_hash: _5qrDuRmWmRVjW00si3U1s1NrgrocA4N653EYGRfgEE
 favicon:
@@ -6,9 +5,6 @@ favicon:
   path: ''
   url: 'http://dev-nfafmis.pantheonsite.io/themes/nfa/favicon.ico'
   use_default: true
-schemas:
-  bootstrap: 8000
-  nfa: 8000
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -18,5 +14,9 @@ logo:
   path: ''
   url: ''
   use_default: true
+cdn_provider: ''
+schemas:
+  bootstrap: 8000
+  nfa: 8000
 breadcrumb_home: 1
 table: ''

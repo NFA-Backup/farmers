@@ -20,90 +20,90 @@ bundle: block_area_inventory
 mode: default
 content:
   field_block_ref:
+    type: entity_reference_autocomplete
     weight: 4
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_farmer_name_ref:
+    type: entity_reference_autocomplete
     weight: 0
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_inventory:
+    type: inline_entity_form_complex
     weight: 6
+    region: content
     settings:
       form_mode: default
       override_labels: true
       label_singular: Inventory
       label_plural: Inventories
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
       revision: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   field_licence_id_ref:
+    type: erviews_options_select
     weight: 2
+    region: content
     settings:
       empty_value: '- None -'
     third_party_settings: {  }
-    type: erviews_options_select
-    region: content
   field_offer_id_ref:
+    type: erviews_options_select
     weight: 1
+    region: content
     settings:
       empty_value: '- None -'
     third_party_settings: {  }
-    type: erviews_options_select
-    region: content
   field_sub_area_content:
+    type: inline_entity_form_complex
     weight: 5
+    region: content
     settings:
       form_mode: default
       override_labels: true
       label_singular: Sub-area
       label_plural: Sub-areas
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
       revision: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   field_thinning_harvest_details:
+    type: inline_entity_form_complex
     weight: 7
+    region: content
     settings:
       form_mode: default
       override_labels: true
       label_singular: Harvest
       label_plural: Harvests
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
       revision: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
 hidden:
   created: true
   path: true

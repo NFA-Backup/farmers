@@ -1,7 +1,32 @@
 uuid: 9281d844-b60c-45f7-9609-acce2a45ebe6
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.accounts_detail
+    - node.type.accounts_simplication_temporary
+    - node.type.annual_charges
+    - node.type.area_planting_history
+    - node.type.area_site_index_zonations
+    - node.type.block_area_inventory
+    - node.type.charge
+    - node.type.farmer_details
+    - node.type.fee_payment_nfa
+    - node.type.harvesting_miscellaneous_fees
+    - node.type.historical_payments
+    - node.type.index_zone_annual_rent_charges
+    - node.type.inventory
+    - node.type.invoice
+    - node.type.land_rent_rates
+    - node.type.offer_license
+    - node.type.payment
+    - node.type.starting_amount
+    - node.type.sub_area
+    - node.type.thinning_harvest_details
+  module:
+    - comment
+    - node
+    - system
 id: not_staff
 label: Not-Staff
 weight: 4

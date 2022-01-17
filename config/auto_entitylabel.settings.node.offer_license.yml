@@ -1,7 +1,7 @@
 status: 1
 pattern: '[node:field_area_number]'
-php: 0
 escape: false
 dependencies:
   config:
     - node.type.offer_license
+php: 0

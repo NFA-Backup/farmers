@@ -22,7 +22,7 @@ bundle: accounts_simplication_temporary
 mode: default
 content:
   field_amount_due:
-    weight: 109
+    type: computed_integer
     label: above
     settings:
       cache_unit: -1
@@ -30,71 +30,71 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_integer
+    weight: 109
     region: content
   field_amount_paid_as:
-    weight: 104
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: 104
     region: content
   field_assessment_amount:
-    weight: 103
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: 103
     region: content
   field_assessment_date:
-    weight: 101
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 101
     region: content
   field_date_paid:
-    weight: 105
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 105
     region: content
   field_description:
-    weight: 102
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 102
     region: content
   field_licence_id_ref:
-    weight: 108
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 108
     region: content
   field_receipt_number:
-    weight: 106
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 106
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden: {  }

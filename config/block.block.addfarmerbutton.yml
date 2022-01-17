@@ -15,14 +15,14 @@ plugin: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
 settings:
   id: 'block_content:7f382215-dbbc-476d-9731-5bcac10ca0b6'
   label: 'Add farmer button'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/details\r\n/tree-farmer-overview/licences"
     negate: false
     context_mapping: {  }
+    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/details\r\n/tree-farmer-overview/licences"

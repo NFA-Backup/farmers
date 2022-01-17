@@ -1,7 +1,7 @@
 status: 1
 pattern: 'Inventory - [node:nid]'
-php: 0
 escape: false
 dependencies:
   config:
     - node.type.inventory
+php: 0

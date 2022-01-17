@@ -12,12 +12,12 @@ pattern: '[term:management_unit:entity:name]/[term:name]'
 selection_criteria:
   2f0bff57-fcbf-4d89-a53f-90f30fbc8d41:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      central_forest_reserve: central_forest_reserve
     negate: false
+    uuid: 2f0bff57-fcbf-4d89-a53f-90f30fbc8d41
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 2f0bff57-fcbf-4d89-a53f-90f30fbc8d41
+    bundles:
+      central_forest_reserve: central_forest_reserve
 selection_logic: and
 weight: -5
 relationships: {  }

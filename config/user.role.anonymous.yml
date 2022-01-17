@@ -1,7 +1,18 @@
 uuid: 98c50944-ed7d-456b-b563-0928c788b69f
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.restricted_html
+    - node.type.area_planting_history
+    - node.type.farmer_details
+    - node.type.offer_license
+  module:
+    - comment
+    - contact
+    - filter
+    - node
+    - search
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous
@@ -12,7 +23,6 @@ permissions:
   - 'access comments'
   - 'access site-wide contact form'
   - 'create area_planting_history content'
-  - 'create farmer_account_record content'
   - 'create farmer_details content'
   - 'create offer_license content'
   - 'search content'

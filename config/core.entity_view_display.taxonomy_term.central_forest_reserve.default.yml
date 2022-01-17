@@ -16,26 +16,26 @@ bundle: central_forest_reserve
 mode: default
 content:
   description:
-    label: hidden
     type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 0
     region: content
-    settings: {  }
-    third_party_settings: {  }
   geofield_map:
-    weight: 2
+    type: farm_map_geofield
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: farm_map_geofield
+    weight: 2
     region: content
   management_unit:
-    weight: 1
+    type: entity_reference_label
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
 hidden:
   kml_file: true

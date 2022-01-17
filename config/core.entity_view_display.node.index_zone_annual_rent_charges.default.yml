@@ -19,7 +19,7 @@ bundle: index_zone_annual_rent_charges
 mode: default
 content:
   field_amount_paid:
-    weight: 104
+    type: computed_decimal
     label: above
     settings:
       cache_unit: -1
@@ -29,34 +29,34 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_decimal
+    weight: 104
     region: content
   field_site_index:
-    weight: 101
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 101
     region: content
   field_year:
-    weight: 103
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 103
     region: content
   field_zone_designation:
-    weight: 102
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 102
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden: {  }

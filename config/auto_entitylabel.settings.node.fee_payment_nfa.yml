@@ -1,7 +1,7 @@
-status: '1'
+status: 1
 pattern: 'Fee payment NFA for [node:field_farmer_name_ref]'
-php: 0
-escape: 0
+escape: false
 dependencies:
   config:
     - node.type.fee_payment_nfa
+php: 0

@@ -20,16 +20,16 @@ bundle: fee
 mode: default
 content:
   field_fee_payable_date:
-    weight: 4
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 4
     region: content
   field_fee_total:
-    weight: 5
+    type: computed_integer
     label: above
     settings:
       cache_unit: -1
@@ -37,37 +37,37 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: computed_integer
+    weight: 5
     region: content
   field_fee_type:
-    weight: 0
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_fee_unit_cost:
-    weight: 3
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 3
     region: content
   field_fee_unit_description:
-    weight: 1
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_fee_unit_number:
-    weight: 2
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
 hidden: {  }

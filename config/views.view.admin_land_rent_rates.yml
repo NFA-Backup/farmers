@@ -21,87 +21,12 @@ base_table: taxonomy_term_field_data
 base_field: tid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'administer site configuration'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Find
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: false
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: mini
-        options:
-          items_per_page: 50
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            name: name
-            edit_taxonomy_term: edit_taxonomy_term
-          info:
-            name:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            edit_taxonomy_term:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
+      title: 'Land rent rates'
       fields:
         name:
           id: name
@@ -110,6 +35,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: ''
           exclude: false
           alter:
@@ -166,9 +94,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         edit_taxonomy_term:
           id: edit_taxonomy_term
           table: taxonomy_term_data
@@ -176,6 +101,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          plugin_id: entity_link_edit
           label: ''
           exclude: false
           alter:
@@ -220,31 +147,93 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: taxonomy_term
-          plugin_id: entity_link_edit
+      pager:
+        type: mini
+        options:
+          offset: 0
+          items_per_page: 50
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Find
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: false
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'administer site configuration'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'No land rent rates found.'
+            format: basic_html
+          tokenize: false
+      sorts:
+        field_rate_year_value:
+          id: field_rate_year_value
+          table: node__field_rate_year
+          field: field_rate_year_value
+          relationship: reverse__node__field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: field_rate_year_value
+          exposed: false
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: taxonomy_term_field_data
           field: status
-          plugin_id: boolean
           entity_type: taxonomy_term
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         vid:
           id: vid
           table: taxonomy_term_field_data
           field: vid
-          value:
-            central_forest_reserve: central_forest_reserve
           entity_type: taxonomy_term
           entity_field: vid
           plugin_id: bundle
+          value:
+            central_forest_reserve: central_forest_reserve
           expose:
             operator_limit_selection: false
             operator_list: {  }
@@ -255,6 +244,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
           operator: '='
           value: ''
           group: 1
@@ -295,116 +287,16 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: views_autocomplete_filters_string
-      sorts:
-        field_rate_year_value:
-          id: field_rate_year_value
-          table: node__field_rate_year
-          field: field_rate_year_value
-          relationship: reverse__node__field_central_forest_reserve
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
-      title: 'Land rent rates'
-      header: {  }
-      footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'No land rent rates found.'
-            format: basic_html
-          plugin_id: text
-      relationships:
-        reverse__node__field_central_forest_reserve:
-          id: reverse__node__field_central_forest_reserve
-          table: taxonomy_term_field_data
-          field: reverse__node__field_central_forest_reserve
-          relationship: none
-          group_type: group
-          admin_label: field_central_forest_reserve
-          required: true
-          entity_type: taxonomy_term
-          plugin_id: entity_reverse
-      arguments: {  }
-      display_extenders: {  }
-      show_admin_links: false
-      use_ajax: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user.permissions
-      tags: {  }
-  page:
-    display_plugin: page
-    id: page
-    display_title: Page
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: admin/config/nfafmis/settings/listing
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/listing\">+ Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/listing\">+ Add Year</a>\r\n</div>"
-          plugin_id: text_custom
-      defaults:
-        header: false
-        style: false
-        row: false
-        css_class: false
-        fields: false
-        filters: false
-        filter_groups: false
-      menu:
-        type: tab
-        title: 'Land rent rates'
-        description: ''
-        expanded: false
-        parent: nfafmis.settings
-        weight: 0
-        context: '0'
-        menu_name: admin
       style:
         type: table
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: false
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
+          default_row_class: true
           columns:
             name: name
             edit_taxonomy_term: edit_taxonomy_term
-            field_rate: field_rate
-            field_rate_year: field_rate_year
+          default: '-1'
           info:
             name:
               sortable: false
@@ -420,30 +312,53 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_rate:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_rate_year:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
+      query:
+        type: views_query
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
-      css_class: ''
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships:
+        reverse__node__field_central_forest_reserve:
+          id: reverse__node__field_central_forest_reserve
+          table: taxonomy_term_field_data
+          field: reverse__node__field_central_forest_reserve
+          relationship: none
+          group_type: group
+          admin_label: field_central_forest_reserve
+          entity_type: taxonomy_term
+          plugin_id: entity_reverse
+          required: true
+      use_ajax: true
+      show_admin_links: false
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user.permissions
+      tags: {  }
+  page:
+    id: page
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
       fields:
         name:
           id: name
@@ -452,6 +367,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: 'Central Forest Reserve'
           exclude: false
           alter:
@@ -508,9 +426,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         edit_taxonomy_term:
           id: edit_taxonomy_term
           table: taxonomy_term_data
@@ -518,6 +433,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          plugin_id: entity_link_edit
           label: ''
           exclude: false
           alter:
@@ -562,8 +479,6 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: taxonomy_term
-          plugin_id: entity_link_edit
         field_rate:
           id: field_rate
           table: node__field_rate
@@ -571,6 +486,7 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Land Rate'
           exclude: false
           alter:
@@ -616,9 +532,9 @@ display:
           type: number_decimal
           settings:
             thousand_separator: ''
-            prefix_suffix: true
             decimal_separator: .
             scale: 2
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -629,7 +545,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_rate_year:
           id: field_rate_year
           table: node__field_rate_year
@@ -637,6 +552,7 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Rate for the Year'
           exclude: false
           alter:
@@ -691,7 +607,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         edit_node:
           id: edit_node
           table: node
@@ -699,6 +614,8 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: entity_link_edit
           label: ''
           exclude: false
           alter:
@@ -743,31 +660,29 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-          entity_type: node
-          plugin_id: entity_link_edit
       filters:
         status:
-          value: '1'
+          id: status
           table: taxonomy_term_field_data
           field: status
-          plugin_id: boolean
           entity_type: taxonomy_term
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         vid:
           id: vid
           table: taxonomy_term_field_data
           field: vid
-          value:
-            central_forest_reserve: central_forest_reserve
           entity_type: taxonomy_term
           entity_field: vid
           plugin_id: bundle
+          value:
+            central_forest_reserve: central_forest_reserve
           expose:
             operator_limit_selection: false
             operator_list: {  }
@@ -778,6 +693,7 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
+          plugin_id: numeric
           operator: '='
           value:
             min: ''
@@ -803,9 +719,9 @@ display:
               administrator: '0'
               nfa_staff: '0'
               not_staff: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -818,7 +734,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: numeric
         field_rate_value:
           id: field_rate_value
           table: node__field_rate
@@ -826,6 +741,7 @@ display:
           relationship: reverse__node__field_central_forest_reserve
           group_type: group
           admin_label: ''
+          plugin_id: numeric
           operator: 'not empty'
           value:
             min: ''
@@ -847,9 +763,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -862,7 +778,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: numeric
         name:
           id: name
           table: taxonomy_term_field_data
@@ -870,6 +785,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
           operator: contains
           value: ''
           group: 1
@@ -912,13 +830,96 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
           1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          columns:
+            name: name
+            edit_taxonomy_term: edit_taxonomy_term
+            field_rate: field_rate
+            field_rate_year: field_rate_year
+          default: '-1'
+          info:
+            name:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_taxonomy_term:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_rate:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_rate_year:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        css_class: false
+        style: false
+        row: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      css_class: ''
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/listing\">+ Add Reserve</a>\r\n\r\n<a class=\"use-ajax button button--primary\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/listing\">+ Add Year</a>\r\n</div>"
+          tokenize: false
+      display_extenders: {  }
+      path: admin/config/nfafmis/settings/listing
+      menu:
+        type: tab
+        title: 'Land rent rates'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: admin
+        parent: nfafmis.settings
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

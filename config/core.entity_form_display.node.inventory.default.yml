@@ -18,47 +18,47 @@ bundle: inventory
 mode: default
 content:
   field_crop_maintenance_index:
+    type: options_select
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_crop_status_index:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 4
     region: content
-  field_date_of_inventory:
-    weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_date_of_inventory:
     type: datetime_default
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_stocking_rate:
+    type: number
     weight: 2
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_stocking_volume:
+    type: number
     weight: 3
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_sub_area_id:
+    type: entity_reference_autocomplete
     weight: 26
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   title:
     type: string_textfield
     weight: 0

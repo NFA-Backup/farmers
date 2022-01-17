@@ -26,28 +26,28 @@ content:
       placeholder: ''
     third_party_settings: {  }
   geofield_map:
+    type: farm_map_geofield
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: farm_map_geofield
-    region: content
   kml_file:
+    type: file_generic
     weight: 7
+    region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
-    type: file_generic
-    region: content
   management_unit:
+    type: entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   name:
     type: string_textfield
     weight: 0

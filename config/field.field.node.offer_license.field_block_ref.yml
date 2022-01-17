@@ -21,7 +21,7 @@ settings:
     dependent_fields_view:
       view_name: blocks_by_cfr
       display_name: entity_reference_1
-      arguments: {  }
       parent_field: field_central_forest_reserve
       reference_parent_by_uuid: false
+      arguments: {  }
 field_type: entity_reference

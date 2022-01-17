@@ -30,97 +30,97 @@ bundle: offer_license
 mode: default
 content:
   field_area_number:
-    weight: 12
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 12
     region: content
   field_area_serial_number:
-    weight: 11
+    type: serial_default_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: serial_default_formatter
+    weight: 11
     region: content
   field_block_ref:
-    weight: 7
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 7
     region: content
   field_central_forest_reserve:
-    weight: 8
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 8
     region: content
   field_comments:
-    weight: 6
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 6
     region: content
   field_farmer_name_ref:
-    weight: 1
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
   field_license_date:
-    weight: 9
+    type: daterange_default
     label: above
     settings:
       timezone_override: ''
       format_type: html_date
       separator: to
     third_party_settings: {  }
-    type: daterange_default
+    weight: 9
     region: content
   field_license_id:
-    weight: 4
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 4
     region: content
   field_license_issued:
-    weight: 3
+    type: boolean
     label: above
     settings:
       format: yes-no
-      format_custom_true: ''
       format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 3
     region: content
   field_offer_date:
-    weight: 2
+    type: datetime_default
     label: above
     settings:
       timezone_override: ''
       format_type: html_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 2
     region: content
   field_offer_id:
-    weight: 13
+    type: serial_default_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: serial_default_formatter
+    weight: 13
     region: content
   field_overall_area:
-    weight: 5
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ''
@@ -128,21 +128,21 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_decimal
+    weight: 5
     region: content
   field_purpose:
-    weight: 10
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 10
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_block_id: true
   field_overall_area_allocated: true

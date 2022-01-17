@@ -17,29 +17,29 @@ bundle: index_zone_annual_rent_charges
 mode: default
 content:
   field_amount_paid:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
     type: computed_number_widget
+    weight: 3
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_site_index:
+    type: options_select
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_year:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 2
     region: content
-  field_zone_designation:
-    weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_zone_designation:
     type: options_select
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   path: true

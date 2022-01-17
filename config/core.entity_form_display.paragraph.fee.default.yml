@@ -19,47 +19,47 @@ bundle: fee
 mode: default
 content:
   field_fee_payable_date:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 4
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_fee_total:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
     type: computed_number_widget
+    weight: 5
     region: content
-  field_fee_type:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+  field_fee_type:
     type: options_select
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_fee_unit_cost:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_fee_unit_description:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_fee_unit_number:
+    type: string_textfield
     weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

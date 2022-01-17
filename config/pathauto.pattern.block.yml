@@ -12,12 +12,12 @@ pattern: '[term:cfr:entity:management_unit:entity:name]/[term:cfr:entity:name]/[
 selection_criteria:
   575a3d58-cd7f-49af-ae29-282f70fa3c0a:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      block: block
     negate: false
+    uuid: 575a3d58-cd7f-49af-ae29-282f70fa3c0a
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 575a3d58-cd7f-49af-ae29-282f70fa3c0a
+    bundles:
+      block: block
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -1,7 +1,7 @@
-status: '0'
+status: 0
 pattern: 'FIN/[node:nid]'
-php: 0
-escape: 0
+escape: false
 dependencies:
   config:
     - node.type.farmer_details
+php: 0

@@ -1,7 +1,7 @@
-status: '1'
+status: 1
 pattern: 'Accounts-detail - [random:number]'
-php: 0
-escape: 0
+escape: false
 dependencies:
   config:
     - node.type.accounts_detail
+php: 0
