@@ -192,3 +192,25 @@ table {
     @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
   }
 }
+
+.view-fmis-reports {
+  &.view-display-id-farmers_full {
+    .table-responsive {
+      margin-bottom: 60px;
+      border: 1px dashed $gray-light;
+
+      caption {
+        padding: 0;
+        font-weight: bold;
+        color: $gray-dark;
+      }
+
+      .views-field-title-1,
+      .views-field-title-2 {
+        font-weight: bold;
+        background: $gray-lighter;
+        min-width: 120px;
+      }
+    }
+  }
+}
