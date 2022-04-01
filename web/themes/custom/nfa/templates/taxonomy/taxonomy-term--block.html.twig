@@ -33,13 +33,10 @@
   {{ title_suffix }}
 
   {% if page %}
-    {{ content|without('management_unit') }}
-    <div class="d-flex">
-      <h4 class="mr-3">{{ 'Management Unit'|t }}:</h4>
-      <h4>{{ content.management_unit }}</h4>
-    </div>
-    <div class="d-flex border-bottom mb-5">
-      <h3 class="mr-3">{{ 'Farmers with allocations in'|t }} </h3>
+    <div clasS="mb-4">{{ content.description }}</div>
+    {{ content|without('cfr', 'description') }}
+    <div class="d-flex border-bottom my-5">
+      <h3 class="mr-3">{{ 'Farmers with allocations in block'|t }} </h3>
       <h3>{{ name }}</h3>
     </div>
   {% else %}

@@ -36,7 +36,6 @@
     "drupal/geocoder": "^3.0@beta",
     "drupal/geofield": "^1.31",
     "drupal/inline_entity_form": "^1.0",
-    "drupal/leaflet": "^2.1",
     "drupal/migrate_plus": "^5.1",
     "drupal/migrate_spreadsheet": "^2.0",
     "drupal/migrate_tools": "^5.0",

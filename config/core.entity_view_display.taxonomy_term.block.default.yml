@@ -4,8 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.block.cfr
+    - field.field.taxonomy_term.block.geofield_map
+    - field.field.taxonomy_term.block.kml_file
     - taxonomy.vocabulary.block
   module:
+    - farm_map
     - text
 id: taxonomy_term.block.default
 targetEntityType: taxonomy_term
@@ -27,4 +30,12 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+  geofield_map:
+    type: farm_map_geofield
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  kml_file: true

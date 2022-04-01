@@ -5,3 +5,7 @@ services:
   nfafmis_service.utility:
     class: Drupal\nfafmis\Services\UtilityServices
     arguments: ['@current_user','@request_stack']
+  nfafmis_service.route_subscriber:
+    class: Drupal\nfafmis\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

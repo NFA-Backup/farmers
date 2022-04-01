@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9eea94190a3c697050a23c382110d615",
+    "content-hash": "2e15d0ef5f463b28a2baf3ee01b5a084",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1604,17 +1604,17 @@
         },
         {
             "name": "drupal/bootstrap",
-            "version": "3.23.0",
+            "version": "3.24.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bootstrap.git",
-                "reference": "8.x-3.23"
+                "reference": "8.x-3.24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.23.zip",
-                "reference": "8.x-3.23",
-                "shasum": "9849be667cc678a91ad29f77c2baea2cf16878bc"
+                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.24.zip",
+                "reference": "8.x-3.24",
+                "shasum": "112e9925fd6d694f41b388a81748d1175c776969"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -1622,8 +1622,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.23",
-                    "datestamp": "1592175762",
+                    "version": "8.x-3.24",
+                    "datestamp": "1648749397",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1800,16 +1800,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.3.7",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "a768174b00fa088027d460a80a13550e624b9bf8"
+                "reference": "86b0c4496e20ae7f945e9a7f0404fafe191ab774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/a768174b00fa088027d460a80a13550e624b9bf8",
-                "reference": "a768174b00fa088027d460a80a13550e624b9bf8",
+                "url": "https://api.github.com/repos/drupal/core/zipball/86b0c4496e20ae7f945e9a7f0404fafe191ab774",
+                "reference": "86b0c4496e20ae7f945e9a7f0404fafe191ab774",
                 "shasum": ""
             },
             "require": {
@@ -2051,13 +2051,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.3.7"
+                "source": "https://github.com/drupal/core/tree/9.3.9"
             },
-            "time": "2022-03-03T09:23:53+00:00"
+            "time": "2022-03-21T21:21:58+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.3.7",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2101,13 +2101,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.7"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.9"
             },
             "time": "2022-02-24T17:40:56+00:00"
         },
         {
             "name": "drupal/core-project-message",
-            "version": "9.3.7",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-project-message.git",
@@ -2142,22 +2142,22 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-project-message/tree/9.3.7"
+                "source": "https://github.com/drupal/core-project-message/tree/9.3.9"
             },
             "time": "2022-02-24T17:40:56+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.3.7",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "29f6f29672861a5719701a59aae26aafbb4c9495"
+                "reference": "3ce3f2b6145de56178e006fb2ef94089d32cf411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/29f6f29672861a5719701a59aae26aafbb4c9495",
-                "reference": "29f6f29672861a5719701a59aae26aafbb4c9495",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/3ce3f2b6145de56178e006fb2ef94089d32cf411",
+                "reference": "3ce3f2b6145de56178e006fb2ef94089d32cf411",
                 "shasum": ""
             },
             "require": {
@@ -2166,11 +2166,11 @@
                 "doctrine/annotations": "1.13.2",
                 "doctrine/lexer": "1.2.1",
                 "doctrine/reflection": "1.2.2",
-                "drupal/core": "9.3.7",
+                "drupal/core": "9.3.9",
                 "egulias/email-validator": "3.1.2",
                 "guzzlehttp/guzzle": "6.5.5",
                 "guzzlehttp/promises": "1.5.1",
-                "guzzlehttp/psr7": "1.8.3",
+                "guzzlehttp/psr7": "1.8.5",
                 "laminas/laminas-diactoros": "2.8.0",
                 "laminas/laminas-escaper": "2.9.0",
                 "laminas/laminas-feed": "2.15.0",
@@ -2228,9 +2228,9 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.3.7"
+                "source": "https://github.com/drupal/core-recommended/tree/9.3.9"
             },
-            "time": "2022-03-03T09:23:53+00:00"
+            "time": "2022-03-21T21:21:58+00:00"
         },
         {
             "name": "drupal/core-vendor-hardening",
@@ -2957,17 +2957,17 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "1.0.0-rc10",
+            "version": "1.0.0-rc11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "8.x-1.0-rc10"
+                "reference": "8.x-1.0-rc11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-rc10.zip",
-                "reference": "8.x-1.0-rc10",
-                "shasum": "e10a90cee004e13b4c59991a312f805834a35750"
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-rc11.zip",
+                "reference": "8.x-1.0-rc11",
+                "shasum": "67a92ec1482be19b2f2091ca9498f585e34072b9"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9",
@@ -2979,8 +2979,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-rc10",
-                    "datestamp": "1646314907",
+                    "version": "8.x-1.0-rc11",
+                    "datestamp": "1648748863",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -3231,78 +3231,6 @@
             "homepage": "https://www.drupal.org/project/jquery_ui_tabs",
             "support": {
                 "source": "https://git.drupalcode.org/project/jquery_ui_tabs"
-            }
-        },
-        {
-            "name": "drupal/leaflet",
-            "version": "2.1.20",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/leaflet.git",
-                "reference": "2.1.20"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/leaflet-2.1.20.zip",
-                "reference": "2.1.20",
-                "shasum": "fd473626341bd83f55e80530ba08b7ce55ddafc7"
-            },
-            "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/geofield": "^1.31"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.1.20",
-                    "datestamp": "1643578866",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Italo Mairo",
-                    "homepage": "https://www.drupal.org/u/itamair",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Peter Vanhee (pvhee)",
-                    "homepage": "https://www.drupal.org/u/pvhee",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Rik de Boer (RdeBoer)",
-                    "homepage": "https://www.drupal.org/u/rdeboer",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Gabriel Carleton-Barnes (gcb)",
-                    "homepage": "https://www.drupal.org/u/gcb",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Lev Tsypin (levelos)",
-                    "homepage": "https://www.drupal.org/u/levelos",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Sean Larkin (seanberto)",
-                    "homepage": "https://www.drupal.org/u/seanberto",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Integration with the Leaflet map scripting library.",
-            "homepage": "https://www.drupal.org/project/leaflet",
-            "support": {
-                "source": "https://git.drupalcode.org/project/leaflet",
-                "issues": "https://www.drupal.org/project/issues/leaflet"
             }
         },
         {
@@ -4842,16 +4770,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.3",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -4932,7 +4860,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.3"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.5"
             },
             "funding": [
                 {
@@ -4948,7 +4876,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-05T13:56:00+00:00"
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
