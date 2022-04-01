@@ -124,11 +124,27 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
 
       $sub_areas_nids = $query->count()->execute();
       if ($sub_areas_nids) {
-        $url = '/tree-farmer-overview/geojson?id=' . $this->farmer_id;
+        $layers = [
+          [
+            'url' => '/tree-farmer-overview/cfr/geojson?id=' . $this->farmer_id,
+            'color' => 'red',
+            'title' => $this->t('CFR'),
+          ],
+          [
+            'url' => '/tree-farmer-overview/block/geojson?id=' . $this->farmer_id,
+            'color' => 'yellow',
+            'title' => $this->t('Block'),
+          ],
+          [
+            'url' => '/tree-farmer-overview/subarea/geojson?id=' . $this->farmer_id,
+            'color' => 'orange',
+            'title' => $this->t('Sub areas'),
+          ],
+        ];
         $build['item_list'] = [
           '#type' => 'farm_map',
           '#map_settings' => [
-            'url' => $url,
+            'urls' => $layers,
             'title' => $this->t('Sub areas'),
             'geojson' => TRUE,
             'popup' => TRUE,
