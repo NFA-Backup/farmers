@@ -16,26 +16,27 @@
   ],
   "require": {
     "ext-zip": "^1.15",
-    "composer/installers": "^1.2",
+    "composer/installers": "^1.9",
     "cweagans/composer-patches": "^1.7",
-    "drupal/admin_toolbar": "^3.0",
+    "drupal/admin_toolbar": "^3.1",
     "drupal/auto_entitylabel": "^3.0@beta",
     "drupal/blocktabs": "^1.0@beta",
-    "drupal/bootstrap": "^3.19",
+    "drupal/bootstrap": "^3.25",
     "drupal/business_rules": "^2.0@beta",
     "drupal/computed_field": "3.x",
     "drupal/core-composer-scaffold": "^9",
     "drupal/core-project-message": "^9",
     "drupal/core-recommended": "^9",
     "drupal/core-vendor-hardening": "^8.8",
-    "drupal/ctools": "^3.7",
+    "drupal/csv_serialization": "^2.1",
+    "drupal/ctools": "^3.8",
     "drupal/dependent_fields": "^1.0",
     "drupal/entity_reference_views_select": "^1.4",
     "drupal/field_group": "^3.0",
     "drupal/flag": "^4.0@alpha",
-    "drupal/geocoder": "^3.0@beta",
-    "drupal/geofield": "^1.31",
-    "drupal/inline_entity_form": "^1.0",
+    "drupal/geocoder": "^3.29",
+    "drupal/geofield": "^1.42",
+    "drupal/inline_entity_form": "^1.0@RC",
     "drupal/migrate_plus": "^5.1",
     "drupal/migrate_spreadsheet": "^2.0",
     "drupal/migrate_tools": "^5.0",
@@ -130,7 +131,5 @@
         "3172745-2: Provide default year options": "https://www.drupal.org/files/issues/2020-09-23/yearonly-default-options-3172745-2.patch"
       }
     }
-  },
-  "require-dev": {
   }
 }

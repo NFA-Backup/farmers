@@ -52,6 +52,7 @@ module:
   migrate_plus: 0
   migrate_spreadsheet: 0
   migrate_tools: 0
+  mysql: 0
   nfafmis: 0
   nfafmis_migrate: 0
   node: 0
