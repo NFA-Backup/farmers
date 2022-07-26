@@ -11,6 +11,7 @@ use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
 use Drupal\area_summary\Entity\AreaSummary;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\user\Entity\User;
 
 /**
  * Migrate Sub-area date planted values to year planted.
@@ -281,4 +282,27 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
       );
   }
 
+}
+
+/**
+ * Create a Range user for each management unit.
+ */
+function nfafmis_deploy_006_add_range_users(&$sandbox = NULL) {
+
+  $query = \Drupal::entityQuery('taxonomy_term');
+  $query->condition('vid', 'management_unit');
+  $tids = $query->execute();
+  $terms = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
+  foreach ($terms as $term) {
+    // Create user object.
+    $username = str_replace(' ', '.', strtolower($term->label()));
+    $user = User::create([
+      'name' => $username,
+      'mail' => $username . '@nfa.org.ug',
+      'roles' => ['range_user'],
+      'status' => TRUE,
+    ]);
+    $user->set("management_unit", $term->id());
+    $user->save();
+  }
 }

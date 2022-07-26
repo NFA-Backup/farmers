@@ -1,0 +1,14 @@
+uuid: 96cfad29-1637-4823-89d8-43a15fd4c9c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hq_user
+  module:
+    - user
+id: user_add_role_action.hq_user
+label: 'Add the HQ user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: hq_user

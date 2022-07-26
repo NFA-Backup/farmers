@@ -1,0 +1,14 @@
+uuid: 9e9f3f16-fc26-40bd-9f67-c6e7fbd8a956
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.power_admin
+  module:
+    - user
+id: user_remove_role_action.power_admin
+label: 'Remove the Power admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: power_admin

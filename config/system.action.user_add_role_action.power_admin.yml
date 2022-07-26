@@ -1,0 +1,14 @@
+uuid: b38b3245-fb5e-4f88-a6c5-d029f6367193
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.power_admin
+  module:
+    - user
+id: user_add_role_action.power_admin
+label: 'Add the Power admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: power_admin

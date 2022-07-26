@@ -23,16 +23,19 @@ dependencies:
     - node.type.starting_amount
     - node.type.sub_area
     - node.type.thinning_harvest_details
+    - taxonomy.vocabulary.block
   module:
     - comment
     - node
     - system
+    - taxonomy
 id: not_staff
 label: Not-Staff
 weight: 4
 is_admin: null
 permissions:
   - 'access content'
+  - 'access taxonomy overview'
   - 'administer comment types'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
@@ -53,6 +56,7 @@ permissions:
   - 'create payment content'
   - 'create starting_amount content'
   - 'create sub_area content'
+  - 'create terms in block'
   - 'create thinning_harvest_details content'
   - 'delete accounts_detail revisions'
   - 'delete accounts_simplication_temporary revisions'
@@ -145,6 +149,7 @@ permissions:
   - 'edit own starting_amount content'
   - 'edit own sub_area content'
   - 'edit own thinning_harvest_details content'
+  - 'edit terms in block'
   - 'post comments'
   - 'revert historical_payments revisions'
   - 'skip comment approval'

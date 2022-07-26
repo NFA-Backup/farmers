@@ -1,0 +1,16 @@
+uuid: 8db8b262-6752-4236-b01f-fca17336e8c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.block_area_inventory
+  module:
+    - node
+    - system
+id: range_user
+label: 'Range user'
+weight: 5
+is_admin: null
+permissions:
+  - 'access content'
+  - 'revert block_area_inventory revisions'

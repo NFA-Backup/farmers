@@ -1,0 +1,14 @@
+uuid: e242dfd6-69ae-44a2-952b-041993bdb014
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hq_power_user
+  module:
+    - user
+id: user_remove_role_action.hq_power_user
+label: 'Remove the HQ power user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hq_power_user

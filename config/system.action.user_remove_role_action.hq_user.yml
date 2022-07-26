@@ -1,0 +1,14 @@
+uuid: 77b9ca34-1129-4b5c-9643-c788428dd0ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hq_user
+  module:
+    - user
+id: user_remove_role_action.hq_user
+label: 'Remove the HQ user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hq_user

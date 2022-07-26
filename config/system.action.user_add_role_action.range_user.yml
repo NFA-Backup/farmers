@@ -1,0 +1,14 @@
+uuid: 89ed39c8-5c47-434b-86a9-12a7e041385d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.range_user
+  module:
+    - user
+id: user_add_role_action.range_user
+label: 'Add the Range user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: range_user

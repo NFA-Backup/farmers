@@ -1,0 +1,14 @@
+uuid: 9b1d5c3a-3f47-4773-8bd1-9c8c7a07d3b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hq_power_user
+  module:
+    - user
+id: user_add_role_action.hq_power_user
+label: 'Add the HQ power user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: hq_power_user

@@ -4,14 +4,10 @@ status: true
 dependencies:
   config:
     - filter.format.restricted_html
-    - node.type.area_planting_history
-    - node.type.farmer_details
-    - node.type.offer_license
   module:
     - comment
     - contact
     - filter
-    - node
     - search
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -22,8 +18,5 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access site-wide contact form'
-  - 'create area_planting_history content'
-  - 'create farmer_details content'
-  - 'create offer_license content'
   - 'search content'
   - 'use text format restricted_html'

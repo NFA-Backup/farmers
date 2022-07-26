@@ -1,0 +1,20 @@
+uuid: b5a20d43-bed6-4c12-9446-ed4fac79ea95
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - user
+id: user.management_unit
+field_name: management_unit
+entity_type: user
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

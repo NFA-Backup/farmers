@@ -1,0 +1,14 @@
+uuid: 48bd4689-30a8-4600-a1ad-99761c419435
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.range_power_user
+  module:
+    - user
+id: user_remove_role_action.range_power_user
+label: 'Remove the Range power user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: range_power_user

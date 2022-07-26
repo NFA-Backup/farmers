@@ -1,0 +1,12 @@
+uuid: 1682c48c-9b1b-47c4-a447-eb04832aaa48
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: hq_user
+label: 'HQ user'
+weight: 6
+is_admin: null
+permissions:
+  - 'access content'

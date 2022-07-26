@@ -7,6 +7,9 @@ dependencies:
     - field.storage.node.field_gender
     - system.menu.fmis-reports
     - taxonomy.vocabulary.management_unit
+    - user.role.administrator
+    - user.role.hq_power_user
+    - user.role.hq_user
   content:
     - 'taxonomy_term:management_unit:86058692-5b6b-47ca-b3b2-7728e20311e3'
   module:
@@ -765,9 +768,12 @@ display:
         options:
           offset: 0
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            hq_user: hq_user
+            hq_power_user: hq_power_user
       sorts: {  }
       filters:
         tid:
@@ -874,7 +880,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.permissions
+        - user.roles
       tags: {  }
   data_export_1:
     id: data_export_1
@@ -1299,9 +1305,12 @@ display:
         options:
           offset: 0
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            hq_user: hq_user
+            hq_power_user: hq_power_user
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -1373,7 +1382,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - user.permissions
+        - user.roles
       tags: {  }
   data_export_2:
     id: data_export_2
@@ -1850,9 +1859,12 @@ display:
         options:
           offset: 0
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            hq_user: hq_user
+            hq_power_user: hq_power_user
       empty:
         area:
           id: area
@@ -2022,7 +2034,7 @@ display:
         - request_format
         - url
         - user
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_farmer_category_type'
         - 'config:field.storage.node.field_gender'
@@ -2501,9 +2513,12 @@ display:
         options:
           offset: 0
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            hq_user: hq_user
+            hq_power_user: hq_power_user
       empty:
         area:
           id: area
@@ -2708,7 +2723,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_farmer_category_type'
         - 'config:field.storage.node.field_gender'
@@ -3131,9 +3146,11 @@ display:
           prefix: ''
           suffix: ''
       access:
-        type: perm
+        type: role
         options:
-          perm: 'administer area_summary entity'
+          role:
+            administrator: administrator
+            hq_power_user: hq_power_user
       sorts: {  }
       defaults:
         access: false
@@ -3149,7 +3166,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }
   page_2:
     id: page_2
@@ -3574,9 +3591,12 @@ display:
         options:
           offset: 0
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            hq_user: hq_user
+            hq_power_user: hq_power_user
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -3681,5 +3701,5 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }

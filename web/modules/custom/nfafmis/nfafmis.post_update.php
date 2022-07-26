@@ -311,3 +311,11 @@ function nfafmis_post_update_c(&$sandbox = NULL) {
       );
   }
 }
+
+/**
+ * Rebuild node access permissions.
+ */
+function nfafmis_post_update_006_rebuild_node_permissions(&$sandbox = NULL) {
+  // Rebuild node access permissions.
+  node_access_rebuild(TRUE);
+}

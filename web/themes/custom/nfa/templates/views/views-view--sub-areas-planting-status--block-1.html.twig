@@ -1,0 +1,7 @@
+{% extends '@nfa/views/views-view.html.twig' %}
+{% block footer %}
+  {% set roles = user.getroles(TRUE) %}
+  {% if 'range_power_user' in roles or 'hq_power_user' in roles or 'not_staff' in roles or 'nfa_staff' in roles or 'administrator' in roles %}
+    {{ footer }}
+  {% endif %}
+{% endblock %}

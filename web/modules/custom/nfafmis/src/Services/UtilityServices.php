@@ -72,4 +72,26 @@ class UtilityServices {
     return $refParam;
   }
 
+  /**
+   * Get the Range/Management Unit of the logged-in user.
+   *
+   * @return mixed
+   *  Returns based on user role:
+   *    - the assigned Management Unit term if the user has role Range User or
+   *      Range Power User.
+   *    - NULL if the user has role Range User or Range Power User but does not
+   *      have an assigned Management Unit or if the user does not have role
+   *      Range User or Range Power User.
+   */
+  public function getUserManagementUnit() {
+    $roles = $this->currentUser->getRoles();
+
+    if (in_array('range_user', $roles) || in_array('range_power_user', $roles)) {
+      $account = \Drupal::entityTypeManager()->getStorage('user')->load($this->currentUser->id());
+      return $account->management_unit->entity;
+    }
+    else
+      return NULL;
+  }
+
 }
