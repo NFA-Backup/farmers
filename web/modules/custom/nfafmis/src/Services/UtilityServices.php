@@ -84,9 +84,9 @@ class UtilityServices {
    *      Range User or Range Power User.
    */
   public function getUserManagementUnit() {
-    $roles = $this->currentUser->getRoles();
-
-    if (in_array('range_user', $roles) || in_array('range_power_user', $roles)) {
+    // If the user does not have permission to access all management units,
+    // retrieve the range that the user has been assigned to.
+    if (!$this->currentUser->hasPermission('access all management unit content') && !$this->currentUser->hasPermission('edi all management unit content')) {
       $account = \Drupal::entityTypeManager()->getStorage('user')->load($this->currentUser->id());
       return $account->management_unit->entity;
     }

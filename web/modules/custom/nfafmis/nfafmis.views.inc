@@ -21,6 +21,19 @@ function nfafmis_views_data_alter(array &$data) {
       'id' => 'nfafmis_title_query_param',
     ],
   ];
+
+  // Filter to limit lists of terms to those that are in the user's assigned
+  // management unit.
+  $data['taxonomy_term_field_data']['user_management_unit'] = array(
+    'title' => t('Limit to current user\'s Management Unit'),
+    'help' => t('Filter the view to the currently logged in user\'s assigned management unit.'),
+    'group' => t('Taxonomy term'),
+    'filter' => [
+      'id' => 'nfafmis_user_management_unit',
+      'type' => 'yes-no',
+    ],
+
+  );
 }
 
 /**
@@ -37,28 +50,6 @@ function nfafmis_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
       }
     }
   }
-  elseif ($view->storage->get('id') === 'cfr_lists') {
-    // Get the current user's assigned management unit.
-    $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
-    $range = $nfafmis_service_utility->getUserManagementUnit();
-
-    if ($range) {
-      // Add a join to the management unit data table.
-      $definition = [
-        'table' => 'taxonomy_term__management_unit',
-        'type' => 'INNER',
-        'field' => 'entity_id',
-        'left_table' => 'taxonomy_term_field_data',
-        'left_field' => 'tid',
-      ];
-
-      $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition);
-      $query->addRelationship('taxonomy_term__management_unit', $join, 'person');
-
-      // Limit CFRs to those that are in the user's management unit.
-      $query->addWhere('conditions', 'taxonomy_term__management_unit.management_unit_target_id ', $range->id(), '=');
-    }
-  }
 }
 
 /**
@@ -67,7 +58,9 @@ function nfafmis_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
  * @param \Drupal\views\ViewExecutable $view
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
-  $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+  if ($view->id() == 'farmer_main_tab') {
+    $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+  }
 
   // On first load of Farmer Filter the farmer name is not set and the most
   // recent farmer is returned. We don't want that, so don't show farmer details
@@ -81,6 +74,7 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
     }
   }
 
+  // @todo Refactor this as a custom views filter.
   if ($view->id() == 'fmis_reports' && ($view->current_display == 'farmers_full' || $view->current_display == 'farmers_full_export')) {
     // The farmer report view has a relationship to content with an entity
     // reference to the farmer node, i.e. content types with field_farmer_name_ref

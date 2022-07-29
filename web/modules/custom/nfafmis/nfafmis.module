@@ -903,9 +903,9 @@ function nfafmis_node_grants(AccountInterface $account, $op) {
   $grants = [];
   $roles = $account->getRoles();
 
-  // If the user is a Range user, retrieve the range that the user has been
-  // assigned to.
-  if (in_array('range_user', $roles) || in_array('range_power_user', $roles)) {
+  // If the user does not have permission to access all management units,
+  // retrieve the range that the user has been assigned to.
+  if (!$account->hasPermission('access all management unit content') && !$account->hasPermission('edi all management unit content')) {
     $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
     $range = $nfafmis_service_utility->getUserManagementUnit();
 
@@ -923,16 +923,15 @@ function nfafmis_node_grants(AccountInterface $account, $op) {
     }
   }
 
-  // HQ User can view all nodes.
-  if (in_array('hq_user', $roles)) {
+  // Set grants for users with read access to all management units.
+  if ($account->hasPermission('access all management unit content')) {
     $grants['nfafmis_view'] = [
       'gid' => 1,
     ];
   }
 
-  // HQ Power User can edit all nodes.
-  // @todo Not Staff and NFA Staff will be deprecated.
-  if (in_array('hq_power_user', $roles) || in_array('not_staff', $roles) || in_array('nfa_staff', $roles)) {
+  // Set grants for users with full access to all management units.
+  if ($account->hasPermission('edit all management unit content')) {
     $grants['nfafmis_all'] = [
       'gid' => 1,
     ];

@@ -26,6 +26,7 @@ dependencies:
     - taxonomy.vocabulary.block
   module:
     - comment
+    - nfafmis
     - node
     - system
     - taxonomy
@@ -34,6 +35,7 @@ label: Not-Staff
 weight: 4
 is_admin: null
 permissions:
+  - 'access all management unit content'
   - 'access content'
   - 'access taxonomy overview'
   - 'administer comment types'
@@ -108,6 +110,7 @@ permissions:
   - 'delete starting_amount revisions'
   - 'delete sub_area revisions'
   - 'delete thinning_harvest_details revisions'
+  - 'edit all management unit content'
   - 'edit any accounts_detail content'
   - 'edit any accounts_simplication_temporary content'
   - 'edit any annual_charges content'

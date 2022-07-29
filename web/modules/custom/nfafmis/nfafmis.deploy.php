@@ -288,11 +288,11 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
  * Create a Range user for each management unit.
  */
 function nfafmis_deploy_006_add_range_users(&$sandbox = NULL) {
-
-  $query = \Drupal::entityQuery('taxonomy_term');
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $query = $term_storage->getQuery();
   $query->condition('vid', 'management_unit');
   $tids = $query->execute();
-  $terms = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
+  $terms = $term_storage->loadMultiple($tids);
   foreach ($terms as $term) {
     // Create user object.
     $username = str_replace(' ', '.', strtolower($term->label()));

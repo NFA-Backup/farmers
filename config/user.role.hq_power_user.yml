@@ -24,6 +24,7 @@ dependencies:
     - node.type.sub_area
     - node.type.thinning_harvest_details
   module:
+    - nfafmis
     - node
     - system
 id: hq_power_user
@@ -31,6 +32,7 @@ label: 'HQ power user'
 weight: 10
 is_admin: null
 permissions:
+  - 'access all management unit content'
   - 'access content'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
@@ -52,3 +54,4 @@ permissions:
   - 'create starting_amount content'
   - 'create sub_area content'
   - 'create thinning_harvest_details content'
+  - 'edit all management unit content'
