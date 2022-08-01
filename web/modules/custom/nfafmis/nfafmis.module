@@ -761,7 +761,7 @@ function nfafmis_form_ajax_validate(array &$form, FormStateInterface $form_state
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_FORM_ID_alter() on behalf of 'user_form'.
  */
 function nfafmis_form_user_form_alter(array &$form, FormStateInterface $form_state) {
   // Show the Management unit/Range field for Range users only.
@@ -778,7 +778,6 @@ function nfafmis_form_user_form_alter(array &$form, FormStateInterface $form_sta
     ],
   ];
 
-  // Only users with account admin permissions can edit the management unit.
   if (!\Drupal::currentUser()->hasPermission('administer users')) {
     $form['management_unit']['#disabled'] = 'disabled';
   }
@@ -791,8 +790,6 @@ function nfafmis_form_user_form_alter(array &$form, FormStateInterface $form_sta
 function nfafmis_node_access_records(NodeInterface $node) {
   $grants = [];
 
-  // Content types that will be restricted according to the grants of the user
-  // accessing the node.
   $bundles = ['farmer_details', 'offer_license', 'sub_area'];
   if (!in_array($node->bundle(), $bundles) || !$node->isPublished()) {
     // Access to other content types will be determined by standard permissions.
@@ -807,9 +804,10 @@ function nfafmis_node_access_records(NodeInterface $node) {
     // Retrieve the Areas that the farmer has allocations in, and from there the
     // CFRs and Ranges (Management Unit) that the area is in.
     // Load Sub area nodes ids.
-    $nids = \Drupal::entityQuery('node')
+    $nids = $node_storage->getQuery()
       ->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref', $node->id())
+      ->condition('status', NodeInterface::PUBLISHED)
       ->accessCheck(FALSE)
       ->execute();
     $areas = $node_storage->loadMultiple($nids);
@@ -817,7 +815,9 @@ function nfafmis_node_access_records(NodeInterface $node) {
     foreach ($areas as $area) {
       $range = $area->field_central_forest_reserve->entity->management_unit->entity;
       // Range Users are granted 'view' permission to nodes in their range.
-      // Remove duplicates by setting explicit array key.
+      // Since a farmer can have more than one area in a range we have to avoid
+      // adding duplicate realm+gid records. We do that by using the range id as
+      // the $grants array key.
       $grants[$range->id()] = [
         'realm' => nfafmis_range_access_realm($range),
         'gid' => $range->id(),
@@ -827,6 +827,11 @@ function nfafmis_node_access_records(NodeInterface $node) {
         'priority' => 0,
       ];
       // Range Power Users are granted all permissions to nodes in their range.
+      // Because we're using the range id as the array key we need to create
+      // a second unique array key for the power user grants. We add 10000 to
+      // the range id to achieve this. There are 15 ranges and it is unlikely
+      // that more will be added, so while 10000 is an arbitary choice it serves
+      // the purpose.
       $grants[$range->id() + 10000] = [
         'realm' => nfafmis_range_access_realm($range, TRUE),
         'gid' => $range->id(),
@@ -848,9 +853,8 @@ function nfafmis_node_access_records(NodeInterface $node) {
         $range = $cfr->management_unit->entity;
       }
       else {
-        // @todo flag sub areas with no assigned area and areas with no
-        // assigned CFRs.
-        $stop = TRUE;
+        Drupal::logger('NFA-FMIS')
+          ->warning('Sub-area with nid @id has no assigned area', ['@id' => $node->id()]);
       }
     }
 
@@ -897,7 +901,6 @@ function nfafmis_node_access_records(NodeInterface $node) {
 
 /**
  * Implements hook_node_grants().
- * Return the grants (node access permissions) that this user account has.
  */
 function nfafmis_node_grants(AccountInterface $account, $op) {
   $grants = [];
