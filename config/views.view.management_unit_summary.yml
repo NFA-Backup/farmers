@@ -7,9 +7,6 @@ dependencies:
     - field.storage.node.field_gender
     - system.menu.fmis-reports
     - taxonomy.vocabulary.management_unit
-    - user.role.administrator
-    - user.role.hq_power_user
-    - user.role.hq_user
   content:
     - 'taxonomy_term:management_unit:86058692-5b6b-47ca-b3b2-7728e20311e3'
   module:
@@ -285,8 +282,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access all management unit content'
       cache:
         type: tag
         options: {  }
@@ -417,6 +415,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.permissions
       tags: {  }
   attachment_2:
     id: attachment_2
@@ -767,13 +766,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_user: hq_user
-            hq_power_user: hq_power_user
       sorts: {  }
       filters:
         tid:
@@ -833,7 +825,7 @@ display:
         groups:
           1: AND
       defaults:
-        access: false
+        access: true
         group_by: false
         relationships: false
         fields: false
@@ -880,7 +872,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_1:
     id: data_export_1
@@ -1304,13 +1296,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_user: hq_user
-            hq_power_user: hq_power_user
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -1351,7 +1336,7 @@ display:
               alias: ''
               raw_output: false
       defaults:
-        access: false
+        access: true
         title: false
         group_by: false
         style: false
@@ -1382,7 +1367,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_2:
     id: data_export_2
@@ -1858,13 +1843,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_user: hq_user
-            hq_power_user: hq_power_user
       empty:
         area:
           id: area
@@ -1977,7 +1955,7 @@ display:
               raw_output: false
       defaults:
         empty: false
-        access: false
+        access: true
         title: false
         pager: false
         group_by: false
@@ -2034,7 +2012,7 @@ display:
         - request_format
         - url
         - user
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_farmer_category_type'
         - 'config:field.storage.node.field_gender'
@@ -2512,13 +2490,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_user: hq_user
-            hq_power_user: hq_power_user
       empty:
         area:
           id: area
@@ -2666,7 +2637,7 @@ display:
         options: {  }
       defaults:
         empty: false
-        access: false
+        access: true
         title: false
         pager: false
         group_by: false
@@ -2723,7 +2694,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_farmer_category_type'
         - 'config:field.storage.node.field_gender'
@@ -3145,15 +3116,9 @@ display:
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_power_user: hq_power_user
       sorts: {  }
       defaults:
-        access: false
+        access: true
         title: false
         fields: false
         sorts: false
@@ -3166,7 +3131,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
   page_2:
     id: page_2
@@ -3590,13 +3555,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            hq_user: hq_user
-            hq_power_user: hq_power_user
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -3670,7 +3628,7 @@ display:
         type: fields
         options: {  }
       defaults:
-        access: false
+        access: true
         title: false
         group_by: false
         style: false
@@ -3701,5 +3659,5 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }

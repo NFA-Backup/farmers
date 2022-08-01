@@ -785,7 +785,6 @@ function nfafmis_form_user_form_alter(array &$form, FormStateInterface $form_sta
 
 /**
  * Implements hook_node_access_records().
- * Set the rules that determine who has access to this $node.
  */
 function nfafmis_node_access_records(NodeInterface $node) {
   $grants = [];
@@ -908,7 +907,7 @@ function nfafmis_node_grants(AccountInterface $account, $op) {
 
   // If the user does not have permission to access all management units,
   // retrieve the range that the user has been assigned to.
-  if (!$account->hasPermission('access all management unit content') && !$account->hasPermission('edi all management unit content')) {
+  if (!$account->hasPermission('access all management unit content') && !$account->hasPermission('edit all management unit content')) {
     $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
     $range = $nfafmis_service_utility->getUserManagementUnit();
 
