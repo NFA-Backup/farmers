@@ -282,8 +282,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access all management unit content'
       cache:
         type: tag
         options: {  }
@@ -414,6 +415,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.permissions
       tags: {  }
   attachment_2:
     id: attachment_2
@@ -764,10 +766,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: perm
-        options:
-          perm: 'access content'
       sorts: {  }
       filters:
         tid:
@@ -827,7 +825,7 @@ display:
         groups:
           1: AND
       defaults:
-        access: false
+        access: true
         group_by: false
         relationships: false
         fields: false
@@ -1298,10 +1296,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: perm
-        options:
-          perm: 'access content'
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -1342,7 +1336,7 @@ display:
               alias: ''
               raw_output: false
       defaults:
-        access: false
+        access: true
         title: false
         group_by: false
         style: false
@@ -1849,10 +1843,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: perm
-        options:
-          perm: 'access content'
       empty:
         area:
           id: area
@@ -1965,7 +1955,7 @@ display:
               raw_output: false
       defaults:
         empty: false
-        access: false
+        access: true
         title: false
         pager: false
         group_by: false
@@ -2500,10 +2490,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: perm
-        options:
-          perm: 'access content'
       empty:
         area:
           id: area
@@ -2651,7 +2637,7 @@ display:
         options: {  }
       defaults:
         empty: false
-        access: false
+        access: true
         title: false
         pager: false
         group_by: false
@@ -3130,13 +3116,9 @@ display:
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
-      access:
-        type: perm
-        options:
-          perm: 'administer area_summary entity'
       sorts: {  }
       defaults:
-        access: false
+        access: true
         title: false
         fields: false
         sorts: false
@@ -3573,10 +3555,6 @@ display:
         type: none
         options:
           offset: 0
-      access:
-        type: perm
-        options:
-          perm: 'access content'
       sorts: {  }
       filters: {  }
       filter_groups:
@@ -3650,7 +3628,7 @@ display:
         type: fields
         options: {  }
       defaults:
-        access: false
+        access: true
         title: false
         group_by: false
         style: false

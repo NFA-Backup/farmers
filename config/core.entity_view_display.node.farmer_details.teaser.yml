@@ -27,6 +27,7 @@ content:
     weight: 100
     region: content
 hidden:
+  comment: true
   field_email: true
   field_farmer_category_type: true
   field_gender: true

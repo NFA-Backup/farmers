@@ -38,3 +38,4 @@ visibility:
       administrator: administrator
       nfa_staff: nfa_staff
       not_staff: not_staff
+      power_admin: power_admin

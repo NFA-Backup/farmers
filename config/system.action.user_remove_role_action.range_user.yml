@@ -1,0 +1,14 @@
+uuid: 6c38e5fd-e68b-4eb4-9c91-a3d2374b4ce2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.range_user
+  module:
+    - user
+id: user_remove_role_action.range_user
+label: 'Remove the Range user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: range_user

@@ -13,7 +13,6 @@ module:
   blocktabs: 0
   breakpoint: 0
   ckeditor: 0
-  color: 0
   comment: 0
   computed_field: 0
   config: 0
@@ -52,6 +51,7 @@ module:
   migrate_plus: 0
   migrate_spreadsheet: 0
   migrate_tools: 0
+  mysql: 0
   nfafmis: 0
   nfafmis_migrate: 0
   node: 0

@@ -1,0 +1,6 @@
+{% extends '@nfa/views/views-view.html.twig' %}
+{% block header %}
+  {% if user.hasPermission('create farmer_details content') %}
+    {{ header }}
+  {% endif %}
+{% endblock %}

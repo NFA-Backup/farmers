@@ -1,0 +1,57 @@
+uuid: 18985bed-3b4d-459f-a163-3d935ab5c4e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.accounts_detail
+    - node.type.accounts_simplication_temporary
+    - node.type.annual_charges
+    - node.type.area_planting_history
+    - node.type.area_site_index_zonations
+    - node.type.block_area_inventory
+    - node.type.charge
+    - node.type.farmer_details
+    - node.type.fee_payment_nfa
+    - node.type.harvesting_miscellaneous_fees
+    - node.type.historical_payments
+    - node.type.index_zone_annual_rent_charges
+    - node.type.inventory
+    - node.type.invoice
+    - node.type.land_rent_rates
+    - node.type.offer_license
+    - node.type.payment
+    - node.type.starting_amount
+    - node.type.sub_area
+    - node.type.thinning_harvest_details
+  module:
+    - nfafmis
+    - node
+    - system
+id: hq_power_user
+label: 'HQ power user'
+weight: 10
+is_admin: null
+permissions:
+  - 'access all management unit content'
+  - 'access content'
+  - 'create accounts_detail content'
+  - 'create accounts_simplication_temporary content'
+  - 'create annual_charges content'
+  - 'create area_planting_history content'
+  - 'create area_site_index_zonations content'
+  - 'create block_area_inventory content'
+  - 'create charge content'
+  - 'create farmer_details content'
+  - 'create fee_payment_nfa content'
+  - 'create harvesting_miscellaneous_fees content'
+  - 'create historical_payments content'
+  - 'create index_zone_annual_rent_charges content'
+  - 'create inventory content'
+  - 'create invoice content'
+  - 'create land_rent_rates content'
+  - 'create offer_license content'
+  - 'create payment content'
+  - 'create starting_amount content'
+  - 'create sub_area content'
+  - 'create thinning_harvest_details content'
+  - 'edit all management unit content'

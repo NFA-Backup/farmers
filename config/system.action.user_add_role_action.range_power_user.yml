@@ -1,0 +1,14 @@
+uuid: ba6de1b8-c890-4f3c-9751-955d13b94e3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.range_power_user
+  module:
+    - user
+id: user_add_role_action.range_power_user
+label: 'Add the Range power user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: range_power_user

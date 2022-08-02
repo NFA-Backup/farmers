@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_content
     - system
+    - user
   theme:
     - nfa
 id: addfarmerbutton_2
@@ -29,3 +30,14 @@ visibility:
     negate: false
     context_mapping: {  }
     pages: "/tree-farmer-overview\r\n/tree-farmer-overview/details\r\n/tree-farmer-overview/licences"
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator
+      nfa_staff: nfa_staff
+      not_staff: not_staff
+      range_power_user: range_power_user
+      hq_power_user: hq_power_user

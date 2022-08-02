@@ -21,6 +21,19 @@ function nfafmis_views_data_alter(array &$data) {
       'id' => 'nfafmis_title_query_param',
     ],
   ];
+
+  // Filter to limit lists of terms to those that are in the user's assigned
+  // management unit.
+  $data['taxonomy_term_field_data']['user_management_unit'] = array(
+    'title' => t('Limit to current user\'s Management Unit'),
+    'help' => t('Filter the view to the currently logged in user\'s assigned management unit.'),
+    'group' => t('Taxonomy term'),
+    'filter' => [
+      'id' => 'nfafmis_user_management_unit',
+      'type' => 'yes-no',
+    ],
+
+  );
 }
 
 /**
@@ -33,6 +46,51 @@ function nfafmis_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
         // Make the farmer name search case sensitive.
         if ($condition['field'] == 'node_field_data.title') {
           $condition['operator'] = 'LIKE BINARY';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ */
+function nfafmis_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'farmer_main_tab') {
+    $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+  }
+
+  // On first load of Farmer Filter the farmer name is not set and the most
+  // recent farmer is returned. We don't want that, so don't show farmer details
+  // if the name filter was not set.
+  if ($view->id() == 'farmer_filter') {
+    if (empty($view->getExposedInput()['title'])) {
+      $result = $view->result;
+      foreach ($result as $i => $row) {
+        $view->result[$i]->_entity = NULL;
+      }
+    }
+  }
+
+  // @todo Refactor this as a custom views filter.
+  if ($view->id() == 'fmis_reports' && ($view->current_display == 'farmers_full' || $view->current_display == 'farmers_full_export')) {
+    // The farmer report view has a relationship to content with an entity
+    // reference to the farmer node, i.e. content types with field_farmer_name_ref
+    // field. There are multiple content types with that field but we only want to
+    // include results where the referencing node is an Offer/License. We cannot
+    // simply add a filter to the view to filter by content type because
+    // doing that limits the results to farmers that have Offer/License nodes.
+    // We need to show all farmers, those with Offer/License and those without.
+    // So here we remove results where the related entity is not an Offer/License.
+    foreach ($view->result as $key => $row) {
+      if (!empty($row->_relationship_entities)) {
+        if (isset($row->_relationship_entities['reverse__node__field_farmer_name_ref']) && $row->_relationship_entities['reverse__node__field_farmer_name_ref']->bundle() != 'offer_license') {
+          unset($view->result[$key]);
+        }
+        if (isset($row->_relationship_entities['reverse__node__field_areas_id']) && $row->_relationship_entities['reverse__node__field_areas_id']->bundle() != 'sub_area') {
+          unset($view->result[$key]);
         }
       }
     }

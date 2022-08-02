@@ -1,0 +1,53 @@
+uuid: 2c03dd1b-3ee8-4d00-b415-7bbb30627172
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.block_area_inventory
+    - node.type.page
+    - taxonomy.vocabulary.block
+  module:
+    - area_summary
+    - block
+    - block_content
+    - comment
+    - contact
+    - farm_map
+    - field_ui
+    - geocoder
+    - node
+    - system
+    - taxonomy
+    - toolbar
+id: power_admin
+label: 'Power admin'
+weight: 8
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access geocoder api endpoints'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer area_summary entity'
+  - 'administer block_content display'
+  - 'administer block_content fields'
+  - 'administer blocks'
+  - 'administer comments'
+  - 'administer contact forms'
+  - 'administer farm map'
+  - 'administer users'
+  - 'create article content'
+  - 'create page content'
+  - 'create terms in block'
+  - 'delete terms in block'
+  - 'edit any article content'
+  - 'edit any page content'
+  - 'edit own article content'
+  - 'edit own page content'
+  - 'edit terms in block'
+  - 'revert block_area_inventory revisions'
+  - 'view the administration theme'
