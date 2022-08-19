@@ -76,4 +76,8 @@ function nfa_preprocess_views_view(&$variables) {
     $variables['attachment_before'] = array_merge($variables['feed_icons'], $variables['attachment_before']);
     unset($variables['feed_icons']);
   }
+
+  if ($variables['view']->id() == 'farmer_main_tab') {
+    $variables['farmer_name'] = \Drupal::request()->query->get('title');
+  }
 }
