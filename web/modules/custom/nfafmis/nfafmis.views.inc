@@ -65,7 +65,7 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
   // On first load of Farmer Filter the farmer name is not set and the most
   // recent farmer is returned. We don't want that, so don't show farmer details
   // if the name filter was not set.
-  if ($view->id() == 'farmer_filter') {
+  if ($view->id() == 'farmer_filter' || $view->id() == 'farmer_main_tab') {
     if (empty($view->getExposedInput()['title'])) {
       $result = $view->result;
       foreach ($result as $i => $row) {

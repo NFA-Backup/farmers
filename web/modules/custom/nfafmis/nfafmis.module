@@ -525,8 +525,9 @@ function nfafmis_preprocess_views_view_field(&$variables) {
       $variables['output'] = $nfafmis_service_farmer->getAreaLandRentAndFeesData($farmer_id, $offer_licence_id);;
     }
   }
+
   // Preprocess views view field_physical_address to show SUMMARY-CHARGES Tab.
-  if ($view->storage->id() == 'farmer_main_tab' && $view->current_display == 'page_6') {
+  if ($view->storage->id() == 'farmer_main_tab' && $view->current_display == 'page_6' && !empty($view->exposed_data['title'])) {
     $farmer_id = $row->nid;
     if ($field->field == 'field_physical_address') {
       $variables['output'] = $nfafmis_service_farmer->getSummaryChargesData($farmer_id);
@@ -553,18 +554,21 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
   if ($view->id() == 'sub_areas_planting_status' &&
     ($display_id == 'block_4' || $display_id == 'block_6' || $display_id == 'block_8')) {
     // We have pass farmer Id intentionally to get offer license ID from that.
-    if (!empty($args)) {
+    if (!empty($args) && !empty($args[0])) {
       $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       if ($offer_license_ids) {
         $args = [$offer_license_ids];
       }
+    }
+    else {
+      $args = [0];
     }
   }
   // Set argument for Inventory.
   if ($view->id() == 'sub_areas_planting_status' &&
    ($display_id == 'block_2' || $display_id == 'block_3')) {
     // We have pass farmer Id intentionally to get offer license ID from that.
-    if (!empty($args)) {
+    if (!empty($args) && !(empty($args[0]))) {
       $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);
       // Now get all sub-area ids based on area(offer license).
       if ($offer_license_ids) {
@@ -574,6 +578,9 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
           $args = [$sub_areas_ids];
         }
       }
+    }
+    else {
+      $args = [0];
     }
   }
 }
