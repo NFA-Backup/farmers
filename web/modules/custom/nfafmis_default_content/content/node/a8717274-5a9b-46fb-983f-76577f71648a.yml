@@ -1,0 +1,57 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: a8717274-5a9b-46fb-983f-76577f71648a
+  bundle: farmer_details
+  default_langcode: en
+  depends:
+    9c539fe6-b125-4d0a-b216-8e48ad19352c: user
+    61aa2db4-052f-427c-80b4-25ec96b163bd: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 9c539fe6-b125-4d0a-b216-8e48ad19352c
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 9c539fe6-b125-4d0a-b216-8e48ad19352c
+  title:
+    -
+      value: 'Ernestine Potter'
+  created:
+    -
+      value: 1622204116
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  comment:
+    -
+      status: 2
+      cid: 0
+      last_comment_timestamp: 1622204116
+      last_comment_name: ''
+      last_comment_uid: 46
+      comment_count: 0
+  field_farmer_category_type:
+    -
+      entity: 61aa2db4-052f-427c-80b4-25ec96b163bd
+  field_gender:
+    -
+      value: female
+  field_historical_information:
+    -
+      value: "1.15/12/2005.Application to renewal license for tree planting.\r\n2.04/10/2002.form no_xxxx, the forest act permit.\r\n3.11/09/2002.offer letter for 100ha ,for commercial forest plantations to establishment.\r\n4.04/101/2002.Permit no_xxxxx,amount 1,000,000/=.as payment of commitment for ground rent for 100ha in kasana-kasambya cfr for the establishment of saw logs.\r\n5.04/2006.license no 08/2003,for 100ha, this license is valid for a period of 50 years from 4/10/2002-03/10/2052.\r\n6.04/2006.license agreement issued.\r\n7.15/09/2008.payment advice, ref: NFAx ,amount 1,470,200/=, as land license fees@3,000/= for 100ha from 04/10/2002-03/10/2008.\r\n8.28/03/2011,perfomance evaluation of land offer for private tree farming in kasana kasambya cfr.\r\n9.forest management plant includes.\r\n10.04/04/2011,receipt no_xxxxx,amount 2,677,547/=,as land license fees for private tree planting of 500ha in kasana -kasambya cfr.\r\n11.04/04/2011,invoice no_ NFA xx/xxxx, amount 2,677,547, as land license for private tree planting of 500ha in kasana kasambya cfr.\r\n"
+

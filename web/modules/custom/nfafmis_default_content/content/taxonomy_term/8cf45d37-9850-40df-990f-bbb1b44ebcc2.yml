@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 8cf45d37-9850-40df-990f-bbb1b44ebcc2
+  bundle: management_unit
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Karamoja
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /karamoja
+      langcode: en
+      pathauto: 1

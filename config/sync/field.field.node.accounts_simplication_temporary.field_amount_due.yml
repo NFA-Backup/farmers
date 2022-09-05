@@ -1,0 +1,25 @@
+uuid: 4b9e3982-cf26-4c64-af68-5c5cb2804312
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_amount_due
+    - node.type.accounts_simplication_temporary
+  module:
+    - computed_field
+id: node.accounts_simplication_temporary.field_amount_due
+field_name: field_amount_due
+entity_type: node
+bundle: accounts_simplication_temporary
+label: 'Amount due'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  prefix: UGX
+  suffix: ''
+field_type: computed_integer

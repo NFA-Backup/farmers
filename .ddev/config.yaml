@@ -1,5 +1,5 @@
-name: fmi
-type: drupal8
+name: farmers
+type: drupal9
 docroot: "web"
 php_version: "7.4"
 webserver_type: nginx-fpm

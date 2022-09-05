@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: f1ce86c0-9b8d-49f1-adb5-807dd1a28734
+  bundle: species_variety
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'Pinus oocarpa'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /species-variety/pinus-oocarpa
+      langcode: en
+      pathauto: 1

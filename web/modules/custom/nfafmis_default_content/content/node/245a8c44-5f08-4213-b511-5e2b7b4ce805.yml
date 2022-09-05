@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 245a8c44-5f08-4213-b511-5e2b7b4ce805
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    be9fd85d-ef42-4d03-a410-0fc64dbdfbd2: user
+    3caec250-e961-4f1d-afa3-994071b5bde3: node
+    ec530e5a-1255-490b-b545-669db9a937e8: taxonomy_term
+    3fb17976-4f87-4687-acfb-9eb68525b8c1: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: be9fd85d-ef42-4d03-a410-0fc64dbdfbd2
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: be9fd85d-ef42-4d03-a410-0fc64dbdfbd2
+  title:
+    -
+      value: 'Sub-area - 12594'
+  created:
+    -
+      value: 1647448929
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_areas_id:
+    -
+      entity: 3caec250-e961-4f1d-afa3-994071b5bde3
+  field_area_harvested:
+    -
+      value: false
+  field_date_planted:
+    -
+      value: '2022-03-16'
+  field_map:
+    -
+      value: 'POLYGON((32.52553939819335 1.1454200654738287,32.53068923950194 1.1498823659581632,32.53704071044921 1.1443903028358022,32.53137588500976 1.1425024037061746,32.52553939819335 1.1454200654738287))'
+      geo_type: Polygon
+      lat: 1.1457591729653
+      lon: 32.531164689041
+      left: 32.525539398193
+      top: 1.1498823659582
+      right: 32.537040710449
+      bottom: 1.1425024037062
+      geohash: s8pn
+      latlon: '1.1457591729653,32.531164689041'
+  field_purpose:
+    -
+      entity: ec530e5a-1255-490b-b545-669db9a937e8
+  field_species_variety:
+    -
+      entity: 3fb17976-4f87-4687-acfb-9eb68525b8c1
+  field_subarea_planted:
+    -
+      value: '455.00'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2022

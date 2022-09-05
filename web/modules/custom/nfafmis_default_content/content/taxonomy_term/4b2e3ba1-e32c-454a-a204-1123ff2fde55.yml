@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 4b2e3ba1-e32c-454a-a204-1123ff2fde55
+  bundle: crop_maintenance
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Good
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /crop-maintenance/good
+      langcode: en
+      pathauto: 0

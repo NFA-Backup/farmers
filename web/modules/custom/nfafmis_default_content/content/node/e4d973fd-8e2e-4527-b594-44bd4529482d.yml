@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e4d973fd-8e2e-4527-b594-44bd4529482d
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    a406d176-e418-49ef-991a-3225f0ce93b6: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12074'
+  created:
+    -
+      value: 1632831808
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: a406d176-e418-49ef-991a-3225f0ce93b6
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.510911184789 0.81116285761879, 31.511357999858 0.81245299968605, 31.510578999856 0.81227399958853, 31.509361999856 0.8119209998386, 31.509852000182 0.81097099993645, 31.510911184789 0.81116285761879))'
+      geo_type: Polygon
+      lat: 0.81169615353866
+      lon: 31.510383874405
+      left: 31.509361999856
+      top: 0.81245299968605
+      right: 31.511357999858
+      bottom: 0.81097099993645
+      geohash: s8nkt5
+      latlon: '0.81169615353866,31.510383874405'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '2.15'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2014

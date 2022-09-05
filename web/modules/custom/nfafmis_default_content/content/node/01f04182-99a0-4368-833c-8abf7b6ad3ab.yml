@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 01f04182-99a0-4368-833c-8abf7b6ad3ab
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    50d162d6-92cc-42c1-a8fa-de8ab8a467a4: user
+    b08ab5fc-d817-4405-81eb-e7164b57520c: node
+    c9f0cd97-ea0f-4e6e-9c79-c1137c150704: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    b632c8c0-95d7-49b6-b9d2-b70542b6588a: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  title:
+    -
+      value: 'Sub-area - 12309'
+  created:
+    -
+      value: 1632916756
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: b08ab5fc-d817-4405-81eb-e7164b57520c
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-29'
+  field_kml_file:
+    -
+      entity: c9f0cd97-ea0f-4e6e-9c79-c1137c150704
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.557731331962 1.2086780516133, 31.557623716405 1.2089008822193, 31.557217107501 1.208701944193, 31.557419731751 1.2082879425251, 31.557824193643 1.2084857704751, 31.557731331962 1.2086780516133))'
+      geo_type: Polygon
+      lat: 1.208594312396
+      lon: 31.557520858837
+      left: 31.557217107501
+      top: 1.2089008822193
+      right: 31.557824193643
+      bottom: 1.2082879425251
+      geohash: s8nqy
+      latlon: '1.208594312396,31.557520858837'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: b632c8c0-95d7-49b6-b9d2-b70542b6588a
+  field_subarea_planted:
+    -
+      value: '0.25'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2019

@@ -1,0 +1,10 @@
+uuid: 13e12200-3cb1-4185-a3f7-1c0990b2c489
+langcode: en
+status: true
+dependencies: {  }
+id: sub_area
+label: Sub-area
+icon_uuid: null
+icon_default: null
+description: Sub-area
+behavior_plugins: {  }

@@ -1,0 +1,44 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 49c59df2-2354-4725-900f-77cba0ef656f
+  bundle: central_forest_reserve
+  default_langcode: en
+  depends:
+    86058692-5b6b-47ca-b3b2-7728e20311e3: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Abera
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /achwa-river/abera
+      langcode: en
+      pathauto: 1
+  geofield_map:
+    -
+      value: 'POLYGON ((32.362415553815 2.8578487082532, 32.365050933999 2.8578561137016, 32.379574933114 2.8578971753101, 32.379611416853 2.7998959257438, 32.377872768929 2.7998746435708, 32.363540192071 2.799698127838, 32.363373294739 2.8083313150598, 32.362447681627 2.8561852852435, 32.362415553815 2.8578487082532))'
+      geo_type: Polygon
+      lat: 2.8291515001056
+      lon: 32.371278613577
+      left: 32.362415553815
+      top: 2.8578971753101
+      right: 32.379611416853
+      bottom: 2.799698127838
+      geohash: s8
+      latlon: '2.8291515001056,32.371278613577'
+  management_unit:
+    -
+      entity: 86058692-5b6b-47ca-b3b2-7728e20311e3

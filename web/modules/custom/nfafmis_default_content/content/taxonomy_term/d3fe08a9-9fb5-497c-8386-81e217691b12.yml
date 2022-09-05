@@ -1,0 +1,32 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: d3fe08a9-9fb5-497c-8386-81e217691b12
+  bundle: block
+  default_langcode: en
+  depends:
+    fe83aff3-0c82-4bee-a2e6-ab5080ea9eff: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: AR/ABU/011
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /achwa-river/abunga/ar-abu-011
+      langcode: en
+      pathauto: 1
+  cfr:
+    -
+      entity: fe83aff3-0c82-4bee-a2e6-ab5080ea9eff

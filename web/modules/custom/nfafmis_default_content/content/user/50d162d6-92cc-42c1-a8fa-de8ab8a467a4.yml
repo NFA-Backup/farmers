@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  preferred_admin_langcode:
+    -
+      value: en
+  name:
+    -
+      value: 'Mollie Sharpe'
+  pass:
+    -
+      value: $S$EcNkGiukPgwClMl5TnhB5Uqh4njH.4najJHaQI505YccojztJ0EL
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: exampleemail@example.com
+  timezone:
+    -
+      value: Asia/Calcutta
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1592837831
+  access:
+    -
+      value: 1633340711
+  login:
+    -
+      value: 1633070412
+  init:
+    -
+      value: exampleemail@example.com
+  roles:
+    -
+      target_id: not_staff
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

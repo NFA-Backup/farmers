@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 66741d1a-b745-459a-9d61-e10f0964f96f
+  bundle: species_variety
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'Eucalyptus GU 609'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /species-variety/eucalyptus-gu-609
+      langcode: en
+      pathauto: 1

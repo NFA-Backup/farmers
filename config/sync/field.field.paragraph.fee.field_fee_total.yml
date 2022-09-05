@@ -1,0 +1,25 @@
+uuid: e04360c0-1d26-4278-8fcf-0f0a53dd09ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fee_total
+    - paragraphs.paragraphs_type.fee
+  module:
+    - computed_field
+id: paragraph.fee.field_fee_total
+field_name: field_fee_total
+entity_type: paragraph
+bundle: fee
+label: 'Fee total'
+description: 'Total amount due'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  prefix: ''
+  suffix: ''
+field_type: computed_integer

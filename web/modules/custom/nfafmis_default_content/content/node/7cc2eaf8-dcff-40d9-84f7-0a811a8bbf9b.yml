@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7cc2eaf8-dcff-40d9-84f7-0a811a8bbf9b
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    a10f5364-7ebe-4940-9810-5d1edf12d0dc: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    aa3356c0-cef3-4f9d-af0c-063205373152: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12070'
+  created:
+    -
+      value: 1632831273
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: a10f5364-7ebe-4940-9810-5d1edf12d0dc
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.492500999865 0.78273499967808, 31.491666999922 0.78478299965631, 31.490786000268 0.78475999973084, 31.490050000331 0.78390900026338, 31.492500999865 0.78273499967808))'
+      geo_type: Polygon
+      lat: 0.78391262583403
+      lon: 31.491318235119
+      left: 31.490050000331
+      top: 0.78478299965631
+      right: 31.492500999865
+      bottom: 0.78273499967808
+      geohash: s8nkkw
+      latlon: '0.78391262583403,31.491318235119'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: aa3356c0-cef3-4f9d-af0c-063205373152
+  field_subarea_planted:
+    -
+      value: '2.94'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2013

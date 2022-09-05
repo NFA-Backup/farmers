@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 630ac37f-d98e-4c85-acae-5254d274751f
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    93afee5f-1705-4ee8-9d99-56fd5776d6d3: user
+    4c187f00-3cb7-4f0f-87fc-b50cabdb1efe: node
+    c91e00f3-2163-4caa-89f4-e826b4ba1998: file
+    11d4d167-8fde-4357-ae71-1a83e58cd829: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 93afee5f-1705-4ee8-9d99-56fd5776d6d3
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 93afee5f-1705-4ee8-9d99-56fd5776d6d3
+  title:
+    -
+      value: 'Sub-area - 12036'
+  created:
+    -
+      value: 1632827156
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: 4c187f00-3cb7-4f0f-87fc-b50cabdb1efe
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: c91e00f3-2163-4caa-89f4-e826b4ba1998
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.464137815985 0.54258807407469, 31.464550892746 0.54331170250083, 31.463921759151 0.5443425612448, 31.461190057009 0.54122975167681, 31.460763872616 0.54074411007601, 31.461029934962 0.54042575792236, 31.461514927973 0.5409685229951, 31.461784408057 0.54111329616517, 31.46275453348 0.54164714142024, 31.462880282874 0.54174665784923, 31.46333842717 0.54188243530953, 31.463410286919 0.54192767381695, 31.46400308034 0.54249759930008, 31.464119828776 0.54257599569178, 31.464137815985 0.54258807407469))'
+      geo_type: Polygon
+      lat: 0.54246579246872
+      lon: 31.462954862774
+      left: 31.460763872616
+      top: 0.5443425612448
+      right: 31.464550892746
+      bottom: 0.54042575792236
+      geohash: s8n75
+      latlon: '0.54246579246872,31.462954862774'
+  field_purpose:
+    -
+      entity: 11d4d167-8fde-4357-ae71-1a83e58cd829
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '5.30'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2009

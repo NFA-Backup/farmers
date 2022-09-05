@@ -1,0 +1,65 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 29a1533e-bedd-4de1-94d5-ebed76d6b65b
+  bundle: farmer_details
+  default_langcode: en
+  depends:
+    75a8f57d-fe69-481f-94ef-142eb002163a: user
+    52ba90b8-17b2-4d6c-a3c7-f69f68cdf41e: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 75a8f57d-fe69-481f-94ef-142eb002163a
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 75a8f57d-fe69-481f-94ef-142eb002163a
+  title:
+    -
+      value: 'XYZ Ltd'
+  created:
+    -
+      value: 1622621119
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  comment:
+    -
+      status: 2
+      cid: 0
+      last_comment_timestamp: 1622621119
+      last_comment_name: ''
+      last_comment_uid: 47
+      comment_count: 0
+  field_email:
+    -
+      value: xyz@gmail.com
+  field_farmer_category_type:
+    -
+      entity: 52ba90b8-17b2-4d6c-a3c7-f69f68cdf41e
+  field_historical_information:
+    -
+      value: "1.\t10/11/2020 Application for consent to transfer commercial plantation interest in CFRs\r\n2.\t10/11/2020 Receipted UGX 504,794632 on NFA receipt no xxxxx as 1% transfer fees for consent to transfer plantation\r\n3.\t9/11/2020 cancellation and issuance of a new license in accordance with the terms of Tripartite agreement \r\n4.\t6/11/2020 License no xxx of 12,186 ha of land in Kikonda CFR for 31 years from 11/6/2020 to 9/5/2050\r\nnt7\r\n16\r\n"
+  field_phone_number:
+    -
+      value: '777777777'
+  field_physical_address:
+    -
+      value: ''
+  field_postal_address:
+    -
+      value: ''

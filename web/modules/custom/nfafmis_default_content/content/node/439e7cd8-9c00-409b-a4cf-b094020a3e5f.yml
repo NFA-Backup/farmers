@@ -1,0 +1,59 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 439e7cd8-9c00-409b-a4cf-b094020a3e5f
+  bundle: farmer_details
+  default_langcode: en
+  depends:
+    50d162d6-92cc-42c1-a8fa-de8ab8a467a4: user
+    61aa2db4-052f-427c-80b4-25ec96b163bd: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  title:
+    -
+      value: 'Cesar Price'
+  created:
+    -
+      value: 1621592028
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  comment:
+    -
+      status: 2
+      cid: 0
+      last_comment_timestamp: 1621592028
+      last_comment_name: ''
+      last_comment_uid: 39
+      comment_count: 0
+  field_farmer_category_type:
+    -
+      entity: 61aa2db4-052f-427c-80b4-25ec96b163bd
+  field_gender:
+    -
+      value: male
+  field_historical_information:
+    -
+      value: "1.13/05/2008.license no xxx,for 10ha in kitonya cfr, This license is valid for a period of 25 years from 21/01/2008-20/01/2033.\r\n2.13/05/2008.license agreement issued between the licensor and the licensee.\r\n3.21/01/2007.Receipt no_ xxxxx,amount 99,000/=, as annual license for planting 10ha in kitonya cfr singo hills for 1 year  from 21/01/2008-20/01/2009.\r\n4.21/01/2008.invoice no_ NFA xx/xxxx,Amount charged 99,000/=, as being license for planting 10ha in kitonya singo hills ,muziz river range for 1 year from 21/01/2008-20/01/2009.\r\n5.21/01/2008.payment advice issued, amount charged 99,000/=, as annual land license fees from 21/01/2008-20/01/2009.\r\n6.09/10/2007.Acceptance of offer for tree growing land in central forest reserve.\r\n7.02/10/2007.offer latter issued 100ha in kitonya cfr to establish a commercial forest plantation .\r\n8.09/08/2007.application latter latter summited.\r\n9.09/08/2007.payment of 25,000/=, as application for land.\r\n 10. 15/8/2006, application for land for tree growing\r\n"
+  field_phone_number:
+    -
+      value: 0777-77777

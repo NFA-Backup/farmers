@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7068afe5-bfa7-4c64-b19b-bb11aed9b6e2
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    676c357b-08ca-43f3-a044-7eebc1e051d2: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12115'
+  created:
+    -
+      value: 1632835850
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 676c357b-08ca-43f3-a044-7eebc1e051d2
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.475063999982 0.78600900004413, 31.477046000299 0.78652900040141, 31.47754099999 0.78642000025566, 31.478630000431 0.78588699965285, 31.479167000132 0.78699799972743, 31.473468951585 0.78866162283847, 31.473131999585 0.7887600000172, 31.472196999628 0.78831899991734, 31.473189999989 0.78759100020034, 31.473621999592 0.78738099983402, 31.475063999982 0.78600900004413))'
+      geo_type: Polygon
+      lat: 0.78726645837259
+      lon: 31.475664220104
+      left: 31.472196999628
+      top: 0.7887600000172
+      right: 31.479167000132
+      bottom: 0.78588699965285
+      geohash: s8nkk
+      latlon: '0.78726645837259,31.475664220104'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '11.02'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2011

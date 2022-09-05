@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 44361683-371f-447f-8a14-879380fa0c3e
+  bundle: basic
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Add farmer button'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  body:
+    -
+      value: "<div class=\"center-container\"><a class=\"use-ajax btn btn-info\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/add/farmer_details\">Add new farmer</a></div>\r\n"
+      format: full_html
+      summary: ''

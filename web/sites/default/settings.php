@@ -799,9 +799,17 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  */
 
 /**
- * If there is a local settings file, then include it
+ * If there is a local settings file, then include it.
  */
 $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
+}
+
+/**
+ * Load environment-specific settings.
+ */
+$env_settings = __DIR__ . "/settings.env.php";
+if (file_exists($env_settings)) {
+  include $env_settings;
 }

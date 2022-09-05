@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3f153488-d78d-445f-9300-8f4dac33912f
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    4c35e7da-3876-495c-8d4f-20e59c8baa13: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    aa3356c0-cef3-4f9d-af0c-063205373152: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12116'
+  created:
+    -
+      value: 1632835959
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 4c35e7da-3876-495c-8d4f-20e59c8baa13
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.473131999585 0.7887600000172, 31.471270000001 0.78929100010575, 31.471224212896 0.78945835245394, 31.471041000446 0.79012799960347, 31.470645999923 0.78945399982097, 31.470877999994 0.78852099980439, 31.470890055931 0.78852398789625, 31.470889372917 0.78852207844382, 31.470886878705 0.78851510365124, 31.471384000254 0.78818500033049, 31.473269999884 0.78708399955972, 31.473621999592 0.78738099983402, 31.473189999989 0.78759100020034, 31.472196999628 0.78831899991734, 31.473131999585 0.7887600000172))'
+      geo_type: Polygon
+      lat: 0.78851586681493
+      lon: 31.471893413673
+      left: 31.470645999923
+      top: 0.79012799960347
+      right: 31.473621999592
+      bottom: 0.78708399955972
+      geohash: s8nkkp
+      latlon: '0.78851586681493,31.471893413673'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: aa3356c0-cef3-4f9d-af0c-063205373152
+  field_subarea_planted:
+    -
+      value: '3.43'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2013

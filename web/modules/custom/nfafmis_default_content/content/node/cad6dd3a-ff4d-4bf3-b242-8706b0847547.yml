@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: cad6dd3a-ff4d-4bf3-b242-8706b0847547
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    cea83ab1-13ff-4ce1-bb72-d30c03e21932: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    aa3356c0-cef3-4f9d-af0c-063205373152: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12180'
+  created:
+    -
+      value: 1632900665
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-29'
+  field_kml_file:
+    -
+      entity: cea83ab1-13ff-4ce1-bb72-d30c03e21932
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.46910600043 0.81347600030002, 31.467722999835 0.81355400031509, 31.467691049263 0.81342117999499, 31.46766948814 0.81333155074723, 31.467601999729 0.81305099965336, 31.467290000236 0.81232800041286, 31.468431000319 0.81151500027653, 31.468363000162 0.81059700041521, 31.468604000214 0.80992599972068, 31.469562999694 0.80983300000154, 31.468959000126 0.8104289999398, 31.4688730001 0.81152000007082, 31.471334999958 0.81176999998988, 31.472391999895 0.81039700018041, 31.473228943395 0.81277573374879, 31.47164399964 0.81283600033222, 31.470070999611 0.8128090001968, 31.469620000329 0.81308399964756, 31.469458000077 0.81264599973228, 31.468924000154 0.81296399985606, 31.46910600043 0.81347600030002))'
+      geo_type: Polygon
+      lat: 0.81208108115372
+      lon: 31.47009177805
+      left: 31.467290000236
+      top: 0.81355400031509
+      right: 31.473228943395
+      bottom: 0.80983300000154
+      geohash: s8nks
+      latlon: '0.81208108115372,31.47009177805'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: aa3356c0-cef3-4f9d-af0c-063205373152
+  field_subarea_planted:
+    -
+      value: '11.40'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2010

@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c97c9db2-cbb7-4603-ae85-2b6da2fd5adc
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    302f2a91-92c7-4e3d-9d5c-fdcea65d6d41: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    aa3356c0-cef3-4f9d-af0c-063205373152: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12184'
+  created:
+    -
+      value: 1632900941
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-29'
+  field_kml_file:
+    -
+      entity: 302f2a91-92c7-4e3d-9d5c-fdcea65d6d41
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.477594000394 0.81128000027289, 31.477341999714 0.81151399997832, 31.476931999894 0.81132400031658, 31.47681699963 0.81077200024442, 31.477134999578 0.81042099965748, 31.477419000309 0.81048200004029, 31.477594000394 0.81128000027289))'
+      geo_type: Polygon
+      lat: 0.81096988573879
+      lon: 31.477210920185
+      left: 31.47681699963
+      top: 0.81151399997832
+      right: 31.477594000394
+      bottom: 0.81042099965748
+      geohash: s8nks7
+      latlon: '0.81096988573879,31.477210920185'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: aa3356c0-cef3-4f9d-af0c-063205373152
+  field_subarea_planted:
+    -
+      value: '0.72'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2012

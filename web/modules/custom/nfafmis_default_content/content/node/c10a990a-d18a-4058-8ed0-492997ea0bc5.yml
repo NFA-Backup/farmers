@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c10a990a-d18a-4058-8ed0-492997ea0bc5
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    599e89dd-bc1a-402b-bdf7-4f6d7a56ce02: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12081'
+  created:
+    -
+      value: 1632832804
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 599e89dd-bc1a-402b-bdf7-4f6d7a56ce02
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.497181000374 0.80106100032867, 31.495291000418 0.80363199976487, 31.493109999872 0.80323000007518, 31.493292999969 0.80519400019694, 31.490051000002 0.80544699969024, 31.487530999778 0.80514200001324, 31.487675999896 0.80413799989952, 31.489108000292 0.8039859999819, 31.488909000165 0.80296200013394, 31.489501 0.80262699964019, 31.490111999634 0.80283500040426, 31.491745000323 0.80217499958693, 31.491864000247 0.80115999978715, 31.494440000064 0.79911900001736, 31.496936999764 0.8009629999285, 31.497181000374 0.80106100032867))'
+      geo_type: Polygon
+      lat: 0.80271927770443
+      lon: 31.492654489572
+      left: 31.487530999778
+      top: 0.80544699969024
+      right: 31.497181000374
+      bottom: 0.79911900001736
+      geohash: s8nks
+      latlon: '0.80271927770443,31.492654489572'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '33.99'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2013

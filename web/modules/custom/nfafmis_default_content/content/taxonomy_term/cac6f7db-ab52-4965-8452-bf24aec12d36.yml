@@ -1,0 +1,32 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: cac6f7db-ab52-4965-8452-bf24aec12d36
+  bundle: block
+  default_langcode: en
+  depends:
+    30f4cb27-5eb6-45ff-8c2a-fa51d709381b: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: KP/KAS/004
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /katuugo-plantations/kasagala/kp-kas-004
+      langcode: en
+      pathauto: 1
+  cfr:
+    -
+      entity: 30f4cb27-5eb6-45ff-8c2a-fa51d709381b

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 562c0d04-4afc-458f-93d2-a32e05abc02a
+  bundle: species_variety
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Bathedavia
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
