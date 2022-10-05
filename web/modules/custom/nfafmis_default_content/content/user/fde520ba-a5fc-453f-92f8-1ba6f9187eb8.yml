@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  preferred_admin_langcode:
+    -
+      value: en
+  name:
+    -
+      value: 'Lynne Mcguire'
+  pass:
+    -
+      value: $S$EGHFvbn.ukG9BLrP6plBkQMy0s7u3zsnQpEOi1efwF7LUsoihK94
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: exampleemail9@example.com
+  timezone:
+    -
+      value: Asia/Calcutta
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1592838220
+  access:
+    -
+      value: 1633355469
+  login:
+    -
+      value: 1633336598
+  init:
+    -
+      value: exampleemail9@example.com
+  roles:
+    -
+      target_id: not_staff
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0

@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7ab8094e-ddeb-4cad-8248-ea24125b65e2
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    2c41c538-27ff-4855-a6cc-7251cb913d4d: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12073'
+  created:
+    -
+      value: 1632831684
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 2c41c538-27ff-4855-a6cc-7251cb913d4d
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.50989699999 0.80860300011987, 31.510150000379 0.80896499978806, 31.510911184789 0.81116285761879, 31.509852000182 0.81097099993645, 31.509361999856 0.8119209998386, 31.508952999994 0.81211500011316, 31.507889000151 0.81180900011942, 31.509228000325 0.80902399976559, 31.50989699999 0.80860300011987))'
+      geo_type: Polygon
+      lat: 0.810505613984
+      lon: 31.509418304723
+      left: 31.507889000151
+      top: 0.81211500011316
+      right: 31.510911184789
+      bottom: 0.80860300011987
+      geohash: s8nk
+      latlon: '0.810505613984,31.509418304723'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '6.46'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2012

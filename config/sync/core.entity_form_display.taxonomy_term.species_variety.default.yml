@@ -1,0 +1,29 @@
+uuid: bff317f2-628b-42c1-a386-30f501870032
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.species_variety
+id: taxonomy_term.species_variety.default
+targetEntityType: taxonomy_term
+bundle: species_variety
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true

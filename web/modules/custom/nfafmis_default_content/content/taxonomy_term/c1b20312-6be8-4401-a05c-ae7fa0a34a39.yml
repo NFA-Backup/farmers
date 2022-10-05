@@ -1,0 +1,44 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: c1b20312-6be8-4401-a05c-ae7fa0a34a39
+  bundle: central_forest_reserve
+  default_langcode: en
+  depends:
+    86058692-5b6b-47ca-b3b2-7728e20311e3: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Abili
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /achwa-river/abili
+      langcode: en
+      pathauto: 1
+  geofield_map:
+    -
+      value: 'POLYGON ((32.3144316562843 2.69924916737913, 32.314870442111 2.69934525266095, 32.3165616091504 2.69347642949951, 32.3155094963471 2.69322224975796, 32.315653164666 2.69420529171215, 32.3144316562843 2.69924916737913))'
+      geo_type: Polygon
+      lat: 2.6960052752542
+      lon: 32.315500888173
+      left: 32.314431656284
+      top: 2.699345252661
+      right: 32.31656160915
+      bottom: 2.693222249758
+      geohash: s8qzr
+      latlon: '2.6960052752542,32.315500888173'
+  management_unit:
+    -
+      entity: 86058692-5b6b-47ca-b3b2-7728e20311e3

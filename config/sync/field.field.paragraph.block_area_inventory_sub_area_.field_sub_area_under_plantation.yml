@@ -1,0 +1,25 @@
+uuid: 9b1d1606-4abe-4bf0-acc9-7fefe798cf8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sub_area_under_plantation
+    - paragraphs.paragraphs_type.block_area_inventory_sub_area_
+  module:
+    - computed_field
+id: paragraph.block_area_inventory_sub_area_.field_sub_area_under_plantation
+field_name: field_sub_area_under_plantation
+entity_type: paragraph
+bundle: block_area_inventory_sub_area_
+label: 'Sub-area under plantation'
+description: 'Hectarage planted '
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  prefix: ''
+  suffix: ''
+field_type: computed_decimal

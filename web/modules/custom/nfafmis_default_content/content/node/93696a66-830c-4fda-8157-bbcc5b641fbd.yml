@@ -1,0 +1,68 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 93696a66-830c-4fda-8157-bbcc5b641fbd
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    aa3356c0-cef3-4f9d-af0c-063205373152: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12058'
+  created:
+    -
+      value: 1632830191
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: aa3356c0-cef3-4f9d-af0c-063205373152
+  field_subarea_planted:
+    -
+      value: '43.50'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2008

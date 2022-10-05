@@ -1,0 +1,16 @@
+uuid: ccf1c047-125f-4ae0-bab4-fa8e70c37f77
+langcode: en
+status: false
+dependencies: {  }
+id: dev
+label: Development
+description: 'Local development environment'
+weight: 0
+folder: ../config/dev
+module:
+  devel: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

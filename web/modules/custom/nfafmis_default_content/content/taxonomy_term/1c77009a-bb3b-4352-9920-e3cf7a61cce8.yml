@@ -1,0 +1,44 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 1c77009a-bb3b-4352-9920-e3cf7a61cce8
+  bundle: block
+  default_langcode: en
+  depends:
+    30f4cb27-5eb6-45ff-8c2a-fa51d709381b: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: KP/KAS/001
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /katuugo-plantations/kasagala/kp-kas-001
+      langcode: en
+      pathauto: 1
+  cfr:
+    -
+      entity: 30f4cb27-5eb6-45ff-8c2a-fa51d709381b
+  geofield_map:
+    -
+      value: 'POLYGON((32.53034591674804 1.1493674854885398,32.54201889038085 1.1546879125240395,32.54665374755859 1.1414726400215045,32.52330780029296 1.132204750304993,32.514038085937486 1.1450768113022463,32.52090454101562 1.1600083296015526,32.5337791442871 1.1581204408135193,32.53034591674804 1.1493674854885398))'
+      geo_type: Polygon
+      lat: 1.1461618063318
+      lon: 32.52914880845
+      left: 32.514038085937
+      top: 1.1600083296016
+      right: 32.546653747559
+      bottom: 1.132204750305
+      geohash: s8pn
+      latlon: '1.1461618063318,32.52914880845'

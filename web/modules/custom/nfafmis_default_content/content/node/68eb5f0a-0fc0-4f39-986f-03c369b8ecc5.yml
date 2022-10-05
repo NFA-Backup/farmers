@@ -1,0 +1,56 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 68eb5f0a-0fc0-4f39-986f-03c369b8ecc5
+  bundle: farmer_details
+  default_langcode: en
+  depends:
+    c78a4203-601a-4d50-8e6c-b51ccd1b92a8: user
+    61aa2db4-052f-427c-80b4-25ec96b163bd: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: c78a4203-601a-4d50-8e6c-b51ccd1b92a8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: c78a4203-601a-4d50-8e6c-b51ccd1b92a8
+  title:
+    -
+      value: 'Katherine Fields'
+  created:
+    -
+      value: 1621588853
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  comment:
+    -
+      status: 2
+      cid: 0
+      last_comment_timestamp: 1621588853
+      last_comment_name: ''
+      last_comment_uid: 38
+      comment_count: 0
+  field_farmer_category_type:
+    -
+      entity: 61aa2db4-052f-427c-80b4-25ec96b163bd
+  field_gender:
+    -
+      value: male
+  field_historical_information:
+    -
+      value: "1.\t13/2/2008 license no xxx of 10ha issued in Kabugeza CFR for a period of 25 years from 2/1/2008-1/1/2032 \r\n2.\t13/2/2008 license agreement between NFA and Katherine Fields \r\n3.\t2/1/2008 receipted UGX 149,000 on NFA receipt no xxxxx as arrears for planting 10ha in 2006/2007 and land license fees for 2007/2008\r\n4.\t2/1/2007 receipted UGX 75,000 on NFA receipt no xxxxx as land license fees\r\n5.\t2/1/2008 invoice no NFA 07/1160 amounting to UGX 224,000 and land license fees \r\n6.\t12/12/2007 Application for renewal of license for tree planting\r\n7.\t12/12/2007 receipted UGX 25,000 on NFA receipt no xxxxx as permit renewal fees\r\n8.\t2/1/2007 payment advice amounting to UGX 224,000 as annual land fees\r\n"

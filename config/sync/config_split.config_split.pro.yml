@@ -1,0 +1,15 @@
+uuid: bae75233-e291-4c37-9c36-46bffccaa10c
+langcode: en
+status: true
+dependencies: {  }
+id: pro
+label: Production
+description: 'Default production configuration'
+weight: 0
+folder: ../config/pro
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

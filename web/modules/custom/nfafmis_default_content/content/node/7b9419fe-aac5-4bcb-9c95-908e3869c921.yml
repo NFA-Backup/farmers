@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7b9419fe-aac5-4bcb-9c95-908e3869c921
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    50d162d6-92cc-42c1-a8fa-de8ab8a467a4: user
+    b08ab5fc-d817-4405-81eb-e7164b57520c: node
+    6de426aa-55aa-44d1-8064-f2f4a1ade6b3: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    b632c8c0-95d7-49b6-b9d2-b70542b6588a: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 50d162d6-92cc-42c1-a8fa-de8ab8a467a4
+  title:
+    -
+      value: 'Sub-area - 12331'
+  created:
+    -
+      value: 1632981803
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: b08ab5fc-d817-4405-81eb-e7164b57520c
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-30'
+  field_kml_file:
+    -
+      entity: 6de426aa-55aa-44d1-8064-f2f4a1ade6b3
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.555398982641 1.207299562581, 31.555192765257 1.207711516057, 31.554795139675 1.2075169730391, 31.554995457515 1.2071021928369, 31.555398982641 1.207299562581))'
+      geo_type: Polygon
+      lat: 1.2074070579141
+      lon: 31.555095844066
+      left: 31.554795139675
+      top: 1.207711516057
+      right: 31.555398982641
+      bottom: 1.2071021928369
+      geohash: s8nqy5
+      latlon: '1.2074070579141,31.555095844066'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: b632c8c0-95d7-49b6-b9d2-b70542b6588a
+  field_subarea_planted:
+    -
+      value: '0.25'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2019

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: e213b645-1625-4b18-87b4-331980e37e23
+  bundle: menu_link_content
+  default_langcode: en
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Add Harvesting miscellaneous fees'
+  menu_name:
+    -
+      value: action-clock
+  link:
+    -
+      uri: 'internal:/node/add/harvesting_miscellaneous_fees'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

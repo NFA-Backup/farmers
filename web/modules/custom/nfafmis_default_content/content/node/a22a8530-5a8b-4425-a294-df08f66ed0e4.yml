@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: a22a8530-5a8b-4425-a294-df08f66ed0e4
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    303e14dc-02d6-404d-bf31-d4c3ff41dbee: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12067'
+  created:
+    -
+      value: 1632831017
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 303e14dc-02d6-404d-bf31-d4c3ff41dbee
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.490050000331 0.78390900026338, 31.48774399992 0.78484200007569, 31.487879999795 0.78418699981115, 31.487749000418 0.78409199970173, 31.488681999822 0.78341299997468, 31.488474999885 0.78308300041675, 31.488278000302 0.78302700000916, 31.488935999751 0.78235400009904, 31.491353999689 0.78258600004015, 31.49166699979 0.78224900021153, 31.493020999699 0.78240899979736, 31.492995999931 0.78286100006623, 31.492500999865 0.78273499967808, 31.490050000331 0.78390900026338))'
+      geo_type: Polygon
+      lat: 0.78325258551123
+      lon: 31.489955040747
+      left: 31.48774399992
+      top: 0.78484200007569
+      right: 31.493020999699
+      bottom: 0.78224900021153
+      geohash: s8nkkw
+      latlon: '0.78325258551123,31.489955040747'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '7.05'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2013

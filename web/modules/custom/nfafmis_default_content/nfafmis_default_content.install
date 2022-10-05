@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Deploy functions run after drush config:import
+ */
+
+use Drupal\user\Entity\User;
+
+function nfafmis_default_content_install() {
+  // On new staging installations make sure that the admin user has the
+  // Administrator role.
+  $admin_role = \Drupal::entityTypeManager()->getStorage('user_role')->load('administrator');
+  if($admin_role) {
+    User::load(1)->addRole('administrator');
+  }
+
+  // Rebuild content access permissions.
+  node_access_rebuild($batch_mode = TRUE);
+}

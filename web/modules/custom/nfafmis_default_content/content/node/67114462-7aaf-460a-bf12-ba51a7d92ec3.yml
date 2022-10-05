@@ -1,0 +1,75 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 67114462-7aaf-460a-bf12-ba51a7d92ec3
+  bundle: offer_license
+  default_langcode: en
+  depends:
+    9c539fe6-b125-4d0a-b216-8e48ad19352c: user
+    a55423a0-e41d-4c9d-9aa0-f9800d6efbf3: taxonomy_term
+    ef26fa1d-dfdf-4b57-953d-dc6bf4ad2e40: node
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 9c539fe6-b125-4d0a-b216-8e48ad19352c
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 9c539fe6-b125-4d0a-b216-8e48ad19352c
+  title:
+    -
+      value: AREA/002422
+  created:
+    -
+      value: 1629977207
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_area_number:
+    -
+      value: AREA/002422
+  field_area_serial_number:
+    -
+      value: 2422
+  field_central_forest_reserve:
+    -
+      entity: a55423a0-e41d-4c9d-9aa0-f9800d6efbf3
+  field_farmer_name_ref:
+    -
+      entity: ef26fa1d-dfdf-4b57-953d-dc6bf4ad2e40
+  field_license_date:
+    -
+      value: '2007-10-31'
+      end_value: '2050-10-30'
+  field_license_id:
+    -
+      value: '1530'
+  field_license_issued:
+    -
+      value: true
+  field_offer_date:
+    -
+      value: '2019-06-19'
+  field_offer_id:
+    -
+      value: 2421
+  field_overall_area:
+    -
+      value: '25.00'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6

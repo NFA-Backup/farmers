@@ -1,0 +1,10 @@
+uuid: ce60c9fa-50ed-4ba1-8252-abafd68956ac
+langcode: en
+status: true
+dependencies: {  }
+id: block_area_inventory_sub_area_
+label: 'Block / Area inventory Sub-area '
+icon_uuid: null
+icon_default: null
+description: 'Fields related to Block / Area inventory'
+behavior_plugins: {  }

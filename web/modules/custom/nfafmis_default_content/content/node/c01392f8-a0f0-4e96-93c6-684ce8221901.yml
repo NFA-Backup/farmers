@@ -1,0 +1,53 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c01392f8-a0f0-4e96-93c6-684ce8221901
+  bundle: farmer_details
+  default_langcode: en
+  depends:
+    93afee5f-1705-4ee8-9d99-56fd5776d6d3: user
+    52ba90b8-17b2-4d6c-a3c7-f69f68cdf41e: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 93afee5f-1705-4ee8-9d99-56fd5776d6d3
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 93afee5f-1705-4ee8-9d99-56fd5776d6d3
+  title:
+    -
+      value: 'Lionel Simon'
+  created:
+    -
+      value: 1631104001
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  comment:
+    -
+      status: 2
+      cid: 0
+      last_comment_timestamp: 1631104001
+      last_comment_name: ''
+      last_comment_uid: 49
+      comment_count: 0
+  field_farmer_category_type:
+    -
+      entity: 52ba90b8-17b2-4d6c-a3c7-f69f68cdf41e
+  field_gender:
+    -
+      value: male

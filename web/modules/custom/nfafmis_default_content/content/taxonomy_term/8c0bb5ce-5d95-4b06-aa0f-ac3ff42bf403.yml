@@ -1,0 +1,32 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 8c0bb5ce-5d95-4b06-aa0f-ac3ff42bf403
+  bundle: block
+  default_langcode: en
+  depends:
+    03635b73-eb5c-45ed-93c7-c08864eacfb9: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: AR/ACH/018
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /achwa-river/achwa-river/ar-ach-018
+      langcode: en
+      pathauto: 1
+  cfr:
+    -
+      entity: 03635b73-eb5c-45ed-93c7-c08864eacfb9

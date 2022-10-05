@@ -24,12 +24,14 @@
     "drupal/bootstrap": "^3.25",
     "drupal/business_rules": "^2.0@beta",
     "drupal/computed_field": "3.x",
+    "drupal/config_split": "^1.9",
     "drupal/core-composer-scaffold": "^9",
     "drupal/core-project-message": "^9",
     "drupal/core-recommended": "^9",
     "drupal/core-vendor-hardening": "^8.8",
     "drupal/csv_serialization": "^2.1",
     "drupal/ctools": "^3.8",
+    "drupal/default_content": "^2.0@alpha",
     "drupal/dependent_fields": "^1.0",
     "drupal/entity_reference_views_select": "^1.4",
     "drupal/field_group": "^3.0",
@@ -127,9 +129,15 @@
       "drupal/core": {
         "2648950-253: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2021-06-07/2648950-253.patch"
       },
+      "drupal/default_content": {
+        "2698425-175: Do not reimport existing entities": "https://www.drupal.org/files/issues/2022-07-29/default_content-fix-uuid-duplicate-entry-2698425.patch"
+      },
       "drupal/yearonly": {
         "3172745-2: Provide default year options": "https://www.drupal.org/files/issues/2020-09-23/yearonly-default-options-3172745-2.patch"
       }
     }
+  },
+  "require-dev": {
+    "drupal/devel": "^4.1"
   }
 }

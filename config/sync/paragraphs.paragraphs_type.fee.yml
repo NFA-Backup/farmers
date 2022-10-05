@@ -1,0 +1,10 @@
+uuid: a867612c-adff-4684-b257-97f5c465a934
+langcode: en
+status: true
+dependencies: {  }
+id: fee
+label: Fee
+icon_uuid: null
+icon_default: null
+description: 'Brief description of fee'
+behavior_plugins: {  }

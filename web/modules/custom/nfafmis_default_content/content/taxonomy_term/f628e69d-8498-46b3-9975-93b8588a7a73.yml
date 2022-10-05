@@ -1,0 +1,32 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: f628e69d-8498-46b3-9975-93b8588a7a73
+  bundle: block
+  default_langcode: en
+  depends:
+    03635b73-eb5c-45ed-93c7-c08864eacfb9: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: AR/ACH/031
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /achwa-river/achwa-river/ar-ach-031
+      langcode: en
+      pathauto: 1
+  cfr:
+    -
+      entity: 03635b73-eb5c-45ed-93c7-c08864eacfb9

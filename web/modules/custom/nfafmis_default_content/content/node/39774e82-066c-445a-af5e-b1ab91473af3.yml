@@ -1,0 +1,86 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 39774e82-066c-445a-af5e-b1ab91473af3
+  bundle: sub_area
+  default_langcode: en
+  depends:
+    fde520ba-a5fc-453f-92f8-1ba6f9187eb8: user
+    e55b859b-9c0b-4452-98f9-901bcfc2b7cf: node
+    37c87a7d-2183-4bff-b671-2f6560421747: file
+    9d50fff7-cbfd-4271-ba08-3ce606e9b6c6: taxonomy_term
+    dd4aadb0-d38c-4244-88dc-95844d831992: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: fde520ba-a5fc-453f-92f8-1ba6f9187eb8
+  title:
+    -
+      value: 'Sub-area - 12063'
+  created:
+    -
+      value: 1632830545
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_areas_id:
+    -
+      entity: e55b859b-9c0b-4452-98f9-901bcfc2b7cf
+  field_area_harvested:
+    -
+      value: false
+  field_date_harvested:
+    -
+      value: '0'
+  field_date_planted:
+    -
+      value: '2021-09-28'
+  field_kml_file:
+    -
+      entity: 37c87a7d-2183-4bff-b671-2f6560421747
+      display: true
+      description: ''
+  field_map:
+    -
+      value: 'POLYGON ((31.468431000319 0.81151500027653, 31.467290000236 0.81232800041286, 31.467601999729 0.81305099965336, 31.466671250411 0.81354003743172, 31.466539999895 0.81360900043469, 31.46425199962 0.81382200008393, 31.46284399972 0.8125809996506, 31.464001999796 0.81095299965845, 31.465175999747 0.81020100015708, 31.466952000433 0.81065800031423, 31.468138000243 0.80933800041172, 31.468049000097 0.80842700007877, 31.470026999753 0.80872300025924, 31.47189400003 0.80911700003806, 31.473479000405 0.80957199989532, 31.474154227674 0.80895974993825, 31.474254999578 0.80906599980859, 31.474035000101 0.81029000018547, 31.47385899968 0.81132599991935, 31.474429210703 0.81263584001175, 31.473228943395 0.81277573374879, 31.472391999895 0.81039700018041, 31.471334999958 0.81176999998988, 31.4688730001 0.81152000007082, 31.468959000126 0.8104289999398, 31.469562999694 0.80983300000154, 31.468604000214 0.80992599972068, 31.468363000162 0.81059700041521, 31.468431000319 0.81151500027653))'
+      geo_type: Polygon
+      lat: 0.81111154987648
+      lon: 31.468567675734
+      left: 31.46284399972
+      top: 0.81382200008393
+      right: 31.474429210703
+      bottom: 0.80842700007877
+      geohash: s8nk
+      latlon: '0.81111154987648,31.468567675734'
+  field_purpose:
+    -
+      entity: 9d50fff7-cbfd-4271-ba08-3ce606e9b6c6
+  field_species_variety:
+    -
+      entity: dd4aadb0-d38c-4244-88dc-95844d831992
+  field_subarea_planted:
+    -
+      value: '35.95'
+  field_sub_area_planted:
+    -
+      value: 0
+  field_year_planted:
+    -
+      value: 2012
