@@ -264,7 +264,7 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-# $settings['config_sync_directory'] = '/directory/outside/webroot';
+$settings['config_sync_directory'] = '../config/sync';
 
 /**
  * Settings:
@@ -785,6 +785,21 @@ $settings['entity_update_backup'] = TRUE;
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 /**
+ * Load config split for the current environment. If no environment is
+ * specified, default to production config.
+ */
+$env = getenv('DRUPAL_ENVIRONMENT');
+
+if ($env == 'dev') {
+  $config['config_split.config_split.dev']['status'] = TRUE;
+  $config['config_split.config_split.pro']['status'] = FALSE;
+}
+elseif ($env == 'stage') {
+  $config['config_split.config_split.stage']['status'] = TRUE;
+  $config['config_split.config_split.pro']['status'] = FALSE;
+}
+
+/**
  * Load local development override configuration, if available.
  *
  * Create a settings.local.php file to override variables on secondary (staging,
@@ -804,12 +819,4 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
-}
-
-/**
- * Load environment-specific settings.
- */
-$env_settings = __DIR__ . "/settings.env.php";
-if (file_exists($env_settings)) {
-  include $env_settings;
 }

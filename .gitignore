@@ -19,6 +19,7 @@ pantheon.upstream.yml
 # Pantheon commits a settings.php for environment-specific settings.
 # Place local settings in settings.local.php
 web/sites/*/settings.local.php
+web/sites/*/settings.ddev.php
 
 # Note that services.local.yml is not loaded by default. If you would like
 # to use this file add the following to your settings.local.php file:
