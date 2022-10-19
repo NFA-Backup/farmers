@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.central_forest_reserve.geofield_map
     - field.field.taxonomy_term.central_forest_reserve.kml_file
     - field.field.taxonomy_term.central_forest_reserve.management_unit
+    - field.field.taxonomy_term.central_forest_reserve.sector
     - taxonomy.vocabulary.central_forest_reserve
   module:
     - farm_map
@@ -36,6 +37,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  sector:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   kml_file: true

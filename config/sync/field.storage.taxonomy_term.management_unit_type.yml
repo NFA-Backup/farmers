@@ -1,0 +1,27 @@
+uuid: 0267e8d3-99cc-453b-8621-ea385f449d17
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+id: taxonomy_term.management_unit_type
+field_name: management_unit_type
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: range
+      label: Range
+    -
+      value: plantation
+      label: Plantation
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

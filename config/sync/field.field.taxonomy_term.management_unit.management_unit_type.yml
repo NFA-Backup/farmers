@@ -1,0 +1,21 @@
+uuid: 029fea98-d822-4e70-b964-f256b354b4d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.management_unit_type
+    - taxonomy.vocabulary.management_unit
+  module:
+    - options
+id: taxonomy_term.management_unit.management_unit_type
+field_name: management_unit_type
+entity_type: taxonomy_term
+bundle: management_unit
+label: 'Management unit type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

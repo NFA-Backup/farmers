@@ -1,0 +1,30 @@
+uuid: f915dbb0-41c8-438e-abe0-20ee65403986
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.management_unit.management_unit_type
+    - taxonomy.vocabulary.management_unit
+  module:
+    - options
+    - text
+id: taxonomy_term.management_unit.default
+targetEntityType: taxonomy_term
+bundle: management_unit
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  management_unit_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

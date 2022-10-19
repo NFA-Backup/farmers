@@ -1,0 +1,51 @@
+uuid: 23707699-8ae0-48f0-8a31-536aef372198
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.sector.geofield_map
+    - field.field.taxonomy_term.sector.kml_file
+    - field.field.taxonomy_term.sector.management_unit
+    - taxonomy.vocabulary.sector
+  module:
+    - file
+    - geofield
+    - text
+id: taxonomy_term.sector.default
+targetEntityType: taxonomy_term
+bundle: sector
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  geofield_map:
+    type: geofield_default
+    label: above
+    settings:
+      output_format: wkt
+      output_escape: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  kml_file:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  management_unit:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

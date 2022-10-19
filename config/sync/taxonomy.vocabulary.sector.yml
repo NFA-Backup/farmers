@@ -1,0 +1,8 @@
+uuid: 2ad0b26f-b526-4337-b719-e17cc9472cdd
+langcode: en
+status: true
+dependencies: {  }
+name: Sector
+vid: sector
+description: 'A Sector is an area below a Range/Plantation Management Unit.'
+weight: 0

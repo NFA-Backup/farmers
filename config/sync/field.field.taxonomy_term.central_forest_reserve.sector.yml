@@ -1,0 +1,29 @@
+uuid: 02d27963-2e7d-4b7b-b174-36530e0a5e7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.sector
+    - taxonomy.vocabulary.central_forest_reserve
+    - taxonomy.vocabulary.sector
+id: taxonomy_term.central_forest_reserve.sector
+field_name: sector
+entity_type: taxonomy_term
+bundle: central_forest_reserve
+label: Sector
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sector: sector
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

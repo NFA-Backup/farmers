@@ -1,26 +1,25 @@
-uuid: 88862001-78bf-4580-b423-87113fbd7628
+uuid: d61cb85e-34dd-4af0-a4bf-53ced702fbc9
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.central_forest_reserve.geofield_map
-    - field.field.taxonomy_term.central_forest_reserve.kml_file
-    - field.field.taxonomy_term.central_forest_reserve.management_unit
-    - field.field.taxonomy_term.central_forest_reserve.sector
-    - taxonomy.vocabulary.central_forest_reserve
+    - field.field.taxonomy_term.sector.geofield_map
+    - field.field.taxonomy_term.sector.kml_file
+    - field.field.taxonomy_term.sector.management_unit
+    - taxonomy.vocabulary.sector
   module:
     - farm_map
     - file
     - path
     - text
-id: taxonomy_term.central_forest_reserve.default
+id: taxonomy_term.sector.default
 targetEntityType: taxonomy_term
-bundle: central_forest_reserve
+bundle: sector
 mode: default
 content:
   description:
     type: text_textarea
-    weight: 3
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -28,13 +27,13 @@ content:
     third_party_settings: {  }
   geofield_map:
     type: farm_map_geofield
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   kml_file:
     type: file_generic
-    weight: 6
+    weight: 5
     region: content
     settings:
       progress_indicator: throbber
@@ -59,19 +58,9 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
-    third_party_settings: {  }
-  sector:
-    type: entity_reference_autocomplete
-    weight: 2
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
 hidden:
   status: true
