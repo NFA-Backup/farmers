@@ -8,8 +8,7 @@ dependencies:
     - field.field.taxonomy_term.sector.management_unit
     - taxonomy.vocabulary.sector
   module:
-    - file
-    - geofield
+    - farm_map
     - text
 id: taxonomy_term.sector.default
 targetEntityType: taxonomy_term
@@ -24,28 +23,19 @@ content:
     weight: 0
     region: content
   geofield_map:
-    type: geofield_default
-    label: above
-    settings:
-      output_format: wkt
-      output_escape: true
+    type: farm_map_geofield
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
     weight: 2
     region: content
-  kml_file:
-    type: file_default
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    weight: 3
-    region: content
   management_unit:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  kml_file: true

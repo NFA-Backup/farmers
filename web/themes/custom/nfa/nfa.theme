@@ -61,6 +61,9 @@ function nfa_preprocess_page_title(&$variables) {
       case 'block';
         $variables['title'] = t('Block @title', ['@title' => $term->label()]);
         break;
+      case 'sector';
+        $variables['title'] = t('@title Sector', ['@title' => $term->label()]);
+        break;
       default:
         break;
     }

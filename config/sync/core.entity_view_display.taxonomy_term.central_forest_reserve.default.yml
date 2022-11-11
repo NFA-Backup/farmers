@@ -28,23 +28,23 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   management_unit:
     type: entity_reference_label
-    label: hidden
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  sector:
+    type: entity_reference_label
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     weight: 1
-    region: content
-  sector:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   kml_file: true

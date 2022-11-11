@@ -1,30 +1,30 @@
-id: nfafmis_migrate_cfrs
-label: Update existing CFRs
+id: nfafmis_migrate_sectors
+label: Import NFA Sectors
 status: true
 source:
   plugin: spreadsheet
-  file: modules/custom/nfafmis_migrate/files/NFA_CFRs.xlsx
+  file: modules/custom/nfafmis_migrate/files/NFA_Sectors.xlsx
   worksheet: 'Sheet1'
   origin: A2
   header_row: 1
   columns:
-    - 'Management Unit'
-    - CFR
+    - WKT
     - Sector
+    - 'Management Unit'
   row_index_column: 'Row no.'
   keys:
-    CFR:
+    Sector:
       type: string
       max_length: 32
       is_ascii: true
 process:
   tid:
     plugin: entity_generate
-    source: CFR
+    source: Sector
     entity_type: taxonomy_term
     value_key: name
     bundle_key: vid
-    bundle: central_forest_reserve
+    bundle: sector
   unit_tid:
     plugin: entity_lookup
     source: 'Management Unit'
@@ -33,16 +33,9 @@ process:
     bundle_key: vid
     bundle: management_unit
   management_unit: '@unit_tid'
-  sector_tid:
-    plugin: entity_lookup
-    source: 'Sector'
-    entity_type: taxonomy_term
-    value_key: name
-    bundle_key: vid
-    bundle: sector
-  sector: '@sector_tid'
+  geofield_map: WKT
   vid:
     plugin: default_value
-    default_value: central_forest_reserve
+    default_value: sector
 destination:
   plugin: entity:taxonomy_term
