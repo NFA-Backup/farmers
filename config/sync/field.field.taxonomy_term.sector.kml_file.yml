@@ -1,0 +1,27 @@
+uuid: d07f3c41-a52f-4b5f-a645-135914798da6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.kml_file
+    - taxonomy.vocabulary.sector
+  module:
+    - file
+id: taxonomy_term.sector.kml_file
+field_name: kml_file
+entity_type: taxonomy_term
+bundle: sector
+label: 'KML file'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: kml
+  max_filesize: ''
+  description_field: false
+field_type: file

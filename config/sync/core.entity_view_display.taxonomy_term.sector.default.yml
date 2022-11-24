@@ -1,0 +1,41 @@
+uuid: 23707699-8ae0-48f0-8a31-536aef372198
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.sector.geofield_map
+    - field.field.taxonomy_term.sector.kml_file
+    - field.field.taxonomy_term.sector.management_unit
+    - taxonomy.vocabulary.sector
+  module:
+    - farm_map
+    - text
+id: taxonomy_term.sector.default
+targetEntityType: taxonomy_term
+bundle: sector
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  geofield_map:
+    type: farm_map_geofield
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  management_unit:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  kml_file: true
