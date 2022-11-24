@@ -7,6 +7,9 @@
  * Place your custom PHP code in this file.
  */
 
+use Drupal\views\Plugin\views\cache\CachePluginBase;
+use Drupal\views\ViewExecutable;
+
 /**
  * Implements hook_theme_suggestions_page_alter().
  */
@@ -32,16 +35,6 @@ function nfa_preprocess_node(&$variables) {
       }
     }
   }
-}
-
-/**
- * Implements template_preprocess_page().
- */
-function nfa_preprocess_page__tree_farmer_overview__sub_areas(&$variables) {
-  // Display the sub area map aon the sub areas page.
-  $variables['map_block'] = \Drupal::service('plugin.manager.block')
-    ->createInstance('farmer_map_block', [])
-    ->build();
 }
 
 /**

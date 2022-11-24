@@ -22,6 +22,15 @@ function nfafmis_views_data_alter(array &$data) {
     ],
   ];
 
+  // A map showing the farmer's land allocations.
+  $data['views']['nfafmis_map'] = [
+    'title' => t('Farmer Map'),
+    'help' => t('A map showing the farmer\'s land allocations'),
+    'field' => [
+      'id' => 'nfafmis_farmer_map',
+    ],
+  ];
+
   // Filter to limit lists of terms to those that are in the user's assigned
   // management unit.
   $data['taxonomy_term_field_data']['user_management_unit'] = array(
