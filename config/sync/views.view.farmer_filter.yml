@@ -482,7 +482,8 @@ display:
           content: "<div class=\"block-section\">\r\n<h5 class=\"title\">Farmer Details</h5>\r\n</div>"
           tokenize: false
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -500,7 +501,17 @@ display:
     display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
+      cache:
+        type: time
+        options:
+          results_lifespan: 0
+          results_lifespan_custom: 0
+          output_lifespan: 0
+          output_lifespan_custom: 0
+      defaults:
+        cache: false
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
