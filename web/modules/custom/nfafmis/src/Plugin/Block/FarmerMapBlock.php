@@ -123,6 +123,24 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
   public function build() {
     if ($this->farmer_id) {
       $layers = [];
+      $layers = array_merge($layers, [
+        [
+          'url' => '/tree-farmer-overview/sector/geojson?id=' . $this->farmer_id,
+          'color' => 'green',
+          'title' => $this->t('Sector'),
+        ],
+        [
+          'url' => '/tree-farmer-overview/cfr/geojson?id=' . $this->farmer_id,
+          'color' => 'red',
+          'title' => $this->t('CFR'),
+        ],
+        [
+          'url' => '/tree-farmer-overview/block/geojson?id=' . $this->farmer_id,
+          'color' => 'yellow',
+          'title' => $this->t('Area/Block'),
+        ],
+      ]);
+
       if ($this->show_subareas) {
         // Check does farmer have sub area map data.
         $query = $this->entityTypeManager->getStorage('node')->getQuery()
@@ -140,24 +158,6 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
           ];
         }
       }
-
-      $layers = array_merge($layers, [
-        [
-          'url' => '/tree-farmer-overview/block/geojson?id=' . $this->farmer_id,
-          'color' => 'yellow',
-          'title' => $this->t('Area/Block'),
-        ],
-        [
-          'url' => '/tree-farmer-overview/cfr/geojson?id=' . $this->farmer_id,
-          'color' => 'red',
-          'title' => $this->t('CFR'),
-        ],
-        [
-          'url' => '/tree-farmer-overview/sector/geojson?id=' . $this->farmer_id,
-          'color' => 'green',
-          'title' => $this->t('Sector'),
-        ],
-      ]);
 
       $build['item_list'] = [
         '#type' => 'farm_map',
