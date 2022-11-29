@@ -1,0 +1,38 @@
+uuid: 6a577f2f-ff4e-4c56-bc66-54b6be6ff123
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.geofield_map
+    - taxonomy.vocabulary.sector
+  module:
+    - geocoder_field
+    - geofield
+third_party_settings:
+  geocoder_field:
+    method: geocode
+    weight: 0
+    field: kml_file
+    skip_not_empty_value: false
+    disabled: false
+    hidden: false
+    providers:
+      - kml_file
+    dumper: wkt
+    delta_handling: default
+    failure:
+      handling: preserve
+      status_message: true
+      log: true
+id: taxonomy_term.sector.geofield_map
+field_name: geofield_map
+entity_type: taxonomy_term
+bundle: sector
+label: Map
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield
