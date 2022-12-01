@@ -19,8 +19,27 @@ table {
   }
 }
 
+.menu--fmis-reports.nav-tabs {
+  border-bottom: 0;
+  > li > a {
+    border-width: 0;
+    margin-right: 0;
+    border-bottom: 1px solid #ddd;
 
-/*-- article full page --*/
+    &.is-active,
+    &.is-active:hover {
+      border-bottom: 0;
+      color: #222;
+    }
+  }
+  > li.active > a {
+    border-width: 1px;
+    border-bottom: 0;
+    color: #222;
+  }
+}
+
+/*-- article full page  --*/
 .full {
   .field {
     margin-bottom: 8px;
@@ -173,6 +192,7 @@ table {
 .views-exposed-form {
   .align-items-end .form-group {
     margin-bottom: 0;
+    margin-right: 2px;
   }
 }
 
