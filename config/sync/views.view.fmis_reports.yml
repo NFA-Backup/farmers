@@ -24,6 +24,7 @@ dependencies:
     - field.storage.node.field_subarea_planted
     - field.storage.node.field_tax_identification_number
     - field.storage.node.field_year_planted
+    - field.storage.taxonomy_term.sector
     - node.type.farmer_details
     - node.type.offer_license
     - node.type.sub_area
@@ -31,6 +32,7 @@ dependencies:
     - taxonomy.vocabulary.block
     - taxonomy.vocabulary.central_forest_reserve
     - taxonomy.vocabulary.farmer_category_type
+    - taxonomy.vocabulary.sector
   module:
     - csv_serialization
     - datetime
@@ -1443,6 +1445,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -2380,6 +2445,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: 'Sector (sector)'
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -2425,6 +2544,15 @@ display:
           entity_type: node
           plugin_id: entity_reverse
           required: false
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: false
       display_description: ''
       display_extenders:
         ajax_history: {  }
@@ -2448,7 +2576,10 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - url
+        - 'url.query_args:CFR'
+        - 'url.query_args:block'
+        - 'url.query_args:license'
+        - 'url.query_args:sector'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -2473,6 +2604,7 @@ display:
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_tax_identification_number'
         - 'config:field.storage.node.field_year_planted'
+        - 'config:field.storage.taxonomy_term.sector'
   data_export_2:
     id: data_export_2
     display_title: 'Export farmers with Sub-area'
@@ -2537,6 +2669,69 @@ display:
           settings:
             link_to_entity: false
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -3396,6 +3591,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: Sector
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -3528,7 +3777,9 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - url
+        - 'url.query_args:cfr'
+        - 'url.query_args:sector'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -3539,6 +3790,7 @@ display:
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
+        - 'config:field.storage.taxonomy_term.sector'
   data_export_3:
     id: data_export_3
     display_title: 'Export farmers without Offer/License'
@@ -4659,8 +4911,12 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
+        - 'url.query_args:combine'
+        - 'url.query_args:phone'
+        - 'url.query_args:title'
+        - 'url.query_args:type'
+        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -5620,7 +5876,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - url
+        - 'url.query_args:combine'
+        - 'url.query_args:phone'
+        - 'url.query_args:title'
+        - 'url.query_args:type'
+        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -5956,6 +6216,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -6008,7 +6331,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: false
+            link: true
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -6980,6 +7303,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: Sector
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
         field_central_forest_reserve_target_id:
           id: field_central_forest_reserve_target_id
           table: node__field_central_forest_reserve
@@ -7333,6 +7710,15 @@ display:
           entity_type: node
           plugin_id: entity_reverse
           required: false
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: false
       display_description: ''
       header: {  }
       display_extenders:
@@ -7352,8 +7738,12 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
+        - 'url.query_args:cfr'
+        - 'url.query_args:sector'
+        - 'url.query_args:title'
+        - 'url.query_args:type'
+        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -7374,6 +7764,7 @@ display:
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
+        - 'config:field.storage.taxonomy_term.sector'
   farmers_full_export:
     id: farmers_full_export
     display_title: 'Export farmers full backup'
@@ -7688,6 +8079,69 @@ display:
           type: basic_string
           settings: {  }
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -8700,6 +9154,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: 'Sector (sector)'
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
         field_central_forest_reserve_target_id:
           id: field_central_forest_reserve_target_id
           table: node__field_central_forest_reserve
@@ -8899,6 +9407,15 @@ display:
           entity_type: node
           plugin_id: entity_reverse
           required: false
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: false
       display_description: ''
       header:
         result:
@@ -8935,7 +9452,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - url
+        - 'url.query_args:cfr'
+        - 'url.query_args:sector'
+        - 'url.query_args:title'
+        - 'url.query_args:type'
+        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -8956,6 +9477,7 @@ display:
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
+        - 'config:field.storage.taxonomy_term.sector'
   farmers_with_offer_license:
     id: farmers_with_offer_license
     display_title: 'Farmers with Offer/License'
@@ -9415,6 +9937,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_central_forest_reserve:
           id: field_central_forest_reserve
           table: node__field_central_forest_reserve
@@ -9467,7 +10052,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: false
+            link: true
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -9600,6 +10185,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: Sector
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
         field_central_forest_reserve_target_id:
           id: field_central_forest_reserve_target_id
           table: node__field_central_forest_reserve
@@ -9766,6 +10405,7 @@ display:
             field_license_date: field_license_date
             field_block_ref: field_block_ref
             field_overall_area: field_overall_area
+            sector: sector
             field_central_forest_reserve: field_central_forest_reserve
             edit_node: edit_node
           default: '-1'
@@ -9819,6 +10459,13 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            sector:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             field_central_forest_reserve:
               sortable: true
               default_sort_order: asc
@@ -9863,6 +10510,15 @@ display:
           entity_type: node
           plugin_id: entity_reverse
           required: true
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: false
       display_description: ''
       header:
         result:
@@ -9892,8 +10548,11 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
+        - 'url.query_args:CFR'
+        - 'url.query_args:block'
+        - 'url.query_args:license'
+        - 'url.query_args:sector'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -9904,6 +10563,7 @@ display:
         - 'config:field.storage.node.field_license_id'
         - 'config:field.storage.node.field_offer_date'
         - 'config:field.storage.node.field_overall_area'
+        - 'config:field.storage.taxonomy_term.sector'
   farmers_with_sub_area:
     id: farmers_with_sub_area
     display_title: 'Farmers with Sub-area'
@@ -9977,6 +10637,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        sector:
+          id: sector
+          table: taxonomy_term__sector
+          field: sector
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         name:
           id: name
           table: taxonomy_term_field_data
@@ -10031,7 +10754,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -10744,6 +11467,60 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        sector_target_id:
+          id: sector_target_id
+          table: taxonomy_term__sector
+          field: sector_target_id
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sector_target_id_op
+            label: Sector
+            description: ''
+            use_operator: false
+            operator: sector_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              hq_user: '0'
+              power_admin: '0'
+              range_power_user: '0'
+              hq_power_user: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: sector
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
         name:
           id: name
           table: taxonomy_term_field_data
@@ -10892,6 +11669,7 @@ display:
           default_row_class: true
           columns:
             title: title
+            sector: sector
             name: name
             title_1: title_1
             field_block_ref: field_block_ref
@@ -10906,6 +11684,13 @@ display:
           default: '-1'
           info:
             title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sector:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -10955,7 +11740,7 @@ display:
               empty_column: false
               responsive: ''
             field_area_harvested:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -11070,8 +11855,10 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
+        - 'url.query_args:cfr'
+        - 'url.query_args:sector'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -11082,6 +11869,7 @@ display:
         - 'config:field.storage.node.field_species_variety'
         - 'config:field.storage.node.field_subarea_planted'
         - 'config:field.storage.node.field_year_planted'
+        - 'config:field.storage.taxonomy_term.sector'
   farmers_without_offer_license:
     id: farmers_without_offer_license
     display_title: 'Farmers without Offer/License'

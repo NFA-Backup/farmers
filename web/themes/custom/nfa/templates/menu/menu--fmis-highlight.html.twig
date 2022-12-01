@@ -32,7 +32,6 @@
           item.in_active_trail ? 'active active-trail',
           loop.first ? 'first',
           loop.last ? 'last',
-          'mb-3',
         ]
       %}
       <li{{ item.attributes.addClass(item_classes) }}>
@@ -43,7 +42,7 @@
           {% set link_attributes = link_attributes.addClass('dropdown-toggle').setAttribute('data-toggle', 'dropdown') %}
         {% endif %}
         {# Must use link() here so it triggers hook_link_alter(). #}
-        {{ link(link_title, item.url, link_attributes.addClass([item.in_active_trail ? 'active-trail', 'btn', 'btn-outline-primary'])) }}
+        {{ link(link_title, item.url, link_attributes.addClass([item.in_active_trail ? 'active-trail'])) }}
         {% if item.below %}
           {{ _self.menu_links(item.below, attributes.removeClass(classes), menu_level + 1, classes, dropdown_classes) }}
         {% endif %}
@@ -58,4 +57,4 @@
   This allows the template to be extended without having to also duplicate the
   code above. @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ _self.menu_links(items, attributes, 0, classes ?: ['menu', 'menu--' ~ menu_name|clean_class, 'list-inline', 'mb-5'], dropdown_classes ?: ['dropdown-menu']) }}
+{{ _self.menu_links(items, attributes, 0, classes ?: ['menu', 'menu--' ~ menu_name|clean_class, 'nav', 'nav-tabs', 'mb-5'], dropdown_classes ?: ['dropdown-menu']) }}
