@@ -16,6 +16,12 @@ $databases['default']['default'] = [
   'collation' => 'utf8mb4_general_ci',
 ];
 
+/**
+ * Hash Salt if not defined
+ */
+if (!isset($settings['hash_salt']) || $settings['hash_salt'] == '') {
+  $settings['hash_salt'] = '1zcjv7hM7q1hI1GSYBWg_0A_xfjR5pjji-m_gIT9l1kcsHQSB_s2e7-pyRLGkDAmUcvCmgObGA';
+}
 
 /**
  * Trusted hosts
