@@ -540,13 +540,28 @@ function nfafmis_preprocess_views_view_field(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_views_pre_view().
+ * Implements hook_views_pre_view().
  *
  * @param \Drupal\views\ViewExecutable $view
  * @param $display_id
  * @param array $args
  */
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+
+  if ($view->id() == 'farmer_filter') {
+    $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
+  }
+
+  // When the farmer views are loaded with no farmer name the view returns
+  // the most recently added farmer. To avoid this set the title exposed filter
+  // explicitly to an so that the view has no results.
+  if ($view->id() == 'farmer_filter' || $view->id() == 'farmer_main_tab') {
+    if (empty($view->getExposedInput()['title'])) {
+      // Set title to an invalid value so that no results are returned.
+      $view->setExposedInput(['title' => 'NORESULTS']);
+    }
+  }
+
   // Create nfafmis service object.
   $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
 
@@ -564,9 +579,10 @@ function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args)
       $args = [0];
     }
   }
+
   // Set argument for Inventory.
   if ($view->id() == 'sub_areas_planting_status' &&
-   ($display_id == 'block_2' || $display_id == 'block_3')) {
+    ($display_id == 'block_2' || $display_id == 'block_3')) {
     // We have pass farmer Id intentionally to get offer license ID from that.
     if (!empty($args) && !(empty($args[0]))) {
       $offer_license_ids = $nfafmis_service_farmer->getOfferLicenseIds($args[0]);

@@ -18,7 +18,7 @@
     "ext-zip": "^1.15",
     "composer/installers": "^1.9",
     "cweagans/composer-patches": "^1.7",
-    "drupal/admin_toolbar": "^3.2",
+    "drupal/admin_toolbar": "^3.3",
     "drupal/auto_entitylabel": "^3.0@beta",
     "drupal/blocktabs": "^1.0@beta",
     "drupal/bootstrap": "^3.25",
@@ -36,12 +36,12 @@
     "drupal/entity_reference_revisions": "^1.10",
     "drupal/entity_reference_views_select": "^1.4",
     "drupal/field_group": "^3.4",
-    "drupal/flag": "^4.0@alpha",
+    "drupal/flag": "^4.0@beta",
     "drupal/geocoder": "^3.31",
     "drupal/geofield": "^1.47",
     "drupal/inline_entity_form": "^1.0@RC",
     "drupal/migrate_plus": "^5.1",
-    "drupal/migrate_spreadsheet": "2.0.1",
+    "drupal/migrate_spreadsheet": "^2.1",
     "drupal/migrate_tools": "^5.0",
     "drupal/paragraphs": "^1.15",
     "drupal/pathauto": "^1.11",
@@ -54,7 +54,7 @@
     "drupal/views_field_view": "^1.0@beta",
     "drupal/views_flipped_table": "^1.4",
     "drupal/views_geojson": "^1.2",
-    "drupal/yearonly": "^9.0",
+    "drupal/yearonly": "^9.1",
     "drush/drush": "^10.5"
   },
   "conflict": {
@@ -132,9 +132,6 @@
       },
       "drupal/default_content": {
         "2698425-175: Do not reimport existing entities": "https://www.drupal.org/files/issues/2022-07-29/default_content-fix-uuid-duplicate-entry-2698425.patch"
-      },
-      "drupal/yearonly": {
-        "3172745-2: Provide default year options": "https://www.drupal.org/files/issues/2020-09-23/yearonly-default-options-3172745-2.patch"
       }
     }
   },

@@ -67,22 +67,6 @@ function nfafmis_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
  * @param \Drupal\views\ViewExecutable $view
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
-  if ($view->id() == 'farmer_main_tab') {
-    $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
-  }
-
-  // On first load of Farmer Filter the farmer name is not set and the most
-  // recent farmer is returned. We don't want that, so don't show farmer details
-  // if the name filter was not set.
-  if ($view->id() == 'farmer_filter' || $view->id() == 'farmer_main_tab') {
-    if (empty($view->getExposedInput()['title'])) {
-      $result = $view->result;
-      foreach ($result as $i => $row) {
-        $view->result[$i]->_entity = NULL;
-      }
-    }
-  }
-
   // @todo Refactor this as a custom views filter.
   if ($view->id() == 'fmis_reports' && ($view->current_display == 'farmers_full' || $view->current_display == 'farmers_full_export')) {
     // The farmer report view has a relationship to content with an entity
