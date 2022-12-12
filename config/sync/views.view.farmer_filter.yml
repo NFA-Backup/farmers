@@ -502,12 +502,8 @@ display:
     position: 1
     display_options:
       cache:
-        type: time
-        options:
-          results_lifespan: 0
-          results_lifespan_custom: 0
-          output_lifespan: 0
-          output_lifespan_custom: 0
+        type: tag
+        options: {  }
       defaults:
         cache: false
       display_extenders:
