@@ -820,3 +820,11 @@ $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
 }
+
+/*
+ * Include overrides if present
+ * 
+  */
+if (file_exists($app_root . '/' . $site_path . '/settings.overrides.php')) {
+  include $app_root . '/' . $site_path . '/settings.overrides.php';
+}
