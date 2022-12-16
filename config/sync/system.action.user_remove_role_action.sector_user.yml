@@ -1,0 +1,14 @@
+uuid: 7a44bbe9-b71d-46d9-80e1-d405be874562
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sector_user
+  module:
+    - user
+id: user_remove_role_action.sector_user
+label: 'Remove the Sector user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sector_user

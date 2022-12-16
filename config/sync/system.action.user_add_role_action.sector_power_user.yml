@@ -1,0 +1,14 @@
+uuid: 3834d59f-f000-4ad9-a24a-dd6fd82629c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sector_power_user
+  module:
+    - user
+id: user_add_role_action.sector_power_user
+label: 'Add the Sector power user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sector_power_user

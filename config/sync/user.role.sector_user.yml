@@ -1,12 +1,12 @@
-uuid: 8db8b262-6752-4236-b01f-fca17336e8c5
+uuid: 3b0cccfc-fc17-4806-96f9-781946a5c758
 langcode: en
 status: true
 dependencies:
   module:
     - system
-id: range_user
-label: 'Range user'
-weight: 5
+id: sector_user
+label: 'Sector user'
+weight: 11
 is_admin: null
 permissions:
   - 'access content'

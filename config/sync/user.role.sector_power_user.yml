@@ -1,4 +1,4 @@
-uuid: 1ae4d22e-2c33-43ee-8778-62123a6a38fd
+uuid: 47344cf3-dbfa-4e7f-8a02-fcda29fcb46e
 langcode: en
 status: true
 dependencies:
@@ -26,9 +26,9 @@ dependencies:
   module:
     - node
     - system
-id: range_power_user
-label: 'Range power user'
-weight: 9
+id: sector_power_user
+label: 'Sector power user'
+weight: 12
 is_admin: null
 permissions:
   - 'access content'

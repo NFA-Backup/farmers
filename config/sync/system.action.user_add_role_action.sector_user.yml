@@ -1,0 +1,14 @@
+uuid: dfeb3b48-f318-43aa-83f9-cb3acde48da6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sector_user
+  module:
+    - user
+id: user_add_role_action.sector_user
+label: 'Add the Sector user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sector_user

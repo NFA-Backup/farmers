@@ -17,6 +17,9 @@ use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\CloseModalDialogCommand;
 
+const RANGE = 'range';
+const SECTOR = 'sector';
+
 /**
  * Implements hook_form_alter().
  *
@@ -801,8 +804,23 @@ function nfafmis_form_user_form_alter(array &$form, FormStateInterface $form_sta
     ],
   ];
 
+  // Show the Sector field for Sector users only.
+  $form['sector']['#states'] = [
+    'visible' => [
+      [':input[name="roles[sector_user]"]' => ['checked' => TRUE]],
+      [':input[name="roles[sector_power_user]"]' => ['checked' => TRUE]],
+    ],
+  ];
+  $form['sector']['widget']['0']['target_id']['#states'] = [
+    'required' => [
+      [':input[name="roles[sector_user]"]' => ['checked' => TRUE]],
+      [':input[name="roles[sector_power_user]"]' => ['checked' => TRUE]],
+    ],
+  ];
+
   if (!\Drupal::currentUser()->hasPermission('administer users')) {
     $form['management_unit']['#disabled'] = 'disabled';
+    $form['sector']['#disabled'] = 'disabled';
   }
 }
 
@@ -821,6 +839,7 @@ function nfafmis_node_access_records(NodeInterface $node) {
   /** @var \Drupal\Core\Config\Entity\ConfigEntityStorage $entity_storage */
   $node_storage = \Drupal::entityTypeManager()->getStorage('node');
   $range = NULL;
+  $sector = NULL;
 
   if ($node->bundle() == 'farmer_details') {
     // Retrieve the Areas that the farmer has allocations in, and from there the
@@ -840,39 +859,69 @@ function nfafmis_node_access_records(NodeInterface $node) {
       // Since a farmer can have more than one area in a range we have to avoid
       // adding duplicate realm+gid records. We do that by using the range id as
       // the $grants array key.
-      $grants[$range->id()] = [
-        'realm' => nfafmis_range_access_realm($range),
-        'gid' => $range->id(),
-        'grant_view' => 1,
-        'grant_update' => 0,
-        'grant_delete' => 0,
-        'priority' => 0,
-      ];
-      // Range Power Users are granted all permissions to nodes in their range.
-      // Because we're using the range id as the array key we need to create
-      // a second unique array key for the power user grants. We add 10000 to
-      // the range id to achieve this. There are 15 ranges and it is unlikely
-      // that more will be added, so while 10000 is an arbitary choice it serves
-      // the purpose.
-      $grants[$range->id() + 10000] = [
-        'realm' => nfafmis_range_access_realm($range, TRUE),
-        'gid' => $range->id(),
-        'grant_view' => 1,
-        'grant_update' => 1,
-        'grant_delete' => 1,
-      ];
+      if ($range) {
+        $grants[$range->id()] = [
+          'realm' => nfafmis_access_realm($range, RANGE),
+          'gid' => $range->id(),
+          'grant_view' => 1,
+          'grant_update' => 0,
+          'grant_delete' => 0,
+        ];
+        // Range Power Users are granted all permissions to nodes in their range.
+        // Because we're using the range id as the array key we need to create
+        // a second unique array key for the power user grants. We add 10000 to
+        // the range id to achieve this. There are 15 ranges and it is unlikely
+        // that more will be added, so while 10000 is an arbitrary choice ,it
+        // serves the purpose.
+        $grants[$range->id() + 10000] = [
+          'realm' => nfafmis_access_realm($range, RANGE, TRUE),
+          'gid' => $range->id(),
+          'grant_view' => 1,
+          'grant_update' => 1,
+          'grant_delete' => 1,
+        ];
+      }
+      $sector = $area->field_central_forest_reserve->entity->sector->entity;
+      // Sector Users are granted 'view' permission to nodes in their sector.
+      // Since a farmer can have more than one area in a sector we have to avoid
+      // adding duplicate realm+gid records. We do that by using the sector id
+      // as the $grants array key.
+      if ($sector) {
+        $grants[$sector->id()] = [
+          'realm' => nfafmis_access_realm($sector, SECTOR),
+          'gid' => $sector->id(),
+          'grant_view' => 1,
+          'grant_update' => 0,
+          'grant_delete' => 0,
+        ];
+        // Sector Users are granted all permissions to nodes in their sector.
+        // Because we're using the sector id as the array key we need to create
+        // a second unique array key for the power user grants. We add 10000 to
+        // the sector id to achieve this. There are around 50 sectors and it is
+        // unlikely that more will be added, so while 10000 is an arbitrary
+        // choice , it serves the purpose.
+        $grants[$sector->id() + 10000] = [
+          'realm' => nfafmis_access_realm($sector, SECTOR, TRUE),
+          'gid' => $sector->id(),
+          'grant_view' => 1,
+          'grant_update' => 1,
+          'grant_delete' => 1,
+        ];
+      }
     }
   }
   else {
     if ($node->bundle() == 'offer_license') {
-      // Retrieve the CFR and Range (Management Unit) that the area is in.
+      // Retrieve the Sector and Range (Management Unit) that the area is in.
       $range = $node->field_central_forest_reserve->entity->management_unit->entity;
+      $sector = $node->field_central_forest_reserve->entity->sector->entity;
     }
     elseif ($node->bundle() == 'sub_area') {
       // Retrieve the CFR and Range (Management Unit) that the sub-area's parent
       // area is in.
       if ($node->field_areas_id->entity && $cfr = $node->field_areas_id->entity->field_central_forest_reserve->entity) {
         $range = $cfr->management_unit->entity;
+        $sector = $cfr->sector->entity;
       }
       else {
         Drupal::logger('NFA-FMIS')
@@ -883,7 +932,7 @@ function nfafmis_node_access_records(NodeInterface $node) {
     if ($range) {
       // Range Users are granted 'view' permission to nodes in their range.
       $grants[] = [
-        'realm' => nfafmis_range_access_realm($range),
+        'realm' => nfafmis_access_realm($range, RANGE),
         'gid' => $range->id(),
         'grant_view' => 1,
         'grant_update' => 0,
@@ -891,8 +940,26 @@ function nfafmis_node_access_records(NodeInterface $node) {
       ];
       // Range Power Users are granted all permissions to nodes in their range.
       $grants[] = [
-        'realm' => nfafmis_range_access_realm($range, TRUE),
+        'realm' => nfafmis_access_realm($range, RANGE, TRUE),
         'gid' => $range->id(),
+        'grant_view' => 1,
+        'grant_update' => 1,
+        'grant_delete' => 1,
+      ];
+    }
+    if ($sector) {
+      // Sector Users are granted 'view' permission to nodes in their sector.
+      $grants[] = [
+        'realm' => nfafmis_access_realm($sector, SECTOR),
+        'gid' => $sector->id(),
+        'grant_view' => 1,
+        'grant_update' => 0,
+        'grant_delete' => 0,
+      ];
+      // Sector Power Users are granted all permissions to nodes in their sector.
+      $grants[] = [
+        'realm' => nfafmis_access_realm($sector, SECTOR, TRUE),
+        'gid' => $sector->id(),
         'grant_view' => 1,
         'grant_update' => 1,
         'grant_delete' => 1,
@@ -933,16 +1000,30 @@ function nfafmis_node_grants(AccountInterface $account, $op) {
   if (!$account->hasPermission('access all management unit content') && !$account->hasPermission('edit all management unit content')) {
     $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
     $range = $nfafmis_service_utility->getUserManagementUnit();
+    $sector = $nfafmis_service_utility->getUserSector();
 
     if ($range) {
       if (in_array('range_user', $roles)) {
-        $grants[nfafmis_range_access_realm($range)] = [
+        $grants[nfafmis_access_realm($range, RANGE)] = [
           'gid' => $range->id(),
         ];
       }
       if (in_array('range_power_user', $roles)) {
-        $grants[nfafmis_range_access_realm($range, TRUE)] = [
+        $grants[nfafmis_access_realm($range, RANGE, TRUE)] = [
           'gid' => $range->id(),
+        ];
+      }
+    }
+
+    if ($sector) {
+      if (in_array('sector_user', $roles)) {
+        $grants[nfafmis_access_realm($sector, SECTOR)] = [
+          'gid' => $sector->id(),
+        ];
+      }
+      if (in_array('sector_power_user', $roles)) {
+        $grants[nfafmis_access_realm($sector, SECTOR, TRUE)] = [
+          'gid' => $sector->id(),
         ];
       }
     }
@@ -968,10 +1049,10 @@ function nfafmis_node_grants(AccountInterface $account, $op) {
 }
 
 /**
- * Return the node access realm for the management unit/range.
+ * Return the node access realm for the management unit/range/sector.
  */
-function nfafmis_range_access_realm($range, $power_user = FALSE) {
-  $realm = 'nfafmis_range_' . str_replace(' ', '_', strtolower($range->label()));
+function nfafmis_access_realm($entity, $type, $power_user = FALSE) {
+  $realm = "nfafmis_{$type}_" . str_replace(' ', '_', strtolower($entity->label()));
   if ($power_user) {
     return $realm . '_power';
   }

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.user.compact
     - field.field.user.user.management_unit
+    - field.field.user.user.sector
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -31,3 +32,4 @@ content:
 hidden:
   management_unit: true
   member_for: true
+  sector: true
