@@ -6,7 +6,7 @@ dependencies:
     - system
 id: sector_user
 label: 'Sector user'
-weight: 11
+weight: -3
 is_admin: null
 permissions:
   - 'access content'

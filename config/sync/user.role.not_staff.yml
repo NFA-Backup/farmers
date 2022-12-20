@@ -32,7 +32,7 @@ dependencies:
     - taxonomy
 id: not_staff
 label: Not-Staff
-weight: 4
+weight: -6
 is_admin: null
 permissions:
   - 'access all management unit content'

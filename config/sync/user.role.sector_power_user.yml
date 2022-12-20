@@ -28,7 +28,7 @@ dependencies:
     - system
 id: sector_power_user
 label: 'Sector power user'
-weight: 12
+weight: -2
 is_admin: null
 permissions:
   - 'access content'

@@ -28,7 +28,7 @@ dependencies:
     - system
 id: range_power_user
 label: 'Range power user'
-weight: 9
+weight: -4
 is_admin: null
 permissions:
   - 'access content'

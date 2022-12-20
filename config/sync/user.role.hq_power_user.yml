@@ -29,7 +29,7 @@ dependencies:
     - system
 id: hq_power_user
 label: 'HQ power user'
-weight: 10
+weight: 0
 is_admin: null
 permissions:
   - 'access all management unit content'
