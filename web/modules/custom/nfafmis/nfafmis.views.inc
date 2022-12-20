@@ -34,11 +34,11 @@ function nfafmis_views_data_alter(array &$data) {
   // Filter to limit lists of terms to those that are in the user's assigned
   // management unit.
   $data['taxonomy_term_field_data']['user_management_unit'] = array(
-    'title' => t('Limit to current user\'s Management Unit'),
-    'help' => t('Filter the view to the currently logged in user\'s assigned management unit.'),
+    'title' => t('Limit to current user\'s Range or Sector'),
+    'help' => t('Filter the view to the currently logged in user\'s assigned range or sector.'),
     'group' => t('Taxonomy term'),
     'filter' => [
-      'id' => 'nfafmis_user_management_unit',
+      'id' => 'nfafmis_user_range_sector',
       'type' => 'yes-no',
     ],
 

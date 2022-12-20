@@ -1,0 +1,20 @@
+uuid: 6ddd7536-5be5-46e4-b55f-727c1be8f47d
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - user
+id: user.sector
+field_name: sector
+entity_type: user
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

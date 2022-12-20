@@ -1,0 +1,14 @@
+uuid: d6f25552-97e0-4ec1-9e5a-ba560cb28b21
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sector_power_user
+  module:
+    - user
+id: user_remove_role_action.sector_power_user
+label: 'Remove the Sector power user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sector_power_user

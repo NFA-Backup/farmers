@@ -188,7 +188,7 @@ display:
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          plugin_id: nfafmis_user_management_unit
+          plugin_id: nfafmis_user_range_sector
           operator: '='
           value: '1'
           group: 1

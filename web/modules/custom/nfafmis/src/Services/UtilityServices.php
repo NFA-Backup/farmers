@@ -86,7 +86,7 @@ class UtilityServices {
   public function getUserManagementUnit() {
     // If the user does not have permission to access all management units,
     // retrieve the range that the user has been assigned to.
-    if (!$this->currentUser->hasPermission('access all management unit content') && !$this->currentUser->hasPermission('edi all management unit content')) {
+    if (!$this->currentUser->hasPermission('access all management unit content') && !$this->currentUser->hasPermission('edit all management unit content')) {
       $account = \Drupal::entityTypeManager()->getStorage('user')->load($this->currentUser->id());
       return $account->management_unit->entity;
     }
@@ -94,4 +94,25 @@ class UtilityServices {
       return NULL;
   }
 
+  /**
+   * Get the Sector Unit of the logged-in user.
+   *
+   * @return mixed
+   *  Returns based on user role:
+   *    - the assigned Sector term if the user has role Sector User or Sector
+   *      Power User.
+   *    - NULL if the user has role Sector User or Sector Power User but does not
+   *      have an assigned Sector or if the user does not have role
+   *      Sector User or Sector Power User.
+   */
+  public function getUserSector() {
+    // If the user does not have permission to access all sectors, retrieve the
+    // sector that the user has been assigned to.
+    if (!$this->currentUser->hasPermission('access all management unit content') && !$this->currentUser->hasPermission('edit all management unit content')) {
+      $account = \Drupal::entityTypeManager()->getStorage('user')->load($this->currentUser->id());
+      return $account->sector->entity;
+    }
+    else
+      return NULL;
+  }
 }

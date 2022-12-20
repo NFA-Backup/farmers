@@ -302,7 +302,38 @@ function nfafmis_deploy_006_add_range_users(&$sandbox = NULL) {
       'roles' => ['range_user'],
       'status' => TRUE,
     ]);
-    $user->set("management_unit", $term->id());
+    $user->set('management_unit', $term->id());
     $user->save();
   }
+}
+
+/**
+ * Create a Sector user for each sector.
+ */
+function nfafmis_deploy_007_add_sector_users(&$sandbox = NULL) {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $query = $term_storage->getQuery();
+  $query->condition('vid', 'sector');
+  $tids = $query->execute();
+  $terms = $term_storage->loadMultiple($tids);
+  foreach ($terms as $term) {
+    // Create user object.
+    $username = str_replace(' ', '.', strtolower($term->label()) . '.sector');
+    $user = User::create([
+      'name' => $username,
+      'mail' => $username . '@nfa.org.ug',
+      'roles' => ['sector_user'],
+      'status' => TRUE,
+    ]);
+    $user->set('sector', $term->id());
+    $user->save();
+  }
+}
+
+/**
+ * Rebuild node access permissions.
+ */
+function nfafmis_deploy_008_rebuild_node_permissions(&$sandbox = NULL) {
+  // Rebuild node access permissions.
+  node_access_rebuild(TRUE);
 }

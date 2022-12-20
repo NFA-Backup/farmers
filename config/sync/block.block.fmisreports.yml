@@ -39,6 +39,8 @@ visibility:
       nfa_staff: nfa_staff
       not_staff: not_staff
       range_user: range_user
+      sector_user: sector_user
+      sector_power_user: sector_power_user
       hq_user: hq_user
       range_power_user: range_power_user
       hq_power_user: hq_power_user

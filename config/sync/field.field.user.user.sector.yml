@@ -1,0 +1,30 @@
+uuid: c6843c64-7e7e-429a-8ba4-217b9c0d9e11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.sector
+    - taxonomy.vocabulary.sector
+  module:
+    - user
+id: user.user.sector
+field_name: sector
+entity_type: user
+bundle: user
+label: Sector
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sector: sector
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -731,6 +731,8 @@ display:
               nfa_staff: '0'
               not_staff: '0'
               range_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
               hq_user: '0'
               power_admin: '0'
               range_power_user: '0'
@@ -878,11 +880,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:block'
-        - 'url.query_args:cfr'
-        - 'url.query_args:mu'
-        - 'url.query_args:sector'
         - user
         - user.roles
       tags:
@@ -1281,6 +1280,8 @@ display:
               nfa_staff: '0'
               not_staff: '0'
               range_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
               hq_user: '0'
               power_admin: '0'
               range_power_user: '0'
@@ -1407,10 +1408,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:cfr'
-        - 'url.query_args:management_unit_target_id'
-        - 'url.query_args:sector'
         - user
         - user.roles
       tags:
@@ -1705,8 +1704,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:mu'
         - user.roles
       tags: {  }
   page_1:
@@ -1988,6 +1987,8 @@ display:
               nfa_staff: '0'
               not_staff: '0'
               range_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
               hq_user: '0'
               power_admin: '0'
               range_power_user: '0'
@@ -2115,9 +2116,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:management_unit_target_id'
-        - 'url.query_args:sector'
         - user
         - user.roles
       tags:
