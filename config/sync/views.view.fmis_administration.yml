@@ -124,7 +124,16 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        changed:
+          id: changed
+          table: taxonomy_term_field_data
+          field: changed
+          entity_type: taxonomy_term
+          entity_field: changed
+          plugin_id: date
+          expose:
+            field_identifier: changed
       arguments: {  }
       filters:
         status:
@@ -543,6 +552,23 @@ display:
           text: 'edit block number'
           output_url_as_text: false
           absolute: false
+      sorts:
+        changed:
+          id: changed
+          table: taxonomy_term_field_data
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: changed
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       filters:
         status:
           id: status
@@ -816,6 +842,7 @@ display:
         title: false
         relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
         header: false
@@ -850,7 +877,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/block/add" class="btn btn-info">Add new Block number</a></div>'
+            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/block/add?destination=/fmis/admin/blocks" class="btn btn-info">Add new block number</a></div>'
             format: full_html
           tokenize: false
         result:
@@ -1674,7 +1701,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/management_unit/add" class="btn btn-info">Add new Management Unit</a></div>'
+            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/management_unit/add" class="btn btn-info">Add new management unit</a></div>'
             format: full_html
           tokenize: false
         result:
@@ -2086,7 +2113,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/sector/add" class="btn btn-info">Add new Sector</a></div>'
+            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/sector/add" class="btn btn-info">Add new sector</a></div>'
             format: full_html
           tokenize: false
         result:
@@ -2104,7 +2131,7 @@ display:
       path: fmis/admin/sectors
       menu:
         type: normal
-        title: 'Administer Sectors'
+        title: 'Administer sectors'
         description: ''
         weight: 2
         expanded: false

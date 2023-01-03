@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_block_id
+    - field.storage.node.field_block_ref
     - node.type.offer_license
   module:
     - entity_reference_revisions
     - node
-    - options
     - user
 id: block_id_reference
 label: 'Block ID Reference'
@@ -90,10 +89,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_block_id:
-          id: field_block_id
-          table: node__field_block_id
-          field: field_block_id
+        field_block_ref:
+          id: field_block_ref
+          table: node__field_block_ref
+          field: field_block_ref
           relationship: none
           group_type: group
           admin_label: ''
@@ -102,7 +101,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ field_block_id }} - ({{ title }})'
+            text: '{{ field_block_ref }} - ({{ title }})'
             make_link: false
             path: ''
             absolute: false
@@ -134,15 +133,16 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -274,13 +274,15 @@ display:
         type: entity_reference
         options:
           search_fields:
-            field_block_id: field_block_id
+            field_block_ref: field_block_ref
+            title: '0'
+            field_block_id: '0'
       row:
         type: entity_reference_revisions
         options:
           default_field_elements: true
           inline:
-            field_block_id: field_block_id
+            field_block_ref: field_block_ref
           separator: ''
           hide_empty: true
       query:
@@ -304,7 +306,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'
   entity_reference_1:
     id: entity_reference_1
     display_title: 'Entity Reference'
@@ -318,7 +320,8 @@ display:
       defaults:
         style: true
         row: true
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -327,4 +330,4 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_id'
+        - 'config:field.storage.node.field_block_ref'

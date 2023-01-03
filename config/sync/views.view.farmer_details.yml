@@ -1,6 +1,6 @@
 uuid: aee83e70-a131-43c1-9caf-34164f19efd6
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.field_farmer_category_type

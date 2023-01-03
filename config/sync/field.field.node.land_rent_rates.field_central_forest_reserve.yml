@@ -12,7 +12,7 @@ entity_type: node
 bundle: land_rent_rates
 label: 'Central Forest Reserve'
 description: 'Central Forest Reserve (CFR)'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
