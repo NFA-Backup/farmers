@@ -326,7 +326,13 @@ function nfafmis_deploy_007_add_sector_users(&$sandbox = NULL) {
       'status' => TRUE,
     ]);
     $user->set('sector', $term->id());
-    $user->save();
+
+    // Validate the user before saving to catch violations, such as a user
+    // already existing with the given username.
+    $violations = $user->validate();
+    if (!count($violations)) {
+      $user->save();
+    }
   }
 }
 
