@@ -298,7 +298,7 @@ display:
         type: normal
         title: 'NFA counter receipt'
         description: 'Fee payment - NFA counter receipt - Screen view'
-        weight: -42
+        weight: -46
         enabled: false
         expanded: false
         menu_name: main

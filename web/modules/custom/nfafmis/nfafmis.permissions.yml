@@ -3,3 +3,6 @@ access all management unit content:
 
 edit all management unit content:
   title: 'Edit content in all management units'
+
+administer fmis settings:
+  title: 'Administer FMIS settings'

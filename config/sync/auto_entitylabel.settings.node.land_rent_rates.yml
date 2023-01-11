@@ -1,5 +1,5 @@
 status: 1
-pattern: 'Rent rate of "[node:field_central_forest_reserve]" for the year [node:field_rate_year]'
+pattern: 'Rent rate of [node:field_central_forest_reserve] CFR for the year [node:field_rate_year]'
 escape: false
 dependencies:
   config:

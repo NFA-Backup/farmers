@@ -34,6 +34,7 @@ is_admin: null
 permissions:
   - 'access all management unit content'
   - 'access content'
+  - 'administer fmis settings'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
   - 'create annual_charges content'

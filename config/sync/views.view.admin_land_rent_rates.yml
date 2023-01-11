@@ -1,6 +1,6 @@
 uuid: 9f72a974-75db-43e9-97d9-7c78dd8cccb6
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.field_rate
