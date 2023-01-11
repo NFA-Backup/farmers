@@ -3,39 +3,49 @@ nfafmis.admin_index:
   route_name: nfafmis.admin_index
   parent: system.admin_config
   description: 'Configure settings like annual charges & dates.'
+nfafmis.settings:
+  title: 'FMIS Settings'
+  menu_name: main
+  description: 'FMIS Settings'
+  route_name: nfafmis.admin_index
 nfafmis.reports:
   title: 'FMIS Reports'
   menu_name: main
   description: 'FMIS Reports'
   route_name: view.fmis_reports.farmers_full
-  weight: 9
-nfafmis.settings:
-  title: 'Settings'
-  parent: nfafmis.admin_index
-  description: 'Annual charges date & late fee calculation settings'
-  route_name: nfafmis.settings
 nfafmis.settings.blocks:
   title: 'Block numbers'
   parent: nfafmis.admin_index
   description: 'Administer block numbers'
   route_name: view.fmis_administration.blocks
+  weight: 0
 nfafmis.settings.cfrs:
   title: 'CFRs'
   parent: nfafmis.admin_index
   description: 'Administer central forest reserves'
   route_name: view.fmis_administration.cfrs
+  weight: 1
 nfafmis.settings.sectors:
   title: 'Sectors'
   parent: nfafmis.admin_index
   description: 'Administer sectors'
   route_name: view.fmis_administration.sectors
+  weight: 2
 nfafmis.settings.management_units:
   title: 'Management units'
   parent: nfafmis.admin_index
   description: 'Administer management units/ranges'
   route_name: view.fmis_administration.management_units
+  weight: 3
 nfafmis.settings.land_rent_rates:
   title: 'Land rent rates'
   parent: nfafmis.admin_index
   description: 'Administer annual land rent rates'
   route_name: view.land_rent_rates.page_1
+  weight: 4
+nfafmis.fee_settings:
+  title: 'Fees and charges'
+  parent: nfafmis.admin_index
+  description: 'Annual charges date & late fee calculation settings'
+  route_name: nfafmis.settings
+  weight: 5

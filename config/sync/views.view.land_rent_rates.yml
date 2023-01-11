@@ -964,7 +964,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="form-actions"><a href="/node/add/land_rent_rates?destination=/admin/config/nfafmis/settings/land-rent-rates" class="button button--primary">+ Add land rent rate</a></div>'
+            value: '<div class="form-actions"><a href="/node/add/land_rent_rates?destination=/admin/config/nfafmis/land-rent-rates" class="button button--primary">+ Add land rent rate</a></div>'
             format: full_html
           tokenize: false
       display_extenders:

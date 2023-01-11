@@ -868,7 +868,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/block/add?destination=/admin/config/nfafmis/settings/blocks" class="button button--primary">+ Add block number</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/block/add?destination=/admin/config/nfafmis/blocks" class="button button--primary">+ Add block number</a></div>'
             format: full_html
           tokenize: false
       display_extenders:
@@ -1389,7 +1389,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/settings/cfrs" class="button button--primary">+ Add CFR</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/cfrs" class="button button--primary">+ Add CFR</a></div>'
             format: full_html
           tokenize: false
       display_extenders:
@@ -1734,7 +1734,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/management_unit/add?destination=/admin/config/nfafmis/settings/management-units" class="button button--primary">+ Add management unit</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/management_unit/add?destination=/admin/config/nfafmis/management-units" class="button button--primary">+ Add management unit</a></div>'
             format: full_html
           tokenize: false
       display_extenders:
@@ -2135,7 +2135,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/sector/add?destination=/admin/config/nfafmis/settings/sectors" class="button button--primary">+ Add sector</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/sector/add?destination=/admin/config/nfafmis/sectors" class="button button--primary">+ Add sector</a></div>'
             format: full_html
           tokenize: false
       display_extenders:
