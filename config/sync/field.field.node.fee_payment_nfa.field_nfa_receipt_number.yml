@@ -1,15 +1,15 @@
-uuid: 94ad38c0-6103-457f-a63d-545aaa335a65
+uuid: 7531a136-a117-408b-8c69-c8ca5e2f3970
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_description
+    - field.storage.node.field_nfa_receipt_number
     - node.type.fee_payment_nfa
-id: node.fee_payment_nfa.field_description
-field_name: field_description
+id: node.fee_payment_nfa.field_nfa_receipt_number
+field_name: field_nfa_receipt_number
 entity_type: node
 bundle: fee_payment_nfa
-label: Description
+label: 'NFA Receipt Number'
 description: ''
 required: false
 translatable: false

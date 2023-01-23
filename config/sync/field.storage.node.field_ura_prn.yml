@@ -1,11 +1,11 @@
-uuid: 28a910ad-0f98-4cfe-a6b1-30708d232bdb
+uuid: 45220bc7-5355-40e5-b4fe-c1609a71a375
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_name_of_person
-field_name: field_name_of_person
+id: node.field_ura_prn
+field_name: field_ura_prn
 entity_type: node
 type: string
 settings:

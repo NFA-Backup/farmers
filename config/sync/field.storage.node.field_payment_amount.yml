@@ -1,17 +1,17 @@
-uuid: 5fc6d37c-8865-4646-8d67-769031f6212c
+uuid: 3c4f66da-635c-4267-871d-d38a027ff1c8
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_date_of_ura_receipt
-field_name: field_date_of_ura_receipt
+id: node.field_payment_amount
+field_name: field_payment_amount
 entity_type: node
-type: datetime
+type: decimal
 settings:
-  datetime_type: datetime
-module: datetime
+  precision: 10
+  scale: 2
+module: core
 locked: false
 cardinality: 1
 translatable: true

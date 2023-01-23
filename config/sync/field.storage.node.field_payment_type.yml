@@ -1,17 +1,17 @@
-uuid: a23f925a-7a18-44ff-a2cf-583d023a2d24
+uuid: d4a4e90c-8b3a-4a8c-bb8a-0c404ddf205e
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_date_of_nfa_receipt
-field_name: field_date_of_nfa_receipt
+    - taxonomy
+id: node.field_payment_type
+field_name: field_payment_type
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

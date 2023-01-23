@@ -1,16 +1,16 @@
-uuid: 83e84c9a-bf37-4084-8d9b-f0f428872d35
+uuid: 1d8a07f8-c429-428b-a013-de16876f6877
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_ura_receipt_number
+    - field.storage.node.field_ura_prn
     - node.type.fee_payment_nfa
-id: node.fee_payment_nfa.field_ura_receipt_number
-field_name: field_ura_receipt_number
+id: node.fee_payment_nfa.field_ura_prn
+field_name: field_ura_prn
 entity_type: node
 bundle: fee_payment_nfa
-label: 'URA receipt number'
-description: 'URA receipt date'
+label: 'URA PRN'
+description: 'URA Payment Registration Number'
 required: false
 translatable: false
 default_value: {  }

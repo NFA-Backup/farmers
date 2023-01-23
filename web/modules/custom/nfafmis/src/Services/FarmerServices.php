@@ -65,6 +65,7 @@ class FarmerServices {
   public function getAreaLandRentAndFeesData(string $farmer_id, string $offer_licence_id) {
     $starting_amount = $this->getStartingAmountData($offer_licence_id);
     // Get fees & land rent data.
+    $fee_payments_data = $this->getFeePaymentsNFAData($offer_licence_id);
     $fees_data = $this->getFeesData($offer_licence_id);
     $land_rent_data = $this->getLandRentData($offer_licence_id);
     $historical_data = $this->getHistoricalData($offer_licence_id);
@@ -72,6 +73,7 @@ class FarmerServices {
       'starting_amount' => $starting_amount,
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
+      'fee_payments' => $fee_payments_data,
       'fees' => $fees_data,
       'land_rent' => $land_rent_data,
       'historical' => $historical_data,
@@ -130,6 +132,43 @@ class FarmerServices {
   }
 
   /**
+   * Get NFA fee payments data for particular area.
+   *
+   * @param string $offer_licence_id
+   *   The area ID.
+   *
+   * @return array
+   *   The fee data.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function getFeePaymentsNFAData(string $offer_licence_id) {
+    $data_array = [];
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $payment_nids = $query->condition('type', 'fee_payment_nfa')
+      ->condition('field_offer_id_ref.target_id', $offer_licence_id)
+      ->accessCheck(TRUE)
+      ->execute();
+    if (!empty($payment_nids)) {
+      $nids = array_values($payment_nids);
+      $payments = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
+
+      foreach ($payments as $key => $payment) {
+        $data_array[$key]['payment_type'] = $payment->get('field_payment_type')->entity->getName();
+        $data_array[$key]['nfa_receipt_date'] = $payment->get('field_date_of_nfa_receipt')->value;
+        $data_array[$key]['nfa_receipt_number'] = $payment->get('field_nfa_receipt_number')->value;
+        $data_array[$key]['ura_prn_date'] = $payment->get('field_ura_prn_date')->value;
+        $data_array[$key]['ura_prn'] = $payment->get('field_ura_prn')->value;
+        $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount')->value;
+        $data_array[$key]['nid'] = $payment->id();
+      }
+    }
+
+    return ['data' => $data_array];
+  }
+
+  /**
    * Get payment id against each invoice (Payment advice).
    *
    * @param string $invoice_id
@@ -169,7 +208,7 @@ class FarmerServices {
       'data' => [],
     ];
     $this->getLandRentStartingAmountData($offer_licence_id, $land_rent_data);
-    $this->getLandRentAnnulChargesData($offer_licence_id, $land_rent_data);
+    $this->getLandRentAnnualChargesData($offer_licence_id, $land_rent_data);
     return $land_rent_data;
   }
 
@@ -189,7 +228,7 @@ class FarmerServices {
     $historical_data = [
       'data' => [],
     ];
-    $this->getLandRentAnnulChargesHistoricalData($offer_licence_id, $historical_data);
+    $this->getLandRentAnnualChargesHistoricalData($offer_licence_id, $historical_data);
     return $historical_data;
   }
 
@@ -287,7 +326,7 @@ class FarmerServices {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getLandRentAnnulChargesData(string $offer_licence_id, array &$land_rent_data) {
+  protected function getLandRentAnnualChargesData(string $offer_licence_id, array &$land_rent_data) {
     $year = date("Y");
     $archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
@@ -362,13 +401,14 @@ class FarmerServices {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getLandRentAnnulChargesHistoricalData(string $offer_licence_id, array &$historical_data) {
+  protected function getLandRentAnnualChargesHistoricalData(string $offer_licence_id, array &$historical_data) {
     $year = date("Y");
     $archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $offer_licence_id)
       ->condition('field_rate_year.value', $archiveYear, '<=')
+      ->accessCheck(TRUE)
       ->execute();
     $data_array = [];
     if (!empty($annual_charges_nids)) {

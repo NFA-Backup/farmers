@@ -152,9 +152,7 @@ display:
           default_row_class: true
           columns:
             name: name
-            cfr_1: cfr_1
-            sector: sector
-            management_unit: management_unit
+            management_unit_type: management_unit_type
             operations: operations
           default: '-1'
           info:
@@ -165,21 +163,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            cfr_1:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            sector:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            management_unit:
+            management_unit_type:
               sortable: true
               default_sort_order: asc
               align: ''

@@ -4,17 +4,15 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.fee_payment_nfa.field_amount_paid
-    - field.field.node.fee_payment_nfa.field_block_id_ref
     - field.field.node.fee_payment_nfa.field_date_of_nfa_receipt
-    - field.field.node.fee_payment_nfa.field_date_of_ura_receipt
     - field.field.node.fee_payment_nfa.field_farmer_name_ref
-    - field.field.node.fee_payment_nfa.field_licence_id_ref
-    - field.field.node.fee_payment_nfa.field_name_of_person
-    - field.field.node.fee_payment_nfa.field_nfa_counter_receipt_number
+    - field.field.node.fee_payment_nfa.field_nfa_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
-    - field.field.node.fee_payment_nfa.field_scan_of_ura_receipt
-    - field.field.node.fee_payment_nfa.field_ura_receipt_number
+    - field.field.node.fee_payment_nfa.field_payment_amount
+    - field.field.node.fee_payment_nfa.field_payment_type
+    - field.field.node.fee_payment_nfa.field_ura_prn
+    - field.field.node.fee_payment_nfa.field_ura_prn_date
+    - field.field.node.fee_payment_nfa.field_ura_prn_scan
     - node.type.fee_payment_nfa
   module:
     - user
@@ -29,16 +27,12 @@ content:
     weight: 100
     region: content
 hidden:
-  field_amount_paid: true
-  field_block_id_ref: true
   field_date_of_nfa_receipt: true
-  field_date_of_ura_receipt: true
-  field_description: true
   field_farmer_name_ref: true
-  field_licence_id_ref: true
-  field_name_of_person: true
-  field_nfa_counter_receipt_number: true
+  field_nfa_receipt_number: true
   field_offer_id_ref: true
-  field_receipt_agaings_account_bi: true
-  field_scan_of_ura_receipt: true
-  field_ura_receipt_number: true
+  field_payment_amount: true
+  field_payment_type: true
+  field_ura_prn: true
+  field_ura_prn_date: true
+  field_ura_prn_scan: true

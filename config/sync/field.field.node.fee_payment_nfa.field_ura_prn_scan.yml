@@ -1,18 +1,18 @@
-uuid: 901ea0dc-935a-42e7-9d7c-5645a24f1c43
+uuid: d464e49d-06b2-4222-acae-7b06dc342169
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_scan_of_ura_receipt
+    - field.storage.node.field_ura_prn_scan
     - node.type.fee_payment_nfa
   module:
     - file
-id: node.fee_payment_nfa.field_scan_of_ura_receipt
-field_name: field_scan_of_ura_receipt
+id: node.fee_payment_nfa.field_ura_prn_scan
+field_name: field_ura_prn_scan
 entity_type: node
 bundle: fee_payment_nfa
-label: 'Scan of URA receipt'
-description: 'Scanned URA receipt – proof of payment'
+label: 'Scan of URA PRN'
+description: 'Scanned URA Payment Registration Number. Proof of payment.'
 required: false
 translatable: false
 default_value: {  }
@@ -21,7 +21,7 @@ settings:
   handler: 'default:file'
   handler_settings: {  }
   file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'txt pdf jpg'
+  file_extensions: 'pdf jpg'
   max_filesize: ''
   description_field: true
 field_type: file

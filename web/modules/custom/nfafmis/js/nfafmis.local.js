@@ -176,10 +176,11 @@
             tempElem.addClass('active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
+            $('.account-list-subtab-payments a').addClass('active');
             $('.account-list-subtab-land-rent a').removeClass('active');
-            $('.account-list-subtab-fees a').addClass('active');
-            $('.views-field-field-itemise-charges').fadeIn('slow');
-            $('section.fees').fadeIn('slow');
+            $('.account-list-subtab-fees a').removeClass('active');
+            $('.views-field-field-itemise-charges').hide();
+            $('section.payments').fadeIn('slow');
           }
           // Set active tab based on hash value, like: payment, summary-charges.
           else {
@@ -188,11 +189,10 @@
               hideElement();
               $(filtered_id).parents('.views-row').fadeIn('slow');
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
-              $('.views-field-field-itemise-charges').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
               $('.account-list-subtab-land-rent a').removeClass('active');
-              $('.account-list-subtab-fees a').addClass('active');
-              $('section.fees').fadeIn('slow');
+              $('.account-list-subtab-fees a').removeClass('active');
+              $('.account-list-subtab-payments a').addClass('active');
               tempElem.addClass('active');
             }
           }
@@ -204,19 +204,34 @@
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
-              $('.views-field-field-itemise-charges').fadeIn('slow');
+              $('.views-field-field-itemise-charges').hide();
               $('.account-list-subtab-land-rent a').removeClass('active');
               $('.account-list-subtabs a').removeClass('active');
-              $('.account-list-subtab-fees a').addClass('active');
-              $('section.fees').fadeIn('slow');
+              $('.account-list-subtab-fees a').removeClass('active');
+              $('.account-list-subtab-payments a').addClass('active');
+              $('section.payments').fadeIn('slow');
               $(this).addClass('active');
             }
           })
 
+          // Bind click event for anchor tag payments.
+          $('.account-list-subtab-payments a').click(function() {
+            if (!$(this).hasClass('active')) {
+              $('section.fees').hide();
+              $('section.land-rent').hide();
+              $('.account-list-subtab-fees a').removeClass('active');
+              $('.account-list-subtab-land-rent a').removeClass('active');
+              $('.views-field-field-itemise-charges').hide();
+              $(this).addClass('active');
+              $('section.payments').fadeIn('slow');
+            }
+          });
           // Bind click event for anchor tag fees.
           $('.account-list-subtab-fees a').click(function() {
             if (!$(this).hasClass('active')) {
+              $('section.payments').hide();
               $('section.land-rent').hide();
+              $('.account-list-subtab-payments a').removeClass('active');
               $('.account-list-subtab-land-rent a').removeClass('active');
               $(this).addClass('active');
               $('section.fees').fadeIn('slow');
@@ -226,7 +241,9 @@
           // Bind click event for anchor tag land-rent.
           $('.account-list-subtab-land-rent a').click(function() {
             if (!$(this).hasClass('active')) {
+              $('section.payments').hide();
               $('section.fees').hide();
+              $('.account-list-subtab-payments a').removeClass('active');
               $('.account-list-subtab-fees a').removeClass('active');
               $('.views-field-field-itemise-charges').hide();
               $(this).addClass('active');

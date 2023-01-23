@@ -8,15 +8,14 @@ dependencies:
     - field.storage.node.field_amount_paid
     - field.storage.node.field_charge_amount
     - field.storage.node.field_charge_type
-    - field.storage.node.field_date_of_ura_receipt
+    - field.storage.node.field_ura_prn_date
     - field.storage.node.field_due_date
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_licence_id_ref
-    - field.storage.node.field_name_of_person
     - field.storage.node.field_offer_id_ref
     - field.storage.node.field_phone_number
-    - field.storage.node.field_scan_of_ura_receipt
-    - field.storage.node.field_ura_receipt_number
+    - field.storage.node.field_ura_prn_scan
+    - field.storage.node.field_ura_prn
     - field.storage.node.field_year
     - node.type.accounts_detail
     - node.type.farmer_details
@@ -974,10 +973,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_date_of_ura_receipt:
-          id: field_date_of_ura_receipt
-          table: node__field_date_of_ura_receipt
-          field: field_date_of_ura_receipt
+        field_ura_prn_date:
+          id: field_ura_prn_date
+          table: node__field_ura_prn_date
+          field: field_ura_prn_date
           relationship: none
           group_type: group
           admin_label: ''
@@ -1038,15 +1037,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_name_of_person:
-          id: field_name_of_person
-          table: node__field_name_of_person
-          field: field_name_of_person
+        field_ura_prn:
+          id: field_ura_prn
+          table: node__field_ura_prn
+          field: field_ura_prn
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Paid by'
+          label: 'URA PRN'
           exclude: false
           alter:
             alter_text: false
@@ -1101,73 +1100,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_ura_receipt_number:
-          id: field_ura_receipt_number
-          table: node__field_ura_receipt_number
-          field: field_ura_receipt_number
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Receipt number'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_scan_of_ura_receipt:
-          id: field_scan_of_ura_receipt
-          table: node__field_scan_of_ura_receipt
-          field: field_scan_of_ura_receipt
+        field_ura_prn_scan:
+          id: field_ura_prn_scan
+          table: node__field_ura_prn_scan
+          field: field_ura_prn_scan
           relationship: none
           group_type: group
           admin_label: ''
@@ -1451,7 +1387,7 @@ display:
           default_row_class: true
           columns:
             title: title
-            field_date_of_ura_receipt: field_date_of_ura_receipt
+            field_ura_prn_date: field_ura_prn_date
           default: '-1'
           info:
             title:
@@ -1461,7 +1397,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_date_of_ura_receipt:
+            field_ura_prn_date:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -1497,10 +1433,9 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_amount_paid'
-        - 'config:field.storage.node.field_date_of_ura_receipt'
-        - 'config:field.storage.node.field_name_of_person'
-        - 'config:field.storage.node.field_scan_of_ura_receipt'
-        - 'config:field.storage.node.field_ura_receipt_number'
+        - 'config:field.storage.node.field_ura_prn_date'
+        - 'config:field.storage.node.field_ura_prn_scan'
+        - 'config:field.storage.node.field_ura_prn'
   page_1:
     id: page_1
     display_title: Page

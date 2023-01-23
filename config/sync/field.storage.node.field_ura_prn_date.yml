@@ -1,16 +1,17 @@
-uuid: 51ae6742-4d75-4a63-8d65-1e8e3a758b6a
+uuid: 38883362-f4a9-49cf-830f-c8a374809a0c
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
-id: node.field_receipt_agaings_account_bi
-field_name: field_receipt_agaings_account_bi
+id: node.field_ura_prn_date
+field_name: field_ura_prn_date
 entity_type: node
-type: entity_reference
+type: datetime
 settings:
-  target_type: node
-module: core
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true
