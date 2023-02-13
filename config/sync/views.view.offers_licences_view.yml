@@ -1,6 +1,6 @@
 uuid: c4a6d93c-79f8-46ab-ad24-952fa08e136e
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - field.storage.node.field_area_number

@@ -176,11 +176,11 @@
             tempElem.addClass('active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
-            $('.account-list-subtab-payments a').addClass('active');
             $('.account-list-subtab-land-rent a').removeClass('active');
-            $('.account-list-subtab-fees a').removeClass('active');
+            $('.account-list-subtab-payments a').removeClass('active');
+            $('.account-list-subtab-fees a').addClass('active');
             $('.views-field-field-itemise-charges').hide();
-            $('section.payments').fadeIn('slow');
+            $('section.fees').fadeIn('slow');
           }
           // Set active tab based on hash value, like: payment, summary-charges.
           else {
@@ -191,8 +191,8 @@
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('active');
               $('.account-list-subtab-land-rent a').removeClass('active');
-              $('.account-list-subtab-fees a').removeClass('active');
-              $('.account-list-subtab-payments a').addClass('active');
+              $('.account-list-subtab-payments a').removeClass('active');
+              $('.account-list-subtab-fees a').addClass('active');
               tempElem.addClass('active');
             }
           }
@@ -207,9 +207,9 @@
               $('.views-field-field-itemise-charges').hide();
               $('.account-list-subtab-land-rent a').removeClass('active');
               $('.account-list-subtabs a').removeClass('active');
-              $('.account-list-subtab-fees a').removeClass('active');
-              $('.account-list-subtab-payments a').addClass('active');
-              $('section.payments').fadeIn('slow');
+              $('.account-list-subtab-payments a').removeClass('active');
+              $('.account-list-subtab-fees a').addClass('active');
+              $('section.fees').fadeIn('slow');
               $(this).addClass('active');
             }
           })
@@ -299,7 +299,8 @@
     $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
     $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
     $('.views-field-field-itemise-charges').hide();
-    $('section.fees').hide();
     $('section.land-rent').hide();
+    $('section.payments').hide();
+
   }
 }(jQuery));

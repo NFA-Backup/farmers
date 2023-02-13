@@ -2,6 +2,7 @@
 
 namespace Drupal\nfafmis\Services;
 
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Entity\EntityTypeManager;
@@ -33,20 +34,38 @@ class FarmerServices {
   protected $renderer;
 
   /**
+   * The file URL generator.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
+   * NFA Fee payments data.
+   *
+   * @array
+   */
+  protected $nfaFeePayments;
+
+  /**
    * Constructs a new FarmerServices object.
    *
    * @param \Drupal\Core\Session\AccountProxy $current_user
    * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
    * @param \Drupal\Core\Render\Renderer $renderer
+   * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
    */
   public function __construct(
     AccountProxy $current_user,
     EntityTypeManager $entity_type_manager,
-    Renderer $renderer
+    Renderer $renderer,
+    FileUrlGeneratorInterface $file_url_generator
   ) {
     $this->currentUser = $current_user;
     $this->renderer = $renderer;
     $this->entityTypeManager = $entity_type_manager;
+    $this->fileUrlGenerator = $file_url_generator;
+    $this->nfaFeePayments = [];
   }
 
   /**
@@ -65,7 +84,7 @@ class FarmerServices {
   public function getAreaLandRentAndFeesData(string $farmer_id, string $offer_licence_id) {
     $starting_amount = $this->getStartingAmountData($offer_licence_id);
     // Get fees & land rent data.
-    $fee_payments_data = $this->getFeePaymentsNFAData($offer_licence_id);
+    $this->nfaFeePayments = $this->getFeePaymentsNFAData($offer_licence_id);
     $fees_data = $this->getFeesData($offer_licence_id);
     $land_rent_data = $this->getLandRentData($offer_licence_id);
     $historical_data = $this->getHistoricalData($offer_licence_id);
@@ -73,7 +92,7 @@ class FarmerServices {
       'starting_amount' => $starting_amount,
       'farmer_id' => $farmer_id,
       'offer_licence_id' => $offer_licence_id,
-      'fee_payments' => $fee_payments_data,
+      'fee_payments' => $this->nfaFeePayments,
       'fees' => $fees_data,
       'land_rent' => $land_rent_data,
       'historical' => $historical_data,
@@ -106,6 +125,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $charge_nids = $query->condition('type', 'charge')
       ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->accessCheck()
       ->execute();
     if (!empty($charge_nids)) {
       $nids = array_values($charge_nids);
@@ -145,15 +165,15 @@ class FarmerServices {
    */
   public function getFeePaymentsNFAData(string $offer_licence_id) {
     $data_array = [];
+    $total_paid = [];
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $payment_nids = $query->condition('type', 'fee_payment_nfa')
       ->condition('field_offer_id_ref.target_id', $offer_licence_id)
-      ->accessCheck(TRUE)
+      ->accessCheck()
       ->execute();
     if (!empty($payment_nids)) {
       $nids = array_values($payment_nids);
       $payments = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
-
       foreach ($payments as $key => $payment) {
         $data_array[$key]['payment_type'] = $payment->get('field_payment_type')->entity->getName();
         $data_array[$key]['nfa_receipt_date'] = $payment->get('field_date_of_nfa_receipt')->value;
@@ -162,10 +182,11 @@ class FarmerServices {
         $data_array[$key]['ura_prn'] = $payment->get('field_ura_prn')->value;
         $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount')->value;
         $data_array[$key]['nid'] = $payment->id();
+        $total_paid[substr($payment->get('field_date_of_nfa_receipt')->value, 0, 4)] = $data_array[$key]['payment_amount'];
       }
     }
 
-    return ['data' => $data_array];
+    return ['total_paid' => $total_paid, 'data' => $data_array];
   }
 
   /**
@@ -184,6 +205,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $payment_nid = $query->condition('type', 'payment')
       ->condition('field_invoice.target_id', $invoice_id)
+      ->accessCheck()
       ->execute();
     return !empty($payment_nid) ? $payment_nid : [];
   }
@@ -245,8 +267,10 @@ class FarmerServices {
    */
   protected function getLandRentStartingAmountData($offer_licence_id, &$land_rent_data) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $starting_amount_nids = $query->condition('type', 'starting_amount')
       ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->accessCheck()
       ->execute();
     $data_array = [];
     if (!empty($starting_amount_nids)) {
@@ -261,7 +285,7 @@ class FarmerServices {
         $data_array += ['late_fee_due' => 0];
         $data_array += ['total_due' => $amount];
         $invoice = $starting_amount->get('field_payment_advice')->referencedEntities()[0];
-        // Get incove for staring amount.
+        // Get invoice for starting amount.
         if ($invoice) {
           $data_array += ['payment_advc_no' => $invoice->get('field_invoice_number')->value];
           $data_array += ['payment_advc_nid' => $invoice->id()];
@@ -279,7 +303,7 @@ class FarmerServices {
             $file = $payment->field_receipt_scan->entity;
             if ($file) {
               $file_uri = $payment->field_receipt_scan->entity->getFileUri();
-              $file_download_uri = file_create_url($file_uri);
+              $file_download_uri = $this->fileUrlGenerator->generateAbsoluteString($file_uri);
               $data_array += ['receipt_uri' => $file_download_uri];
             }
           }
@@ -305,12 +329,13 @@ class FarmerServices {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function chekForExistingAnnualCharges($area, string $for_year) {
+  public function checkForExistingAnnualCharges($area, string $for_year) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nid = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $area->id())
       ->condition('field_rate_year.value', $for_year)
       ->condition('field_annual_charges_type', '1')
+      ->accessCheck()
       ->execute();
     return $annual_charges_nid ?? [];
   }
@@ -328,11 +353,12 @@ class FarmerServices {
    */
   protected function getLandRentAnnualChargesData(string $offer_licence_id, array &$land_rent_data) {
     $year = date("Y");
-    $archiveYear = $year - 2;
+    //$archiveYear = $year - 2;
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $offer_licence_id)
-      ->condition('field_rate_year.value', $archiveYear, '>')
+      //->condition('field_rate_year.value', $archiveYear, '>')
+      ->accessCheck()
       ->execute();
     $data_array = [];
     if (!empty($annual_charges_nids)) {
@@ -343,17 +369,27 @@ class FarmerServices {
         $arrears = $annual_charge->get('field_arrears')->value;
         $charge_type = $annual_charge->get('field_annual_charges_type')->value;
         $land_rent_data['charges'] += $amount;
-        $data_array[$key]['date'] = '01-01-' . $year;
+        $data_array[$key]['date'] = $year;
+        $data_array[$key]['charge_type'] = $charge_type;
+        $data_array[$key]['total_area'] = $annual_charge->get('field_overall_area')->value;
         if ($charge_type == '1') {
           $data_array[$key]['land_rent_due'] = $amount;
           $data_array[$key]['late_fee_due'] = 0;
+          if (isset($this->nfaFeePayments['total_paid'][$year])) {
+            $data_array[$key]['total_paid'] = $this->nfaFeePayments['total_paid'][$year];
+          }
         }
         else {
           $data_array[$key]['land_rent_due'] = 0;
           $data_array[$key]['late_fee_due'] = $amount;
         }
         $data_array[$key]['previous_arrears'] = $arrears;
-        $data_array[$key]['total_due'] = $amount;
+        // Cumulative amount outstanding year by year.
+        $data_array[$key]['total_due'] = $land_rent_data['balance'] + $amount;
+        if (isset($data_array[$key]['total_paid'])) {
+          $data_array[$key]['total_due'] -= $data_array[$key]['total_paid'];
+        }
+
         $invoice = $annual_charge->get('field_payment_advice')->referencedEntities()[0];
         // Get invoice for annual charges.
         if ($invoice) {
@@ -373,7 +409,7 @@ class FarmerServices {
             $file = $payment->field_receipt_scan->entity;
             if ($file) {
               $file_uri = $payment->field_receipt_scan->entity->getFileUri();
-              $file_download_uri = file_create_url($file_uri);
+              $file_download_uri = $this->fileUrlGenerator->generateAbsoluteString($file_uri);
               $data_array[$key]['receipt_uri'] = $file_download_uri;
             }
           }
@@ -408,7 +444,7 @@ class FarmerServices {
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_licence_id_ref.target_id', $offer_licence_id)
       ->condition('field_rate_year.value', $archiveYear, '<=')
-      ->accessCheck(TRUE)
+      ->accessCheck()
       ->execute();
     $data_array = [];
     if (!empty($annual_charges_nids)) {
@@ -447,6 +483,7 @@ class FarmerServices {
     $historical_payments_nid = $query->condition('type', 'historical_payments')
       ->condition('field_areas_id.target_id', $offer_licence_id)
       ->sort('field_charge_date.value', 'DESC')
+      ->accessCheck()
       ->execute();
     if (!empty($historical_payments_nid)) {
       $historical_payments = $this->entityTypeManager->getStorage('node')->loadMultiple($historical_payments_nid);
@@ -489,6 +526,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $starting_amount_nids = $query->condition('type', 'starting_amount')
       ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->accessCheck()
       ->execute();
     $starting_amount_data = [];
     if (!empty($starting_amount_nids)) {
@@ -522,6 +560,8 @@ class FarmerServices {
     $query->condition('type', 'land_rent_rates');
     $query->condition('field_central_forest_reserve.target_id', $cfr);
     $query->condition('field_rate_year.value', $for_year);
+    $query->accessCheck();
+
     $land_rent_rates_nid = $query->execute();
 
     if (!empty($land_rent_rates_nid)) {
@@ -555,6 +595,7 @@ class FarmerServices {
       ->condition('field_licence_id_ref.target_id', $area->id())
       ->condition('field_rate_year.value', $year)
       ->condition('field_annual_charges_type', '1')
+      ->accessCheck()
       ->execute();
 
     $land_rent_annual_charge = [];
@@ -593,6 +634,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $sub_area_nids = $query->condition('type', 'sub_area')
       ->condition('field_areas_id.target_id', $offer_licence_ids, 'IN')
+      ->accessCheck()
       ->execute();
     if (!empty($sub_area_nids)) {
       $sub_area_nids = array_values($sub_area_nids);
@@ -620,6 +662,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $land_rent_rates_nid = $query->condition('type', 'land_rent_rates')
       ->condition('field_central_forest_reserve.target_id', $cfr)
+      ->accessCheck()
       ->execute();
     $land_rent_rates_table = [];
     if (!empty($land_rent_rates_nid)) {
@@ -668,6 +711,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $charge_nids = $query->condition('type', 'charge')
       ->condition('field_areas_id.target_id', $offer_licence_id)
+      ->accessCheck()
       ->execute();
     $field_amount = [];
     if (!empty($charge_nids)) {
@@ -741,6 +785,7 @@ class FarmerServices {
       $query = $this->entityTypeManager->getStorage('node')->getQuery();
       $charge_nids = $query->condition('type', 'charge')
         ->condition('field_areas_id.target_id', $offer_licence_id)
+        ->accessCheck()
         ->execute();
       if (!empty($charge_nids)) {
         $nids = array_values($charge_nids);
@@ -789,6 +834,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $nids = $query->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref.target_id', $farmer_id)
+      ->accessCheck()
       ->execute();
     if (!empty($nids)) {
       $nids = array_values($nids);
@@ -814,6 +860,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $nids = $query->condition('type', 'sub_area')
       ->condition('field_areas_id.target_id', $offer_license_id)
+      ->accessCheck()
       ->execute();
     if (!empty($nids)) {
       $nids = array_values($nids);
@@ -932,6 +979,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $charge_nids = $query->condition('type', 'charge')
       ->condition('field_payment_advice.target_id', $invoice_id)
+      ->accessCheck()
       ->execute();
     $charge_nid = reset($charge_nids);
     if (!empty($charge_nid)) {
@@ -956,6 +1004,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $annual_charges_nids = $query->condition('type', 'annual_charges')
       ->condition('field_payment_advice.target_id', $invoice_id)
+      ->accessCheck()
       ->execute();
     $annual_charges_nid = reset($annual_charges_nids);
     if (!empty($annual_charges_nid)) {
@@ -1056,6 +1105,7 @@ class FarmerServices {
       ->condition('field_areas_id.target_id', $area_ids, 'IN')
       ->condition('field_invoice_details', $type)
       ->condition('status', '1')
+      ->accessCheck()
       ->execute();
     $invoice_nids = array_values($invoice_nids);
     return $invoice_nids ?? [];
@@ -1077,6 +1127,7 @@ class FarmerServices {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $area_nids = $query->condition('type', 'offer_license')
       ->condition('field_farmer_name_ref.target_id', $farmer_id)
+      ->accessCheck()
       ->execute();
     $area_nids = array_values($area_nids);
     return $area_nids ?? [];
@@ -1284,6 +1335,7 @@ class FarmerServices {
       ->condition('field_areas_id.target_id', $offer_licence_id)
       ->sort('field_charge_date.value', 'DESC')
       ->range(0, 1)
+      ->accessCheck()
       ->execute();
 
     if (!empty($historical_payments_nid)) {

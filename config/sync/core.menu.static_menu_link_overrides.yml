@@ -14,14 +14,14 @@ definitions:
     expanded: false
     enabled: false
   nfafmis__reports:
-    weight: -44
     menu_name: main
     parent: ''
+    weight: -44
     expanded: false
     enabled: true
   nfafmis__admin:
-    weight: -42
     menu_name: main
     parent: ''
+    weight: -42
     expanded: false
     enabled: true

@@ -106,7 +106,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
       '#type' => 'details',
       '#title' => $this->t('Generate annual charges manually'),
       '#description' => $this->t("By clicking the button you can generate annual charges for the year %y1, %y2 accordingly.
-       <br>Note: Annual charges are meant to be calculated automatically on 1st January of every year, though this button can be used to create charges anytime but make sure you understand the consequences. Until you are not sure about this don't click on these button.", ['%y1' => $this->last_year, '%y2' => $this->current_year]
+       <br>Note: Annual charges are meant to be calculated automatically on 1st January of every year, though this button can be used to create charges anytime but make sure you understand the consequences. If you are not sure about this don't click on these buttons.", ['%y1' => $this->last_year, '%y2' => $this->current_year]
       ),
     ];
     $form['item-charges']['manual-action'] = [
@@ -160,13 +160,17 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $offer_license_ids = $query->condition('type', 'offer_license')
       ->condition('status', 1)
+      ->accessCheck()
       ->execute();
     $areas_object = $this->entityTypeManager->getStorage('node')->loadMultiple($offer_license_ids);
     foreach ($areas_object as $area) {
+      if ($area->id() == 7883) {
+        $stop = TRUE;
+      }
       $area_allocated = $area->get('field_overall_area')->value;
       $cfr = $area->get('field_central_forest_reserve')->target_id;
       if ($cfr && $area_allocated) {
-        $annual_charges = $this->farmerService->chekForExistingAnnualCharges($area, $for_year);
+        $annual_charges = $this->farmerService->checkForExistingAnnualCharges($area, $for_year);
         // Prevent creating duplicate annual charges for the same year.
         if (empty($annual_charges)) {
           $this->createAnnualCharges($area, $cfr, $area_allocated, $for_year);
@@ -229,6 +233,7 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_rate_year' => $for_year,
         'field_licence_id_ref' => $area,
         'field_annual_charges_type' => '1',
+        'field_overall_area' => $area_allocated,
       ]);
       $node->save();
       $this->messenger()->addMessage($this->t('Annual charges (land rent) added against area :area for the year :year', [
