@@ -343,3 +343,50 @@ function nfafmis_deploy_008_rebuild_node_permissions(&$sandbox = NULL) {
   // Rebuild node access permissions.
   node_access_rebuild(TRUE);
 }
+
+/**
+ * Add terms to Payment type vocabulary.
+ */
+function nfafmis_deploy_009_add_payment_types(&$sandbox = NULL) {
+  $terms = [
+    [
+      'name' => 'Annual land license fees',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Application fees for plantation regularization',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Application form for transfer',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Environmental levy',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Harvesting fees',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Land demarcation fees',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Plantation assessment fees',
+      'vid' => 'payment_type',
+    ],
+    [
+      'name' => 'Transfer fees',
+      'vid' => 'payment_type',
+    ],
+  ];
+
+  foreach($terms as $term) {
+    //$term = Term::create($term);
+    //$term->save();
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->create($term);
+    $term->save();
+  }
+}
