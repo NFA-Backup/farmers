@@ -9,9 +9,9 @@ id: node.fee_payment_nfa.field_offer_id_ref
 field_name: field_offer_id_ref
 entity_type: node
 bundle: fee_payment_nfa
-label: 'Offer ID'
+label: Offer/License
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -19,7 +19,7 @@ settings:
   handler: views
   handler_settings:
     view:
-      view_name: offer_id_reference
+      view_name: area_id_reference
       display_name: entity_reference_1
       arguments: {  }
 field_type: entity_reference

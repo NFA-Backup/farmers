@@ -15,10 +15,14 @@ bundle: land_rent_rates
 mode: default
 content:
   field_central_forest_reserve:
-    type: options_select
+    type: entity_reference_autocomplete
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_rate:
     type: number

@@ -154,6 +154,8 @@ permissions:
   - 'edit own thinning_harvest_details content'
   - 'edit terms in block'
   - 'post comments'
+  - 'revert fee_payment_nfa revisions'
   - 'revert historical_payments revisions'
   - 'skip comment approval'
+  - 'view fee_payment_nfa revisions'
   - 'view historical_payments revisions'

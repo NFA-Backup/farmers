@@ -52,6 +52,8 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     'node_starting_amount_edit_form',
     'node_historical_payments_form',
     'node_historical_payments_edit_form',
+    'node_fee_payment_nfa_form',
+    'node_fee_payment_nfa_edit_form',
   ];
   if (in_array($form_id, $affected_forms, TRUE)) {
     $request_destination = \Drupal::request()->query->get('destination');
@@ -158,6 +160,30 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     }
 
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_charge_form_submit';
+  }
+
+  // Prepare fee_payment_nfa add edit form.
+  if ($form_id == 'node_fee_payment_nfa_form' || $form_id == 'node_fee_payment_nfa_edit_form') {
+    $query_params = $nfafmis_service_utility->getQueryParams();
+    if (!empty($query_params) && isset($query_params['offer_licence_id'])) {
+      $form['field_offer_id_ref']['widget'][0]['#disabled'] = TRUE;
+      $area_id = $query_params['offer_licence_id'];
+      $area_data = $entity_type_manager->getStorage('node')->load($area_id);
+      $form['field_offer_id_ref']['widget'][0]['target_id']['#default_value'] = $area_data;
+    }
+
+    if (!empty($query_params) && isset($query_params['farmer_id'])) {
+      $form['field_farmer_name_ref']['widget'][0]['#disabled'] = TRUE;
+      $farmer_id = $query_params['farmer_id'];
+      $farmer_data = $entity_type_manager->getStorage('node')->load($farmer_id);
+      $form['field_farmer_name_ref']['widget'][0]['target_id']['#default_value'] = $farmer_data;
+
+      // Provide farmer id as arguments to the reference views to filter result.
+      // This only works when widget is selected as autocomplete.
+      $form['field_offer_id_ref']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $farmer_id;
+    }
+
+    $form['actions']['submit']['#submit'][] = 'nfafmis_node_fee_payment_nfa_form_submit';
   }
 
   // Prepare sub_area add edit form.
@@ -698,6 +724,17 @@ function nfafmis_node_charge_form_submit($form, FormStateInterface &$form_state)
 }
 
 /**
+ * Submit handler for node_fee_payment_nfa form.
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function nfafmis_node_fee_payment_nfa_form_submit($form, FormStateInterface &$form_state) {
+  $url = Url::fromUri('internal:/tree-farmer-overview/accounts');
+  $form_state->setRedirectUrl($url);
+}
+
+/**
  * Implements hook_field_field_amount_due_compute().
  *
  * @param $entity
@@ -1067,15 +1104,18 @@ function nfafmis_access_realm($entity, $type, $power_user = FALSE) {
  */
 
 /**
- * Compute the receipt number for the Fee Payment - NFA content type.
- */
-function computed_field_field_nfa_counter_receipt_number_compute($entity_type_manager, $entity, $fields, $delta) {
-  return 'NFA-' . $entity->nid->value;
-}
-
-/**
- * Compute the Total Fee for the Fee paragragh type.
+ * Compute the Total Fee for the Fee paragraph type.
  */
 function  computed_field_field_fee_total_compute($entity_type_manager, $entity, $fields, $delta) {
   return $entity->field_fee_unit_cost->value * $entity->field_fee_unit_number->value;;
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * @param array $entity_types
+ */
+function nfafmis_entity_type_alter(array &$entity_types) {
+  // Add validation constraint to the land rent rate entity
+  $entity_types['node']->addConstraint('LandRentRateConstraint');
 }

@@ -13,3 +13,15 @@ definitions:
     weight: -50
     expanded: false
     enabled: false
+  nfafmis__reports:
+    menu_name: main
+    parent: ''
+    weight: -44
+    expanded: false
+    enabled: true
+  nfafmis__admin:
+    menu_name: main
+    parent: ''
+    weight: -42
+    expanded: false
+    enabled: true

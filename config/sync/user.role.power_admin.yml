@@ -16,6 +16,7 @@ dependencies:
     - farm_map
     - field_ui
     - geocoder
+    - nfafmis
     - node
     - system
     - taxonomy
@@ -39,6 +40,8 @@ permissions:
   - 'administer comments'
   - 'administer contact forms'
   - 'administer farm map'
+  - 'administer fmis settings'
+  - 'administer modules'
   - 'administer users'
   - 'create article content'
   - 'create page content'

@@ -1,0 +1,29 @@
+uuid: fe375a47-de17-46f4-bdea-e4dc74bfe4c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_type
+    - node.type.fee_payment_nfa
+    - taxonomy.vocabulary.payment_type
+id: node.fee_payment_nfa.field_payment_type
+field_name: field_payment_type
+entity_type: node
+bundle: fee_payment_nfa
+label: 'Payment type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      payment_type: payment_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

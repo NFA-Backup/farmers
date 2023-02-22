@@ -5,16 +5,14 @@ dependencies:
   config:
     - field.storage.taxonomy_term.cfr
     - field.storage.taxonomy_term.management_unit
+    - field.storage.taxonomy_term.management_unit_type
     - field.storage.taxonomy_term.sector
-    - system.menu.fmis-administration
     - taxonomy.vocabulary.block
     - taxonomy.vocabulary.central_forest_reserve
     - taxonomy.vocabulary.management_unit
     - taxonomy.vocabulary.sector
-    - user.role.administrator
-    - user.role.nfa_staff
-    - user.role.not_staff
   module:
+    - options
     - taxonomy
     - user
     - views_autocomplete_filters
@@ -114,17 +112,23 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
-            nfa_staff: nfa_staff
-            not_staff: not_staff
+          perm: 'administer fmis settings'
       cache:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        changed:
+          id: changed
+          table: taxonomy_term_field_data
+          field: changed
+          entity_type: taxonomy_term
+          entity_field: changed
+          plugin_id: date
+          expose:
+            field_identifier: changed
       arguments: {  }
       filters:
         status:
@@ -148,10 +152,8 @@ display:
           default_row_class: true
           columns:
             name: name
-            cfr_1: cfr_1
-            sector: sector
-            management_unit: management_unit
-            edit_taxonomy_term: edit_taxonomy_term
+            management_unit_type: management_unit_type
+            operations: operations
           default: '-1'
           info:
             name:
@@ -161,30 +163,14 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            cfr_1:
+            management_unit_type:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            sector:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            management_unit:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            edit_taxonomy_term:
-              sortable: false
-              default_sort_order: asc
+            operations:
               align: ''
               separator: ''
               empty_column: false
@@ -225,7 +211,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
   blocks:
     id: blocks
@@ -490,16 +476,16 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        edit_taxonomy_term:
-          id: edit_taxonomy_term
+        operations:
+          id: operations
           table: taxonomy_term_data
-          field: edit_taxonomy_term
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          plugin_id: entity_link_edit
-          label: ''
+          plugin_id: entity_operations
+          label: 'Operations links'
           exclude: false
           alter:
             alter_text: false
@@ -532,7 +518,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -540,9 +526,24 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'edit block number'
-          output_url_as_text: false
-          absolute: false
+          destination: false
+      sorts:
+        changed:
+          id: changed
+          table: taxonomy_term_field_data
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: changed
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       filters:
         status:
           id: status
@@ -816,6 +817,7 @@ display:
         title: false
         relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
         header: false
@@ -850,31 +852,26 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/block/add" class="btn btn-info">Add new Block number</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/block/add?destination=/admin/config/nfafmis/blocks" class="button button--primary">+ Add block number</a></div>'
             format: full_html
           tokenize: false
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
       display_extenders:
         ajax_history: {  }
-      path: fmis/admin/blocks
+      path: admin/config/nfafmis/blocks
       menu:
-        type: normal
-        title: 'Administer block numbers'
+        type: none
+        title: 'Block numbers'
         description: ''
         weight: 0
         expanded: false
-        menu_name: fmis-administration
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.admin_index
         context: '0'
+      tab_options:
+        type: none
+        title: ''
+        description: ''
+        weight: 0
     cache_metadata:
       max-age: -1
       contexts:
@@ -883,7 +880,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.cfr'
         - 'config:field.storage.taxonomy_term.management_unit'
@@ -1088,16 +1085,16 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        edit_taxonomy_term:
-          id: edit_taxonomy_term
+        operations:
+          id: operations
           table: taxonomy_term_data
-          field: edit_taxonomy_term
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          plugin_id: entity_link_edit
-          label: ''
+          plugin_id: entity_operations
+          label: 'Operations links'
           exclude: false
           alter:
             alter_text: false
@@ -1130,7 +1127,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1138,9 +1135,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'edit CFR'
-          output_url_as_text: false
-          absolute: false
+          destination: false
       filters:
         status:
           id: status
@@ -1378,30 +1373,20 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/central_forest_reserve/add" class="btn btn-info">Add new CFR</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/central_forest_reserve/add?destination=/admin/config/nfafmis/cfrs" class="button button--primary">+ Add CFR</a></div>'
             format: full_html
           tokenize: false
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
       display_extenders:
         ajax_history: {  }
-      path: fmis/admin/cfrs
+      path: admin/config/nfafmis/cfrs
       menu:
-        type: normal
-        title: 'Administer CFRs'
+        type: none
+        title: CFRs
         description: ''
         weight: 1
         expanded: false
-        menu_name: fmis-administration
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.admin_index
         context: '0'
     cache_metadata:
       max-age: -1
@@ -1411,7 +1396,7 @@ display:
         - url
         - url.query_args
         - user
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.management_unit'
         - 'config:field.storage.taxonomy_term.sector'
@@ -1489,16 +1474,15 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-        edit_taxonomy_term:
-          id: edit_taxonomy_term
-          table: taxonomy_term_data
-          field: edit_taxonomy_term
+        management_unit_type:
+          id: management_unit_type
+          table: taxonomy_term__management_unit_type
+          field: management_unit_type
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: taxonomy_term
-          plugin_id: entity_link_edit
-          label: ''
+          plugin_id: field
+          label: 'Management unit type'
           exclude: false
           alter:
             alter_text: false
@@ -1531,7 +1515,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1539,9 +1523,70 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'edit Management Unit'
-          output_url_as_text: false
-          absolute: false
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        operations:
+          id: operations
+          table: taxonomy_term_data
+          field: operations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          plugin_id: entity_operations
+          label: 'Operations links'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          destination: false
       filters:
         status:
           id: status
@@ -1598,29 +1643,27 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        name_1:
-          id: name_1
-          table: taxonomy_term_field_data
-          field: name
+        management_unit_type_value:
+          id: management_unit_type_value
+          table: taxonomy_term__management_unit_type
+          field: management_unit_type_value
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: views_autocomplete_filters_string
-          operator: contains
-          value: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: name_1_op
-            label: 'Management Unit'
+            operator_id: management_unit_type_value_op
+            label: 'Management unit type'
             description: ''
             use_operator: false
-            operator: name_1_op
+            operator: management_unit_type_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: mu
+            identifier: type
             required: false
             remember: false
             multiple: false
@@ -1630,14 +1673,14 @@ display:
               administrator: '0'
               nfa_staff: '0'
               not_staff: '0'
-            placeholder: ''
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: name
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
+              range_user: '0'
+              range_power_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
+              hq_user: '0'
+              hq_power_user: '0'
+              power_admin: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -1650,6 +1693,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          reduce_duplicates: false
       filter_groups:
         operator: AND
         groups:
@@ -1674,30 +1718,20 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/management_unit/add" class="btn btn-info">Add new Management Unit</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/management_unit/add?destination=/admin/config/nfafmis/management-units" class="button button--primary">+ Add management unit</a></div>'
             format: full_html
           tokenize: false
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
       display_extenders:
         ajax_history: {  }
-      path: fmis/admin/management-units
+      path: admin/config/nfafmis/management-units
       menu:
-        type: normal
-        title: 'Administer management units'
+        type: none
+        title: 'Management units'
         description: ''
         weight: 3
         expanded: false
-        menu_name: fmis-administration
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.admin_index
         context: '0'
     cache_metadata:
       max-age: -1
@@ -1706,10 +1740,11 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
-      tags: {  }
-  page_1:
-    id: page_1
+        - user.permissions
+      tags:
+        - 'config:field.storage.taxonomy_term.management_unit_type'
+  sectors:
+    id: sectors
     display_title: Sectors
     display_plugin: page
     position: 1
@@ -1845,16 +1880,16 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        edit_taxonomy_term:
-          id: edit_taxonomy_term
+        operations:
+          id: operations
           table: taxonomy_term_data
-          field: edit_taxonomy_term
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          plugin_id: entity_link_edit
-          label: ''
+          plugin_id: entity_operations
+          label: 'Operations links'
           exclude: false
           alter:
             alter_text: false
@@ -1887,7 +1922,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1895,9 +1930,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'edit sector'
-          output_url_as_text: false
-          absolute: false
+          destination: false
       filters:
         status:
           id: status
@@ -2086,30 +2119,20 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="mb-5"><a href="/admin/structure/taxonomy/manage/sector/add" class="btn btn-info">Add new Sector</a></div>'
+            value: '<div class="form-actions"><a href="/admin/structure/taxonomy/manage/sector/add?destination=/admin/config/nfafmis/sectors" class="button button--primary">+ Add sector</a></div>'
             format: full_html
           tokenize: false
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
       display_extenders:
         ajax_history: {  }
-      path: fmis/admin/sectors
+      path: admin/config/nfafmis/sectors
       menu:
-        type: normal
-        title: 'Administer Sectors'
+        type: none
+        title: Sectors
         description: ''
         weight: 2
         expanded: false
-        menu_name: fmis-administration
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.admin_index
         context: '0'
     cache_metadata:
       max-age: -1
@@ -2119,6 +2142,6 @@ display:
         - url
         - url.query_args
         - user
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.management_unit'

@@ -1,8 +1,0 @@
-uuid: d161ff2c-14d9-44f2-a757-3f79698e1dcc
-langcode: en
-status: true
-dependencies: {  }
-id: fmis-administration
-label: 'FMIS Administration'
-description: ''
-locked: false

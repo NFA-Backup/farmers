@@ -1,12 +1,12 @@
-uuid: eaca2eba-4372-4388-970b-e0c1e48cbe7d
+uuid: 38883362-f4a9-49cf-830f-c8a374809a0c
 langcode: en
 status: true
 dependencies:
   module:
     - datetime
     - node
-id: node.field_date_planted
-field_name: field_date_planted
+id: node.field_ura_prn_date
+field_name: field_ura_prn_date
 entity_type: node
 type: datetime
 settings:

@@ -3,51 +3,24 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.fee_payment_nfa.field_amount_paid
-    - field.field.node.fee_payment_nfa.field_block_id_ref
     - field.field.node.fee_payment_nfa.field_date_of_nfa_receipt
-    - field.field.node.fee_payment_nfa.field_date_of_ura_receipt
-    - field.field.node.fee_payment_nfa.field_description
     - field.field.node.fee_payment_nfa.field_farmer_name_ref
-    - field.field.node.fee_payment_nfa.field_licence_id_ref
-    - field.field.node.fee_payment_nfa.field_name_of_person
-    - field.field.node.fee_payment_nfa.field_nfa_counter_receipt_number
+    - field.field.node.fee_payment_nfa.field_nfa_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
-    - field.field.node.fee_payment_nfa.field_receipt_agaings_account_bi
-    - field.field.node.fee_payment_nfa.field_scan_of_ura_receipt
-    - field.field.node.fee_payment_nfa.field_ura_receipt_number
+    - field.field.node.fee_payment_nfa.field_payment_amount
+    - field.field.node.fee_payment_nfa.field_payment_type
+    - field.field.node.fee_payment_nfa.field_ura_prn
+    - field.field.node.fee_payment_nfa.field_ura_prn_date
+    - field.field.node.fee_payment_nfa.field_ura_prn_scan
     - node.type.fee_payment_nfa
   module:
-    - computed_field
     - datetime
-    - file
     - user
 id: node.fee_payment_nfa.default
 targetEntityType: node
 bundle: fee_payment_nfa
 mode: default
 content:
-  field_amount_paid:
-    type: computed_decimal
-    label: above
-    settings:
-      cache_unit: -1
-      cache_duration: 1
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 112
-    region: content
-  field_block_id_ref:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 104
-    region: content
   field_date_of_nfa_receipt:
     type: datetime_default
     label: above
@@ -55,24 +28,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 106
-    region: content
-  field_date_of_ura_receipt:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 109
-    region: content
-  field_description:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 114
+    weight: 7
     region: content
   field_farmer_name_ref:
     type: entity_reference_label
@@ -80,33 +36,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 102
+    weight: 0
     region: content
-  field_licence_id_ref:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 103
-    region: content
-  field_name_of_person:
+  field_nfa_receipt_number:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 108
-    region: content
-  field_nfa_counter_receipt_number:
-    type: computed_string
-    label: above
-    settings:
-      sanitized: true
-      cache_unit: -1
-      cache_duration: 1
-    third_party_settings: {  }
-    weight: 107
+    weight: 8
     region: content
   field_offer_id_ref:
     type: entity_reference_label
@@ -114,35 +52,48 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 105
+    weight: 1
     region: content
-  field_receipt_agaings_account_bi:
+  field_payment_amount:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_payment_type:
     type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 113
+    weight: 3
     region: content
-  field_scan_of_ura_receipt:
-    type: file_default
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    weight: 111
-    region: content
-  field_ura_receipt_number:
+  field_ura_prn:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 110
+    weight: 6
+    region: content
+  field_ura_prn_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 5
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 9
     region: content
-hidden: {  }
+hidden:
+  field_ura_prn_scan: true

@@ -1,18 +1,18 @@
-uuid: 02f5dfed-ed26-4bef-aa69-829b337e3b87
+uuid: fd78f4f2-dc84-43db-9d52-52b5028379cd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_date_of_ura_receipt
+    - field.storage.node.field_ura_prn_date
     - node.type.fee_payment_nfa
   module:
     - datetime
-id: node.fee_payment_nfa.field_date_of_ura_receipt
-field_name: field_date_of_ura_receipt
+id: node.fee_payment_nfa.field_ura_prn_date
+field_name: field_ura_prn_date
 entity_type: node
 bundle: fee_payment_nfa
-label: 'Date of URA receipt'
-description: 'URA receipt/voucher number'
+label: 'Date of URA PRN'
+description: ''
 required: false
 translatable: false
 default_value: {  }

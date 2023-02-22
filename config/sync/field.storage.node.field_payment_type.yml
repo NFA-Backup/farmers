@@ -1,17 +1,16 @@
-uuid: 28a910ad-0f98-4cfe-a6b1-30708d232bdb
+uuid: d4a4e90c-8b3a-4a8c-bb8a-0c404ddf205e
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_name_of_person
-field_name: field_name_of_person
+    - taxonomy
+id: node.field_payment_type
+field_name: field_payment_type
 entity_type: node
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

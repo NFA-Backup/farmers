@@ -11,13 +11,4 @@
  * @see template_preprocess_views_exposed_form()
  */
 #}
-{% if q is not empty %}
-  {#
-    This ensures that, if clean URLs are off, the 'q' is added first,
-    as a hidden form element, so that it shows up first in the POST URL.
-  #}
-  {{ q }}
-{% endif %}
-<div class="mt-5 d-flex align-items-end">
-  {{ form }}
-</div>
+{% include '@nfa/views/admin-views-exposed-forms.html.twig' %}

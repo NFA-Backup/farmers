@@ -34,6 +34,7 @@ is_admin: null
 permissions:
   - 'access all management unit content'
   - 'access content'
+  - 'administer fmis settings'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
   - 'create annual_charges content'
@@ -54,4 +55,10 @@ permissions:
   - 'create starting_amount content'
   - 'create sub_area content'
   - 'create thinning_harvest_details content'
+  - 'delete fee_payment_nfa revisions'
+  - 'delete own fee_payment_nfa content'
   - 'edit all management unit content'
+  - 'edit any fee_payment_nfa content'
+  - 'edit own fee_payment_nfa content'
+  - 'revert fee_payment_nfa revisions'
+  - 'view fee_payment_nfa revisions'

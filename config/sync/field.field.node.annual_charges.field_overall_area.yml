@@ -1,0 +1,23 @@
+uuid: b2caa44d-f855-46e0-9ac2-c99092b3fd44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_overall_area
+    - node.type.annual_charges
+id: node.annual_charges.field_overall_area
+field_name: field_overall_area
+entity_type: node
+bundle: annual_charges
+label: 'Total area allocated'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

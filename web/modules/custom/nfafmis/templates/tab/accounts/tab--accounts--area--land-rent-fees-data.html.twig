@@ -27,6 +27,9 @@
   <li class="account-list-subtab-land-rent">
     <a class="tabs-item">Land rent</a>
   </li>
+  <li class="account-list-subtab-payments">
+    <a class="tabs-item">Payments</a>
+  </li>
 </ul>
 <section class="fees">
   <div class="center-container">
@@ -56,32 +59,32 @@
   </div>
 </section>
 <section class="land-rent">
+{#  <div class="center-container">#}
+{#    <div class="row">#}
+{#      <div class="col-md-8"></div>#}
+{#      <div class="col-md-4 views-field heading">#}
+{#        <span class="views-label">Land Rent Balance</span>#}
+{#        <div class="field-content balance">UGX {{ data.land_rent.balance |number_format(0, '.', ',')}}</div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-8"></div>#}
+{#      <div class="col-md-4 views-field">#}
+{#        <span class="views-label">Land Rent Charges</span>#}
+{#        <div class="field-content balance">UGX {{ data.land_rent.charges |number_format(0, '.', ',')}}</div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-8"></div>#}
+{#      <div class="col-md-4 views-field">#}
+{#        <span class="views-label">Land Rent Payments</span>#}
+{#        <div class="field-content payment">UGX {{ data.land_rent.payments |number_format(0, '.', ',')}}</div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
   <div class="center-container">
     <div class="row">
-      <div class="col-md-8"></div>
-      <div class="col-md-4 views-field heading">
-        <span class="views-label">Land Rent Balance</span>
-        <div class="field-content balance">UGX {{ data.land_rent.balance |number_format(0, '.', ',')}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8"></div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">Land Rent Charges</span>
-        <div class="field-content balance">UGX {{ data.land_rent.charges |number_format(0, '.', ',')}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8"></div>
-      <div class="col-md-4 views-field">
-        <span class="views-label">Land Rent Payments</span>
-        <div class="field-content payment">UGX {{ data.land_rent.payments |number_format(0, '.', ',')}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="center-container">
-    <div class="row">
-      <div class="col-md-2 views-field">Balance brought forward: <br />(Starting amount)</div>
+      <div class="col-md-2 views-field">Amount assessed: <br />(Starting amount)</div>
       <div class="col-md-4 views-field">
         {% if data.starting_amount %}
         <div class="field-content">UGX {{ data.starting_amount.amount |number_format(0, '.', ',') }}</div>
@@ -105,13 +108,15 @@
           <thead>
             <tr>
               <th>Year</th>
-              <th>Land rent due</th>
-              <th>Previous Arrears</th>
-              <th>Late fee due</th>
+              <th>Area (ha)</th>
               <th>Total due</th>
-              <th>Payment Advice Number</th>
-              <th>Payment Date</th>
-              <th>Receipt Number</th>
+              <th>Late fee due</th>
+              <th>Total paid</th>
+              <th>Outstanding amount</th>
+{#              <th>Previous Arrears</th>#}
+{#              <th>Payment Advice Number</th>#}
+{#              <th>Payment Date</th>#}
+{#              <th>Receipt Number</th>#}
             </tr>
           </thead>
           <tbody>
@@ -121,31 +126,45 @@
             {% endif %}
             {# if empty table #}
             {% for rent_charge in data.land_rent.data %}
-            <tr>
+            <tr class="{{ rent_charge.charge_type == 2 ? 'text-danger' }}">
               {% if rent_charge.date == 'Starting amount' %}
               <td>
-                <strong>{{rent_charge.date}}</strong></td>
+                <strong>{{ rent_charge.date }}</strong></td>
               {% else %}
               <td>
-                {{rent_charge.date}}</td>
-              {%endif%}
-              <td>UGX {{ rent_charge.land_rent_due |number_format(0, '.', ',')}}</td>
-              <td>UGX {{ rent_charge.previous_arrears |number_format(0, '.', ',')}}</td>
-              <td>UGX {{ rent_charge.late_fee_due |number_format(0, '.', ',')}}</td>
-              <td>UGX {{ rent_charge.total_due |number_format(0, '.', ',')}}</td>
-              <td>{{ rent_charge.payment_advc_no }}
-                {% if rent_charge.payment_advc_nid %}
-                <a target="_blank" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>
+                {{ rent_charge.date }}</td>
+              {% endif %}
+              <td>{{ rent_charge.total_area }}</td>
+              <td>
+                {% if rent_charge.charge_type == 1 %}
+                UGX {{ rent_charge.land_rent_due|number_format(0, '.', ',')}}
                 {% endif %}
               </td>
-              <td>{{ rent_charge.payment_date }}</td>
-              <td>{{ rent_charge.receipt_number }}
-                {% if rent_charge.payment_nid %}
-                <a href="{{ rent_charge.receipt_uri }}">view</a>
-                {% else %}
-                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{rent_charge.payment_advc_nid}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">payment</a>
+              <td>
+                {% if rent_charge.charge_type == 2 %}
+                UGX {{ rent_charge.late_fee_due|number_format(0, '.', ',')}}
                 {% endif %}
               </td>
+              <td>
+                {% if rent_charge.charge_type == 1 %}
+                UGX {{ rent_charge.total_paid|number_format(0, '.', ',')}}
+                {% endif %}
+              </td>
+              <td>UGX {{ rent_charge.total_due|number_format(0, '.', ',')}}</td>
+{#              <td>UGX {{ rent_charge.previous_arrears |number_format(0, '.', ',')}}</td>#}
+{#              <td>{{ rent_charge.payment_advc_no }}#}
+{#                {% if rent_charge.payment_advc_nid %}#}
+{#                <a target="_blank" href="/node/{{ rent_charge.payment_advc_nid }}">view/print</a>#}
+{#                {% endif %}#}
+{#              </td>#}
+{#              <td>{{ rent_charge.payment_date }}</td>#}
+{#              <td>{{ rent_charge.receipt_number }}#}
+{#                {% if rent_charge.payment_nid %}#}
+{#                <a href="{{ rent_charge.receipt_uri }}">view</a>#}
+{#                {% else %}#}
+{#                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/payment?invoice_id={{rent_charge.payment_advc_nid}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">payment</a>#}
+{#                {% endif %}#}
+{#              </td>#}
             </tr>
             {% endfor %}
           </tbody>
@@ -155,7 +174,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h4>Historical pyments information</h4>
+      <h4>Historical payments information</h4>
     </div>
     <div class="col-md-12">
       <a class="btn btn-info use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/historical_payments?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add</a>
@@ -180,7 +199,7 @@
           </thead>
           <tbody>
             {% if data.historical.data is empty %}
-            <td class="view-empty" colspan="6">No historical pyments information found for this area.</td>
+            <td class="view-empty" colspan="6">No historical payments information found for this area.</td>
             {% endif %}
             {% for historical in data.historical.data %}
             <tr>
@@ -195,6 +214,54 @@
               </td>
             </tr>
             {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="payments">
+  <div class="center-container">
+    <div class="row">
+      <div class="col-md-8">
+        <a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/fee_payment_nfa?farmer_id={{data.farmer_id}}&offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add Payment</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 views-field">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+          <tr>
+            <th>NFA receipt date</th>
+            <th>NFA receipt number</th>
+            <th>URA PRN date</th>
+            <th>URA PRN</th>
+            <th>Payment type</th>
+            <th>Payment amount</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          {# if empty table #}
+          {% if data.fee_payments.data is empty %}
+            <td class="view-empty" colspan="8">No fee payments data found for this area. {{ data.fee_payments }}</td>
+          {% endif %}
+          {# if empty table #}
+          {% for fee_payment in data.fee_payments.data %}
+            <tr>
+              <td>{{ fee_payment.nfa_receipt_date}}</td>
+              <td>{{ fee_payment.nfa_receipt_number}}</td>
+              <td>{{ fee_payment.ura_prn_date }}</td>
+              <td>{{ fee_payment.ura_prn }}</td>
+              <td>{{ fee_payment.payment_type}}</td>
+              <td>UGX {{ fee_payment.payment_amount |number_format(0, '.', ',')}}</td>
+              <td>
+                <a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{ fee_payment.nid }}/edit?destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Edit</a>
+              </td>
+            </tr>
+          {% endfor %}
           </tbody>
         </table>
       </div>

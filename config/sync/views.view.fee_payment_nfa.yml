@@ -1,18 +1,21 @@
-uuid: 4f3677e3-5f47-42db-95dd-b227b13f3d76
+uuid: 60333ade-a486-48f8-a915-6c5d1d57ace4
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_block_ref
-    - node.type.offer_license
+    - core.entity_view_mode.node.teaser
+    - field.storage.node.field_farmer_name_ref
+    - field.storage.node.field_nfa_receipt_number
+    - node.type.fee_payment_nfa
+    - system.menu.main
   module:
-    - entity_reference_revisions
+    - computed_field
     - node
     - user
-id: block_id_reference
-label: 'Block ID Reference'
+id: fee_payment_nfa
+label: 'Fee payment - NFA counter receipt '
 module: views
-description: 'Block ID Reference'
+description: 'Fee payment - NFA counter receipt - Screen view / Print for client'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -23,19 +26,18 @@ display:
     display_plugin: default
     position: 0
     display_options:
+      title: 'Fee payment - NFA counter receipt'
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
+        field_nfa_receipt_number:
+          id: field_nfa_receipt_number
+          table: node__field_nfa_receipt_number
+          field: field_nfa_receipt_number
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
           plugin_id: field
-          label: ''
-          exclude: true
+          label: 'Receipt number'
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -67,7 +69,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -76,9 +78,11 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: computed_string
           settings:
-            link_to_entity: false
+            sanitized: 1
+            cache_unit: '-1'
+            cache_duration: '1'
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -89,19 +93,19 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_block_ref:
-          id: field_block_ref
-          table: node__field_block_ref
-          field: field_block_ref
+        field_farmer_name_ref:
+          id: field_farmer_name_ref
+          table: node__field_farmer_name_ref
+          field: field_farmer_name_ref
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: ''
+          label: 'Farmer name'
           exclude: false
           alter:
-            alter_text: true
-            text: '{{ field_block_ref }} - ({{ title }})'
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -130,7 +134,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -228,63 +232,37 @@ display:
           entity_field: type
           plugin_id: bundle
           value:
-            offer_license: offer_license
+            fee_payment_nfa: fee_payment_nfa
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_license_issued_value:
-          id: field_license_issued_value
-          table: node__field_license_issued
-          field: field_license_issued_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: boolean
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
       style:
-        type: entity_reference
+        type: table
         options:
-          search_fields:
-            field_block_ref: field_block_ref
-            title: '0'
-            field_block_id: '0'
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            title: title
+          default: '-1'
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
-        type: entity_reference_revisions
+        type: 'entity:node'
         options:
-          default_field_elements: true
-          inline:
-            field_block_ref: field_block_ref
-          separator: ''
-          hide_empty: true
+          view_mode: teaser
       query:
         type: views_query
         options:
@@ -306,28 +284,34 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_ref'
-  entity_reference_1:
-    id: entity_reference_1
-    display_title: 'Entity Reference'
-    display_plugin: entity_reference
+        - 'config:field.storage.node.field_farmer_name_ref'
+        - 'config:field.storage.node.field_nfa_receipt_number'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      pager:
-        type: none
-        options:
-          offset: 0
-      defaults:
-        style: true
-        row: true
-      display_extenders:
-        ajax_history: {  }
+      display_extenders: {  }
+      path: fee-payment-receipt
+      menu:
+        type: normal
+        title: 'NFA counter receipt'
+        description: 'Fee payment - NFA counter receipt - Screen view'
+        weight: -46
+        enabled: false
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_block_ref'
+        - 'config:field.storage.node.field_farmer_name_ref'
+        - 'config:field.storage.node.field_nfa_receipt_number'

@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
-    - field.field.node.offer_license.field_block_id
     - field.field.node.offer_license.field_block_ref
     - field.field.node.offer_license.field_central_forest_reserve
     - field.field.node.offer_license.field_comments
@@ -17,7 +16,6 @@ dependencies:
     - field.field.node.offer_license.field_offer_date
     - field.field.node.offer_license.field_offer_id
     - field.field.node.offer_license.field_overall_area
-    - field.field.node.offer_license.field_overall_area_allocated
     - field.field.node.offer_license.field_purpose
     - node.type.offer_license
   module:
@@ -35,7 +33,6 @@ content:
 hidden:
   field_area_number: true
   field_area_serial_number: true
-  field_block_id: true
   field_block_ref: true
   field_central_forest_reserve: true
   field_comments: true
@@ -46,5 +43,4 @@ hidden:
   field_offer_date: true
   field_offer_id: true
   field_overall_area: true
-  field_overall_area_allocated: true
   field_purpose: true

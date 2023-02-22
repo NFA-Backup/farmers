@@ -15,7 +15,11 @@ label: 'Rate for the Year'
 description: ''
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    default_type: now
+    default_relative: now
+    default_specific: ''
 default_value_callback: ''
 settings:
   yearonly_from: '2000'

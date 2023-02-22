@@ -6,11 +6,10 @@ dependencies:
     - field.field.node.sub_area.field_area_harvested
     - field.field.node.sub_area.field_areas_id
     - field.field.node.sub_area.field_date_harvested
-    - field.field.node.sub_area.field_date_planted
+    - field.field.node.sub_area.field_kml_file
     - field.field.node.sub_area.field_map
     - field.field.node.sub_area.field_purpose
     - field.field.node.sub_area.field_species_variety
-    - field.field.node.sub_area.field_sub_area_planted
     - field.field.node.sub_area.field_subarea_planted
     - field.field.node.sub_area.field_year_planted
     - node.type.sub_area
@@ -92,7 +91,5 @@ content:
     weight: 0
     region: content
 hidden:
-  field_date_planted: true
   field_kml_file: true
-  field_sub_area_planted: true
   links: true

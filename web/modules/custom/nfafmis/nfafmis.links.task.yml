@@ -1,4 +1,30 @@
 nfafmis.settings:
-  title: 'Settings'
+  title: 'Fees and charges'
   route_name: nfafmis.settings
   base_route: nfafmis.settings
+  weight: 10
+nfafmis.settings.blocks:
+  title: 'Block numbers'
+  route_name: view.fmis_administration.blocks
+  base_route: nfafmis.settings
+  weight: 0
+nfafmis.settings.cfrs:
+  title: 'CFRs'
+  route_name: view.fmis_administration.cfrs
+  base_route: nfafmis.settings
+  weight: 1
+nfafmis.settings.sectors:
+  title: 'Sectors'
+  route_name: view.fmis_administration.sectors
+  base_route: nfafmis.settings
+  weight: 2
+nfafmis.settings.management_units:
+  title: 'Management units'
+  route_name: view.fmis_administration.management_units
+  base_route: nfafmis.settings
+  weight: 3
+nfafmis.settings.land_rent_rates:
+  title: 'Land rent rates'
+  route_name: view.land_rent_rates.page_1
+  base_route: nfafmis.settings
+  weight: 3

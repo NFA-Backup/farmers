@@ -154,6 +154,7 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $nids = $query->condition('type', 'farmer_details')
       ->condition('status', '1')
+      ->accessCheck()
       ->execute();
     if (empty($nids)) {
       return AccessResult::forbidden()->addCacheableDependency($nids);
