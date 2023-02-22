@@ -6,3 +6,6 @@ edit all management unit content:
 
 administer fmis settings:
   title: 'Administer FMIS settings'
+
+view fmis reports:
+  title: 'View NFA FMIS reports'

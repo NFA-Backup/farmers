@@ -2,10 +2,9 @@ nfafmis.admin_index:
   path: '/admin/config/nfafmis'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'NFA-FMIS '
+    _title: 'NFA-FMIS'
   requirements:
     _permission: 'administer fmis settings'
-
 nfafmis.settings:
   path: '/admin/config/nfafmis/settings'
   defaults:
@@ -13,3 +12,10 @@ nfafmis.settings:
     _title: 'Settings'
   requirements:
     _permission: 'administer fmis settings'
+nfafmis.reports.activity:
+  path: '/admin/reports/nfafmis/activity'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'NFA-FMIS user activity reports'
+  requirements:
+    _permission: 'view fmis reports'
