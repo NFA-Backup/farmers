@@ -393,9 +393,6 @@ function nfafmis_create_farmer_information_container(Node $farmer) {
  * @throws Exception
  */
 function nfafmis_node_presave(Node $node) {
-  if ($node->id() == 7883) {
-    $stop = TRUE;
-  }
   // Generate area number like: AREA/XXXXXXX.
   if ($node->isNew() && $node->bundle() == 'offer_license') {
     $area_serial_number = $node->get('field_area_serial_number')->value;
@@ -1107,7 +1104,7 @@ function nfafmis_access_realm($entity, $type, $power_user = FALSE) {
  */
 
 /**
- * Compute the Total Fee for the Fee paragragh type.
+ * Compute the Total Fee for the Fee paragraph type.
  */
 function  computed_field_field_fee_total_compute($entity_type_manager, $entity, $fields, $delta) {
   return $entity->field_fee_unit_cost->value * $entity->field_fee_unit_number->value;;

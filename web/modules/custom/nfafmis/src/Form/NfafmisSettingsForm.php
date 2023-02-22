@@ -164,9 +164,6 @@ class NfafmisSettingsForm extends ConfigFormBase {
       ->execute();
     $areas_object = $this->entityTypeManager->getStorage('node')->loadMultiple($offer_license_ids);
     foreach ($areas_object as $area) {
-      if ($area->id() == 7883) {
-        $stop = TRUE;
-      }
       $area_allocated = $area->get('field_overall_area')->value;
       $cfr = $area->get('field_central_forest_reserve')->target_id;
       if ($cfr && $area_allocated) {
