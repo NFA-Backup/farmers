@@ -13,6 +13,6 @@ name: 'Harvesting & miscellaneous fees'
 type: harvesting_miscellaneous_fees
 description: 'Harvesting & miscellaneous fees'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

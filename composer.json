@@ -12,6 +12,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/Cambrico/nfa_tracker.git"
     }
   ],
   "require": {
@@ -33,6 +37,7 @@
     "drupal/ctools": "^3",
     "drupal/default_content": "^2",
     "drupal/dependent_fields": "^1",
+    "drupal/diff": "^1",
     "drupal/entity_reference_revisions": "^1",
     "drupal/entity_reference_views_select": "^1",
     "drupal/field_group": "^3",
@@ -55,7 +60,8 @@
     "drupal/views_flipped_table": "^1",
     "drupal/views_geojson": "^1",
     "drupal/yearonly": "^9",
-    "drush/drush": "^11"
+    "drush/drush": "^11",
+    "national-forestry-authority/nfa_tracker": "dev-main"
   },
   "conflict": {
     "drupal/drupal": "*"

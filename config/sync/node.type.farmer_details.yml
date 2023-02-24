@@ -13,6 +13,6 @@ name: 'Farmer details'
 type: farmer_details
 description: 'Use to create  <em>Farmer details</em>.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false
