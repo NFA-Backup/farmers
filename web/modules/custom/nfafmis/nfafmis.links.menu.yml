@@ -49,8 +49,3 @@ nfafmis.fee_settings:
   description: 'Annual charges date & late fee calculation settings'
   route_name: nfafmis.settings
   weight: 5
-nfafmis.reports.activity:
-  title: 'NFA-FMIS user reports'
-  parent: system.admin_reports
-  description: 'NFA-FMIS user activity reports'
-  route_name: nfafmis.reports.activity

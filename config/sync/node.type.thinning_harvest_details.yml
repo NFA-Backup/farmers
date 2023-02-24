@@ -12,6 +12,6 @@ name: 'Thinning & harvest details'
 type: thinning_harvest_details
 description: 'Use to create <em>thinning & harvest details</em>.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

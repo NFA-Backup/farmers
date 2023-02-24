@@ -13,6 +13,6 @@ name: 'Fee payment - NFA'
 type: fee_payment_nfa
 description: 'Use to create <em>Fee payment</em> - NFA counter receipt.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

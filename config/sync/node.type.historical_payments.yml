@@ -12,6 +12,6 @@ name: 'Historical payments'
 type: historical_payments
 description: 'Used to add Historical payments information.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

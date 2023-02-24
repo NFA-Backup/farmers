@@ -13,6 +13,6 @@ name: 'Index / zone annual rent charges'
 type: index_zone_annual_rent_charges
 description: 'Index / zone annual rent charges'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

@@ -1,4 +1,4 @@
-uuid: af24a691-592f-4a54-aa98-b4e9695446d4
+uuid: 1af774d5-6b62-403d-8e8b-3698b04a70b4
 langcode: en
 status: true
 dependencies:
@@ -7,17 +7,18 @@ dependencies:
   module:
     - csv_serialization
     - file
+    - nfa_tracker
     - rest
     - serialization
     - user
     - views_autocomplete_filters
     - views_data_export
 _core:
-  default_config_hash: LIArOLl_hNnxwvfdeFSjCz1mqmYhrLI48wQuvsDtPTc
-id: kml_files
-label: 'KML files'
-module: file
-description: 'Find and manage files.'
+  default_config_hash: r7DKnwmbeQr347nBeMRyL6T6mA1uWFtPxj3FDg68w04
+id: nfa_user_file_tracker
+label: 'NFA user file activity tracker'
+module: nfa_tracker
+description: 'Track file upload activity by user.'
 tag: default
 base_table: file_managed
 base_field: fid
@@ -28,7 +29,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'KML File Uploads'
+      title: 'KML file upload tracker'
       fields:
         uid:
           id: uid
@@ -446,7 +447,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'view fmis reports'
+          perm: 'view nfa tracker reports'
       cache:
         type: tag
         options: {  }
@@ -527,7 +528,7 @@ display:
           exposed: true
           expose:
             operator_id: uid_op
-            label: 'User Name'
+            label: User
             description: ''
             use_operator: false
             operator: uid_op
@@ -711,12 +712,14 @@ display:
             use_serializer_encode_only: false
       display_extenders:
         ajax_history: {  }
-      path: admin/reports/nfafmis/activity/kml/export
+      path: admin/reports/nfa/tracker/kml/export
       displays:
         page_1: page_1
         default: '0'
-      filename: nfafmis-user-activity-kml.csv
+      filename: nfa-user-tracker-kml.csv
       automatic_download: true
+      export_method: batch
+      export_batch_size: 1000
       store_in_public_file_directory: null
       custom_redirect_path: false
       redirect_to_display: page_1
@@ -736,7 +739,9 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      title: 'KML file upload tracker'
       defaults:
+        title: false
         pager: true
         relationships: false
       relationships:
@@ -762,15 +767,15 @@ display:
       display_description: ''
       display_extenders:
         ajax_history: {  }
-      path: admin/reports/nfafmis/activity/kml
+      path: admin/reports/nfa/tracker/kml
       menu:
         type: normal
         title: 'KML activity report'
-        description: 'KML upload activity'
+        description: 'List of KML uploads by user'
         weight: 0
         expanded: false
         menu_name: admin
-        parent: nfafmis.reports.activity
+        parent: nfa.reports.tracker
         context: '0'
     cache_metadata:
       max-age: -1
