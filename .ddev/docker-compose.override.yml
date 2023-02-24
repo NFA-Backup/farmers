@@ -2,4 +2,4 @@ version: '3.6'
 services:
   web:
     environment:
-      - DRUSH_OPTIONS_URI=http://$DDEV_HOSTNAME
+      - DRUSH_OPTIONS_URI=https://$DDEV_HOSTNAME

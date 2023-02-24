@@ -26,6 +26,7 @@ module:
   dblog: 0
   dbug: 0
   dependent_fields: 0
+  diff: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
@@ -53,6 +54,7 @@ module:
   migrate_spreadsheet: 0
   migrate_tools: 0
   mysql: 0
+  nfa_tracker: 0
   nfafmis: 0
   nfafmis_migrate: 0
   node: 0

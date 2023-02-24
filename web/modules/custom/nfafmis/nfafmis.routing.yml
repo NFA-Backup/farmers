@@ -12,10 +12,3 @@ nfafmis.settings:
     _title: 'Settings'
   requirements:
     _permission: 'administer fmis settings'
-nfafmis.reports.activity:
-  path: '/admin/reports/nfafmis/activity'
-  defaults:
-    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'NFA-FMIS user activity reports'
-  requirements:
-    _permission: 'view fmis reports'

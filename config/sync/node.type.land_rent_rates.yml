@@ -13,6 +13,6 @@ name: 'Land rent rates'
 type: land_rent_rates
 description: 'Use to create <em>Land rent rates</em> for Central Forest Reserve (CFR).'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false
