@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "870f895b95eb1d50a0121b7176deedba",
+    "content-hash": "49a57c1d5c1fe69481a6877a8af687a2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5992,7 +5992,7 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Cambrico/nfa_tracker.git",
+                "url": "https://github.com/National-Forestry-Authority/nfa_tracker",
                 "reference": "257dfe70bf2772b119aee3d85bb29f247ee0e364"
             },
             "default-branch": true,
