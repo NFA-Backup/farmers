@@ -15,7 +15,7 @@
     },
     {
       "type": "git",
-      "url": "https://github.com/Cambrico/nfa_tracker.git"
+      "url": "https://github.com/National-Forestry-Authority/nfa_tracker"
     }
   ],
   "require": {
