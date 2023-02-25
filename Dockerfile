@@ -1,6 +1,18 @@
+FROM composer:2 AS build
+WORKDIR /app
+
+COPY composer.json .
+COPY composer.lock .
+RUN set -eux; \
+  composer install --no-dev --no-scripts --ignore-platform-reqs
+
+COPY . .
+RUN set -eux; \
+  composer dumpautoload --optimize
+
 # Based on https://github.com/docker-library/drupal/blob/0bc2672/9.4/php8.1/apache-bullseye/Dockerfile
 # from https://www.drupal.org/docs/system-requirements/php-requirements
-FROM php:7.4-apache-bullseye
+FROM php:7.4-apache-bullseye as base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # install the PHP extensions we need
@@ -47,9 +59,6 @@ RUN set -eux; \
         | sort -u \
         | xargs -rt apt-mark manual; \
     \
-    apt-get install -y --no-install-recommends \
-        git \
-    ; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
     rm -rf /var/lib/apt/lists/*
 
@@ -68,21 +77,18 @@ RUN { \
         echo 'opcache.fast_shutdown=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/
+FROM base
 
-COPY . /var/www
+COPY --from=build /app /var/www
+
+ENV PATH=${PATH}:/var/www/vendor/bin
 
 WORKDIR /var/www
 
 RUN set -eux; \
-    export COMPOSER_HOME="$(mktemp -d)"; \
-    composer install --no-dev --optimize-autoloader; \
     rm -rf html; \
-    ln -s web html; \
     #chown -R www-data:www-data web/sites web/modules web/themes; \
-    rm -rf "$COMPOSER_HOME"
-
-ENV PATH=${PATH}:/var/www/vendor/bin
+    ln -s web html
 
 RUN set -eux; \
     # Add entrypoint wrapper to ease drupal deployments
