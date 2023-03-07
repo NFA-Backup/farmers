@@ -14,10 +14,10 @@ services:
     volumes:
       - db-data:${DB_DATADIR:-/var/lib/mysql}
   redis:
-    image: ${REDIS_IMAGE}:${REDIS_IMAGE_TAG}"
+    image: ${REDIS_IMAGE?err}:${REDIS_IMAGE_TAG?err}
     restart: always
     environment:
-      REDIS_PASSWORD: "${REDIS_PASS?err}"
+      REDIS_PASSWORD: ${REDIS_PASS?err}
       REDIS_DISABLE_COMMANDS: FLUSHDB,FLUSHALL
     #volumes:
     #  - "redis_data:/bitnami/redis/data"
