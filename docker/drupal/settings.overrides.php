@@ -48,3 +48,5 @@ $docroot_base = realpath(DRUPAL_ROOT . '/..');
 $settings['file_public_path'] = "sites/default/files";
 $settings['file_private_path'] = $docroot_base . '/private';
 $settings['file_temp_path'] = $docroot_base . '/tmp';
+
+$config['farm_map_mapbox.settings']['api_key'] = 'pk.eyJ1IjoibmF0LWZvci1hdXRoLXVnIiwiYSI6ImNsZGlveTl0bDFqZDYzdm82bjBvdzRxN3EifQ.2TBv1-oxpDs9TY7s0seLGg';
