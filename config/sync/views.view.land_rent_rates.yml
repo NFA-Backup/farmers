@@ -12,7 +12,6 @@ dependencies:
     - node
     - taxonomy
     - user
-    - views_flipped_table
     - yearonly
 id: land_rent_rates
 label: 'Land rent rates'
@@ -131,20 +130,7 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts:
-        field_rate_year_value:
-          id: field_rate_year_value
-          table: node__field_rate_year
-          field: field_rate_year_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
+      sorts: {  }
       arguments: {  }
       filters:
         status:
@@ -173,49 +159,28 @@ display:
             operator_limit_selection: false
             operator_list: {  }
       style:
-        type: flipped_table
+        type: table
         options:
-          grouping:
-            -
-              field: field_central_forest_reserve
-              rendered: true
-              rendered_strip: false
+          grouping: {  }
           row_class: ''
           default_row_class: true
-          override: 1
-          sticky: 0
-          caption: ''
-          summary: ''
-          description: ''
           columns:
-            field_rate_year: field_rate_year
-            field_rate: field_rate
-            field_central_forest_reserve: field_central_forest_reserve
-          info:
-            field_rate_year:
-              sortable: 0
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: 0
-              responsive: ''
-            field_rate:
-              sortable: 0
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: 0
-              responsive: ''
-            field_central_forest_reserve:
-              sortable: 0
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: 0
-              responsive: ''
+            title: title
           default: '-1'
-          empty_table: 0
-          flipped_table_header_first_field: 1
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
         options:
@@ -234,7 +199,8 @@ display:
       relationships: {  }
       header: {  }
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -511,6 +477,72 @@ display:
     position: 2
     display_options:
       fields:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_central_forest_reserve
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+          label: 'Central Forest Reserve'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
         field_rate_year:
           id: field_rate_year
           table: node__field_rate_year
@@ -639,69 +671,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_central_forest_reserve:
-          id: field_central_forest_reserve
-          table: node__field_central_forest_reserve
-          field: field_central_forest_reserve
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Central Forest Reserve'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
         edit_node:
           id: edit_node
           table: node_field_revision
@@ -755,6 +724,7 @@ display:
           text: 'edit land rent rate'
           output_url_as_text: false
           absolute: false
+      sorts: {  }
       filters:
         status:
           id: status
@@ -899,19 +869,23 @@ display:
       style:
         type: table
         options:
-          grouping:
-            -
-              field: field_central_forest_reserve
-              rendered: true
-              rendered_strip: false
+          grouping: {  }
           row_class: ''
           default_row_class: true
           columns:
+            name: name
             field_rate_year: field_rate_year
             field_rate: field_rate
-            field_central_forest_reserve: field_central_forest_reserve
+            edit_node: edit_node
           default: '-1'
           info:
+            name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             field_rate_year:
               sortable: true
               default_sort_order: asc
@@ -920,20 +894,20 @@ display:
               empty_column: false
               responsive: ''
             field_rate:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_central_forest_reserve:
-              sortable: true
+            edit_node:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          override: true
+          override: false
           sticky: false
           summary: ''
           empty_table: false
@@ -949,10 +923,22 @@ display:
       defaults:
         style: false
         row: false
+        relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
         header: false
+      relationships:
+        field_central_forest_reserve:
+          id: field_central_forest_reserve
+          table: node__field_central_forest_reserve
+          field: field_central_forest_reserve
+          relationship: none
+          group_type: group
+          admin_label: CFR
+          plugin_id: standard
+          required: false
       header:
         area:
           id: area
@@ -990,6 +976,5 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_central_forest_reserve'
         - 'config:field.storage.node.field_rate'
         - 'config:field.storage.node.field_rate_year'

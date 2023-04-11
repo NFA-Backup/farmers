@@ -1,0 +1,10 @@
+uuid: b6d37b95-159b-4d56-9f63-6610f9446bd5
+langcode: en
+status: true
+dependencies: {  }
+id: nfa_fmis
+label: NFA-FMIS
+description: 'NFA Farmers migrations'
+source_type: null
+module: null
+shared_configuration: null
