@@ -1,0 +1,14 @@
+uuid: a2574d90-55a6-4a81-a91a-58976b07454e
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nfa_map
+_core:
+  default_config_hash: _FEQWl_DhUnWiyBSHAvY895RFbEHYi3nD2KFUkw0KjY
+id: default
+label: Default
+description: 'The default nfa map.'
+behaviors: {  }
+options: {  }

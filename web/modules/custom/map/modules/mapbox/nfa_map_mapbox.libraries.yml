@@ -1,0 +1,6 @@
+mapbox:
+  js:
+    js/nfa.map.behaviors.mapbox.js: { }
+  dependencies:
+    - core/drupalSettings
+    - nfa_map/nfa-map

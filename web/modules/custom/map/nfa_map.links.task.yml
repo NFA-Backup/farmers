@@ -1,0 +1,12 @@
+nfa_map.settings:
+  base_route: nfa_settings.settings_page
+  route_name: nfa_map.settings
+  title: 'Map'
+  weight: 5
+
+# Provide a default sub tab.
+nfa_map.settings_sub:
+  title: 'Map'
+  route_name: nfa_map.settings
+  parent_id: nfa_map.settings
+  weight: -5

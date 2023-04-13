@@ -1,0 +1,7 @@
+nfa_map_mapbox.settings:
+  path: 'farm/settings/map/mapbox'
+  defaults:
+    _form: '\Drupal\nfa_map_mapbox\Form\MapboxSettingsForm'
+    _title: 'Mapbox settings'
+  requirements:
+    _permission: 'administer nfa map'

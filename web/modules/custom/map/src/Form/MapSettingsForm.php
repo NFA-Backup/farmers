@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\farm_map\Form;
+namespace Drupal\nfa_map\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 
 /**
- * Provides a farm_map settings form.
+ * Provides a nfa_map settings form.
  */
 class MapSettingsForm extends ConfigFormbase {
 
@@ -13,7 +13,7 @@ class MapSettingsForm extends ConfigFormbase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'farm_map_settings';
+    return 'nfa_map_settings';
   }
 
   /**

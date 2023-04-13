@@ -9,7 +9,7 @@ dependencies:
     - field.field.taxonomy_term.central_forest_reserve.sector
     - taxonomy.vocabulary.central_forest_reserve
   module:
-    - farm_map
+    - nfa_map
     - file
     - path
     - text
@@ -27,7 +27,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   geofield_map:
-    type: farm_map_geofield
+    type: nfa_map_geofield
     weight: 5
     region: content
     settings: {  }

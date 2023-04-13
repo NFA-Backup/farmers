@@ -160,7 +160,7 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
       }
 
       $build['item_list'] = [
-        '#type' => 'farm_map',
+        '#type' => 'nfa_map',
         '#map_settings' => [
           'urls' => $layers,
           'title' => $this->t('Farmer land allocations'),

@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\farm_map\EventSubscriber;
+namespace Drupal\nfa_map\EventSubscriber;
 
-use Drupal\farm_map\Event\MapRenderEvent;
+use Drupal\nfa_map\Event\MapRenderEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -24,7 +24,7 @@ class MapRenderEventSubscriber implements EventSubscriberInterface {
   /**
    * React to the MapRenderEvent.
    *
-   * @param \Drupal\farm_map\Event\MapRenderEvent $event
+   * @param \Drupal\nfa_map\Event\MapRenderEvent $event
    *   The MapRenderEvent.
    */
   public function onMapRender(MapRenderEvent $event) {

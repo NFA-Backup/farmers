@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farm_map\Plugin\Block;
+namespace Drupal\nfa_map\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
@@ -19,7 +19,7 @@ class MapBlock extends BlockBase {
    */
   public function build() {
     return [
-      '#type' => 'farm_map',
+      '#type' => 'nfa_map',
       '#map_type' => $this->mapType(),
     ];
   }

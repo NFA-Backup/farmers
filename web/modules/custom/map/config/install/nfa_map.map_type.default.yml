@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nfa_map
+id: default
+label: Default
+description: 'The default nfa map.'
+behaviors: {  }
+options: {  }

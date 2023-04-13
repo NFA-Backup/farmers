@@ -1,0 +1,4 @@
+nfa_map_mapbox.settings:
+  title: 'Mapbox'
+  route_name: nfa_map_mapbox.settings
+  parent_id: nfa_map.settings

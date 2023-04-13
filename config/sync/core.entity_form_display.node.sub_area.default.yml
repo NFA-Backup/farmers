@@ -15,7 +15,7 @@ dependencies:
     - node.type.sub_area
   module:
     - datetime
-    - farm_map
+    - nfa_map
     - file
     - yearonly
 id: node.sub_area.default
@@ -54,7 +54,7 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
   field_map:
-    type: farm_map_geofield
+    type: nfa_map_geofield
     weight: 8
     region: content
     settings: {  }

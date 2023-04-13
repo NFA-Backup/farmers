@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farm_map\Plugin\Field\FieldFormatter;
+namespace Drupal\nfa_map\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -12,8 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Plugin implementation of the map 'geofield' formatter.
  *
  * @FieldFormatter(
- *   id = "farm_map_geofield",
- *   label = @Translation("farmOS Map"),
+ *   id = "nfa_map_geofield",
+ *   label = @Translation("nfa Map"),
  *   field_types = {
  *     "geofield"
  *   }
@@ -110,7 +110,7 @@ class GeofieldFormatter extends FormatterBase {
     // Build a map for each item.
     foreach ($features as $delta => $feature) {
       $element[$delta] = [
-        '#type' => 'farm_map',
+        '#type' => 'nfa_map',
         '#map_type' => 'geofield',
         '#map_settings' => [
           'wkt' => $feature,

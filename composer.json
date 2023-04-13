@@ -16,6 +16,21 @@
     {
       "type": "git",
       "url": "https://github.com/National-Forestry-Authority/nfa_tracker"
+    },
+    {
+      "type": "package",
+      "package": {
+          "name": "national-forestry-authority/nfa-map",
+          "version": "2.1.0",
+          "type": "drupal-library",
+          "dist": {
+              "url": "https://github.com/National-Forestry-Authority/nfa-map/archive/refs/heads/farmos-nfa-map-migration.zip",
+              "type": "zip"
+          },
+          "extra": {
+              "installer-name": "nfa-map"
+          }
+      }
     }
   ],
   "require": {

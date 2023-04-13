@@ -6,6 +6,7 @@ web/modules/contrib
 web/themes/contrib
 web/libraries/contrib
 web/profiles/contrib
+web/libraries/nfa-map
 
 # Ignore paths that contain user-generated content.
 web/sites/*/files

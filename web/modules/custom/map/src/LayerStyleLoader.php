@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\farm_map;
+namespace Drupal\nfa_map;
 
-use Drupal\farm_map\Entity\LayerStyle;
-use Drupal\farm_map\Entity\LayerStyleInterface;
+use Drupal\nfa_map\Entity\LayerStyle;
+use Drupal\nfa_map\Entity\LayerStyleInterface;
 
 /**
  * Layer style loader.
@@ -16,7 +16,7 @@ class LayerStyleLoader implements LayerStyleLoaderInterface {
   public function load(array $conditions = []): ?LayerStyleInterface {
 
     // Load all LayerStyle config entities.
-    /** @var \Drupal\farm_map\Entity\LayerStyleInterface[] $layer_styles */
+    /** @var \Drupal\nfa_map\Entity\LayerStyleInterface[] $layer_styles */
     $layer_styles = LayerStyle::loadMultiple();
 
     // If there are conditions, filter the styles.

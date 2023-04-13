@@ -1,0 +1,7 @@
+nfa_map.settings:
+  path: 'farm/settings/map'
+  defaults:
+    _form: '\Drupal\nfa_map\Form\MapSettingsForm'
+    _title: 'Map settings'
+  requirements:
+    _permission: 'administer farm map module'

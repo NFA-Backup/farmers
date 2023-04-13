@@ -1,0 +1,37 @@
+nfa-map:
+  js:
+    /libraries/nfa-map/dist/nfa-map.js:
+      minified: true
+  css:
+    /libraries/nfa-map/dist/nfa-map.css: { }
+  dependencies:
+    - core/drupalSettings
+nfa_map:
+  css:
+    theme:
+      css/nfa_map.css: { }
+  js:
+    js/nfa_map.js: { }
+  dependencies:
+    - nfa_map/nfa-map
+behavior_wkt:
+  js:
+    js/nfa.map.behaviors.wkt.js: { }
+  dependencies:
+    - core/drupalSettings
+    - nfa_map/nfa_map
+behavior_geofield:
+  js:
+    js/nfa.map.behaviors.geofield.js: { }
+  dependencies:
+    - nfa_map/nfa_map
+behavior_popup:
+  js:
+    js/nfa.map.behaviors.popup.js: { }
+  dependencies:
+    - nfa_map/nfa_map
+behavior_geojson:
+  js:
+    js/nfa.map.behaviors.geojson.js: { }
+  dependencies:
+    - nfa_map/nfa_map

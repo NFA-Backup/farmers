@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nfa_map
+id: geojson
+label: geoJSON
+description: 'Displays geoJSON as a map layer.'
+library: 'nfa_map/behavior_geojson'
+settings: {  }

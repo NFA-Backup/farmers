@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farm_map\Plugin\Field\FieldWidget;
+namespace Drupal\nfa_map\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -10,8 +10,8 @@ use Drupal\geofield\Plugin\Field\FieldWidget\GeofieldBaseWidget;
  * Plugin implementation of the map 'geofield' widget.
  *
  * @FieldWidget(
- *   id = "farm_map_geofield",
- *   label = @Translation("farmOS Map"),
+ *   id = "nfa_map_geofield",
+ *   label = @Translation("nfa Map"),
  *   field_types = {
  *     "geofield"
  *   }
@@ -34,7 +34,7 @@ class GeofieldWidget extends GeofieldBaseWidget {
 
     // Define the map render array.
     $element['map'] = [
-      '#type' => 'farm_map',
+      '#type' => 'nfa_map',
       '#map_type' => 'geofield_widget',
       '#map_settings' => [
         'wkt' => $current_value,

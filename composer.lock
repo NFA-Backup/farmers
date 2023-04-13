@@ -63,6 +63,18 @@
             "time": "2019-12-24T22:41:47+00:00"
         },
         {
+            "name": "national-forestry-authority/nfa-map",
+            "version": "2.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/National-Forestry-Authority/nfa-map/archive/refs/heads/farmos-nfa-map-migration.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "nfa-map"
+            }
+        },
+        {
             "name": "caxy/php-htmldiff",
             "version": "v0.1.14",
             "source": {

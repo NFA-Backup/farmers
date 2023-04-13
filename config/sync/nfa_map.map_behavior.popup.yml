@@ -1,0 +1,14 @@
+uuid: 164c9446-3585-40e9-9d76-8353c16fe7d4
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nfa_map
+_core:
+  default_config_hash: tptT_NwC_cyYT_j4tT8UwVkeRN19x8Na96t0AW3HGTk
+id: popup
+label: Popup
+description: 'Creates popups on the map when features are selected.'
+library: nfa_map/behavior_popup
+settings: {  }

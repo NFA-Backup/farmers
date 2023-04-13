@@ -15,7 +15,7 @@ dependencies:
     - node.type.sub_area
   module:
     - datetime
-    - farm_map
+    - nfa_map
     - user
     - yearonly
 id: node.sub_area.default
@@ -50,7 +50,7 @@ content:
     weight: 1
     region: content
   field_map:
-    type: farm_map_geofield
+    type: nfa_map_geofield
     label: above
     settings: {  }
     third_party_settings: {  }

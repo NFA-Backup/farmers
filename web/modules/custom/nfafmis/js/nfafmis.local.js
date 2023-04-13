@@ -64,7 +64,7 @@
           // Hide the list of sub areas and map before determining which ones to show.
           $(".sub-areas-planting .views-row").hide();
           $('.view-id-sub_areas_planting_status tr').hide();
-          $('.farm-map').hide();
+          $('.nfa-map').hide();
 
           let filtered_name = filterVal.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
           let filterClass = $('#' + filtered_name).attr('class');
@@ -74,7 +74,7 @@
           $(".sub-areas-planting .views-row").find('span.' + filterClass).parents('.views-row').fadeIn('slow');
           if ($subareas.length !== 0) {
             $subareas.fadeIn('slow');
-            $('.farm-map').fadeIn('slow');
+            $('.nfa-map').fadeIn('slow');
           }
 
           // Remove all subarea select options and create new list based on area selection.

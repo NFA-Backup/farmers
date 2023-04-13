@@ -90,7 +90,18 @@
  * ];
  * @endcode
  */
-$databases = [];
+$host = "db";
+$port = 3306;
+
+$databases['default']['default'] = array(
+  'database' => "db",
+  'username' => "db",
+  'password' => "db",
+  'host' => $host,
+  'driver' => "mysql",
+  'port' => $port,
+  'prefix' => "",
+);
 
 /**
  * Customizing database settings.
@@ -294,7 +305,7 @@ $settings['config_sync_directory'] = '../config/sync';
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'mqKjfUpmdjUbAorfMBPNiBtbMPsSiLdcNHUpHqSvHWJHpgsPdMziHCROUGAyYeXr';
 
 /**
  * Deployment identifier.

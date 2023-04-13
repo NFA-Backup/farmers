@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nfa_map
+id: geofield
+label: Geofield
+description: 'Renders geofield using nfa-map.'
+behaviors: {  }
+options: {  }

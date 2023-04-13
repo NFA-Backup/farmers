@@ -8,7 +8,7 @@ dependencies:
     - field.field.taxonomy_term.sector.management_unit
     - taxonomy.vocabulary.sector
   module:
-    - farm_map
+    - nfa_map
     - text
 id: taxonomy_term.sector.default
 targetEntityType: taxonomy_term
@@ -23,7 +23,7 @@ content:
     weight: 0
     region: content
   geofield_map:
-    type: farm_map_geofield
+    type: nfa_map_geofield
     label: hidden
     settings: {  }
     third_party_settings: {  }

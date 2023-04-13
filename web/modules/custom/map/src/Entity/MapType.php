@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farm_map\Entity;
+namespace Drupal\nfa_map\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 
@@ -59,7 +59,7 @@ class MapType extends ConfigEntityBase implements MapTypeInterface {
   protected $behaviors;
 
   /**
-   * The options to pass to farmOS-map.
+   * The options to pass to nfa-map.
    *
    * @var mixed|null
    */

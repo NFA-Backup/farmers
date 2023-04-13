@@ -14,7 +14,7 @@ dependencies:
     - node.type.offer_license
     - node.type.sub_area
   module:
-    - farm_map
+    - nfa_map
     - node
     - rest
     - taxonomy
@@ -87,7 +87,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: farm_map_geofield
+          type: nfa_map_geofield
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -275,7 +275,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: farm_map_geofield
+          type: nfa_map_geofield
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -988,7 +988,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: farm_map_geofield
+          type: nfa_map_geofield
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -1266,7 +1266,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: farm_map_geofield
+          type: nfa_map_geofield
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -1607,7 +1607,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: farm_map_geofield
+          type: nfa_map_geofield
           settings: {  }
           group_column: value
           group_columns: {  }

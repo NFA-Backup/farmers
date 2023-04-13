@@ -9,7 +9,7 @@ dependencies:
     - field.field.taxonomy_term.central_forest_reserve.sector
     - taxonomy.vocabulary.central_forest_reserve
   module:
-    - farm_map
+    - nfa_map
     - text
 id: taxonomy_term.central_forest_reserve.default
 targetEntityType: taxonomy_term
@@ -24,7 +24,7 @@ content:
     weight: 0
     region: content
   geofield_map:
-    type: farm_map_geofield
+    type: nfa_map_geofield
     label: hidden
     settings: {  }
     third_party_settings: {  }

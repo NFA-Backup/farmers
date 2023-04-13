@@ -1,0 +1,7 @@
+services:
+  nfa_map.map_render_event_subscriber:
+    class: Drupal\nfa_map\EventSubscriber\MapRenderEventSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+  nfa_map.layer_style_loader:
+    class: Drupal\nfa_map\LayerStyleLoader

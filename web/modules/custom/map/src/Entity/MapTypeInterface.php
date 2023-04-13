@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\farm_map\Entity;
+namespace Drupal\nfa_map\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\EntityDescriptionInterface;
@@ -19,7 +19,7 @@ interface MapTypeInterface extends ConfigEntityInterface, EntityDescriptionInter
   public function getMapBehaviors();
 
   /**
-   * Returns the options to pass to farmOS-map.
+   * Returns the options to pass to nfa-map.
    *
    * @return mixed|null
    *   The map options.

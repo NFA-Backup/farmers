@@ -13,7 +13,7 @@ dependencies:
     - block_content
     - comment
     - contact
-    - farm_map
+    - nfa_map
     - field_ui
     - geocoder
     - nfafmis
