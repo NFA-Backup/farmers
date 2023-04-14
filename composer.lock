@@ -67,7 +67,7 @@
             "version": "2.1.0",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/National-Forestry-Authority/nfa-map/archive/refs/heads/farmos-nfa-map-migration.zip"
+                "url": "https://github.com/National-Forestry-Authority/nfa-map/archive/refs/heads/2.x.zip"
             },
             "type": "drupal-library",
             "extra": {
