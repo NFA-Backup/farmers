@@ -4,4 +4,4 @@ type: module
 package: NFA-FMI
 core_version_requirement: ^8.8.0 || ^9.0
 dependencies:
-  - nfa_map
+  - farm:nfa_map
