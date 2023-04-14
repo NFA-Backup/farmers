@@ -5,8 +5,10 @@ namespace Drupal\nfafmis\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Site\Settings;
 use Drupal\nfafmis\Services\FarmerServices;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\node\Entity\Node;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -65,10 +67,6 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $this->config = $config_factory;
     $this->entityTypeManager = $entity_type_manager;
     $this->farmerService = $farmer_service;
-
-    // Year for which annual charges has to be calculated.
-    $this->current_year = date("Y");
-    $this->last_year = date("Y") - 1;
   }
 
   /**
@@ -105,26 +103,38 @@ class NfafmisSettingsForm extends ConfigFormBase {
     $form['item-charges'] = [
       '#type' => 'details',
       '#title' => $this->t('Generate annual charges manually'),
-      '#description' => $this->t("By clicking the button you can generate annual charges for the year %y1, %y2 accordingly.
-       <br>Note: Annual charges are meant to be calculated automatically on 1st January of every year, though this button can be used to create charges anytime but make sure you understand the consequences. If you are not sure about this don't click on these buttons.", ['%y1' => $this->last_year, '%y2' => $this->current_year]
-      ),
+      '#description' => $this->t('<strong>Note: Annual charges are meant to be calculated automatically on 1st January of every year. This button can be used to create charges anytime but make sure you understand the consequences. If you are not sure about this do not click on this button.</strong>'),
     ];
     $form['item-charges']['manual-action'] = [
       '#type' => 'fieldset',
     ];
-    $form['item-charges']['manual-action']['last_year'] = [
-      '#type' => 'submit',
-      '#button_type' => 'primary',
-      '#for_year' => $this->last_year,
-      '#submit' => [[$this, 'calculateAnnualChargesHandler']],
-      '#value' => $this->t("Calculate annual charges for $this->last_year"),
+
+    $options = array_combine(range(date('Y'), 2004), range(date('Y'), 2004));
+    $form['item-charges']['manual-action']['year'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select year'),
+      '#options' => $options,
     ];
-    $form['item-charges']['manual-action']['current_year'] = [
+    $form['item-charges']['manual-action']['farmer']= [
+      '#type' => 'entity_autocomplete',
+      '#title' => $this->t('Farmer'),
+      '#target_type' => 'node',
+      '#selection_settings' => [
+        'target_bundles' => ['farmer_details'],
+      ],
+    ];
+    $form['item-charges']['manual-action']['recalculate'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Recalculate and replace existing charges.'),
+      '#description' => $this->t('If checked, existing charges will be deleted and replaced with recalculated values.'),
+      '#return_value' => TRUE,
+      '#default_value' => FALSE,
+    ];
+    $form['item-charges']['manual-action']['submit'] = [
       '#type' => 'submit',
       '#button_type' => 'primary',
-      '#for_year' => $this->current_year,
-      '#submit' => [[$this, 'calculateAnnualChargesHandler']],
-      '#value' => $this->t("Calculate annual charges for $this->current_year"),
+      '#submit' => [[$this, 'calculateAnnualChargesBatch']],
+      '#value' => $this->t('Calculate annual charges'),
     ];
     return parent::buildForm($form, $form_state);
   }
@@ -144,47 +154,99 @@ class NfafmisSettingsForm extends ConfigFormBase {
   }
 
   /**
-   * Custom submission handler for calculateAnnualChargesHandler.
+   * Set up batch process for calculating annual charges.
    *
    * @param array $form
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
-  public function calculateAnnualChargesHandler(array &$form, FormStateInterface $form_state) {
-    $for_year = $form_state->getTriggeringElement()['#for_year'];
-    if (!$for_year) {
-      $for_year = $this->current_year;
-    }
-    // Create node of annual charges programmatically for last year.
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $offer_license_ids = $query->condition('type', 'offer_license')
-      ->condition('status', 1)
-      ->accessCheck()
-      ->execute();
-    $areas_object = $this->entityTypeManager->getStorage('node')->loadMultiple($offer_license_ids);
-    foreach ($areas_object as $area) {
-      $area_allocated = $area->get('field_overall_area')->value;
-      $cfr = $area->get('field_central_forest_reserve')->target_id;
-      if ($cfr && $area_allocated) {
-        $annual_charges = $this->farmerService->checkForExistingAnnualCharges($area, $for_year);
-        // Prevent creating duplicate annual charges for the same year.
-        if (empty($annual_charges)) {
-          $this->createAnnualCharges($area, $cfr, $area_allocated, $for_year);
-        }
-        else {
-          $this->messenger()->addMessage($this->t('Annual charges already added against area :area for the year :year', [
-            ':area' => $area->getTitle(),
-            ':year' => $for_year,
-          ]), 'warning');
-        }
-      }
+  public function calculateAnnualChargesBatch(array &$form, FormStateInterface $form_state) {
+    $year = $form_state->getValue('year');
+    $recalculate = $form_state->getValue('recalculate');
+    $farmer = $form_state->getValue('farmer');
+
+    if ($year) {
+      $batch = [
+        'operations' => [
+          ['Drupal\nfafmis\Form\NfafmisSettingsForm::batchProcess', [$year, $recalculate, $farmer]],
+        ],
+        'finished' => 'Drupal\nfafmis\Form\NfafmisSettingsForm::batchFinished',
+        'title' => t('Calculating annual land rent'),
+        'progress_message' => t('Calculating annual land rent charges for @year', ['@year' => $year]),
+      ];
+      batch_set($batch);
     }
   }
 
   /**
-   * Create annual charges for all area (offer license) lend by a farmer,
-   * it consists two part.
+   * Batch callback for calculating annual charges.
+   */
+  public static function batchProcess($year, $recalculate, $farmer, &$context) {
+    if (!isset($context['sandbox']['progress'])) {
+      // This is the first run. Initialize the sandbox.
+      $context['sandbox']['progress'] = 0;
+      $context['results']['late'] = 0;
+      $context['results']['annual'] = 0;
+
+      // Load nids of the area nodes to be processed.
+      $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+      $query->condition('type', 'offer_license')
+        ->condition('status', 1)
+        ->accessCheck();
+      if ($farmer) {
+        $query->condition('field_farmer_name_ref', $farmer);
+      }
+      $nids = $query->execute();
+
+      foreach ($nids as $result) {
+        $context['sandbox']['nodes'][] = $result;
+      }
+      if (!empty($context['sandbox']['nodes'])) {
+        $context['sandbox']['max'] = count($context['sandbox']['nodes']);
+      }
+    }
+
+    $batch_size = Settings::get('entity_update_batch_size', 50);
+    if (!empty($context['sandbox']['nodes'])) {
+      // Handle nodes in batches.
+      $nids = array_slice($context['sandbox']['nodes'], $context['sandbox']['progress'], $batch_size);
+
+      foreach ($nids as $id) {
+        /** @var \Drupal\node\NodeInterface $node */
+        $area = Node::load($id);
+        $area_allocated = $area->get('field_overall_area')->value;
+        $cfr = $area->get('field_central_forest_reserve')->target_id;
+        if ($cfr && $area_allocated) {
+          $annual_charges = \Drupal::service('nfafmis_service.farmer')->checkForExistingAnnualCharges($area, $year);
+          // If charges already exist and the recalculate option is checked,
+          // delete the existing charges before calculating.
+          if ($annual_charges && $recalculate) {
+            $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+            $entities = $storage_handler->loadMultiple($annual_charges);
+            $storage_handler->delete($entities);
+            $annual_charges = NULL;
+          }
+          if (empty($annual_charges)) {
+            NfafmisSettingsForm::createAnnualCharges($area, $cfr, $area_allocated, $year, $context);
+            $context['message'] = t('Processed @count of @total areas', [
+              '@count' => $context['sandbox']['progress'] + 1,
+              '@total' => $context['sandbox']['max'],
+            ]);
+          }
+        }
+
+        $context['sandbox']['progress']++;
+      }
+
+      // Tell Drupal what percentage of the batch is completed.
+      $context['finished'] = empty($context['sandbox']['max']) ? 1 : ($context['sandbox']['progress'] / $context['sandbox']['max']);
+    }
+  }
+
+  /**
+   * Create annual charges for all areas (offer license) rented by a farmer.
+   * There are two types of charge:.
    *
    * - Land rent late fee.
    * - Annual land rent.
@@ -193,19 +255,18 @@ class NfafmisSettingsForm extends ConfigFormBase {
    * @param $cfr
    * @param $area_allocated
    * @param $for_year
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @param $context
    */
-  public function createAnnualCharges($area, $cfr, $area_allocated, $for_year) {
-    $previous_year_land_rent = $this->farmerService->getPreviousYearLandRentDue($area, $for_year);
+  public static function createAnnualCharges($area, $cfr, $area_allocated, $for_year, &$context) {
+    $farmer_service = \Drupal::service('nfafmis_service.farmer');
+    $entity_type_manager = \Drupal::entityTypeManager();
+
+    $previous_year_land_rent = $farmer_service->getPreviousYearLandRentDue($area, $for_year);
     if (!empty($previous_year_land_rent) && $previous_year_land_rent['charges_due']) {
-      $config = $this->config('nfafmis.settings');
-      $late_fees = $config->get('late_fees');
+      $late_fees = $config = \Drupal::config('nfafmis.settings')->get('late_fees');
       // Create land rent late fee, this will only happen if there is annual
       // land rent unpaid for previous year.
-      $node = $this->entityTypeManager->getStorage('node')->create([
+      $node = $entity_type_manager->getStorage('node')->create([
         'type' => 'annual_charges',
         'field_annual_charges' => ($previous_year_land_rent['amount'] * $late_fees) / 100,
         'field_rate_year' => $for_year,
@@ -214,17 +275,13 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_annual_charges_type' => '2',
       ]);
       $node->save();
-      $this->messenger()->addMessage($this->t('Annual charges (late fee) added against area :area for the year :year', [
-        ':area' => $area->getTitle(),
-        ':year' => $for_year,
-      ]));
+      $context['results']['late']++;
     }
-    // Create annual land rent, this will only happen if land_rent_rates is
-    // already added against Central Forest Reserve ($cfr) added for the year
-    // ($this->year).
-    $annual_charges = $this->farmerService->calculateAnnualCharges($cfr, $area_allocated, $for_year);
+    // Create annual land rent if annual rates have been configured for the
+    // given year and CFR.
+    $annual_charges = $farmer_service->calculateAnnualCharges($cfr, $area_allocated, $for_year);
     if ($annual_charges) {
-      $node = $this->entityTypeManager->getStorage('node')->create([
+      $node = $entity_type_manager->getStorage('node')->create([
         'type' => 'annual_charges',
         'field_annual_charges' => $annual_charges,
         'field_rate_year' => $for_year,
@@ -233,11 +290,31 @@ class NfafmisSettingsForm extends ConfigFormBase {
         'field_overall_area' => $area_allocated,
       ]);
       $node->save();
-      $this->messenger()->addMessage($this->t('Annual charges (land rent) added against area :area for the year :year', [
-        ':area' => $area->getTitle(),
-        ':year' => $for_year,
-      ]));
+      $context['results']['annual']++;
     }
   }
 
+  /**
+   * Batch finished callback.
+   */
+  public static function batchFinished($success, $results, $operations) {
+    $messenger = \Drupal::service('messenger');
+
+    if ($success) {
+      if ($results['late'] > 0 || $results['annual'] > 0) {
+        if ($results['late'] > 0) {
+          $messenger->addMessage(t('Calculated @count late rent charges.', ['@count' => $results['late']]));
+        }
+        if ($results['annual'] > 0) {
+          $messenger->addMessage(t('Calculated @count annual rent charges.', ['@count' => $results['annual']]));
+        }
+      }
+      else {
+        $messenger->addMessage(t('No new rent charges were calculated.'));
+      }
+    }
+    else {
+      $messenger->addMessage(t('An error occurred while calculating annual charges.'));
+    }
+  }
 }

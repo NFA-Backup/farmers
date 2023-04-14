@@ -61,6 +61,8 @@
     "drupal/geofield": "^1",
     "drupal/inline_entity_form": "^1",
     "drupal/migrate_plus": "^5",
+    "drupal/migrate_source_csv": "^3",
+    "drupal/migrate_source_ui": "^1",
     "drupal/migrate_spreadsheet": "^2",
     "drupal/migrate_tools": "^5",
     "drupal/paragraphs": "^1",
@@ -156,6 +158,9 @@
       },
       "drupal/yearonly": {
         "3172745-8: Provide default year options": "https://www.drupal.org/files/issues/2022-12-12/yearonly-default-options-3172745-8.patch"
+      },
+      "drupal/migrate_tools": {
+        "3272434-6: Undefined index: #description_display in template_preprocess_fieldset()": "https://www.drupal.org/files/issues/2022-07-06/3272434-6-fixed-undefined-index-descriptiondisplay.patch"
       }
     }
   },
