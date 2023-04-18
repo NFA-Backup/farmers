@@ -183,6 +183,8 @@ class NfafmisSettingsForm extends ConfigFormBase {
    * Batch callback for calculating annual charges.
    */
   public static function batchProcess($year, $recalculate, $farmer, &$context) {
+    $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+
     if (!isset($context['sandbox']['progress'])) {
       // This is the first run. Initialize the sandbox.
       $context['sandbox']['progress'] = 0;
@@ -190,8 +192,8 @@ class NfafmisSettingsForm extends ConfigFormBase {
       $context['results']['annual'] = 0;
 
       // Load nids of the area nodes to be processed.
-      $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
-      $query->condition('type', 'offer_license')
+      $query = $storage_handler->getQuery()
+        ->condition('type', 'offer_license')
         ->condition('status', 1)
         ->accessCheck();
       if ($farmer) {
@@ -222,10 +224,14 @@ class NfafmisSettingsForm extends ConfigFormBase {
           // If charges already exist and the recalculate option is checked,
           // delete the existing charges before calculating.
           if ($annual_charges && $recalculate) {
-            $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
             $entities = $storage_handler->loadMultiple($annual_charges);
             $storage_handler->delete($entities);
             $annual_charges = NULL;
+            // Delete the payment advice associated with the annual charge.
+            foreach ($entities as $entity) {
+              $payment_advice = $storage_handler->load($entity->field_payment_advice->entity->id());
+              $payment_advice->delete();
+            }
           }
           if (empty($annual_charges)) {
             NfafmisSettingsForm::createAnnualCharges($area, $cfr, $area_allocated, $year, $context);
