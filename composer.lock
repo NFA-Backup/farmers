@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae28ce2a0e46231814f71f925c4c9ad6",
+    "content-hash": "bf069bc01d76572ec4bc070f0f022c83",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -183,18 +183,6 @@
                 "source": "https://github.com/Chi-teck/drupal-code-generator/tree/2.6.2"
             },
             "time": "2022-11-11T15:34:04+00:00"
-        },
-        {
-            "name": "national-forestry-authority/nfa-map",
-            "version": "2.1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/National-Forestry-Authority/nfa-map/releases/download/v2.1.0/v2.1.0-dist.zip"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "nfa-map"
-            }
         },
         {
             "name": "clue/stream-filter",
@@ -6103,6 +6091,18 @@
                 }
             ],
             "time": "2022-08-04T09:53:51+00:00"
+        },
+        {
+            "name": "national-forestry-authority/nfa-map",
+            "version": "2.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/National-Forestry-Authority/nfa-map/releases/download/v2.1.0/v2.1.0-dist.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "nfa-map"
+            }
         },
         {
             "name": "national-forestry-authority/nfa_tracker",
