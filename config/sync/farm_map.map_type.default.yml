@@ -9,6 +9,6 @@ _core:
   default_config_hash: _FEQWl_DhUnWiyBSHAvY895RFbEHYi3nD2KFUkw0KjY
 id: default
 label: Default
-description: 'The default farmOS map.'
+description: 'The default NFA map.'
 behaviors: {  }
 options: {  }

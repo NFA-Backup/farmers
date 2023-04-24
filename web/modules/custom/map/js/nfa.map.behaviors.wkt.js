@@ -1,5 +1,5 @@
 (function () {
-  farmOS.map.behaviors.wkt = {
+  nfa.map.behaviors.wkt = {
     attach: function (instance) {
 
       // If WKT was set, create a layer.

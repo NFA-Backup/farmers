@@ -6,6 +6,6 @@ dependencies:
       - farm_map
 id: default
 label: Default
-description: 'The default farmOS map.'
+description: 'The default NFA map.'
 behaviors: {  }
 options: {  }

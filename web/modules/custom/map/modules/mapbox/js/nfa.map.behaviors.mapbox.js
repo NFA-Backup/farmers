@@ -1,10 +1,11 @@
-/* eslint-disable */
 (function () {
-  farmOS.map.behaviors.mapbox = {
+  nfa.map.behaviors.mapbox = {
     attach: function (instance) {
-
-      // Test MapBox API key (only works with farmos.github.io).
-      var key = 'pk.eyJ1IjoiZmFybWllciIsImEiOiJjazB6ajZjODkwMWIzM2ptcDBvNjl4eGViIn0.oYDl6csdVuVzlB0hf2ju2Q';
+      var key = drupalSettings.farm_map.behaviors.mapbox.api_key;
+      this.addMapboxLayer(instance, 'Mapbox Outdoors', 'mapbox/outdoors-v11', key);
+      this.addMapboxLayer(instance, 'Mapbox Satellite', 'mapbox/satellite-v9', key, true);
+    },
+    addMapboxLayer: function (instance, title, tileset, key, visible = false) {
 
       // Create the MapBox watermark and attribution.
       // See https://docs.mapbox.com/help/how-mapbox-works/attribution/
@@ -13,30 +14,17 @@
       var links = '<a href="https://www.mapbox.com/about/maps/">© Mapbox</a> | <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank"><strong>Improve this map</strong></a>';
       var attribution = watermark + links;
 
-      // Add MapBox base layer: Outdoors.
+      // Add the layer.
       var opts = {
-        title: 'MapBox Outdoors',
-        url: 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/512/{z}/{x}/{y}?access_token=' + key,
+        title: title,
+        url: 'https://api.mapbox.com/styles/v1/' + tileset + '/tiles/512/{z}/{x}/{y}?access_token=' + key,
         tileSize: 512,
         attribution: attribution,
         group: 'Base layers',
         base: true,
-        visible: false,
+        visible: visible,
       };
       instance.addLayer('xyz', opts);
-
-      // Add MapBox base layer: Satellite.
-      var opts = {
-        title: 'MapBox Satellite',
-        url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}?access_token=' + key,
-        tileSize: 512,
-        attribution: attribution,
-        group: 'Base layers',
-        base: true,
-        visible: true,
-      };
-      instance.addLayer('xyz', opts);
-
-    },
+    }
   };
 }());

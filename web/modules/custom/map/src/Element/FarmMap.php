@@ -50,8 +50,8 @@ class FarmMap extends RenderElement {
     // Add the farm-map class.
     $element['#attributes']['class'][] = 'farm-map';
 
-    // Attach the farmOS-map and farm_map libraries.
-    $element['#attached']['library'][] = 'farm_map/farmOS-map';
+    // Attach the nfa-map and farm_map libraries.
+    $element['#attached']['library'][] = 'farm_map/nfa-map';
     $element['#attached']['library'][] = 'farm_map/farm_map';
 
     // Include map settings.

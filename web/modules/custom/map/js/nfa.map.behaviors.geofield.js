@@ -1,5 +1,5 @@
 (function () {
-  farmOS.map.behaviors.geofield = {
+  nfa.map.behaviors.geofield = {
     attach: function (instance) {
       if (instance.edit) {
         instance.edit.wktOn('featurechange', function(wkt) {
@@ -8,7 +8,7 @@
       }
     },
 
-    // Make sure this runs after farmOS.map.behaviors.wkt.
+    // Make sure this runs after nfa.map.behaviors.wkt.
     weight: 101,
   };
 }());

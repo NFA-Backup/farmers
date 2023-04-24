@@ -185,6 +185,18 @@
             "time": "2022-11-11T15:34:04+00:00"
         },
         {
+            "name": "national-forestry-authority/nfa-map",
+            "version": "2.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/National-Forestry-Authority/nfa-map/releases/download/v2.1.0/v2.1.0-dist.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "nfa-map"
+            }
+        },
+        {
             "name": "clue/stream-filter",
             "version": "v1.6.0",
             "source": {

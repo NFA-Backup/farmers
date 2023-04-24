@@ -1,5 +1,5 @@
 (function () {
-  farmOS.map.behaviors.geojson = {
+  nfa.map.behaviors.geojson = {
     attach: function (instance) {
       if (drupalSettings.farm_map[instance.target].geojson) {
         var layers = drupalSettings.farm_map[instance.target].urls;
