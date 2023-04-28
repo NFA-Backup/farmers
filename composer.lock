@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf069bc01d76572ec4bc070f0f022c83",
+    "content-hash": "381f1c642d53bda634240c88f8e9629d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6387,7 +6387,7 @@
             "extra": {
                 "installer-name": "nfa-map"
             }
-          },
+        },
         {
             "name": "national-forestry-authority/nfa_gin",
             "version": "1.0.1",
