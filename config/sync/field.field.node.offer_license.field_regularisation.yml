@@ -1,0 +1,23 @@
+uuid: 12191468-a20c-4635-bf7e-17915c203554
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_regularisation
+    - node.type.offer_license
+id: node.offer_license.field_regularisation
+field_name: field_regularisation
+entity_type: node
+bundle: offer_license
+label: Regularisation
+description: 'Used to add farmers that have planted trees without authority from NFA and don''t have an offer date.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

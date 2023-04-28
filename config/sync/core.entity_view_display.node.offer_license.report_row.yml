@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.offer_license.field_offer_id
     - field.field.node.offer_license.field_overall_area
     - field.field.node.offer_license.field_purpose
+    - field.field.node.offer_license.field_regularisation
     - node.type.offer_license
   module:
     - datetime
@@ -108,3 +109,4 @@ hidden:
   field_central_forest_reserve: true
   field_comments: true
   field_license_issued: true
+  field_regularisation: true

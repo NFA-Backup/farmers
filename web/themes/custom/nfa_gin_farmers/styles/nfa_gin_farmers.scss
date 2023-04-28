@@ -19,6 +19,14 @@
   }
 }
 
+.view-fmis-reports {
+  .gin-table-scroll-wrapper {
+    // Gin adds a negative bottom margin to tables that messes up reports views that have multiple tables. Remove it.
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
 // @todo Legacy styles that we will aim to remove as soon as possible.
 // Accounts section.
 .view-accounts-tab,

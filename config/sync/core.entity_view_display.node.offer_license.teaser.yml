@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.offer_license.field_offer_id
     - field.field.node.offer_license.field_overall_area
     - field.field.node.offer_license.field_purpose
+    - field.field.node.offer_license.field_regularisation
     - node.type.offer_license
   module:
     - user
@@ -44,3 +45,4 @@ hidden:
   field_offer_id: true
   field_overall_area: true
   field_purpose: true
+  field_regularisation: true

@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.offer_license.field_offer_id
     - field.field.node.offer_license.field_overall_area
     - field.field.node.offer_license.field_purpose
+    - field.field.node.offer_license.field_regularisation
     - node.type.offer_license
   module:
     - datetime
@@ -28,25 +29,25 @@ mode: default
 content:
   field_area_serial_number:
     type: serial_default_widget
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_block_ref:
     type: options_select
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_central_forest_reserve:
     type: options_select
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_comments:
     type: string_textarea
-    weight: 10
+    weight: 11
     region: content
     settings:
       rows: 5
@@ -64,14 +65,13 @@ content:
     third_party_settings: {  }
   field_license_date:
     type: daterange_default
-    weight: 5
+    weight: 6
     region: content
-    settings:
-      year_range: '1900:+100'
+    settings: {  }
     third_party_settings: {  }
   field_license_id:
     type: string_textfield
-    weight: 4
+    weight: 5
     region: content
     settings:
       size: 60
@@ -79,30 +79,36 @@ content:
     third_party_settings: {  }
   field_license_issued:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_offer_date:
     type: datetime_default
-    weight: 2
+    weight: 3
     region: content
-    settings:
-      year_range: '1900:+100'
+    settings: {  }
     third_party_settings: {  }
   field_overall_area:
     type: number
-    weight: 8
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_purpose:
     type: options_select
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_regularisation:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield

@@ -15,6 +15,11 @@
           mask-image: url("../../media/sprite.svg#structure-view");
 }
 
+.view-fmis-reports .gin-table-scroll-wrapper {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 .view-accounts-tab .views-row,
 .view-farmer-main-tab .field-content.payment .views-row,
 .view-flagged-farmer-log .views-row {
