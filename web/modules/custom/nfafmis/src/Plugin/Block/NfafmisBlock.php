@@ -112,33 +112,39 @@ class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface 
       ['uri' => 'internal:/tree-farmer-overview/accounts', 'label' => 'Accounts'],
     ];
     foreach ($farmer_menu_items as $value) {
-      // Set active class for the link.
+      // Set is-active class for the active link.
       $path_part = explode(":", $value['uri']);
       if ($path_part[1] === $current_path) {
-        $options['attributes'] = [
-          'class' => [
-            'tabs-item active',
-          ],
-        ];
+        $is_active = TRUE;
       }
       else {
-        $options['attributes'] = [
-          'class' => [
-            'tabs-item',
-          ],
-        ];
+        $is_active = FALSE;
+      }
+
+      $options['attributes'] = ['class' => ['tabs__link']];
+      if ($is_active) {
+        $options['attributes']['class'][] = 'is-active';
+      }
+      $item_attributes['class'] = ['tabs__tab'];
+      if ($is_active) {
+        $item_attributes['class'][] = 'is-active';
       }
 
       $url = Url::fromUri($value['uri'], $options);
-      $link = Link::fromTextAndUrl($value['label'], $url);
-      $items[] = $link;
+      $items[] = [
+        '#wrapper_attributes' => $item_attributes,
+        '#type' => 'link',
+        '#title' => $value['label'],
+        '#url' => $url,
+      ];
     }
 
     $build['item_list'] = [
       '#theme' => 'item_list',
       '#list_type' => 'ul',
       '#items' => $items,
-      '#attributes' => ['class' => 'nav nav-tabs farmer-tabs'],
+      '#attributes' => ['class' => 'tabs tabs--secondary clearfix'],
+      '#wrapper_attributes' => ['class' => ['tabs-wrapper', 'is-horizontal']],
     ];
     // Set cache contexts on query_args.
     $build['#cache']['contexts'][] = 'url.query_args:title';

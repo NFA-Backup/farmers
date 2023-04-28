@@ -1,0 +1,95 @@
+.tabs-wrapper {
+  &.item-list {
+    margin: 0;
+    .tabs--secondary {
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+// Dashboard styles
+.toolbar .toolbar-bar {
+  .toolbar-icon-nfafmis-dashboard::before {
+    mask-image: icon('structure');
+  }
+}
+
+// @todo Legacy styles that we will aim to remove as soon as possible.
+// Accounts section.
+.view-accounts-tab,
+.view-farmer-main-tab .field-content.payment,
+.view-flagged-farmer-log {
+  .views-row {
+    margin-top: 1rem;
+
+    .views-field:not(.views-field-field-itemise-charges, th, td) {
+      display: flex;
+
+      .views-label {
+        font-weight: bold;
+        flex-basis: 25% ;
+      }
+
+      &.views-field-field-purpose {
+        display: block;
+        .views-field .views-label {
+          flex-basis: 55%;
+        }
+      }
+    }
+  }
+}
+
+.view-farmer-main-tab .field-content.payment {
+  .views-row  .views-field .views-label {
+    flex-basis: 45%;
+  }
+}
+
+// Legacy bootstrap to flex box utility classes. @todo delete when templates are updated to remove bootstrap classes.
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+@include mq(small) {
+  .col-sm-2 {
+    flex-basis: 16.66666%;
+  }
+  .col-sm-4 {
+    flex-basis: 33.33333%;
+  }
+  .col-sm-6 {
+    flex-basis: 50%;
+  }
+  .col-sm-8 {
+    flex-basis: 66.66666%;
+  }
+  .col-sm-12 {
+    flex-basis: 100%;
+  }
+}
+
+@include mq(medium) {
+  .col-md-2 {
+    flex-basis: 16.66666%;
+  }
+  .col-md-4 {
+    flex-basis: 33.33333%;
+  }
+  .col-md-6 {
+    flex-basis: 50%;
+  }
+  .col-md-8 {
+    flex-basis: 66.66666%;
+  }
+  .col-md-12 {
+    flex-basis: 100%;
+  }
+}
+

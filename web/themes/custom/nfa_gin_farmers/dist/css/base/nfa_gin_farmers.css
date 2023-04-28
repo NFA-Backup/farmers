@@ -1,0 +1,103 @@
+.tabs-wrapper.item-list {
+  margin: 0;
+}
+
+.tabs-wrapper.item-list .tabs--secondary {
+  margin-bottom: 0;
+}
+
+.tabs-wrapper.item-list li {
+  margin-bottom: 0;
+}
+
+.toolbar .toolbar-bar .toolbar-icon-nfafmis-dashboard::before {
+  -webkit-mask-image: url("../../media/sprite.svg#structure-view");
+          mask-image: url("../../media/sprite.svg#structure-view");
+}
+
+.view-accounts-tab .views-row,
+.view-farmer-main-tab .field-content.payment .views-row,
+.view-flagged-farmer-log .views-row {
+  margin-top: 1rem;
+}
+
+.view-accounts-tab .views-row .views-field:not(.views-field-field-itemise-charges, th, td),
+.view-farmer-main-tab .field-content.payment .views-row .views-field:not(.views-field-field-itemise-charges, th, td),
+.view-flagged-farmer-log .views-row .views-field:not(.views-field-field-itemise-charges, th, td) {
+  display: flex;
+}
+
+.view-accounts-tab .views-row .views-field:not(.views-field-field-itemise-charges, th, td) .views-label,
+.view-farmer-main-tab .field-content.payment .views-row .views-field:not(.views-field-field-itemise-charges, th, td) .views-label,
+.view-flagged-farmer-log .views-row .views-field:not(.views-field-field-itemise-charges, th, td) .views-label {
+  font-weight: bold;
+  flex-basis: 25%;
+}
+
+.view-accounts-tab .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose,
+.view-farmer-main-tab .field-content.payment .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose,
+.view-flagged-farmer-log .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose {
+  display: block;
+}
+
+.view-accounts-tab .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose .views-field .views-label,
+.view-farmer-main-tab .field-content.payment .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose .views-field .views-label,
+.view-flagged-farmer-log .views-row .views-field:not(.views-field-field-itemise-charges, th, td).views-field-field-purpose .views-field .views-label {
+  flex-basis: 55%;
+}
+
+.view-farmer-main-tab .field-content.payment .views-row .views-field .views-label {
+  flex-basis: 45%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 48em) {
+  .col-sm-2 {
+    flex-basis: 16.66666%;
+  }
+
+  .col-sm-4 {
+    flex-basis: 33.33333%;
+  }
+
+  .col-sm-6 {
+    flex-basis: 50%;
+  }
+
+  .col-sm-8 {
+    flex-basis: 66.66666%;
+  }
+
+  .col-sm-12 {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 61em) {
+  .col-md-2 {
+    flex-basis: 16.66666%;
+  }
+
+  .col-md-4 {
+    flex-basis: 33.33333%;
+  }
+
+  .col-md-6 {
+    flex-basis: 50%;
+  }
+
+  .col-md-8 {
+    flex-basis: 66.66666%;
+  }
+
+  .col-md-12 {
+    flex-basis: 100%;
+  }
+}
+
+
+/*# sourceMappingURL=nfa_gin_farmers.css.map*/

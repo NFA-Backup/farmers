@@ -1,0 +1,4 @@
+nfa_gin_farmers:
+  css:
+    theme:
+      dist/css/base/nfa_gin_farmers.css: { minified: false }

@@ -1,0 +1,22 @@
+uuid: e2a1660a-8bb6-49e9-8b03-b6790face73d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nfa_gin
+_core:
+  default_config_hash: TIiTKkEqzw6u_KAL3aCkwKlDd95rsjIOBPf49t4zsZo
+id: nfa_gin_messages
+theme: nfa_gin
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

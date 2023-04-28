@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * nfa_gin_farmers.theme
+ */
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function nfa_gin_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  if ($node->bundle() === 'invoice') {
+    $area_node = $node->get('field_areas_id')->referencedEntities()[0];
+    // Get area node.
+    if (!empty($area_node)) {
+      // Get taxonomy term.
+      $cfr_taxonomy_term = $area_node->get('field_central_forest_reserve')->referencedEntities()[0];
+      if (!empty($cfr_taxonomy_term)) {
+        $variables['content']['field_central_forest_reserve'] = $cfr_taxonomy_term->getName();
+      }
+    }
+  }
+//  if ($node->bundle() === 'offer_license') {
+//    // Display the Area maps.
+//    $variables['map_block'] = \Drupal::service('plugin.manager.block')
+//      ->createInstance('area_map_block', ['area_nid' => $node->id()])
+//      ->build();
+//
+//    // Display the sub area overview.
+//    $view = Views::getView('sub_areas_planting_status');
+//    if (is_object($view)) {
+//      $view->setArguments([$node->id()]);
+//      $view->setDisplay('block_1');
+//      $view->preExecute();
+//      $view->execute();
+//      $variables['subareas_summary'] = $view->buildRenderable('block_1', [$node->id()]);
+//    }
+//
+//    // Display the list of sub areas.
+//    $view = Views::getView('sub_areas_planting_status');
+//    if (is_object($view)) {
+//      $view->setArguments([$node->id()]);
+//      $view->setDisplay('block_4');
+//      $view->preExecute();
+//      $view->execute();
+//      $variables['subareas_list'] = $view->buildRenderable('block_4', [$node->id()]);
+//    }
+//  }
+
+}
+
+///**
+// * Implements hook_preprocess_page_title().
+// */
+//function nfa_preprocess_page_title(&$variables) {
+//  /** @var \Drupal\taxonomy\Entity\Term $term */
+//  $term = Drupal::request()->attributes->get('taxonomy_term');
+//  if ($term) {
+//    switch($term->bundle()) {
+//      case 'central_forest_reserve';
+//        $variables['title'] = t('@title Central Forest Reserve', ['@title' => $term->label()]);
+//        break;
+//      case 'management_unit';
+//        $variables['title'] = t('@title Management Unit', ['@title' => $term->label()]);
+//        break;
+//      case 'block';
+//        $variables['title'] = t('Block @title', ['@title' => $term->label()]);
+//        break;
+//      case 'sector';
+//        $variables['title'] = t('@title Sector', ['@title' => $term->label()]);
+//        break;
+//      default:
+//        break;
+//    }
+//  }
+//}
+//
+///**
+// * Implements template_preprocess_views_view().
+// */
+//function nfa_preprocess_views_view(&$variables) {
+//  // Move the export feed button to the top of results.
+//  if (isset($variables['feed_icons'])) {
+//    $variables['attachment_before'] = array_merge($variables['feed_icons'], $variables['attachment_before']);
+//    unset($variables['feed_icons']);
+//  }
+//
+//  if ($variables['view']->id() == 'farmer_main_tab') {
+//    $variables['farmer_name'] = \Drupal::request()->query->get('title');
+//  }
+//}

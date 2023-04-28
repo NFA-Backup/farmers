@@ -19,6 +19,7 @@ dependencies:
     - user
     - views_autocomplete_filters
     - views_field_view
+    - views_flipped_table
 id: farmer_main_tab
 label: 'Farmer main tab'
 module: views
@@ -647,7 +648,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/reply/node/{{nid}}/comment?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Add a log</a>'
+            text: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/reply/node/{{nid}}/comment?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Add a log</a>'
             make_link: false
             path: ''
             absolute: false
@@ -808,7 +809,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
+            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -1544,9 +1545,130 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      style:
+        type: flipped_table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: 1
+          sticky: 0
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            edit_node: edit_node
+            title: title
+            title_1: title_1
+            field_farmer_category_type: field_farmer_category_type
+            field_phone_number: field_phone_number
+            field_postal_address: field_postal_address
+            field_physical_address: field_physical_address
+            field_gender: field_gender
+            nid: nid
+            field_national_identification_no: field_national_identification_no
+            field_tax_identification_number: field_tax_identification_number
+            field_historical_information: field_historical_information
+          info:
+            edit_node:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            title:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            title_1:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_farmer_category_type:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_phone_number:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_postal_address:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_physical_address:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_gender:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            nid:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_national_identification_no:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_tax_identification_number:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_historical_information:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+          default: '-1'
+          empty_table: 0
+          flipped_table_header_first_field: 1
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       defaults:
         title: false
         css_class: false
+        style: false
+        row: false
         fields: false
         filters: true
         filter_groups: true
@@ -1563,7 +1685,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid|render|striptags|trim}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title|render|striptags|trim}}">Edit farmer</a>'
+          content: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid|render|striptags|trim}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title|render|striptags|trim}}">Edit farmer</a>'
           tokenize: true
       exposed_block: true
       display_extenders:

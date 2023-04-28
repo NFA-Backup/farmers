@@ -1245,7 +1245,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"field--label\">\r\n<a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/{{ field_thinning_harvest_details__target_id }}/edit\">Edit</a>\r\n</div>\r\n{{ field_thinning_harvest_details }}\r\n\r\n "
+            text: "<div class=\"field--label\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/{{ field_thinning_harvest_details__target_id }}/edit\">Edit</a>\r\n</div>\r\n{{ field_thinning_harvest_details }}\r\n\r\n "
             make_link: false
             path: ''
             absolute: false
@@ -1775,7 +1775,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"field--label\"><a class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"node/{{ field_sub_area_content__target_id }}/edit\">Edit</a></div>\r\n{{ field_sub_area_content }}"
+            text: "<div class=\"field--label\"><a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"node/{{ field_sub_area_content__target_id }}/edit\">Edit</a></div>\r\n{{ field_sub_area_content }}"
             make_link: false
             path: ''
             absolute: false
@@ -2911,7 +2911,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Areas/Blocks</h5>\r\n<p class=\"pill-right\"><a href=\"/node/add/block_area_inventory\" class=\"use-ajax btn btn-info btn-xs\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" >Add</a></p>\r\n</div>"
+            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Areas/Blocks</h5>\r\n<p class=\"pill-right\"><a href=\"/node/add/block_area_inventory\" class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" >Add</a></p>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

@@ -67,3 +67,31 @@ p:last-child,
     margin-top: 0;
   }
 }
+
+// Off canvas.
+#drupal-off-canvas {
+  .node-form {
+    .form-type-vertical-tabs {
+      display: none;
+    }
+  }
+  .select-wrapper::after {
+    content: none;
+  }
+
+  button, .button {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+  }
+
+  .form-required::after {
+    background-image: url(../images/required.svg);
+    content: "";
+    width: 10px;
+    display: inline-block;
+    background-size: 10px 7px;
+    height: 7px;
+    margin-left: 5px;
+  }
+}

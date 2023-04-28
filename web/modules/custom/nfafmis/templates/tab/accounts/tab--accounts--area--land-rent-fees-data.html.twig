@@ -20,22 +20,24 @@
 <div class="block-section">
   <h5 class="title"></h5>
 </div>
-<ul class="nav nav-tabs farmer-tabs" id="fees-land-rent">
-  <li class="account-list-subtab-fees">
-    <a class="tabs-item">Fees</a>
-  </li>
-  <li class="account-list-subtab-land-rent">
-    <a class="tabs-item">Land rent</a>
-  </li>
-  <li class="account-list-subtab-payments">
-    <a class="tabs-item">Payments</a>
-  </li>
-</ul>
+<div class="tabs-wrapper is-horizontal">
+  <ul class="tabs tabs--secondary clearfix farmer-tabs" id="fees-land-rent">
+    <li class="tabs__tab account-list-subtab-fees">
+      <a class="tabs__link tabs-item">Fees</a>
+    </li>
+    <li class="tabs__tab account-list-subtab-land-rent">
+      <a class="tabs__link tabs-item">Land rent</a>
+    </li>
+    <li class="tabs__tab account-list-subtab-payments">
+      <a class="tabs__link tabs-item">Payments</a>
+    </li>
+  </ul>
+</div>
 <section class="fees">
   <div class="center-container">
     <div class="row">
       <div class="col-md-8">
-        <a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/charge?farmer_id={{data.farmer_id}}&offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add Charge</a>
+        <a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/charge?farmer_id={{data.farmer_id}}&offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add Charge</a>
       </div>
       <div class="col-md-4 views-field heading">
         <span class="views-label">Area Fee Balance</span>
@@ -94,9 +96,9 @@
       </div>
       <div class="col-md-2 views-field">
         {% if data.starting_amount.amount %}
-        <a class="use-ajax btn btn-info btn-sm" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.nid}}/edit?destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Edit</a>
+        <a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/{{data.starting_amount.nid}}/edit?destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Edit</a>
         {% else %}
-        <a class="use-ajax btn btn-info btn-sm" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/starting_amount?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add</a>
+        <a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/starting_amount?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add</a>
         {% endif %}
       </div>
     </div>
@@ -177,7 +179,7 @@
       <h4>Historical payments information</h4>
     </div>
     <div class="col-md-12">
-      <a class="btn btn-info use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/historical_payments?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add</a>
+      <a class="button use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/historical_payments?offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add</a>
     </div>
   </div>
   <div class="block-section">
@@ -195,6 +197,7 @@
               <th>Amount paid</th>
               <th>Balance</th>
               <th>Arrears</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -224,7 +227,7 @@
   <div class="center-container">
     <div class="row">
       <div class="col-md-8">
-        <a class="use-ajax btn btn-info btn-xs" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/fee_payment_nfa?farmer_id={{data.farmer_id}}&offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add Payment</a>
+        <a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/fee_payment_nfa?farmer_id={{data.farmer_id}}&offer_licence_id={{data.offer_licence_id}}&destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Add Payment</a>
       </div>
     </div>
   </div>

@@ -27,7 +27,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Flagged farmer log'
+      title: 'Flagged farmer logs'
       fields:
         subject:
           id: subject
@@ -1094,6 +1094,56 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        link_flag:
+          id: link_flag
+          table: flagging
+          field: link_flag
+          relationship: flag_relationship
+          group_type: group
+          admin_label: ''
+          entity_type: flagging
+          plugin_id: flag_link
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: button
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
         nothing:
           id: nothing
           table: views
@@ -1106,7 +1156,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">edit</a></p>'
+            text: "<div class=\"d-flex\">\r\n<div class=\"button\">{{ link_flag }}</div>\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -1196,56 +1246,6 @@ display:
           text: edit
           output_url_as_text: false
           absolute: false
-        link_flag:
-          id: link_flag
-          table: flagging
-          field: link_flag
-          relationship: flag_relationship
-          group_type: group
-          admin_label: ''
-          entity_type: flagging
-          plugin_id: flag_link
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
         nothing_1:
           id: nothing_1
           table: views
@@ -1388,7 +1388,8 @@ display:
       css_class: view-label-data
       display_description: ''
       header: {  }
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
       block_description: 'Flagged farmer log'
     cache_metadata:
       max-age: -1
@@ -1405,7 +1406,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Farmer logs'
+      title: 'Farmer log'
       fields:
         nid:
           id: nid
@@ -1963,7 +1964,7 @@ display:
           entity_type: flagging
           plugin_id: flag_link
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -1992,7 +1993,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: ''
+          element_class: button
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -2015,7 +2016,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">Edit log</a></p>'
+            text: "<div class=\"d-flex\">\r\n<div class=\"button\">{{ link_flag }}</div>\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -2112,7 +2113,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<h5 class=\"title\">Farmer logs</h5>\r\n"
+            value: "<h5 class=\"title\">Farmer log</h5>\r\n"
             format: full_html
           tokenize: true
       filters:
@@ -2240,7 +2241,8 @@ display:
       css_class: view-label-data
       display_description: ''
       header: {  }
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
       block_description: 'Farmer log'
     cache_metadata:
       max-age: -1

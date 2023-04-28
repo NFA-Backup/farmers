@@ -3,16 +3,6 @@ nfafmis.admin_index:
   route_name: nfafmis.admin_index
   parent: system.admin_config
   description: 'Configure settings like annual charges & dates.'
-nfafmis.settings:
-  title: 'FMIS Settings'
-  menu_name: main
-  description: 'FMIS Settings'
-  route_name: nfafmis.admin_index
-nfafmis.reports:
-  title: 'FMIS Reports'
-  menu_name: main
-  description: 'FMIS Reports'
-  route_name: view.fmis_reports.farmers_full
 nfafmis.settings.blocks:
   title: 'Block numbers'
   parent: nfafmis.admin_index
@@ -49,3 +39,19 @@ nfafmis.fee_settings:
   description: 'Annual charges date & late fee calculation settings'
   route_name: nfafmis.settings
   weight: 5
+nfafmis.dashboard:
+  title: 'Farmers'
+  parent: system.admin
+  description: 'NFA FMIS dashboard.'
+  url: 'internal:/tree-farmer-overview'
+  weight: -50
+nfafmis.dashboard.reports:
+  title: 'FMIS Reports'
+  parent: nfafmis.dashboard
+  description: 'NFA FMIS Reports.'
+  route_name: view.fmis_reports.farmers_full
+nfafmis.dashboard.settings:
+  title: 'FMIS Settings'
+  parent: nfafmis.dashboard
+  description: 'FMIS Settings'
+  route_name: nfafmis.admin_index

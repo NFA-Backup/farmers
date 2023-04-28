@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_gender
-    - system.menu.fmis-reports
+    - system.menu.admin
     - taxonomy.vocabulary.management_unit
   content:
     - 'taxonomy_term:management_unit:86058692-5b6b-47ca-b3b2-7728e20311e3'
@@ -2683,8 +2683,8 @@ display:
         description: ''
         weight: 21
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1
@@ -3133,8 +3133,8 @@ display:
         - url.query_args
         - user.permissions
       tags: {  }
-  page_2:
-    id: page_2
+  summary_report:
+    id: summary_report
     display_title: 'Management unit summary'
     display_plugin: page
     position: 1
@@ -3650,8 +3650,8 @@ display:
         description: ''
         weight: 20
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1

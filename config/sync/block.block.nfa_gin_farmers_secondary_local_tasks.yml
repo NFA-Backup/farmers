@@ -1,0 +1,20 @@
+uuid: cfdb50b0-1aaf-4bae-9105-0f3b8a973ada
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nfa_gin_farmers
+id: nfa_gin_farmers_secondary_local_tasks
+theme: nfa_gin_farmers
+region: pre_content
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

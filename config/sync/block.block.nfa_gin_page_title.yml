@@ -1,0 +1,20 @@
+uuid: 9e33b1be-1786-48b5-a286-bb5db061acb8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nfa_gin
+_core:
+  default_config_hash: O6wX9jdDrshuFaswqclWsPgBhoUNHViZobfYu3XyfYA
+id: nfa_gin_page_title
+theme: nfa_gin
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -538,6 +538,7 @@ function nfafmis_preprocess_views_view_field(&$variables) {
     $area_planted_values = $nfafmis_service_farmer->getAreaPlantedUnPlantedValue($row->nid);
 
     // Override the views field result output to show custom value.
+    // @todo why are we doing it this way?
     if ($field->field == 'field_area_serial_number') {
       $variables['output'] = $area_planted_values . 'ha';
     }
@@ -577,14 +578,12 @@ function nfafmis_preprocess_views_view_field(&$variables) {
  */
 function nfafmis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 
-  if ($view->id() == 'farmer_filter') {
+  if ($view->id() == 'farmer_main_tab' || $view->id() == 'farmer_filter') {
     $view->element['#attached']['library'][] = 'nfafmis/nfafmis';
-  }
 
-  // When the farmer views are loaded with no farmer name the view returns
-  // the most recently added farmer. To avoid this set the title exposed filter
-  // explicitly to an so that the view has no results.
-  if ($view->id() == 'farmer_filter' || $view->id() == 'farmer_main_tab') {
+    // When the farmer views are loaded with no farmer name the view returns
+    // the most recently added farmer. To avoid this set the title exposed filter
+    // explicitly to an so that the view has no results.
     if (empty($view->getExposedInput()['title'])) {
       // Set title to an invalid value so that no results are returned.
       $view->setExposedInput(['title' => 'NORESULTS']);

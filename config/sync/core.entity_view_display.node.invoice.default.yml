@@ -23,7 +23,7 @@ mode: default
 content:
   field_amount:
     type: number_decimal
-    label: above
+    label: hidden
     settings:
       thousand_separator: ','
       decimal_separator: .
@@ -34,7 +34,7 @@ content:
     region: content
   field_areas_id:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -42,7 +42,7 @@ content:
     region: content
   field_farmer_name_ref:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -50,7 +50,7 @@ content:
     region: content
   field_invoice_date:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: medium
@@ -59,14 +59,14 @@ content:
     region: content
   field_invoice_details:
     type: list_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 104
     region: content
   field_invoice_number:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -74,7 +74,7 @@ content:
     region: content
   field_invoice_serial:
     type: serial_default_formatter
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 107

@@ -1,0 +1,26 @@
+uuid: 421b570e-fde3-4d38-b2ba-ff9e531dba01
+langcode: en
+status: true
+dependencies:
+  module:
+    - nfafmis
+    - system
+  theme:
+    - nfa_gin_farmers
+id: nfa_gin_farmers_nfafmisblock
+theme: nfa_gin_farmers
+region: content
+weight: -1
+provider: null
+plugin: nfafmis_block
+settings:
+  id: nfafmis_block
+  label: 'NFAFMIS block'
+  label_display: '0'
+  provider: nfafmis
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/*"
