@@ -123,11 +123,34 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
   public function build() {
     if ($this->farmer_id) {
       $layers = [];
+
+      if ($this->show_subareas) {
+        $storage = $this->entityTypeManager->getStorage('node');
+        $query = $storage->getQuery()
+          ->accessCheck()
+          ->condition('type', 'sub_area')
+          ->condition('status', NodeInterface::PUBLISHED)
+          ->exists('field_map')
+          ->condition('field_areas_id.entity:node.field_farmer_name_ref.entity:node', $this->farmer_id);
+
+        $sub_areas_nids = $query->execute();
+        if (!empty($sub_areas_nids)) {
+          foreach ($sub_areas_nids as $sub_area_nid) {
+            $layers[] = [
+              'url' => '/tree-farmer-overview/subarea/geojson/' . $sub_area_nid,
+              'color' => 'orange',
+              'title' => $storage->load($sub_area_nid)->label(),
+              'group' => $this->t('Sub areas'),
+            ];
+          }
+        }
+      }
+
       $layers = array_merge($layers, [
         [
-          'url' => '/tree-farmer-overview/sector/geojson?id=' . $this->farmer_id,
-          'color' => 'green',
-          'title' => $this->t('Sector'),
+          'url' => '/tree-farmer-overview/block/geojson?id=' . $this->farmer_id,
+          'color' => 'yellow',
+          'title' => $this->t('Area/Block'),
         ],
         [
           'url' => '/tree-farmer-overview/cfr/geojson?id=' . $this->farmer_id,
@@ -135,30 +158,11 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
           'title' => $this->t('CFR'),
         ],
         [
-          'url' => '/tree-farmer-overview/block/geojson?id=' . $this->farmer_id,
-          'color' => 'yellow',
-          'title' => $this->t('Area/Block'),
+          'url' => '/tree-farmer-overview/sector/geojson?id=' . $this->farmer_id,
+          'color' => 'green',
+          'title' => $this->t('Sector'),
         ],
       ]);
-
-      if ($this->show_subareas) {
-        // Check does farmer have sub area map data.
-        $query = $this->entityTypeManager->getStorage('node')->getQuery()
-          ->accessCheck()
-          ->condition('type', 'sub_area')
-          ->condition('status', NodeInterface::PUBLISHED)
-          ->exists('field_map')
-          ->condition('field_areas_id.entity:node.field_farmer_name_ref.entity:node', $this->farmer_id);
-
-        $sub_areas_nids = $query->count()->execute();
-        if ($sub_areas_nids) {
-          $layers[] = [
-            'url' => '/tree-farmer-overview/subarea/geojson?id=' . $this->farmer_id,
-            'color' => 'orange',
-            'title' => $this->t('Sub areas'),
-          ];
-        }
-      }
 
       $build['item_list'] = [
         '#type' => 'farm_map',

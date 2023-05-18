@@ -6,12 +6,23 @@
 
         for (let index = 0; index < layers.length; ++index) {
           const element = layers[index];
-          var url = new URL(element.url, window.location.origin + drupalSettings.path.baseUrl)
-          var newLayer = instance.addLayer('geojson', {
-            title: element.title ?? Drupal.t('geoJSON'),
-            url,
-            color: element.color ?? 'orange',
-          });
+
+          if (element.type === 'group') {
+            var groupLayer = instance.addLayer('group', {
+              title: element.title ?? Drupal.t('Group'),
+              fold: true,
+            });
+          }
+          else {
+            var url = new URL(element.url, window.location.origin + drupalSettings.path.baseUrl)
+
+            var newLayer = instance.addLayer('geojson', {
+              title: element.title ?? Drupal.t('geoJSON'),
+              url,
+              color: element.color ?? 'orange',
+              group: element.group ?? '',
+            });
+          }
         }
 
         var source = newLayer.getSource()
