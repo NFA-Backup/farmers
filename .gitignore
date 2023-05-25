@@ -5,6 +5,7 @@ web/core
 web/modules/contrib
 web/themes/contrib
 web/libraries/contrib
+web/libraries/nfa-map
 web/profiles/contrib
 
 # Ignore paths that contain user-generated content.

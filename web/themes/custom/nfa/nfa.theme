@@ -9,6 +9,7 @@
 
 use Drupal\views\Plugin\views\cache\CachePluginBase;
 use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
 
 /**
  * Implements hook_theme_suggestions_page_alter().
@@ -35,6 +36,33 @@ function nfa_preprocess_node(&$variables) {
       }
     }
   }
+  if ($node->bundle() === 'offer_license') {
+    // Display the Area maps.
+    $variables['map_block'] = \Drupal::service('plugin.manager.block')
+      ->createInstance('area_map_block', ['area_nid' => $node->id()])
+      ->build();
+
+    // Display the sub area overview.
+    $view = Views::getView('sub_areas_planting_status');
+    if (is_object($view)) {
+      $view->setArguments([$node->id()]);
+      $view->setDisplay('block_1');
+      $view->preExecute();
+      $view->execute();
+      $variables['subareas_summary'] = $view->buildRenderable('block_1', [$node->id()]);
+    }
+
+    // Display the list of sub areas.
+    $view = Views::getView('sub_areas_planting_status');
+    if (is_object($view)) {
+      $view->setArguments([$node->id()]);
+      $view->setDisplay('block_4');
+      $view->preExecute();
+      $view->execute();
+      $variables['subareas_list'] = $view->buildRenderable('block_4', [$node->id()]);
+    }
+  }
+
 }
 
 /**

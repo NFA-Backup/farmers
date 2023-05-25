@@ -1,0 +1,29 @@
+uuid: a549b986-1e75-4110-a213-815d9395061f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.farmer_main_tab
+  module:
+    - system
+    - views
+  theme:
+    - nfa_gin_farmers
+id: nfa_gin_farmers_exposedformfarmer_main_taboverview
+theme: nfa_gin_farmers
+region: content
+weight: -3
+provider: null
+plugin: 'views_exposed_filter_block:farmer_main_tab-overview'
+settings:
+  id: 'views_exposed_filter_block:farmer_main_tab-overview'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/*"

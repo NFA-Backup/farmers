@@ -11,6 +11,7 @@ dependencies:
     - user
     - views_autocomplete_filters
     - views_field_view
+    - views_flipped_table
 id: farmer_filter
 label: 'Farmer filter'
 module: views
@@ -291,7 +292,7 @@ display:
           admin_label: ''
           plugin_id: view
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -454,7 +455,59 @@ display:
             default_group_multiple: {  }
             group_items: {  }
       style:
-        type: default
+        type: flipped_table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: 1
+          sticky: 0
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            nid: nid
+            title: title
+            field_farmer_category_type: field_farmer_category_type
+            field_phone_number: field_phone_number
+            view: view
+          info:
+            nid:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            title:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_farmer_category_type:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            field_phone_number:
+              sortable: 0
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+            view:
+              align: ''
+              separator: ''
+              empty_column: 0
+              responsive: ''
+          default: '-1'
+          empty_table: 0
+          flipped_table_header_first_field: 1
       row:
         type: fields
       query:

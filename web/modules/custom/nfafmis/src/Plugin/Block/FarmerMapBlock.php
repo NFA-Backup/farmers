@@ -2,7 +2,6 @@
 
 namespace Drupal\nfafmis\Plugin\Block;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\node\NodeInterface;
@@ -93,6 +92,7 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
         ->condition('type', 'farmer_details')
         ->condition('status', NodeInterface::PUBLISHED)
         ->condition('title', $farmer_name)
+        ->accessCheck()
         ->execute();
 
       // @todo if we have more than one farmer with the same name we will get
@@ -144,6 +144,7 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
       if ($this->show_subareas) {
         // Check does farmer have sub area map data.
         $query = $this->entityTypeManager->getStorage('node')->getQuery()
+          ->accessCheck()
           ->condition('type', 'sub_area')
           ->condition('status', NodeInterface::PUBLISHED)
           ->exists('field_map')
@@ -184,7 +185,10 @@ class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    return ['node_list:sub_area'];
-  }
+    return [
+      'node_list:sub_area',
+      'taxonomy_term_list:central_forest_reserve',
+      'taxonomy_term_list:block',
+    ];  }
 
 }

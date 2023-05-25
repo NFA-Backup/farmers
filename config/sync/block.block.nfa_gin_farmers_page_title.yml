@@ -1,0 +1,20 @@
+uuid: 493e8174-a801-4ce0-a69b-5578d727bb82
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nfa_gin_farmers
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: nfa_gin_farmers_page_title
+theme: nfa_gin_farmers
+region: header
+weight: -8
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

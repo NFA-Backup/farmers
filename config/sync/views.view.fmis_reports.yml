@@ -28,7 +28,7 @@ dependencies:
     - node.type.farmer_details
     - node.type.offer_license
     - node.type.sub_area
-    - system.menu.fmis-reports
+    - system.menu.admin
     - taxonomy.vocabulary.block
     - taxonomy.vocabulary.central_forest_reserve
     - taxonomy.vocabulary.farmer_category_type
@@ -2578,10 +2578,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - 'url.query_args:CFR'
-        - 'url.query_args:block'
-        - 'url.query_args:license'
-        - 'url.query_args:sector'
+        - url
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -3781,8 +3778,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - 'url.query_args:cfr'
-        - 'url.query_args:sector'
+        - url
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -4907,20 +4903,16 @@ display:
         description: ''
         weight: 0
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:combine'
-        - 'url.query_args:phone'
-        - 'url.query_args:title'
-        - 'url.query_args:type'
-        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -4929,6 +4921,318 @@ display:
         - 'config:field.storage.node.field_phone_number'
         - 'config:field.storage.node.field_physical_address'
         - 'config:field.storage.node.field_postal_address'
+  farmers_duplicates:
+    id: farmers_duplicates
+    display_title: 'Duplicate farmers'
+    display_plugin: page
+    position: 11
+    display_options:
+      title: 'Duplicate farmers'
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Name
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: view
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          view: fmis_reports
+          display: block_1
+          arguments: '{{ raw_fields.title }}'
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: count
+          admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+          label: ID
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          set_precision: false
+          precision: 0
+          decimal: .
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+      pager:
+        type: none
+        options:
+          offset: 0
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            farmer_details: farmer_details
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: count
+          admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: numeric
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        pager: false
+        group_by: false
+        fields: false
+        arguments: false
+        filters: false
+        filter_groups: false
+        header: false
+      group_by: true
+      display_description: ''
+      header: {  }
+      display_extenders:
+        ajax_history: {  }
+      path: fmis/reports/duplicate-farmers
+      menu:
+        type: normal
+        title: 'Duplicate farmers'
+        description: ''
+        weight: 11
+        expanded: false
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
+        context: '0'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   farmers_export:
     id: farmers_export
     display_title: 'Export farmers contact details'
@@ -5880,11 +6184,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - 'url.query_args:combine'
-        - 'url.query_args:phone'
-        - 'url.query_args:title'
-        - 'url.query_args:type'
-        - 'url.query_args:uid'
+        - url
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -7736,20 +8036,16 @@ display:
         description: ''
         weight: 0
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:cfr'
-        - 'url.query_args:sector'
-        - 'url.query_args:title'
-        - 'url.query_args:type'
-        - 'url.query_args:uid'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -9464,11 +9760,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
-        - 'url.query_args:cfr'
-        - 'url.query_args:sector'
-        - 'url.query_args:title'
-        - 'url.query_args:type'
-        - 'url.query_args:uid'
+        - url
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -10554,19 +10846,16 @@ display:
         description: ''
         weight: 0
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:CFR'
-        - 'url.query_args:block'
-        - 'url.query_args:license'
-        - 'url.query_args:sector'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -11863,17 +12152,16 @@ display:
         description: ''
         weight: 10
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-        - 'url.query_args:cfr'
-        - 'url.query_args:sector'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -12183,320 +12471,8 @@ display:
         description: ''
         weight: 0
         expanded: false
-        menu_name: fmis-reports
-        parent: ''
-        context: '0'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
-  page_1:
-    id: page_1
-    display_title: 'Duplicate farmers'
-    display_plugin: page
-    position: 11
-    display_options:
-      title: 'Duplicate farmers'
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-          label: Name
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        view:
-          id: view
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: view
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          view: fmis_reports
-          display: block_1
-          arguments: '{{ raw_fields.title }}'
-        nid:
-          id: nid
-          table: node_field_data
-          field: nid
-          relationship: none
-          group_type: count
-          admin_label: ''
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
-          label: ID
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          set_precision: false
-          precision: 0
-          decimal: .
-          format_plural: 0
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
-      pager:
-        type: none
-        options:
-          offset: 0
-      arguments: {  }
-      filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          value:
-            farmer_details: farmer_details
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-        nid:
-          id: nid
-          table: node_field_data
-          field: nid
-          relationship: none
-          group_type: count
-          admin_label: ''
-          entity_type: node
-          entity_field: nid
-          plugin_id: numeric
-          operator: '>'
-          value:
-            min: ''
-            max: ''
-            value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        title: false
-        pager: false
-        group_by: false
-        fields: false
-        arguments: false
-        filters: false
-        filter_groups: false
-        header: false
-      group_by: true
-      display_description: ''
-      header: {  }
-      display_extenders:
-        ajax_history: {  }
-      path: fmis/reports/duplicate-farmers
-      menu:
-        type: normal
-        title: 'Duplicate farmers'
-        description: ''
-        weight: 11
-        expanded: false
-        menu_name: fmis-reports
-        parent: ''
+        menu_name: admin
+        parent: nfafmis.dashboard.reports
         context: '0'
     cache_metadata:
       max-age: -1

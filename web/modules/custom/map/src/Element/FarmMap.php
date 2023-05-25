@@ -39,8 +39,13 @@ class FarmMap extends RenderElement {
    */
   public static function preRenderMap(array $element) {
 
-    // Set the id to the map name.
-    $map_id = Html::getUniqueId('farm-map-' . $element['#map_type']);
+    if (isset($element['#map_id'])) {
+      $map_id = Html::getUniqueId('farm-map-' . $element['#map_id'] );
+    }
+    else {
+      // Set the id to the map name.
+      $map_id = Html::getUniqueId('farm-map-' . $element['#map_type'] );
+    }
     $element['#attributes']['id'] = $map_id;
 
     // Get the map type.
@@ -50,8 +55,8 @@ class FarmMap extends RenderElement {
     // Add the farm-map class.
     $element['#attributes']['class'][] = 'farm-map';
 
-    // Attach the farmOS-map and farm_map libraries.
-    $element['#attached']['library'][] = 'farm_map/farmOS-map';
+    // Attach the nfa-map and farm_map libraries.
+    $element['#attached']['library'][] = 'farm_map/nfa-map';
     $element['#attached']['library'][] = 'farm_map/farm_map';
 
     // Include map settings.

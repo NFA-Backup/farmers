@@ -1,0 +1,20 @@
+uuid: 1aba4a58-e5ed-4163-b314-0330b7e74ce8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nfa_gin_farmers
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: nfa_gin_farmers_local_actions
+theme: nfa_gin_farmers
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

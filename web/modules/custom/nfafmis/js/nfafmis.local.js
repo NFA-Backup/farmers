@@ -25,10 +25,8 @@
         // Add area ID filter on sub-area and inventory tab.
         let filterElem = `
         <div class="form-inline views-field">
-          <span class="control-label" style="margin-right: 110px;">Area ID:</span>
-          <div class="input-group">
-            <select id="filter-sub-area" class="form-control ui-autocomplete-input"></select>
-          </div>
+          <strong>Area ID:</strong>
+          <select id="filter-sub-area" class="form-select required form-element form-element--type-select"></select>
         </div>`;
         filterSubAreaTab.append(filterElem);
         filterInventoryTab.append(filterElem);
@@ -37,22 +35,20 @@
         // Add sub-area ID filter on inventory tab.
         let filterSubElem = `
         <div class="form-inline views-field">
-          <span class="control-label" style="margin-right: 82px;">Sub-area ID:</span>
-          <div class="input-group">
-            <select id="filter-sub-area-id" class="form-control ui-autocomplete-input"></select>
-          </div>
+          <strong>Sub-area ID:</strong>
+          <select id="filter-sub-area-id" class="form-select required form-element form-element--type-select"></select>
         </div>`;
         filterInventoryTab.append(filterSubElem);
         filterHarvestTab.append(filterSubElem);
 
         // Add inventory link.
-        let addInventroyElem = `<a class="use-ajax btn btn-info btn-xs"
+        let addInventoryElem = `<a class="use-ajax button"
         data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        id="add-invenotry-btn">Add Inventory</a>`;
-        filterInventoryTab.append(addInventroyElem);
+        id="add-inventory-btn">Add Inventory</a>`;
+        filterInventoryTab.append(addInventoryElem);
 
         // Add Harvest link.
-        let addHarvestElem = `<a class="use-ajax btn btn-info btn-xs"
+        let addHarvestElem = `<a class="use-ajax button"
         data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
         id="add-harvest-btn">Add Harvest</a>`;
         filterHarvestTab.append(addHarvestElem);
@@ -103,7 +99,7 @@
                   inventory_href = inventory_href + '%3Ftitle%3D' + title_param;
                   harvest_href = harvest_href + '%3Ftitle%3D' + title_param;
                 }
-                $('#add-invenotry-btn').attr('href', inventory_href);
+                $('#add-inventory-btn').attr('href', inventory_href);
                 $('#add-harvest-btn').attr('href', harvest_href);
               }
             });
@@ -121,7 +117,7 @@
               inventory_href = inventory_href + '%3Ftitle%3D' + title_param;
               harvest_href = harvest_href + '%3Ftitle%3D' + title_param;
             }
-            $('#add-invenotry-btn').attr('href', inventory_href);
+            $('#add-inventory-btn').attr('href', inventory_href);
             $('#add-harvest-btn').attr('href', harvest_href);
           }
         });
@@ -153,8 +149,8 @@
       $(".account-tab-view", context).once("nfamis").each(function() {
         hideElement();
         // Create tabs under account tab.
-        let ulist = $("#account-sub-tabs").append('<ul></ul>').find('ul');
-        ulist.addClass('nav nav-tabs farmer-tabs');
+        let ulist = $("#account-sub-tabs").append('<div class="tabs-wrapper is-horizontal"><ul></ul></div>').find('ul');
+        ulist.addClass('tabs tabs--secondary clearfix farmer-tabs');
         // Loop through existing li to create a new one and append them in ul.
         $(context).find(".account-list-tabs").each(function(i, e) {
           let anchorElem = $(this).find('a');
@@ -162,9 +158,9 @@
           let name = anchorElem.text();
           let filtered_name = name.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
           let listElem = $('<li/>');
-          listElem.addClass('account-list-subtabs');
+          listElem.addClass('tabs__tab account-list-subtabs');
           let tempElem = $('<a href />');
-          tempElem.addClass('tabs-item');
+          tempElem.addClass('tabs__link tabs-item');
           $(this).attr('id', filtered_name);
           tempElem.attr('href', '#' + filtered_name);
           tempElem.text(name);
@@ -173,14 +169,14 @@
 
           // Set active class for first tab by default.
           if (!window.location.hash) {
-            tempElem.addClass('active');
+            tempElem.addClass('is-active');
             window.location = window.location + '#' + filtered_name;
             $('#' + filtered_name).parents('.views-row').fadeIn('slow');
-            $('.account-list-subtab-land-rent a').removeClass('active');
-            $('.account-list-subtab-payments a').removeClass('active');
-            $('.account-list-subtab-fees a').addClass('active');
-            $('.views-field-field-itemise-charges').hide();
+            $('.account-list-subtab-land-rent a').removeClass('is-active');
+            $('.account-list-subtab-payments a').removeClass('is-active');
+            $('.account-list-subtab-fees a').addClass('is-active');
             $('section.fees').fadeIn('slow');
+            $('.views-field-field-itemise-charges').fadeIn('slow');
           }
           // Set active tab based on hash value, like: payment, summary-charges.
           else {
@@ -189,64 +185,64 @@
               hideElement();
               $(filtered_id).parents('.views-row').fadeIn('slow');
               $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
-              $('.account-list-subtabs a').removeClass('active');
-              $('.account-list-subtab-land-rent a').removeClass('active');
-              $('.account-list-subtab-payments a').removeClass('active');
-              $('.account-list-subtab-fees a').addClass('active');
-              tempElem.addClass('active');
+              $('.account-list-subtabs a').removeClass('is-active');
+              $('.account-list-subtab-land-rent a').removeClass('is-active');
+              $('.account-list-subtab-payments a').removeClass('is-active');
+              $('.account-list-subtab-fees a').addClass('is-active');
+              tempElem.addClass('is-active');
             }
           }
 
           // Bind click event for anchor tag.
           $(tempElem).click(function() {
-            if (!$(this).hasClass('active')) {
+            if (!$(this).hasClass('is-active')) {
               hideElement();
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
               $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
               $('.views-field-field-itemise-charges').hide();
-              $('.account-list-subtab-land-rent a').removeClass('active');
-              $('.account-list-subtabs a').removeClass('active');
-              $('.account-list-subtab-payments a').removeClass('active');
-              $('.account-list-subtab-fees a').addClass('active');
+              $('.account-list-subtab-land-rent a').removeClass('is-active');
+              $('.account-list-subtabs a').removeClass('is-active');
+              $('.account-list-subtab-payments a').removeClass('is-active');
+              $('.account-list-subtab-fees a').addClass('is-active');
               $('section.fees').fadeIn('slow');
-              $(this).addClass('active');
+              $(this).addClass('is-active');
             }
           })
 
           // Bind click event for anchor tag payments.
           $('.account-list-subtab-payments a').click(function() {
-            if (!$(this).hasClass('active')) {
+            if (!$(this).hasClass('is-active')) {
               $('section.fees').hide();
               $('section.land-rent').hide();
-              $('.account-list-subtab-fees a').removeClass('active');
-              $('.account-list-subtab-land-rent a').removeClass('active');
+              $('.account-list-subtab-fees a').removeClass('is-active');
+              $('.account-list-subtab-land-rent a').removeClass('is-active');
               $('.views-field-field-itemise-charges').hide();
-              $(this).addClass('active');
+              $(this).addClass('is-active');
               $('section.payments').fadeIn('slow');
             }
           });
           // Bind click event for anchor tag fees.
           $('.account-list-subtab-fees a').click(function() {
-            if (!$(this).hasClass('active')) {
+            if (!$(this).hasClass('is-active')) {
               $('section.payments').hide();
               $('section.land-rent').hide();
-              $('.account-list-subtab-payments a').removeClass('active');
-              $('.account-list-subtab-land-rent a').removeClass('active');
-              $(this).addClass('active');
+              $('.account-list-subtab-payments a').removeClass('is-active');
+              $('.account-list-subtab-land-rent a').removeClass('is-active');
+              $(this).addClass('is-active');
               $('section.fees').fadeIn('slow');
               $('.views-field-field-itemise-charges').fadeIn('slow');
             }
           });
           // Bind click event for anchor tag land-rent.
           $('.account-list-subtab-land-rent a').click(function() {
-            if (!$(this).hasClass('active')) {
+            if (!$(this).hasClass('is-active')) {
               $('section.payments').hide();
               $('section.fees').hide();
-              $('.account-list-subtab-payments a').removeClass('active');
-              $('.account-list-subtab-fees a').removeClass('active');
+              $('.account-list-subtab-payments a').removeClass('is-active');
+              $('.account-list-subtab-fees a').removeClass('is-active');
               $('.views-field-field-itemise-charges').hide();
-              $(this).addClass('active');
+              $(this).addClass('is-active');
               $('section.land-rent').fadeIn('slow');
             }
           });
@@ -301,6 +297,5 @@
     $('.views-field-field-itemise-charges').hide();
     $('section.land-rent').hide();
     $('section.payments').hide();
-
   }
 }(jQuery));

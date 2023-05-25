@@ -16,6 +16,25 @@
     {
       "type": "git",
       "url": "https://github.com/National-Forestry-Authority/nfa_tracker"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/National-Forestry-Authority/nfa_gin"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "national-forestry-authority/nfa-map",
+        "version": "2.1.0",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/National-Forestry-Authority/nfa-map/releases/download/v2.1.0/v2.1.0-dist.zip",
+          "type": "zip"
+        },
+        "extra": {
+          "installer-name": "nfa-map"
+        }
+      }
     }
   ],
   "require": {
@@ -27,6 +46,7 @@
     "drupal/blocktabs": "^1",
     "drupal/bootstrap": "^3",
     "drupal/business_rules": "^2",
+    "drupal/components": "^2",
     "drupal/computed_field": "3.x",
     "drupal/config_split": "^1",
     "drupal/core-composer-scaffold": "^9",
@@ -44,6 +64,8 @@
     "drupal/flag": "^4",
     "drupal/geocoder": "^3",
     "drupal/geofield": "^1",
+    "drupal/gin": "^3",
+    "drupal/gin_lb": "^1",
     "drupal/inline_entity_form": "^1",
     "drupal/migrate_plus": "^5",
     "drupal/migrate_source_csv": "^3",
@@ -63,6 +85,8 @@
     "drupal/views_geojson": "^1",
     "drupal/yearonly": "^9",
     "drush/drush": "^11",
+    "national-forestry-authority/nfa-map": "^2",
+    "national-forestry-authority/nfa_gin": "^1",
     "national-forestry-authority/nfa_tracker": "dev-main"
   },
   "conflict": {

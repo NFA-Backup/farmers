@@ -6,6 +6,6 @@ dependencies:
       - farm_map
 id: geofield
 label: Geofield
-description: 'Renders geofield using farmOS-map.'
+description: 'Renders geofield using nfa-map.'
 behaviors: {  }
 options: {  }

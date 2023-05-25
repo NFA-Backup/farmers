@@ -12,6 +12,13 @@
         $(mapId).addClass('active');
         event.preventDefault();
       });
+
+      // Redraw a map that's in a tab when the tab becomes visible.
+      $('a.map-tab').on('shown.bs.tab', function (e) {
+        farmOS.map.instances.forEach(function (instance) {
+          instance.map.updateSize();
+        });
+      })
     }
   };
 

@@ -1,0 +1,42 @@
+{{ attach_library('nfafmis/nfafmis') }}
+<article{{ attributes }}>
+  <table>
+    <tr>
+      <td>{{ 'Payment Advice Number'|t }}:</td>
+      <td>{{ content.field_invoice_number }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Date of issue'|t }}:</td>
+      <td>{{ content.field_invoice_date }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Farmer name'|t }}:</td>
+      <td>{{ content.field_farmer_name_ref }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Central Forest Reserve'|t }}:</td>
+      <td>{{ content.field_central_forest_reserve }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Area'|t }}:</td>
+      <td>{{ content.field_areas_id }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Invoice for'|t }}:</td>
+      <td>{{ content.field_invoice_details }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'Description'|t }}:</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>{{ 'Please pay'|t }}:</td>
+      <td>{{ content.field_amount }}</td>
+    </tr>
+  </table>
+  <div class="print-section">
+    <div onclick="window.print()">
+      <a class="button">Print</a>
+    </div>
+  </div>
+</article>

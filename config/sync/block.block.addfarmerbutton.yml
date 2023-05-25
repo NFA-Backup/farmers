@@ -1,0 +1,30 @@
+uuid: ba02be83-5c83-4e23-9177-945e9e304d82
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:44361683-371f-447f-8a14-879380fa0c3e'
+  module:
+    - block_content
+    - system
+  theme:
+    - nfa_gin_farmers
+id: addfarmerbutton
+theme: nfa_gin_farmers
+region: content
+weight: -4
+provider: null
+plugin: 'block_content:44361683-371f-447f-8a14-879380fa0c3e'
+settings:
+  id: 'block_content:44361683-371f-447f-8a14-879380fa0c3e'
+  label: 'Add farmer button'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/tree-farmer-overview\r\n/tree-farmer-overview/*"
