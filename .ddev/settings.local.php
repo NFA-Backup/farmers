@@ -121,6 +121,13 @@ $config['swiftmailer.transport']['smtp_credentials'] = [
   ],
 ];
 
+/**
+ * Environment indicator.
+ */
+$config['environment_indicator.indicator']['bg_color'] = '#3995D8';
+$config['environment_indicator.indicator']['fg_color'] = '#FFFFFF';
+$config['environment_indicator.indicator']['name'] = 'Development';
+
 // Settings managed by ddev.
 $ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
 if (is_readable($ddev_settings) && getenv('IS_DDEV_PROJECT') == 'true') {

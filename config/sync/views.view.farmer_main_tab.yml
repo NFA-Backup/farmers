@@ -806,7 +806,7 @@ display:
           entity_type: node
           plugin_id: entity_link_edit
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: true
             text: "<div class=\"center-container\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
