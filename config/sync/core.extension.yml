@@ -31,6 +31,8 @@ module:
   editor: 0
   entity_reference_revisions: 0
   entity_reference_views_select: 0
+  environment_indicator: 0
+  environment_indicator_ui: 0
   farm_map: 0
   farm_map_mapbox: 0
   field: 0
