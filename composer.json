@@ -22,6 +22,10 @@
       "url": "https://github.com/National-Forestry-Authority/nfa_gin"
     },
     {
+      "type": "git",
+      "url": "https://github.com/National-Forestry-Authority/nfa_landing"
+    },
+    {
       "type": "package",
       "package": {
         "name": "national-forestry-authority/nfa-map",
@@ -75,6 +79,7 @@
     "drupal/migrate_tools": "^5",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
+    "drupal/r4032login": "^2",
     "drupal/serial": "^1",
     "drupal/token": "^1",
     "drupal/views_ajax_history": "^1",
@@ -88,6 +93,7 @@
     "drush/drush": "^11",
     "national-forestry-authority/nfa-map": "^2",
     "national-forestry-authority/nfa_gin": "^1",
+    "national-forestry-authority/nfa_landing": "^1",
     "national-forestry-authority/nfa_tracker": "dev-main"
   },
   "conflict": {
