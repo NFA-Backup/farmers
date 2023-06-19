@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
+    - nfafmis
     - system
 id: range_user
 label: 'Range user'
 weight: -5
 is_admin: null
 permissions:
+  - 'access all management unit content'
   - 'access content'

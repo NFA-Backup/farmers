@@ -8,6 +8,7 @@ dependencies:
     - node.type.annual_charges
     - node.type.area_planting_history
     - node.type.area_site_index_zonations
+    - node.type.article
     - node.type.block_area_inventory
     - node.type.charge
     - node.type.farmer_details
@@ -19,11 +20,17 @@ dependencies:
     - node.type.invoice
     - node.type.land_rent_rates
     - node.type.offer_license
+    - node.type.page
     - node.type.payment
     - node.type.starting_amount
     - node.type.sub_area
     - node.type.thinning_harvest_details
+    - workflows.workflow.data_entry
   module:
+    - comment
+    - content_moderation
+    - moderation_dashboard
+    - nfafmis
     - node
     - system
 id: sector_power_user
@@ -31,6 +38,7 @@ label: 'Sector power user'
 weight: -2
 is_admin: null
 permissions:
+  - 'access all management unit content'
   - 'access content'
   - 'create accounts_detail content'
   - 'create accounts_simplication_temporary content'
@@ -52,9 +60,82 @@ permissions:
   - 'create starting_amount content'
   - 'create sub_area content'
   - 'create thinning_harvest_details content'
-  - 'delete fee_payment_nfa revisions'
+  - 'delete own accounts_detail content'
+  - 'delete own accounts_simplication_temporary content'
+  - 'delete own annual_charges content'
+  - 'delete own area_planting_history content'
+  - 'delete own area_site_index_zonations content'
+  - 'delete own block_area_inventory content'
+  - 'delete own charge content'
+  - 'delete own farmer_details content'
   - 'delete own fee_payment_nfa content'
+  - 'edit all management unit content'
+  - 'edit any accounts_detail content'
+  - 'edit any accounts_simplication_temporary content'
+  - 'edit any annual_charges content'
+  - 'edit any area_planting_history content'
+  - 'edit any area_site_index_zonations content'
+  - 'edit any block_area_inventory content'
+  - 'edit any charge content'
+  - 'edit any farmer_details content'
   - 'edit any fee_payment_nfa content'
+  - 'edit any harvesting_miscellaneous_fees content'
+  - 'edit any historical_payments content'
+  - 'edit any index_zone_annual_rent_charges content'
+  - 'edit any inventory content'
+  - 'edit any invoice content'
+  - 'edit any land_rent_rates content'
+  - 'edit any offer_license content'
+  - 'edit any payment content'
+  - 'edit any starting_amount content'
+  - 'edit any sub_area content'
+  - 'edit any thinning_harvest_details content'
+  - 'edit own accounts_detail content'
+  - 'edit own accounts_simplication_temporary content'
+  - 'edit own annual_charges content'
+  - 'edit own area_planting_history content'
+  - 'edit own area_site_index_zonations content'
+  - 'edit own article content'
+  - 'edit own block_area_inventory content'
+  - 'edit own charge content'
+  - 'edit own comments'
+  - 'edit own farmer_details content'
   - 'edit own fee_payment_nfa content'
-  - 'revert fee_payment_nfa revisions'
+  - 'edit own harvesting_miscellaneous_fees content'
+  - 'edit own historical_payments content'
+  - 'edit own index_zone_annual_rent_charges content'
+  - 'edit own inventory content'
+  - 'edit own invoice content'
+  - 'edit own land_rent_rates content'
+  - 'edit own offer_license content'
+  - 'edit own page content'
+  - 'edit own payment content'
+  - 'edit own starting_amount content'
+  - 'edit own sub_area content'
+  - 'edit own thinning_harvest_details content'
+  - 'post comments'
+  - 'use data_entry transition create_new_draft'
+  - 'use data_entry transition request_changes'
+  - 'use data_entry transition request_review'
+  - 'use moderation dashboard'
+  - 'view all revisions'
+  - 'view annual_charges revisions'
+  - 'view any unpublished content'
+  - 'view area_planting_history revisions'
+  - 'view area_site_index_zonations revisions'
+  - 'view block_area_inventory revisions'
+  - 'view charge revisions'
+  - 'view farmer_details revisions'
   - 'view fee_payment_nfa revisions'
+  - 'view harvesting_miscellaneous_fees revisions'
+  - 'view historical_payments revisions'
+  - 'view index_zone_annual_rent_charges revisions'
+  - 'view inventory revisions'
+  - 'view invoice revisions'
+  - 'view land_rent_rates revisions'
+  - 'view latest version'
+  - 'view offer_license revisions'
+  - 'view payment revisions'
+  - 'view starting_amount revisions'
+  - 'view sub_area revisions'
+  - 'view thinning_harvest_details revisions'

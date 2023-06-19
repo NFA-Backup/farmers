@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment.default
     - field.field.node.farmer_details.comment
     - field.field.node.farmer_details.field_email
     - field.field.node.farmer_details.field_farmer_category_type
@@ -16,7 +15,6 @@ dependencies:
     - field.field.node.farmer_details.field_tax_identification_number
     - node.type.farmer_details
   module:
-    - comment
     - options
     - user
 id: node.farmer_details.default
@@ -24,21 +22,17 @@ targetEntityType: node
 bundle: farmer_details
 mode: default
 content:
-  comment:
-    type: comment_default
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
+  content_moderation_control:
+    settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 0
     region: content
   field_email:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 9
+    weight: 7
     region: content
   field_farmer_category_type:
     type: entity_reference_label
@@ -53,14 +47,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 4
     region: content
   field_historical_information:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 8
     region: content
   field_national_identification_no:
     type: string
@@ -68,7 +62,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 5
     region: content
   field_phone_number:
     type: string
@@ -76,21 +70,21 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: 6
     region: content
   field_physical_address:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 12
+    weight: 10
     region: content
   field_postal_address:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 11
+    weight: 9
     region: content
   field_tax_identification_number:
     type: string
@@ -103,6 +97,7 @@ content:
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-hidden: {  }
+hidden:
+  comment: true

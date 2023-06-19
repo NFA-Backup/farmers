@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
+    - nfafmis
     - system
 id: sector_user
 label: 'Sector user'
 weight: -3
 is_admin: null
 permissions:
+  - 'access all management unit content'
   - 'access content'

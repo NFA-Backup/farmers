@@ -1966,8 +1966,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<div class="button">{{ link_flag }}</div>'
             make_link: false
             path: ''
             absolute: false
@@ -2016,7 +2016,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"d-flex\">\r\n<div class=\"button\">{{ link_flag }}</div>\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
+            text: "<div class=\"d-flex\">\r\n{{ link_flag }}\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

@@ -3,9 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.accounts_detail
+    - node.type.accounts_simplication_temporary
+    - node.type.annual_charges
+    - node.type.area_planting_history
+    - node.type.area_site_index_zonations
     - node.type.article
     - node.type.block_area_inventory
+    - node.type.charge
+    - node.type.farmer_details
+    - node.type.fee_payment_nfa
+    - node.type.harvesting_miscellaneous_fees
+    - node.type.historical_payments
+    - node.type.index_zone_annual_rent_charges
+    - node.type.inventory
+    - node.type.invoice
+    - node.type.land_rent_rates
+    - node.type.offer_license
     - node.type.page
+    - node.type.payment
+    - node.type.starting_amount
+    - node.type.sub_area
+    - node.type.thinning_harvest_details
     - taxonomy.vocabulary.block
   module:
     - area_summary
@@ -16,18 +35,23 @@ dependencies:
     - farm_map
     - field_ui
     - geocoder
+    - nfa_landing
+    - nfa_tracker
     - nfafmis
     - node
     - system
     - taxonomy
     - toolbar
+    - update
 id: power_admin
 label: 'Power admin'
 weight: 1
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access all management unit content'
   - 'access content'
+  - 'access content overview'
   - 'access geocoder api endpoints'
   - 'access site in maintenance mode'
   - 'access site reports'
@@ -42,15 +66,111 @@ permissions:
   - 'administer farm map'
   - 'administer fmis settings'
   - 'administer modules'
+  - 'administer nfa_landing configuration'
   - 'administer users'
+  - 'bypass node access'
   - 'create article content'
   - 'create page content'
   - 'create terms in block'
+  - 'delete accounts_detail revisions'
+  - 'delete accounts_simplication_temporary revisions'
+  - 'delete annual_charges revisions'
+  - 'delete any accounts_detail content'
+  - 'delete any accounts_simplication_temporary content'
+  - 'delete any annual_charges content'
+  - 'delete any area_planting_history content'
+  - 'delete any area_site_index_zonations content'
+  - 'delete any article content'
+  - 'delete any block_area_inventory content'
+  - 'delete any charge content'
+  - 'delete any farmer_details content'
+  - 'delete any fee_payment_nfa content'
+  - 'delete any harvesting_miscellaneous_fees content'
+  - 'delete any historical_payments content'
+  - 'delete any index_zone_annual_rent_charges content'
+  - 'delete any inventory content'
+  - 'delete any invoice content'
+  - 'delete any land_rent_rates content'
+  - 'delete any offer_license content'
+  - 'delete any page content'
+  - 'delete any payment content'
+  - 'delete any starting_amount content'
+  - 'delete any sub_area content'
+  - 'delete any thinning_harvest_details content'
+  - 'delete area_planting_history revisions'
+  - 'delete area_site_index_zonations revisions'
+  - 'delete article revisions'
+  - 'delete block_area_inventory revisions'
+  - 'delete charge revisions'
+  - 'delete farmer_details revisions'
+  - 'delete fee_payment_nfa revisions'
+  - 'delete harvesting_miscellaneous_fees revisions'
+  - 'delete historical_payments revisions'
+  - 'delete index_zone_annual_rent_charges revisions'
+  - 'delete inventory revisions'
+  - 'delete invoice revisions'
+  - 'delete land_rent_rates revisions'
+  - 'delete offer_license revisions'
+  - 'delete own article content'
+  - 'delete own page content'
+  - 'delete page revisions'
+  - 'delete payment revisions'
+  - 'delete starting_amount revisions'
+  - 'delete sub_area revisions'
   - 'delete terms in block'
+  - 'delete thinning_harvest_details revisions'
+  - 'edit all management unit content'
   - 'edit any article content'
   - 'edit any page content'
   - 'edit own article content'
   - 'edit own page content'
   - 'edit terms in block'
+  - 'revert accounts_detail revisions'
+  - 'revert accounts_simplication_temporary revisions'
+  - 'revert annual_charges revisions'
+  - 'revert area_planting_history revisions'
+  - 'revert area_site_index_zonations revisions'
+  - 'revert article revisions'
   - 'revert block_area_inventory revisions'
+  - 'revert charge revisions'
+  - 'revert farmer_details revisions'
+  - 'revert fee_payment_nfa revisions'
+  - 'revert harvesting_miscellaneous_fees revisions'
+  - 'revert historical_payments revisions'
+  - 'revert index_zone_annual_rent_charges revisions'
+  - 'revert inventory revisions'
+  - 'revert invoice revisions'
+  - 'revert land_rent_rates revisions'
+  - 'revert offer_license revisions'
+  - 'revert page revisions'
+  - 'revert payment revisions'
+  - 'revert starting_amount revisions'
+  - 'revert sub_area revisions'
+  - 'revert thinning_harvest_details revisions'
+  - 'view accounts_detail revisions'
+  - 'view accounts_simplication_temporary revisions'
+  - 'view all revisions'
+  - 'view annual_charges revisions'
+  - 'view area_planting_history revisions'
+  - 'view area_site_index_zonations revisions'
+  - 'view article revisions'
+  - 'view block_area_inventory revisions'
+  - 'view charge revisions'
+  - 'view farmer_details revisions'
+  - 'view fee_payment_nfa revisions'
+  - 'view fmis reports'
+  - 'view harvesting_miscellaneous_fees revisions'
+  - 'view historical_payments revisions'
+  - 'view index_zone_annual_rent_charges revisions'
+  - 'view inventory revisions'
+  - 'view invoice revisions'
+  - 'view land_rent_rates revisions'
+  - 'view nfa tracker reports'
+  - 'view offer_license revisions'
+  - 'view page revisions'
+  - 'view payment revisions'
+  - 'view starting_amount revisions'
+  - 'view sub_area revisions'
   - 'view the administration theme'
+  - 'view thinning_harvest_details revisions'
+  - 'view update notifications'

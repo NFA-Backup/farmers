@@ -39,6 +39,18 @@
           "installer-name": "nfa-map"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "nnnick/chartjs",
+        "version": "v3.9.1",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/chartjs/Chart.js/releases/download/v3.9.1/chart.js-3.9.1.tgz",
+          "type": "tar"
+        }
+      }
     }
   ],
   "require": {
@@ -77,6 +89,7 @@
     "drupal/migrate_source_ui": "^1",
     "drupal/migrate_spreadsheet": "^2",
     "drupal/migrate_tools": "^5",
+    "drupal/moderation_dashboard": "^2",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/r4032login": "^2",
@@ -94,7 +107,8 @@
     "national-forestry-authority/nfa-map": "^2",
     "national-forestry-authority/nfa_gin": "^1",
     "national-forestry-authority/nfa_landing": "^1",
-    "national-forestry-authority/nfa_tracker": "dev-main"
+    "national-forestry-authority/nfa_tracker": "dev-main",
+    "nnnick/chartjs": "^3.9"
   },
   "conflict": {
     "drupal/drupal": "*"

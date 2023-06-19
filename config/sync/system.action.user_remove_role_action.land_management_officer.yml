@@ -1,0 +1,14 @@
+uuid: 5cded549-54d7-4220-bc04-80fab901d71d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.land_management_officer
+  module:
+    - user
+id: user_remove_role_action.land_management_officer
+label: 'Remove the Land management officer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: land_management_officer

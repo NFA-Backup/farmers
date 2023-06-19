@@ -1,0 +1,162 @@
+uuid: 3b9f5b85-16c6-4431-bfa6-284ce595a492
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.accounts_detail
+    - node.type.accounts_simplication_temporary
+    - node.type.annual_charges
+    - node.type.area_planting_history
+    - node.type.area_site_index_zonations
+    - node.type.article
+    - node.type.block_area_inventory
+    - node.type.charge
+    - node.type.farmer_details
+    - node.type.fee_payment_nfa
+    - node.type.harvesting_miscellaneous_fees
+    - node.type.historical_payments
+    - node.type.index_zone_annual_rent_charges
+    - node.type.inventory
+    - node.type.invoice
+    - node.type.land_rent_rates
+    - node.type.offer_license
+    - node.type.page
+    - node.type.payment
+    - node.type.starting_amount
+    - node.type.sub_area
+    - node.type.thinning_harvest_details
+    - workflows.workflow.data_entry
+  module:
+    - content_moderation
+    - moderation_dashboard
+    - nfafmis
+    - node
+    - system
+id: land_management_officer
+label: 'Land management officer'
+weight: 2
+is_admin: null
+permissions:
+  - 'access all management unit content'
+  - 'access content'
+  - 'create accounts_detail content'
+  - 'create accounts_simplication_temporary content'
+  - 'create annual_charges content'
+  - 'create area_planting_history content'
+  - 'create area_site_index_zonations content'
+  - 'create block_area_inventory content'
+  - 'create charge content'
+  - 'create farmer_details content'
+  - 'create fee_payment_nfa content'
+  - 'create harvesting_miscellaneous_fees content'
+  - 'create historical_payments content'
+  - 'create index_zone_annual_rent_charges content'
+  - 'create inventory content'
+  - 'create invoice content'
+  - 'create land_rent_rates content'
+  - 'create offer_license content'
+  - 'create payment content'
+  - 'create starting_amount content'
+  - 'create sub_area content'
+  - 'create thinning_harvest_details content'
+  - 'delete any farmer_details content'
+  - 'delete any offer_license content'
+  - 'delete any sub_area content'
+  - 'delete own accounts_detail content'
+  - 'delete own accounts_simplication_temporary content'
+  - 'delete own annual_charges content'
+  - 'delete own area_planting_history content'
+  - 'delete own area_site_index_zonations content'
+  - 'delete own article content'
+  - 'delete own block_area_inventory content'
+  - 'delete own charge content'
+  - 'delete own farmer_details content'
+  - 'delete own fee_payment_nfa content'
+  - 'delete own harvesting_miscellaneous_fees content'
+  - 'delete own historical_payments content'
+  - 'delete own index_zone_annual_rent_charges content'
+  - 'delete own inventory content'
+  - 'delete own invoice content'
+  - 'delete own land_rent_rates content'
+  - 'delete own offer_license content'
+  - 'delete own page content'
+  - 'delete own payment content'
+  - 'delete own starting_amount content'
+  - 'delete own sub_area content'
+  - 'delete own thinning_harvest_details content'
+  - 'edit all management unit content'
+  - 'edit any accounts_detail content'
+  - 'edit any accounts_simplication_temporary content'
+  - 'edit any annual_charges content'
+  - 'edit any area_planting_history content'
+  - 'edit any area_site_index_zonations content'
+  - 'edit any block_area_inventory content'
+  - 'edit any charge content'
+  - 'edit any farmer_details content'
+  - 'edit any fee_payment_nfa content'
+  - 'edit any harvesting_miscellaneous_fees content'
+  - 'edit any historical_payments content'
+  - 'edit any index_zone_annual_rent_charges content'
+  - 'edit any inventory content'
+  - 'edit any invoice content'
+  - 'edit any land_rent_rates content'
+  - 'edit any offer_license content'
+  - 'edit any payment content'
+  - 'edit any starting_amount content'
+  - 'edit any sub_area content'
+  - 'edit any thinning_harvest_details content'
+  - 'edit own accounts_detail content'
+  - 'edit own accounts_simplication_temporary content'
+  - 'edit own annual_charges content'
+  - 'edit own area_planting_history content'
+  - 'edit own area_site_index_zonations content'
+  - 'edit own block_area_inventory content'
+  - 'edit own charge content'
+  - 'edit own farmer_details content'
+  - 'edit own fee_payment_nfa content'
+  - 'edit own harvesting_miscellaneous_fees content'
+  - 'edit own historical_payments content'
+  - 'edit own index_zone_annual_rent_charges content'
+  - 'edit own inventory content'
+  - 'edit own invoice content'
+  - 'edit own land_rent_rates content'
+  - 'edit own offer_license content'
+  - 'edit own payment content'
+  - 'edit own starting_amount content'
+  - 'edit own sub_area content'
+  - 'edit own thinning_harvest_details content'
+  - 'use data_entry transition archive'
+  - 'use data_entry transition create_new_draft'
+  - 'use data_entry transition publish'
+  - 'use data_entry transition request_changes'
+  - 'use data_entry transition request_review'
+  - 'use data_entry transition restore'
+  - 'use data_entry transition restore_to_draft'
+  - 'use data_entry transition send_for_review'
+  - 'use editorial transition request_changes'
+  - 'use moderation dashboard'
+  - 'view accounts_detail revisions'
+  - 'view accounts_simplication_temporary revisions'
+  - 'view all revisions'
+  - 'view annual_charges revisions'
+  - 'view any moderation dashboard'
+  - 'view any unpublished content'
+  - 'view area_planting_history revisions'
+  - 'view area_site_index_zonations revisions'
+  - 'view block_area_inventory revisions'
+  - 'view charge revisions'
+  - 'view farmer_details revisions'
+  - 'view fee_payment_nfa revisions'
+  - 'view fmis reports'
+  - 'view harvesting_miscellaneous_fees revisions'
+  - 'view historical_payments revisions'
+  - 'view index_zone_annual_rent_charges revisions'
+  - 'view inventory revisions'
+  - 'view invoice revisions'
+  - 'view land_rent_rates revisions'
+  - 'view latest version'
+  - 'view offer_license revisions'
+  - 'view payment revisions'
+  - 'view starting_amount revisions'
+  - 'view sub_area revisions'
+  - 'view thinning_harvest_details revisions'

@@ -1,0 +1,84 @@
+uuid: 62594737-6e75-4cc1-b497-1713c202e1db
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.offer_license
+    - node.type.sub_area
+  module:
+    - content_moderation
+id: data_entry
+label: 'Data entry'
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      label: Archived
+      weight: 2
+      published: false
+      default_revision: true
+    draft:
+      label: Draft
+      weight: -3
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+    review_requested:
+      label: 'Review requested'
+      weight: 4
+      published: false
+      default_revision: false
+  transitions:
+    archive:
+      label: Archive
+      from:
+        - published
+      to: archived
+      weight: 1
+    create_new_draft:
+      label: 'Create new draft'
+      from:
+        - draft
+      to: draft
+      weight: -4
+    publish:
+      label: Publish
+      from:
+        - published
+        - review_requested
+      to: published
+      weight: 0
+    request_changes:
+      label: 'Request changes'
+      from:
+        - published
+        - review_requested
+      to: draft
+      weight: -1
+    request_review:
+      label: 'Request review'
+      from:
+        - draft
+      to: review_requested
+      weight: -2
+    restore:
+      label: Restore
+      from:
+        - archived
+      to: published
+      weight: 2
+    restore_to_draft:
+      label: 'Restore to draft'
+      from:
+        - archived
+      to: draft
+      weight: 3
+  entity_types:
+    node:
+      - offer_license
+      - sub_area
+  default_moderation_state: draft

@@ -1,0 +1,12 @@
+uuid: c2d9acfe-0950-41aa-9f4b-a28b68c3f5f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: 14DpaVAp5bm4dYPUEOQYFgHJJJFpRpbw3Oe7iCcdmh0
+id: user.moderation_dashboard
+label: 'Moderation Dashboard'
+targetEntityType: user
+cache: true

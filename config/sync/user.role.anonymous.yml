@@ -2,12 +2,9 @@ uuid: 98c50944-ed7d-456b-b563-0928c788b69f
 langcode: en
 status: true
 dependencies:
-  config:
-    - filter.format.restricted_html
   module:
     - comment
     - contact
-    - filter
     - search
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -19,4 +16,3 @@ permissions:
   - 'access comments'
   - 'access site-wide contact form'
   - 'search content'
-  - 'use text format restricted_html'

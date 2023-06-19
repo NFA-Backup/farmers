@@ -1,0 +1,14 @@
+uuid: 66e99133-6b5c-4f6c-93f3-9ee6d06da5ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.land_management_officer
+  module:
+    - user
+id: user_add_role_action.land_management_officer
+label: 'Add the Land management officer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: land_management_officer
