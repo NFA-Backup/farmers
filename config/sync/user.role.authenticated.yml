@@ -7,9 +7,11 @@ dependencies:
   module:
     - comment
     - contact
+    - environment_indicator
     - filter
     - search
     - shortcut
+    - toolbar
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -18,7 +20,9 @@ weight: -9
 is_admin: false
 permissions:
   - 'access comments'
+  - 'access environment indicator'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access toolbar'
   - 'search content'
   - 'use text format basic_html'

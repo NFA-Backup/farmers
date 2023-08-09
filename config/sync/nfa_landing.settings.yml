@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: 7HmrvokI7A_tyG_d8iDr3PmxsLSlxGrt4fwpiW2AouA
+site: farmers
+message: 'Welcome to the NFA Tree Farmer Management System for tracking land management and tree growing activities in designated licenced areas in CFRs.'
+sites:
+  farmers:
+    name: Farmers
+    production: 'https://farmers.nfa.go.ug'
+    staging: 'https://farmers.stg.envs.utils.nfa.go.ug'
+    development: 'https://farmers.ddev.site'
+  forests:
+    name: Forests
+    production: 'https://forests.nfa.go.ug'
+    staging: 'https://forests.stg.envs.utils.nfa.go.ug'
+    development: 'https://forests.ddev.site/'
+  brms:
+    name: BRMS
+    production: 'https://brms.nfa.go.ug'
+    staging: 'https://brms.stg.envs.utils.nfa.go.ug'
+    development: 'https://brms.ddev.site/'

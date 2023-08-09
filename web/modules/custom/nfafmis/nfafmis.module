@@ -100,11 +100,28 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     $form['field_license_id']['#states'] = [
       'visible' => [
         ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
+        ':input[name="field_regularisation[value]"]' => ['checked' => FALSE],
       ],
     ];
     $form['field_license_date']['#states'] = [
       'visible' => [
         ':input[name="field_license_issued[value]"]' => ['checked' => TRUE],
+        ':input[name="field_regularisation[value]"]' => ['checked' => FALSE],
+      ],
+    ];
+    $form['field_offer_date']['#states'] = [
+      'visible' => [
+        ':input[name="field_regularisation[value]"]' => ['checked' => FALSE],
+      ],
+    ];
+    $form['field_license_issued']['#states'] = [
+      'visible' => [
+        ':input[name="field_regularisation[value]"]' => ['checked' => FALSE],
+      ],
+    ];
+    $form['field_block_ref']['#states'] = [
+      'visible' => [
+        ':input[name="field_regularisation[value]"]' => ['checked' => FALSE],
       ],
     ];
 
@@ -119,6 +136,7 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
       }
     }
     $form['actions']['submit']['#submit'][] = 'nfafmis_node_offer_license_form_submit';
+
   }
 
   // Set default sub-area-id when adding Inventory/Harvest content.
