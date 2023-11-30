@@ -8,7 +8,6 @@ dependencies:
   module:
     - node
     - user
-    - views_autocomplete_filters
 id: licence_id_reference
 label: 'Licence ID Reference'
 module: views

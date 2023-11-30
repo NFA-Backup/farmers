@@ -28,7 +28,6 @@ dependencies:
     - node
     - options
     - user
-    - views_autocomplete_filters
     - views_field_view
 id: accounts
 label: Accounts

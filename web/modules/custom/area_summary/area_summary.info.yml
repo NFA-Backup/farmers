@@ -2,4 +2,4 @@ name: Area Summary
 type: module
 description: Summary data for land allocated in Central Forest Reserve areas.
 package: NFA-FMI
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10

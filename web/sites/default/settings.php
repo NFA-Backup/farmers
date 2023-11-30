@@ -794,10 +794,6 @@ if ($env == 'dev') {
   $config['config_split.config_split.dev']['status'] = TRUE;
   $config['config_split.config_split.pro']['status'] = FALSE;
 }
-elseif ($env == 'stage') {
-  $config['config_split.config_split.stage']['status'] = TRUE;
-  $config['config_split.config_split.pro']['status'] = FALSE;
-}
 
 /**
  * Load local development override configuration, if available.

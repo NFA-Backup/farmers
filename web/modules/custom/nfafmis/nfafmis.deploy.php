@@ -291,6 +291,7 @@ function nfafmis_deploy_006_add_range_users(&$sandbox = NULL) {
   $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
   $query = $term_storage->getQuery();
   $query->condition('vid', 'management_unit');
+  $query->accessCheck(FALSE);
   $tids = $query->execute();
   $terms = $term_storage->loadMultiple($tids);
   foreach ($terms as $term) {
@@ -314,6 +315,7 @@ function nfafmis_deploy_007_add_sector_users(&$sandbox = NULL) {
   $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
   $query = $term_storage->getQuery();
   $query->condition('vid', 'sector');
+  $query->accessCheck(FALSE);
   $tids = $query->execute();
   $terms = $term_storage->loadMultiple($tids);
   foreach ($terms as $term) {

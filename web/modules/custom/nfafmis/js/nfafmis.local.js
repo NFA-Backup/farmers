@@ -88,7 +88,7 @@
                   $('#filter-sub-area-id').val(subAreaId).change();
                 }
               }
-              // If there is no option availabe in sub-area-id.
+              // If there is no option available in sub-area-id.
               let length = $('#filter-sub-area-id > option').length;
               if (length === 0) {
                 let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory';
@@ -109,14 +109,16 @@
         $('#filter-sub-area-id').change(function() {
           let filterClass = $(this).val();
           if (filterClass !== undefined) {
-            let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory&sub_area_id=' + filterClass;
-            let harvest_href = '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest&sub_area_id=' + filterClass;
+            let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory';
+            let harvest_href = '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest';
             const url_params = new URLSearchParams(window.location.search);
             const title_param = url_params.get('title');
             if (title_param) {
               inventory_href = inventory_href + '%3Ftitle%3D' + title_param;
               harvest_href = harvest_href + '%3Ftitle%3D' + title_param;
             }
+            inventory_href = inventory_href + '&sub_area_id=' + filterClass;
+            harvest_href = harvest_href + '&sub_area_id=' + filterClass;
             $('#add-inventory-btn').attr('href', inventory_href);
             $('#add-harvest-btn').attr('href', harvest_href);
           }

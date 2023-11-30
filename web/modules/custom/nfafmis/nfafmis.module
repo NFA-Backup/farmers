@@ -143,10 +143,12 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   if ($form_id == 'node_inventory_form' || $form_id == 'node_thinning_harvest_details_form') {
     $query_params = $nfafmis_service_utility->getQueryParams();
     if (!empty($query_params) && isset($query_params['sub_area_id'])) {
-      $form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
-      $sub_area_id = $query_params['sub_area_id'];
-      $sub_area_data = $entity_type_manager->getStorage('node')->load($sub_area_id);
-      $form['field_sub_area_id']['widget'][0]['target_id']['#default_value'] = $sub_area_data;
+      // @todo. The sub area id may be  wrong when there are multiple sub areas
+      // loaded via ajax. See nfamis.local.js
+      //$form['field_sub_area_id']['widget'][0]['#disabled'] = TRUE;
+      //$sub_area_id = $query_params['sub_area_id'];
+      //$sub_area_data = $entity_type_manager->getStorage('node')->load($sub_area_id);
+      //$form['field_sub_area_id']['widget'][0]['target_id']['#default_value'] = $sub_area_data;
     }
   }
 
@@ -211,10 +213,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
     // Don't do this if we are here during an ajax callback, such as when a file
     // is being uploaded.
     if (!$form_state->getTriggeringElement()) {
-      $farmer_id = $nfafmis_service_utility->getQueryParams();
+      $params = $nfafmis_service_utility->getQueryParams();
 
-      if (isset($farmer_id['farmer_id'])) {
-        $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $farmer_id['farmer_id'];
+      if (isset($params['farmer_id'])) {
+        $form['field_areas_id']['widget'][0]['target_id']['#selection_settings']['view']['arguments'][] = $params['farmer_id'];
       }
     }
     $form['field_date_harvested']['#states'] = [
@@ -347,8 +349,10 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
         '#weight' => 20,
       ];
       // Add above created wrapper to the field group on payment add page.
-      $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_information';
-      $form['#fieldgroups']['group_receipt_details']->children[] = 'farmer_area_information';
+      if (!empty($form['#fieldgroups'])) {
+        $form['#fieldgroups']['group_tree_farmer_details']->children[] = 'farmer_information';
+        $form['#fieldgroups']['group_receipt_details']->children[] = 'farmer_area_information';
+      }
     }
     nfafmis_add_ajax_form($form);
   }
@@ -1136,3 +1140,19 @@ function nfafmis_entity_type_alter(array &$entity_types) {
   // Add validation constraint to the land rent rate entity
   $entity_types['node']->addConstraint('LandRentRateConstraint');
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function nfafmis_module_implements_alter(&$implementations, $hook) {
+  // Makw sure our form_alters run last. Needed for altering Field Groups. See
+  // https://www.drupal.org/project/field_group/issues/3303640.
+  switch ($hook) {
+    case 'form_alter':
+      $group = $implementations['nfafmis'];
+      unset($implementations['nfafmis']);
+      $implementations['nfafmis'] = $group;
+      break;
+  }
+}
+
