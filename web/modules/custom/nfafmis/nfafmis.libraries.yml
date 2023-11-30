@@ -8,4 +8,4 @@ nfafmis:
   dependencies:
     - core/jquery
     - core/drupalSettings
-    - core/jquery.once
+    - core/once
