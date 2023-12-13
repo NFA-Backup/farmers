@@ -52,3 +52,13 @@ function nfafmis_update_8001(&$sandbox) {
 function nfafmis_update_8002(&$sandbox) {
   \Drupal::keyValue("system.schema")->delete("kint");
 }
+
+/**
+ * Removed Drupal 9 modules obsolete in Drupal 10.
+ */
+function nfafmis_update_8003(&$sandbox) {
+  \Drupal::keyValue("system.schema")->delete("ckeditor");
+  \Drupal::keyValue("system.schema")->delete("quickedit");
+  \Drupal::keyValue("system.schema")->delete("rdf");
+  \Drupal::keyValue("system.schema")->delete("dbug");
+}

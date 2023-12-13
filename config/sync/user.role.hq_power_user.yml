@@ -24,6 +24,7 @@ dependencies:
     - node.type.sub_area
     - node.type.thinning_harvest_details
   module:
+    - file
     - nfafmis
     - node
     - system
@@ -57,6 +58,7 @@ permissions:
   - 'create thinning_harvest_details content'
   - 'delete fee_payment_nfa revisions'
   - 'delete own fee_payment_nfa content'
+  - 'delete own files'
   - 'edit all management unit content'
   - 'edit any fee_payment_nfa content'
   - 'edit own fee_payment_nfa content'

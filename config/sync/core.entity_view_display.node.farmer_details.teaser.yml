@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.farmer_details.comment
     - field.field.node.farmer_details.field_email
     - field.field.node.farmer_details.field_farmer_category_type
     - field.field.node.farmer_details.field_gender

@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.index_zone_annual_rent_charges.field_amount_paid
+    - field.field.node.index_zone_annual_rent_charges.field_site_index
+    - field.field.node.index_zone_annual_rent_charges.field_year
+    - field.field.node.index_zone_annual_rent_charges.field_zone_designation
     - node.type.index_zone_annual_rent_charges
   module:
     - user

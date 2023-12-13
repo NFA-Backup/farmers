@@ -1,0 +1,32 @@
+diff --git a/core/modules/migrate/migrate.install b/core/modules/migrate/migrate.install
+index 72ac368b5b..7cf20b68f8 100644
+--- a/core/modules/migrate/migrate.install
++++ b/core/modules/migrate/migrate.install
+@@ -20,15 +20,18 @@ function migrate_update_10100(&$sandbox = NULL) {
+   $tables = $connection->schema()->findTables('migrate_map_%');
+   if (!empty($tables) && $connection->databaseType() != 'sqlite') {
+     foreach ($tables as $table) {
+-      $new = [
+-        'type' => 'int',
+-        'unsigned' => TRUE,
+-        'not null' => TRUE,
+-        'default' => 0,
+-        'description' => 'UNIX timestamp of the last time this row was imported',
+-        'size' => 'big',
+-      ];
+-      $connection->schema()->changeField($table, 'last_imported', 'last_imported', $new);
++      if ($table != 'migrate_map_nfafmis_migrate_land_rent_rates') {
++        $new = [
++          'type' => 'int',
++          'unsigned' => TRUE,
++          'not null' => TRUE,
++          'default' => 0,
++          'description' => 'UNIX timestamp of the last time this row was imported',
++          'size' => 'big',
++        ];
++        $connection->schema()
++          ->changeField($table, 'last_imported', 'last_imported', $new);
++      }
+     }
+   }
+ }

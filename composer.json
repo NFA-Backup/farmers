@@ -50,11 +50,11 @@
     "drupal/bootstrap": "^3",
     "drupal/computed_field": "3.x",
     "drupal/config_split": "^1",
-    "drupal/core-composer-scaffold": "^9",
-    "drupal/core-project-message": "^9",
-    "drupal/core-recommended": "^9",
+    "drupal/core-composer-scaffold": "^10",
+    "drupal/core-project-message": "^10",
+    "drupal/core-recommended": "^10",
     "drupal/core-vendor-hardening": "^9",
-    "drupal/csv_serialization": "^3.0",
+    "drupal/csv_serialization": "^3.20 || ^4.0",
     "drupal/ctools": "^3",
     "drupal/default_content": "^2",
     "drupal/dependent_fields": "^1",
@@ -64,30 +64,29 @@
     "drupal/environment_indicator": "^4",
     "drupal/field_group": "^3",
     "drupal/flag": "^4",
-    "drupal/geocoder": "^3",
+    "drupal/geocoder": "^3.20 || ^4.0",
     "drupal/geofield": "^1",
     "drupal/gin": "^3",
     "drupal/gin_lb": "^1",
     "drupal/inline_entity_form": "^1",
-    "drupal/migrate_plus": "^5",
+    "drupal/migrate_plus": "^6",
     "drupal/migrate_source_csv": "^3",
-    "drupal/migrate_source_ui": "^1",
+    "drupal/migrate_source_ui": "^1.0",
     "drupal/migrate_spreadsheet": "^2",
-    "drupal/migrate_tools": "^5",
+    "drupal/migrate_tools": "^6",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/r4032login": "^2",
-    "drupal/serial": "^1",
+    "drupal/serial": "^2",
     "drupal/token": "^1",
-    "drupal/upgrade_status": "^4.0",
     "drupal/views_ajax_history": "^1",
     "drupal/views_autocomplete_filters": "^1",
     "drupal/views_data_export": "^1",
     "drupal/views_field_view": "^1",
-    "drupal/views_flipped_table": "^1",
+    "drupal/views_flipped_table": "^2",
     "drupal/views_geojson": "^1",
     "drupal/yearonly": "^9",
-    "drush/drush": "^11",
+    "drush/drush": "^12",
     "national-forestry-authority/nfa-map": "^2",
     "national-forestry-authority/nfa_gin": "^1",
     "national-forestry-authority/nfa_landing": "^1",
@@ -166,7 +165,8 @@
     "patches": {
       "drupal/core": {
         "2648950-253: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2021-06-07/2648950-253.patch",
-        "3351600-46: ckeditor5.dialog.fix.js throws \"Uncaught TypeError: event.target.classList is undefined": "https://www.drupal.org/files/issues/2023-07-31/3351600-46.diff"
+        "3351600-46: ckeditor5.dialog.fix.js throws \"Uncaught TypeError: event.target.classList is undefined": "https://www.drupal.org/files/issues/2023-07-31/3351600-46.diff",
+        "Allow migrate to run with missing table": "patches/migrate_update_10100.patch"
       },
       "drupal/default_content": {
         "2698425-175: Do not reimport existing entities": "https://www.drupal.org/files/issues/2022-07-29/default_content-fix-uuid-duplicate-entry-2698425.patch"
@@ -176,14 +176,11 @@
       },
       "drupal/yearonly": {
         "3172745-8: Provide default year options": "https://www.drupal.org/files/issues/2022-12-12/yearonly-default-options-3172745-8.patch"
-      },
-      "drupal/migrate_tools": {
-        "3272434-6: Undefined index: #description_display in template_preprocess_fieldset()": "https://www.drupal.org/files/issues/2022-07-06/3272434-6-fixed-undefined-index-descriptiondisplay.patch"
       }
     }
   },
   "require-dev": {
     "drupal/coder": "^8.3",
-    "drupal/devel": "^4"
+    "drupal/devel": "^4 || ^5"
   }
 }

@@ -962,7 +962,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: "<div class=\"block-section\">\r\n<span>Add a New Farmer or Select a Farmer</span> \r\n<a href=\"/node/add/farmer_details\" class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\">Add New Farmer</a>\r\n</div>"
+          content: '<div class="block-section"><span>Add a New Farmer or Select a Farmer</span> \r\n<a href="/node/add/farmer_details" class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas">Add New Farmer</a></div>'
           tokenize: false
       footer: {  }
       display_extenders: {  }

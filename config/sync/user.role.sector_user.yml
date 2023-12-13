@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - system
 id: sector_user
 label: 'Sector user'
@@ -10,3 +11,4 @@ weight: -3
 is_admin: null
 permissions:
   - 'access content'
+  - 'delete own files'
