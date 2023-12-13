@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - nfafmis
     - system
 id: hq_user
@@ -12,3 +13,4 @@ is_admin: null
 permissions:
   - 'access all management unit content'
   - 'access content'
+  - 'delete own files'

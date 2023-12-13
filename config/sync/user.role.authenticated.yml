@@ -8,6 +8,7 @@ dependencies:
     - comment
     - contact
     - environment_indicator
+    - file
     - filter
     - search
     - shortcut
@@ -24,5 +25,6 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'access toolbar'
+  - 'delete own files'
   - 'search content'
   - 'use text format basic_html'

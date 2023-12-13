@@ -10,7 +10,7 @@ field_name: field_regularisation
 entity_type: node
 bundle: offer_license
 label: Regularisation
-description: 'Used to add farmers that have planted trees without authority from NFA and don''t have an offer date.'
+description: "Used to add farmers that have planted trees without authority from NFA and don't have an offer date."
 required: false
 translatable: false
 default_value:

@@ -16,8 +16,7 @@
           .trigger('RefreshView');
       });
 
-      $(".sub-areas-planting", context).once("nfamis").each(function() {
-
+      $(once('nfamis-sub-areas-planting', '.sub-areas-planting', context)).each(function () {
         let filterSubAreaTab = $(this).find('.center-container .area-filter-sub-area-tab');
         let filterInventoryTab = $(this).find('.center-container .area-filter-inventory-tab');
         let filterHarvestTab = $(this).find('.center-container .area-filter-harvest-tab');
@@ -43,14 +42,14 @@
 
         // Add inventory link.
         let addInventoryElem = `<a class="use-ajax button"
-        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        id="add-inventory-btn">Add Inventory</a>`;
+        data-dialog-options="{&quot;width&quot;:880}" data-dialog-type="dialog" 
+        data-dialog-renderer="off_canvas" id="add-inventory-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventoryElem);
 
         // Add Harvest link.
         let addHarvestElem = `<a class="use-ajax button"
-        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        id="add-harvest-btn">Add Harvest</a>`;
+        data-dialog-options="{&quot;width&quot;:880}" data-dialog-type="dialog"
+        data-dialog-renderer="off_canvas" id="add-harvest-btn">Add Harvest</a>`;
         filterHarvestTab.append(addHarvestElem);
 
         // Event handler for area select list.
@@ -148,7 +147,7 @@
       });
 
       // Account tab section start from here.
-      $(".account-tab-view", context).once("nfamis").each(function() {
+      $(once('nfamis-account-tab-view', '.account-tab-view', context)).each(function () {
         hideElement();
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<div class="tabs-wrapper is-horizontal"><ul></ul></div>').find('ul');
@@ -252,12 +251,13 @@
         });
       });
 
-      $(context).find("td.views-field").once("nfamis").each(function() {
+      $(once('nfamis-td-views-field', 'td.views-field', context)).each(function () {
         let editLink = $(this).find('a');
         if (editLink.length && editLink.hasClass('use-modal')) {
           editLink.addClass('use-ajax');
-          editLink.attr("data-dialog-options", '{"width":800}');
-          editLink.attr("data-dialog-type", "modal");
+          editLink.attr("data-dialog-options", '{"width":880}');
+          editLink.attr("data-dialog-type", "dialog");
+          editLink.attr("data-dialog-renderer", "off_canvas");
         }
       });
 
@@ -283,7 +283,7 @@
       });
 
       // Add green color if balance is zero.
-      $(context).find('.center-container .row .views-field').once("nfamis").each(function() {
+      $(once('nfamis-center-container-row', '.center-container .row .views-field', context)).each(function () {
         $('div.field-content:contains("UGX 0")').removeClass('balance').addClass('payment');
       });
 

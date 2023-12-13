@@ -26,6 +26,7 @@ dependencies:
     - taxonomy.vocabulary.block
   module:
     - comment
+    - file
     - nfafmis
     - node
     - system
@@ -95,6 +96,7 @@ permissions:
   - 'delete own charge content'
   - 'delete own farmer_details content'
   - 'delete own fee_payment_nfa content'
+  - 'delete own files'
   - 'delete own harvesting_miscellaneous_fees content'
   - 'delete own historical_payments content'
   - 'delete own index_zone_annual_rent_charges content'
