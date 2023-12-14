@@ -18,7 +18,6 @@ dependencies:
     - node
     - search
     - user
-    - views_autocomplete_filters
     - views_field_view
 id: tree_farmer_overview
 label: 'Tree Farmer Overview'
@@ -687,7 +686,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/node/add/fee_payment_nfa">Add a receipt</a></p>'
+            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/node/add/fee_payment_nfa">Add a receipt</a></p>'
             make_link: false
             path: ''
             absolute: false

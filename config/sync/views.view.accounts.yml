@@ -28,7 +28,6 @@ dependencies:
     - node
     - options
     - user
-    - views_autocomplete_filters
     - views_field_view
 id: accounts
 label: Accounts
@@ -1710,7 +1709,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"block-section\">\r\n<h5 class=\"title\">Accounts Overview</h5>\r\n</div>\r\n<div class=\"action-link\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/add/accounts_detail\">Create Invoice</a>\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/node/add/fee_payment_nfa\">Create Receipt</a>\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"onclick=\"window.print();return false;\"\">Print Account</a>\r\n</div>"
+            text: '<div class="block-section"><h5 class="title">Accounts Overview</h5></div><div class="action-link"><a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/node/add/accounts_detail">Create Invoice</a>\r\n<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/node/add/fee_payment_nfa">Create Receipt</a>\r\n<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="onclick="window.print();return false;"">Print Account</a></div>'
             make_link: false
             path: ''
             absolute: false

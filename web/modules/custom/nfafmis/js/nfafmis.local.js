@@ -16,8 +16,7 @@
           .trigger('RefreshView');
       });
 
-      $(".sub-areas-planting", context).once("nfamis").each(function() {
-
+      $(once('nfamis-sub-areas-planting', '.sub-areas-planting', context)).each(function () {
         let filterSubAreaTab = $(this).find('.center-container .area-filter-sub-area-tab');
         let filterInventoryTab = $(this).find('.center-container .area-filter-inventory-tab');
         let filterHarvestTab = $(this).find('.center-container .area-filter-harvest-tab');
@@ -43,14 +42,14 @@
 
         // Add inventory link.
         let addInventoryElem = `<a class="use-ajax button"
-        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        id="add-inventory-btn">Add Inventory</a>`;
+        data-dialog-options="{&quot;width&quot;:880}" data-dialog-type="dialog" 
+        data-dialog-renderer="off_canvas" id="add-inventory-btn">Add Inventory</a>`;
         filterInventoryTab.append(addInventoryElem);
 
         // Add Harvest link.
         let addHarvestElem = `<a class="use-ajax button"
-        data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal"
-        id="add-harvest-btn">Add Harvest</a>`;
+        data-dialog-options="{&quot;width&quot;:880}" data-dialog-type="dialog"
+        data-dialog-renderer="off_canvas" id="add-harvest-btn">Add Harvest</a>`;
         filterHarvestTab.append(addHarvestElem);
 
         // Event handler for area select list.
@@ -88,7 +87,7 @@
                   $('#filter-sub-area-id').val(subAreaId).change();
                 }
               }
-              // If there is no option availabe in sub-area-id.
+              // If there is no option available in sub-area-id.
               let length = $('#filter-sub-area-id > option').length;
               if (length === 0) {
                 let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory';
@@ -109,14 +108,16 @@
         $('#filter-sub-area-id').change(function() {
           let filterClass = $(this).val();
           if (filterClass !== undefined) {
-            let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory&sub_area_id=' + filterClass;
-            let harvest_href = '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest&sub_area_id=' + filterClass;
+            let inventory_href = '/node/add/inventory?destination=/tree-farmer-overview/inventory';
+            let harvest_href = '/node/add/thinning_harvest_details?destination=/tree-farmer-overview/harvest';
             const url_params = new URLSearchParams(window.location.search);
             const title_param = url_params.get('title');
             if (title_param) {
               inventory_href = inventory_href + '%3Ftitle%3D' + title_param;
               harvest_href = harvest_href + '%3Ftitle%3D' + title_param;
             }
+            inventory_href = inventory_href + '&sub_area_id=' + filterClass;
+            harvest_href = harvest_href + '&sub_area_id=' + filterClass;
             $('#add-inventory-btn').attr('href', inventory_href);
             $('#add-harvest-btn').attr('href', harvest_href);
           }
@@ -146,7 +147,7 @@
       });
 
       // Account tab section start from here.
-      $(".account-tab-view", context).once("nfamis").each(function() {
+      $(once('nfamis-account-tab-view', '.account-tab-view', context)).each(function () {
         hideElement();
         // Create tabs under account tab.
         let ulist = $("#account-sub-tabs").append('<div class="tabs-wrapper is-horizontal"><ul></ul></div>').find('ul');
@@ -250,12 +251,13 @@
         });
       });
 
-      $(context).find("td.views-field").once("nfamis").each(function() {
+      $(once('nfamis-td-views-field', 'td.views-field', context)).each(function () {
         let editLink = $(this).find('a');
         if (editLink.length && editLink.hasClass('use-modal')) {
           editLink.addClass('use-ajax');
-          editLink.attr("data-dialog-options", '{"width":800}');
-          editLink.attr("data-dialog-type", "modal");
+          editLink.attr("data-dialog-options", '{"width":880}');
+          editLink.attr("data-dialog-type", "dialog");
+          editLink.attr("data-dialog-renderer", "off_canvas");
         }
       });
 
@@ -281,7 +283,7 @@
       });
 
       // Add green color if balance is zero.
-      $(context).find('.center-container .row .views-field').once("nfamis").each(function() {
+      $(once('nfamis-center-container-row', '.center-container .row .views-field', context)).each(function () {
         $('div.field-content:contains("UGX 0")').removeClass('balance').addClass('payment');
       });
 

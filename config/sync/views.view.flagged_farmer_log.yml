@@ -12,7 +12,6 @@ dependencies:
     - node
     - text
     - user
-    - views_autocomplete_filters
 id: flagged_farmer_log
 label: 'Flagged farmer log'
 module: views
@@ -215,6 +214,15 @@ display:
             date_format: html_date
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -365,7 +373,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">edit</a></p>'
+            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/comment/{{ cid }}/edit">edit</a></p>'
             make_link: false
             path: ''
             absolute: false
@@ -891,6 +899,15 @@ display:
             date_format: html_date
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1156,7 +1173,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"d-flex\">\r\n<div class=\"button\">{{ link_flag }}</div>\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
+            text: '<div class="d-flex"><div class="button">{{ link_flag }}</div><a class="button use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/comment/{{ cid }}/edit">Edit log</a></div>'
             make_link: false
             path: ''
             absolute: false
@@ -1698,6 +1715,15 @@ display:
             date_format: html_date
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2016,7 +2042,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"d-flex\">\r\n<div class=\"button\">{{ link_flag }}</div>\r\n<a class=\"button use-ajax\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" href=\"/comment/{{ cid }}/edit\">Edit log</a>\r\n</div>"
+            text: '<div class="d-flex"><div class="button">{{ link_flag }}</div><a class="button use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/comment/{{ cid }}/edit">Edit log</a></div>'
             make_link: false
             path: ''
             absolute: false
@@ -2432,6 +2458,15 @@ display:
             date_format: html_date
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2647,7 +2682,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/{{ cid }}/edit">edit</a></p>'
+            text: '<p><a class="use-ajax" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/comment/{{ cid }}/edit">edit</a></p>'
             make_link: false
             path: ''
             absolute: false

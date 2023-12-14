@@ -2,7 +2,7 @@
 
 namespace Drupal\farm_map\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 use Drupal\farm_map\Entity\MapTypeInterface;
 
 /**

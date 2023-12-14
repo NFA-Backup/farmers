@@ -17,7 +17,6 @@ dependencies:
     - node
     - options
     - user
-    - views_autocomplete_filters
     - views_field_view
     - views_flipped_table
 id: farmer_main_tab
@@ -648,7 +647,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" href="/comment/reply/node/{{nid}}/comment?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Add a log</a>'
+            text: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/comment/reply/node/{{nid}}/comment?destination=/tree-farmer-overview%3Ftitle%3D{{title}}">Add a log</a>'
             make_link: false
             path: ''
             absolute: false
@@ -809,7 +808,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"center-container\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:800}\" data-dialog-type=\"modal\" tabindex=\"-1\" href=\"{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview\">Edit farmer</a>\r\n</div>"
+            text: '<div class="center-container"><a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" tabindex="-1" href="{{ edit_node|render|striptags|trim }}?destination=tree-farmer-overview">Edit farmer</a></div>'
             make_link: false
             path: ''
             absolute: false
@@ -1685,7 +1684,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="modal" tabindex="-1" href="/node/{{nid|render|striptags|trim}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title|render|striptags|trim}}">Edit farmer</a>'
+          content: '<a class="use-ajax button" data-dialog-options="{&quot;width&quot;:800}" data-dialog-type="dialog" data-dialog-renderer="off_canvas" tabindex="-1" href="/node/{{nid|render|striptags|trim}}/edit?destination=/tree-farmer-overview%3Ftitle%3D{{title|render|striptags|trim}}">Edit farmer</a>'
           tokenize: true
       exposed_block: true
       display_extenders:

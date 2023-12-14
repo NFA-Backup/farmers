@@ -15,6 +15,7 @@ dependencies:
     - contact
     - farm_map
     - field_ui
+    - file
     - geocoder
     - nfafmis
     - node
@@ -27,6 +28,7 @@ weight: 1
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access block library'
   - 'access content'
   - 'access geocoder api endpoints'
   - 'access site in maintenance mode'
@@ -34,6 +36,8 @@ permissions:
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'administer area_summary entity'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer blocks'
@@ -46,6 +50,7 @@ permissions:
   - 'create article content'
   - 'create page content'
   - 'create terms in block'
+  - 'delete own files'
   - 'delete terms in block'
   - 'edit any article content'
   - 'edit any page content'
