@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.report_row
 label: 'Report row'
+description: ''
 targetEntityType: node
 cache: true

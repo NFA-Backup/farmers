@@ -6,5 +6,6 @@ dependencies:
     - paragraphs
 id: paragraph.view_display
 label: 'view display'
+description: ''
 targetEntityType: paragraph
 cache: true
