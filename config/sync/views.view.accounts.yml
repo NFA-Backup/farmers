@@ -8,14 +8,14 @@ dependencies:
     - field.storage.node.field_amount_paid
     - field.storage.node.field_charge_amount
     - field.storage.node.field_charge_type
-    - field.storage.node.field_ura_prn_date
     - field.storage.node.field_due_date
     - field.storage.node.field_farmer_category_type
     - field.storage.node.field_licence_id_ref
     - field.storage.node.field_offer_id_ref
     - field.storage.node.field_phone_number
-    - field.storage.node.field_ura_prn_scan
     - field.storage.node.field_ura_prn
+    - field.storage.node.field_ura_prn_date
+    - field.storage.node.field_ura_prn_scan
     - field.storage.node.field_year
     - node.type.accounts_detail
     - node.type.farmer_details
@@ -676,7 +676,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1301,7 +1300,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -2708,7 +2706,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -3644,7 +3641,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

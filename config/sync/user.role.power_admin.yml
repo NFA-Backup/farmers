@@ -17,6 +17,7 @@ dependencies:
     - field_ui
     - file
     - geocoder
+    - help
     - nfafmis
     - node
     - system
@@ -31,6 +32,7 @@ permissions:
   - 'access block library'
   - 'access content'
   - 'access geocoder api endpoints'
+  - 'access help pages'
   - 'access site in maintenance mode'
   - 'access site reports'
   - 'access taxonomy overview'
