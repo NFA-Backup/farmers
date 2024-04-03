@@ -178,7 +178,7 @@
         "3172745-8: Provide default year options": "https://www.drupal.org/files/issues/2022-12-12/yearonly-default-options-3172745-8.patch"
       },
       "drupal/gin": {
-        "3419180: Resolve Missing Dependency 'core/once' in Gin_accent Library": "https://git.drupalcode.org/project/gin/-/merge_requests/380.diff"
+        "3432512: Missing once dependencies on sticky and gin_accent libraries": "https://git.drupalcode.org/project/gin/-/merge_requests/396.diff"
       }
     }
   },
