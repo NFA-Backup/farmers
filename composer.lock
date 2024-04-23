@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b30d9b41a9a8c21b9f74cdba2c670ff4",
+    "content-hash": "8697f40e4dce305b512a4d60a3d020d2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5675,15 +5675,18 @@
         },
         {
             "name": "national-forestry-authority/nfa-map",
-            "version": "2.1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/National-Forestry-Authority/nfa-map/releases/download/v2.1.0/v2.1.0-dist.zip"
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/National-Forestry-Authority/nfa-map",
+                "reference": "c3f3b62020c790dd54a32133dde3c6333d607bb1"
             },
             "type": "drupal-library",
-            "extra": {
-                "installer-name": "nfa-map"
-            }
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Fork of farmOS/farmOS-map for NFA websites",
+            "time": "2024-04-22T10:32:07+00:00"
         },
         {
             "name": "national-forestry-authority/nfa_gin",
