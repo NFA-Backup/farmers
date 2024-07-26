@@ -11,7 +11,7 @@ third_party_settings:
 name: Charge
 type: charge
 description: 'Use to create <em>Charges</em> for area.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false

@@ -803,7 +803,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:880}\" data-dialog-type=\"dialog\" data-dialog-renderer=\"off_canvas\"  tabindex=\"-1\" href=\"/node/add/sub_area?farmer_id={{ arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
+          content: "<div class=\"center-container\">\r\n<a class=\"use-ajax button\" data-dialog-options=\"{&quot;width&quot;:880}\" data-dialog-type=\"dialog\" data-dialog-renderer=\"off_canvas\"  tabindex=\"-1\" href=\"/node/add/sub_area?farmer_id={{ raw_arguments.field_farmer_name_ref_target_id }}&destination=/tree-farmer-overview/sub-areas%3Ftitle%3D{{nfafmis_title_query_param|render|striptags|trim}}\">Add Sub-areas</a>\r\n</div>\r\n<div class=\"block-section\">\r\n<h5 class=\"title\">Sub-areas</h5>\r\n</div>"
           tokenize: true
       display_extenders: {  }
     cache_metadata:

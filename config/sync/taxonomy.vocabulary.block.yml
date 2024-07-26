@@ -6,3 +6,4 @@ name: Block
 vid: block
 description: 'A section of a forest designated to represent a territorial division in a forest reserve.'
 weight: 0
+new_revision: false

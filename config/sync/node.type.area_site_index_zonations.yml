@@ -12,7 +12,7 @@ third_party_settings:
 name: 'Area site index / zonations'
 type: area_site_index_zonations
 description: 'Use to create <em>Area site index / zonations</em>'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false

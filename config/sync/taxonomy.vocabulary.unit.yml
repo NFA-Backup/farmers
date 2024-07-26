@@ -6,3 +6,4 @@ name: Unit
 vid: unit
 description: 'Unit like stacked metre etc.'
 weight: 0
+new_revision: false

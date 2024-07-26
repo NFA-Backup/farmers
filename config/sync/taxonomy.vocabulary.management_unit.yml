@@ -6,3 +6,4 @@ name: 'Management Unit'
 vid: management_unit
 description: 'A region containing one or more forest reserves (CFRs)'
 weight: 0
+new_revision: false

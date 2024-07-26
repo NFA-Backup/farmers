@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Thinning & harvest details'
 type: thinning_harvest_details
 description: 'Use to create <em>thinning & harvest details</em>.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false

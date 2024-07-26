@@ -6,3 +6,4 @@ name: 'Farmer category / type'
 vid: farmer_category_type
 description: 'Category of farmer'
 weight: 0
+new_revision: false

@@ -1,0 +1,276 @@
+From e79ee0c32bdaa93c31c1504961822a5cb9460434 Mon Sep 17 00:00:00 2001
+From: Sascha Grossenbacher <saschagros@gmail.com>
+Date: Sat, 22 Jun 2024 13:40:15 +0200
+Subject: [PATCH 1/6] commit patch, avoid phpstan error
+
+---
+ core/modules/comment/src/Entity/CommentType.php              | 2 +-
+ core/modules/contact/src/Entity/ContactForm.php              | 2 +-
+ .../src/Entity/EntityPermissionsRouteProviderWithCheck.php   | 5 +++++
+ core/modules/user/src/Form/EntityPermissionsForm.php         | 5 +++++
+ .../user/tests/src/Unit/Form/EntityPermissionsFormTest.php   | 2 ++
+ 5 files changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/core/modules/comment/src/Entity/CommentType.php b/core/modules/comment/src/Entity/CommentType.php
+index 77aa049538b6..5cee3668898d 100644
+--- a/core/modules/comment/src/Entity/CommentType.php
++++ b/core/modules/comment/src/Entity/CommentType.php
+@@ -25,7 +25,7 @@
+  *       "delete" = "Drupal\comment\Form\CommentTypeDeleteForm"
+  *     },
+  *     "route_provider" = {
+- *       "permissions" = "Drupal\user\Entity\EntityPermissionsRouteProviderWithCheck",
++ *       "permissions" = "Drupal\user\Entity\EntityPermissionsRouteProvider",
+  *     },
+  *     "list_builder" = "Drupal\comment\CommentTypeListBuilder"
+  *   },
+diff --git a/core/modules/contact/src/Entity/ContactForm.php b/core/modules/contact/src/Entity/ContactForm.php
+index 514455b4d7d9..80a1b3d2f331 100644
+--- a/core/modules/contact/src/Entity/ContactForm.php
++++ b/core/modules/contact/src/Entity/ContactForm.php
+@@ -28,7 +28,7 @@
+  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
+  *     },
+  *     "route_provider" = {
+- *       "permissions" = "Drupal\user\Entity\EntityPermissionsRouteProviderWithCheck",
++ *       "permissions" = "Drupal\user\Entity\EntityPermissionsRouteProvider",
+  *     }
+  *   },
+  *   config_prefix = "form",
+diff --git a/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php b/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
+index be949001f734..3b6cbb395dec 100644
+--- a/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
++++ b/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
+@@ -14,6 +14,10 @@
+  * access if there are no entity-specific permissions. If you know that each
+  * entity has permissions, or if the check is too expensive, then use
+  * EntityPermissionsRouteProvider instead of this class.
++ *
++ * @deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use
++ * EntityPermissionsRouteProvider instead.
++ * @see https://www.drupal.org/node/3384745
+  */
+ class EntityPermissionsRouteProviderWithCheck extends EntityPermissionsRouteProvider {
+ 
+@@ -21,6 +25,7 @@ class EntityPermissionsRouteProviderWithCheck extends EntityPermissionsRouteProv
+    * {@inheritdoc}
+    */
+   protected function getEntityPermissionsRoute(EntityTypeInterface $entity_type): ?Route {
++    trigger_error(__CLASS__ . ' is deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use EntityPermissionsRouteProvider instead. See https://www.drupal.org/node/3384745', E_USER_DEPRECATED);
+     $route = parent::getEntityPermissionsRoute($entity_type);
+     if ($route) {
+       $route->setRequirement('_custom_access', '\Drupal\user\Form\EntityPermissionsForm::access');
+diff --git a/core/modules/user/src/Form/EntityPermissionsForm.php b/core/modules/user/src/Form/EntityPermissionsForm.php
+index d97b5987b67c..26709e3020b2 100644
+--- a/core/modules/user/src/Form/EntityPermissionsForm.php
++++ b/core/modules/user/src/Form/EntityPermissionsForm.php
+@@ -158,8 +158,13 @@ public function buildForm(array $form, FormStateInterface $form_state, ?string $
+    *
+    * @return \Drupal\Core\Access\AccessResultInterface
+    *   The access result.
++   *
++   * @deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use
++   * a permissions check in the route definition instead.
++   * @see https://www.drupal.org/node/3384745
+    */
+   public function access(Route $route, RouteMatchInterface $route_match, $bundle = NULL): AccessResultInterface {
++    trigger_error(__CLASS__ . ':access() is deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use a permissions check on the route definition instead. See https://www.drupal.org/node/3384745');
+     $permission = $route->getRequirement('_permission');
+     if ($permission && !$this->currentUser()->hasPermission($permission)) {
+       return AccessResult::neutral()->cachePerPermissions();
+diff --git a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+index c240aafa803e..eee863a66abc 100644
+--- a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
++++ b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+@@ -24,6 +24,7 @@
+  *
+  * @coversDefaultClass \Drupal\user\Form\EntityPermissionsForm
+  * @group user
++ * @gropu legacy
+  */
+ class EntityPermissionsFormTest extends UnitTestCase {
+ 
+@@ -91,6 +92,7 @@ public function testPermissionsByProvider(string $dependency_name, bool $found):
+       ->willReturn('node.type.article');
+     $bundle = $prophecy->reveal();
+ 
++    // @phpstan-ignore-next-line
+     $access_actual = $bundle_form->access($route, $route_match, $bundle);
+     $this->assertEquals($found ? AccessResult::allowed() : AccessResult::neutral(), $access_actual);
+   }
+-- 
+GitLab
+
+
+From e64371c1dccb1e86938e15e49699ba7a5351c445 Mon Sep 17 00:00:00 2001
+From: Sascha Grossenbacher <saschagros@gmail.com>
+Date: Sat, 22 Jun 2024 13:43:35 +0200
+Subject: [PATCH 2/6] fix typo
+
+---
+ .../user/tests/src/Unit/Form/EntityPermissionsFormTest.php      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+index eee863a66abc..6d112aa8095f 100644
+--- a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
++++ b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+@@ -24,7 +24,7 @@
+  *
+  * @coversDefaultClass \Drupal\user\Form\EntityPermissionsForm
+  * @group user
+- * @gropu legacy
++ * @group legacy
+  */
+ class EntityPermissionsFormTest extends UnitTestCase {
+ 
+-- 
+GitLab
+
+
+From 074938cc4ad3369c56bd1a949b0d1c58015438ef Mon Sep 17 00:00:00 2001
+From: Sascha Grossenbacher <saschagros@gmail.com>
+Date: Sat, 22 Jun 2024 13:47:40 +0200
+Subject: [PATCH 3/6] don't ignore
+
+---
+ .../user/tests/src/Unit/Form/EntityPermissionsFormTest.php       | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+index 6d112aa8095f..54bfcad1a095 100644
+--- a/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
++++ b/core/modules/user/tests/src/Unit/Form/EntityPermissionsFormTest.php
+@@ -92,7 +92,6 @@ public function testPermissionsByProvider(string $dependency_name, bool $found):
+       ->willReturn('node.type.article');
+     $bundle = $prophecy->reveal();
+ 
+-    // @phpstan-ignore-next-line
+     $access_actual = $bundle_form->access($route, $route_match, $bundle);
+     $this->assertEquals($found ? AccessResult::allowed() : AccessResult::neutral(), $access_actual);
+   }
+-- 
+GitLab
+
+
+From 9acb95113417fd442cd3f06b88d300457b5d9d16 Mon Sep 17 00:00:00 2001
+From: Sascha Grossenbacher <saschagros@gmail.com>
+Date: Tue, 25 Jun 2024 00:02:38 +0200
+Subject: [PATCH 4/6] Fix failing test, use
+ findConfigEntityDependenciesAsEntities
+
+---
+ core/modules/user/src/Form/UserPermissionsForm.php             | 1 +
+ core/modules/user/tests/src/Functional/UserPermissionsTest.php | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/core/modules/user/src/Form/UserPermissionsForm.php b/core/modules/user/src/Form/UserPermissionsForm.php
+index 8874b2661417..0428925fa032 100644
+--- a/core/modules/user/src/Form/UserPermissionsForm.php
++++ b/core/modules/user/src/Form/UserPermissionsForm.php
+@@ -173,6 +173,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
+ 
+     $form['permissions'] = [
+       '#type' => 'table',
++      '#empty' => $this->t('No permissions found.'),
+       '#header' => [$this->t('Permission')],
+       '#id' => 'permissions',
+       '#attributes' => ['class' => ['permissions', 'js-permissions']],
+diff --git a/core/modules/user/tests/src/Functional/UserPermissionsTest.php b/core/modules/user/tests/src/Functional/UserPermissionsTest.php
+index e0112f1d6765..9f0e00cd2b88 100644
+--- a/core/modules/user/tests/src/Functional/UserPermissionsTest.php
++++ b/core/modules/user/tests/src/Functional/UserPermissionsTest.php
+@@ -272,7 +272,8 @@ public function testAccessBundlePermission(): void {
+     $this->submitForm($edit, 'Save');
+     $this->assertSession()->pageTextContains('Contact form ' . $edit['label'] . ' has been added.');
+     $this->drupalGet('admin/structure/contact/manage/test_contact_type/permissions');
+-    $this->assertSession()->statusCodeEquals(403);
++    $this->assertSession()->statusCodeEquals(200);
++    $this->assertSession()->pageTextContains('No permissions found.');
+ 
+     // Permissions can be changed using the bundle-specific pages.
+     $edit = [];
+-- 
+GitLab
+
+
+From 3f795e61db50d29c6c224ec3e2056ed522180e63 Mon Sep 17 00:00:00 2001
+From: Frank Ebbers <sheetmusicfrank@gmail.com>
+Date: Sun, 30 Jun 2024 14:34:03 +0200
+Subject: [PATCH 5/6] changed deprecated/removed version numbers
+
+---
+ .../src/Entity/EntityPermissionsRouteProviderWithCheck.php    | 4 ++--
+ core/modules/user/src/Form/EntityPermissionsForm.php          | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php b/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
+index 3b6cbb395dec..5206ec9748aa 100644
+--- a/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
++++ b/core/modules/user/src/Entity/EntityPermissionsRouteProviderWithCheck.php
+@@ -15,7 +15,7 @@
+  * entity has permissions, or if the check is too expensive, then use
+  * EntityPermissionsRouteProvider instead of this class.
+  *
+- * @deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use
++ * @deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use
+  * EntityPermissionsRouteProvider instead.
+  * @see https://www.drupal.org/node/3384745
+  */
+@@ -25,7 +25,7 @@ class EntityPermissionsRouteProviderWithCheck extends EntityPermissionsRouteProv
+    * {@inheritdoc}
+    */
+   protected function getEntityPermissionsRoute(EntityTypeInterface $entity_type): ?Route {
+-    trigger_error(__CLASS__ . ' is deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use EntityPermissionsRouteProvider instead. See https://www.drupal.org/node/3384745', E_USER_DEPRECATED);
++    @trigger_error(__CLASS__ . ' is deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use EntityPermissionsRouteProvider instead. See https://www.drupal.org/node/3384745', E_USER_DEPRECATED);
+     $route = parent::getEntityPermissionsRoute($entity_type);
+     if ($route) {
+       $route->setRequirement('_custom_access', '\Drupal\user\Form\EntityPermissionsForm::access');
+diff --git a/core/modules/user/src/Form/EntityPermissionsForm.php b/core/modules/user/src/Form/EntityPermissionsForm.php
+index 26709e3020b2..1d49bf143355 100644
+--- a/core/modules/user/src/Form/EntityPermissionsForm.php
++++ b/core/modules/user/src/Form/EntityPermissionsForm.php
+@@ -159,12 +159,12 @@ public function buildForm(array $form, FormStateInterface $form_state, ?string $
+    * @return \Drupal\Core\Access\AccessResultInterface
+    *   The access result.
+    *
+-   * @deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use
++   * @deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use
+    * a permissions check in the route definition instead.
+    * @see https://www.drupal.org/node/3384745
+    */
+   public function access(Route $route, RouteMatchInterface $route_match, $bundle = NULL): AccessResultInterface {
+-    trigger_error(__CLASS__ . ':access() is deprecated in drupal:10.2.0 and is removed from drupal:11.0.0. Use a permissions check on the route definition instead. See https://www.drupal.org/node/3384745');
++    @trigger_error(__CLASS__ . ':access() is deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use a permissions check on the route definition instead. See https://www.drupal.org/node/3384745');
+     $permission = $route->getRequirement('_permission');
+     if ($permission && !$this->currentUser()->hasPermission($permission)) {
+       return AccessResult::neutral()->cachePerPermissions();
+-- 
+GitLab
+
+
+From a7298253afb886111b87d9a21d511ca488398258 Mon Sep 17 00:00:00 2001
+From: Frank Ebbers <sheetmusicfrank@gmail.com>
+Date: Sun, 30 Jun 2024 14:56:28 +0200
+Subject: [PATCH 6/6] Added `E_USER_DEPRECATED`
+
+---
+ core/modules/user/src/Form/EntityPermissionsForm.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/modules/user/src/Form/EntityPermissionsForm.php b/core/modules/user/src/Form/EntityPermissionsForm.php
+index 1d49bf143355..f6ab4e60b79c 100644
+--- a/core/modules/user/src/Form/EntityPermissionsForm.php
++++ b/core/modules/user/src/Form/EntityPermissionsForm.php
+@@ -164,7 +164,7 @@ public function buildForm(array $form, FormStateInterface $form_state, ?string $
+    * @see https://www.drupal.org/node/3384745
+    */
+   public function access(Route $route, RouteMatchInterface $route_match, $bundle = NULL): AccessResultInterface {
+-    @trigger_error(__CLASS__ . ':access() is deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use a permissions check on the route definition instead. See https://www.drupal.org/node/3384745');
++    @trigger_error(__CLASS__ . ':access() is deprecated in drupal:10.4.0 and is removed from drupal:12.0.0. Use a permissions check on the route definition instead. See https://www.drupal.org/node/3384745', E_USER_DEPRECATED);
+     $permission = $route->getRequirement('_permission');
+     if ($permission && !$this->currentUser()->hasPermission($permission)) {
+       return AccessResult::neutral()->cachePerPermissions();
+-- 
+GitLab
+
