@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Payment advice'
 type: invoice
 description: 'Use to create <em>Payment advice (invoice)</em>.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false

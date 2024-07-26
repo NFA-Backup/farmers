@@ -6,3 +6,4 @@ name: 'Crop maintenance'
 vid: crop_maintenance
 description: 'Crop maintenance'
 weight: 0
+new_revision: false

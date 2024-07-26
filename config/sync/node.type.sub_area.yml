@@ -11,7 +11,7 @@ third_party_settings:
 name: Sub-area
 type: sub_area
 description: 'Use this to create <em>Sub-area</em>.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false

@@ -6,3 +6,4 @@ name: 'Crop status'
 vid: crop_status
 description: 'Crop status'
 weight: 0
+new_revision: false

@@ -6,3 +6,4 @@ name: 'Crop purpose'
 vid: crop_purpose
 description: 'Crop purpose'
 weight: 0
+new_revision: false

@@ -6,3 +6,4 @@ name: 'Fee type'
 vid: fee_type
 description: 'Fee type'
 weight: 0
+new_revision: false

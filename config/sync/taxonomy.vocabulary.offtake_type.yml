@@ -6,3 +6,4 @@ name: 'Offtake type'
 vid: offtake_type
 description: 'Offtake type (Harvest type)'
 weight: 0
+new_revision: false

@@ -153,7 +153,7 @@
     },
     "patches": {
       "drupal/core": {
-        "2648950-253: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2021-06-07/2648950-253.patch",
+        "2648950: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2024-06-24/2648950-283.patch",
         "3351600-46: ckeditor5.dialog.fix.js throws \"Uncaught TypeError: event.target.classList is undefined": "https://www.drupal.org/files/issues/2023-07-31/3351600-46.diff",
         "Allow migrate to run with missing table": "patches/migrate_update_10100.patch"
       },

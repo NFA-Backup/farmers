@@ -6,3 +6,4 @@ name: Sector
 vid: sector
 description: 'A Sector is an area below a Range/Plantation Management Unit.'
 weight: 0
+new_revision: false
