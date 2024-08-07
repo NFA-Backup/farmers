@@ -16,6 +16,7 @@ use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\user\UserInterface;
 
 const RANGE = 'range';
 const SECTOR = 'sector';
@@ -1153,5 +1154,26 @@ function nfafmis_module_implements_alter(&$implementations, $hook) {
       unset($implementations['nfafmis']);
       $implementations['nfafmis'] = $group;
       break;
+  }
+}
+
+
+/**
+ * Implements hook_user_login().
+ *
+ * Redirect to home page on login.
+ */
+function nfafmis_user_login(UserInterface $account) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  // Ignore the password reset route.
+  if ($route_name !== 'user.reset.login') {
+    // Do not interfere if a destination was already set.
+    $current_request = \Drupal::service('request_stack')->getCurrentRequest();
+    if (!$current_request->query->get('destination')) {
+      // Default login destination to the home page.
+      $current_request->query->set(
+        'destination', Url::fromRoute('<front>')->toString()
+      );
+    }
   }
 }
