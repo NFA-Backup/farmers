@@ -1549,7 +1549,7 @@ display:
           admin_label: ''
           plugin_id: view
           label: 'Itemised charges'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
