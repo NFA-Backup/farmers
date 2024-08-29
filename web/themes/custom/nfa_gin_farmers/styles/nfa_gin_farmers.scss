@@ -100,3 +100,10 @@
     flex-basis: 100%;
   }
 }
+
+// Fix Gin theme sticky tables.
+.view-fmis-reports {
+  .views-view-table.sticky-enabled.position-sticky {
+    margin-top: 0;
+  }
+}
