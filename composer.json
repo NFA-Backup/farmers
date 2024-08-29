@@ -55,7 +55,7 @@
     "drupal/flag": "^4",
     "drupal/geocoder": "^3.20 || ^4.0",
     "drupal/geofield": "^1",
-    "drupal/gin": "^3",
+    "drupal/gin": "^3.0@RC",
     "drupal/gin_lb": "^1",
     "drupal/inline_entity_form": "^1",
     "drupal/migrate_plus": "^6",

@@ -3199,7 +3199,7 @@ display:
         - 'config:field.storage.node.field_receipt_number'
   data_export_1:
     id: data_export_1
-    display_title: 'Data export'
+    display_title: 'Payments data export'
     display_plugin: data_export
     position: 4
     display_options:
@@ -3665,6 +3665,7 @@ display:
         fields: false
         filters: false
         filter_groups: false
+      display_description: ''
       display_extenders:
         ajax_history: {  }
       path: tree-farmer-overview/accounts/export
@@ -3676,6 +3677,8 @@ display:
       filename: farmer-payments-export.csv
       automatic_download: true
       redirect_path: /tree-farmer-overview/accounts
+      export_method: batch
+      export_batch_size: 1000
       store_in_public_file_directory: null
       custom_redirect_path: true
       redirect_to_display: none

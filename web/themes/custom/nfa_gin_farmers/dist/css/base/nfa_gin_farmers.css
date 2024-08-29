@@ -104,5 +104,7 @@
   }
 }
 
+.view-fmis-reports .views-view-table.sticky-enabled.position-sticky {
+  margin-top: 0;
+}
 
-/*# sourceMappingURL=nfa_gin_farmers.css.map*/
