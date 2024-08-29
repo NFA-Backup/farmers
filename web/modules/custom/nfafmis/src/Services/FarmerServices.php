@@ -9,6 +9,9 @@ use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * Class FarmerServices.
+ *
+ * @todo Fees and payments functionality has been deprecated. Much of the code
+ * in this class is no longer used and should be removed.
  */
 class FarmerServices {
 
