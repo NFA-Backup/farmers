@@ -6228,11 +6228,11 @@ display:
         - 'config:field.storage.node.field_tax_identification_number'
   farmers_full:
     id: farmers_full
-    display_title: 'Farmers full backup'
+    display_title: 'Farmers register'
     display_plugin: page
     position: 1
     display_options:
-      title: 'Farmers full'
+      title: 'Farmers register'
       fields:
         title:
           id: title
@@ -7432,9 +7432,9 @@ display:
       path: fmis/reports/farmers-full
       menu:
         type: normal
-        title: 'Farmers Full'
+        title: 'Farmers register'
         description: ''
-        weight: 0
+        weight: -1
         expanded: false
         menu_name: admin
         parent: nfafmis.dashboard.reports
@@ -7461,11 +7461,11 @@ display:
         - 'config:field.storage.taxonomy_term.sector'
   farmers_full_export:
     id: farmers_full_export
-    display_title: 'Export farmers full backup'
+    display_title: 'Export farmers register'
     display_plugin: data_export
     position: 1
     display_options:
-      title: 'Farmers full'
+      title: 'Farmers register'
       fields:
         title:
           id: title
