@@ -4,3 +4,4 @@ escape: false
 dependencies:
   config:
     - node.type.land_rent_rates
+new_content_behavior: 1
