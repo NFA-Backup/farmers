@@ -6804,15 +6804,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_license_date:
-          id: field_license_date
+        field_license_date_1:
+          id: field_license_date_1
           table: node__field_license_date
           field: field_license_date
           relationship: reverse__node__field_farmer_name_ref
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'License Date'
+          label: 'License Issue Date'
           exclude: false
           alter:
             alter_text: false
@@ -6858,6 +6858,73 @@ display:
           settings:
             timezone_override: ''
             date_format: 'd F Y'
+            from_to: start_date
+            separator: '-'
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_license_date_2:
+          id: field_license_date_2
+          table: node__field_license_date
+          field: field_license_date
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'License Expiry Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: daterange_custom
+          settings:
+            timezone_override: ''
+            date_format: 'd F Y'
+            from_to: end_date
             separator: '-'
           group_column: value
           group_columns: {  }
@@ -7276,6 +7343,48 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        type_1:
+          id: type_1
+          table: node_field_data
+          field: type
+          relationship: reverse__node__field_farmer_name_ref
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            offer_license: offer_license
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
@@ -7296,13 +7405,14 @@ display:
             title_1: title_1
             field_offer_date: field_offer_date
             field_license_id: field_license_id
-            field_license_date: field_license_date
+            field_license_date_1: field_license_date_1
+            field_license_date_2: field_license_date_2
             field_block_ref: field_block_ref
             field_overall_area: field_overall_area
           default: title
           info:
             title:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -7358,13 +7468,20 @@ display:
               empty_column: false
               responsive: ''
             field_license_id:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_license_date:
+            field_license_date_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_license_date_2:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -7372,14 +7489,14 @@ display:
               empty_column: false
               responsive: ''
             field_block_ref:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             field_overall_area:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
