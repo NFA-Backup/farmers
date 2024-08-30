@@ -55,7 +55,7 @@
     "drupal/flag": "^4",
     "drupal/geocoder": "^3.20 || ^4.0",
     "drupal/geofield": "^1",
-    "drupal/gin": "^3",
+    "drupal/gin": "^3.0@RC",
     "drupal/gin_lb": "^1",
     "drupal/inline_entity_form": "^1",
     "drupal/migrate_plus": "^6",
@@ -155,7 +155,6 @@
     "patches": {
       "drupal/core": {
         "2648950: Use form element of type date instead textfield when selecting a date in an exposed filter": "https://www.drupal.org/files/issues/2024-06-24/2648950-283.patch",
-        "3351600-46: ckeditor5.dialog.fix.js throws \"Uncaught TypeError: event.target.classList is undefined": "https://www.drupal.org/files/issues/2023-07-31/3351600-46.diff",
         "Allow migrate to run with missing table": "patches/migrate_update_10100.patch",
         "3384600: Don't hide permissions local tasks on bundles when no permissions are defined": "patches/8488.patch"
       },
