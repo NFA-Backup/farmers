@@ -67,6 +67,7 @@
     "drupal/pathauto": "^1",
     "drupal/r4032login": "^2.2",
     "drupal/serial": "^2",
+    "drupal/symfony_mailer": "^1.5",
     "drupal/token": "^1",
     "drupal/views_ajax_history": "^1",
     "drupal/views_autocomplete_filters": "^1",
