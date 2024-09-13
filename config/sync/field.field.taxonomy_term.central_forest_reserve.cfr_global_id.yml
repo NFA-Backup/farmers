@@ -1,0 +1,19 @@
+uuid: 06cdae95-0b5b-4382-870c-3ad3587a0b93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.cfr_global_id
+    - taxonomy.vocabulary.central_forest_reserve
+id: taxonomy_term.central_forest_reserve.cfr_global_id
+field_name: cfr_global_id
+entity_type: taxonomy_term
+bundle: central_forest_reserve
+label: 'CFR global ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
