@@ -324,6 +324,7 @@ function nfafmis_post_update_006_rebuild_node_permissions(&$sandbox = NULL) {
  * Populate CFR global id field in taxonomy terms.
  */
 function nfafmis_post_update_cfr_global_ids(&$sandbox) {
+  // CFR term id names and their global ids.
   $cfrs = [
     "Abera" => "907a4a13-aa65-4f6d-948b-78aab49e2d24",
     "Abiba" => "87e8b37b-418e-4de7-9271-dc92f4de8c79",
@@ -817,11 +818,12 @@ function nfafmis_post_update_cfr_global_ids(&$sandbox) {
     "Zoka" => "1f25dcbe-2d13-47b4-a685-9ec1235ba346",
     "Zulia" => "3f032eaf-09d8-43b7-87fc-140d64004431",
   ];
-  // Query nodes with the old field.
+  // Query all terms in the central forest reserve vocabulary.
   $term_ids = \Drupal::entityQuery('taxonomy_term')
     ->condition('vid', 'central_forest_reserve')
     ->accessCheck(FALSE)
     ->execute();
+  // Load all terms and set the cfr_global_id field.
   foreach ($term_ids as $tid) {
     $term = Term::load($tid);
     $name = $term->getName();
