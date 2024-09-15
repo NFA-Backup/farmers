@@ -10,8 +10,8 @@ field_name: cfr_global_id
 entity_type: taxonomy_term
 bundle: central_forest_reserve
 label: 'CFR global ID'
-description: ''
-required: false
+description: 'Global CFR identifier for NFA websites '
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
