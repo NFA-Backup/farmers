@@ -828,8 +828,19 @@ function nfafmis_post_update_cfr_global_ids(&$sandbox) {
     $term = Term::load($tid);
     $name = $term->getName();
     if (isset($cfrs[$name])) {
-      $term->set('cfr_global_id', $cfrs[$name]);
-      $term->save();
+      $cfr_global_id = $term->get('cfr_global_id')->value;
+      if ($cfr_global_id) {
+        \Drupal::logger('Farm NFA')->warning('Term @term_name already has a CFR global ID @cfr_global_id',
+        ['@term_name' => $name, '@cfr_global_id' => $cfr_global_id]);
+      }
+      else {
+        $term->set('cfr_global_id', $cfrs[$name]);
+        $term->save();
+      }
+    }
+    else {
+      \Drupal::logger('Farm NFA')->warning('No taxonomy term found for CFR name @cfr_name with term ID @term_id',
+      ['@term_id' => $tid, '@cfr_name' => $name]);
     }
   }
 }
