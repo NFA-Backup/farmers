@@ -104,7 +104,7 @@
   }
 }
 
-.view-fmis-reports .views-view-table.sticky-enabled.position-sticky {
+.view-fmis-reports .views-view-table.sticky-enabled.position-sticky, .view-management-unit-summary .views-view-table.sticky-enabled.position-sticky {
   margin-top: 0;
 }
 
