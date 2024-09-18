@@ -77,7 +77,9 @@ function nfafmis_form_alter(array &$form, FormStateInterface $form_state, $form_
   $nfafmis_service_utility = \Drupal::service('nfafmis_service.utility');
   $nfafmis_service_farmer = \Drupal::service('nfafmis_service.farmer');
   $entity_type_manager = \Drupal::entityTypeManager();
-
+  if ($form_id == 'taxonomy_term_central_forest_reserve_form') {
+    $form['cfr_global_id']['widget'][0]['#disabled'] = TRUE;
+  }
   if ($form_id === 'comment_comment_form') {
     $form['actions']['submit']['#submit'][] = 'nfafmis_comment_comment_form_submit';
   }

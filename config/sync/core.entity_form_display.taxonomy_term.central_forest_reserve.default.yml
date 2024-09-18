@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.central_forest_reserve.cfr_global_id
     - field.field.taxonomy_term.central_forest_reserve.geofield_map
     - field.field.taxonomy_term.central_forest_reserve.kml_file
     - field.field.taxonomy_term.central_forest_reserve.management_unit
@@ -18,6 +19,14 @@ targetEntityType: taxonomy_term
 bundle: central_forest_reserve
 mode: default
 content:
+  cfr_global_id:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   description:
     type: text_textarea
     weight: 3
