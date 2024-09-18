@@ -9,6 +9,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\AjaxResponse;
@@ -1164,6 +1165,21 @@ function nfafmis_user_login(UserInterface $account) {
       $current_request->query->set(
         'destination', Url::fromRoute('<front>')->toString()
       );
+    }
+  }
+}
+
+function nfafmis_taxonomy_term_presave(Term $term) {
+  // If the update is from a JSON:API request, do not allow the cfr_global_id
+  // field to be overwritten.
+  $route = \Drupal::routeMatch()->getRouteObject();
+  if (!empty($route)) {
+    $defaults = $route->getDefaults();
+    if (!empty($defaults['_is_jsonapi']) && !empty($defaults['resource_type'])) {
+      if ($term->bundle() === 'central_forest_reserve') {
+        $original = $term->original;
+        $term->cfr_global_id->setValue($original->cfr_global_id->value);
+      }
     }
   }
 }

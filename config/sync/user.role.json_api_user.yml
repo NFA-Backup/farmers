@@ -1,0 +1,16 @@
+uuid: 1de10bbe-8ddd-4e61-94ca-a15153bdb27b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.central_forest_reserve
+  module:
+    - nfafmis
+    - taxonomy
+id: json_api_user
+label: 'JSON:API user'
+weight: 2
+is_admin: null
+permissions:
+  - 'access jsonapi routes'
+  - 'edit terms in central_forest_reserve'

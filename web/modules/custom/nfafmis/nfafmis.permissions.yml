@@ -1,11 +1,11 @@
 access all management unit content:
   title: 'Access content in all management units'
-
 edit all management unit content:
   title: 'Edit content in all management units'
-
 administer fmis settings:
   title: 'Administer FMIS settings'
-
 view fmis reports:
   title: 'View NFA FMIS reports'
+access jsonapi routes:
+  title: 'Access JSON:API routes'
+  description: 'Allows access to JSON:API routes.'

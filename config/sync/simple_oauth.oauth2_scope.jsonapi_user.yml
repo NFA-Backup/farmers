@@ -1,0 +1,22 @@
+uuid: 23142fc5-24ba-4bd9-9abf-47cd65315b67
+langcode: en
+status: true
+dependencies: {  }
+id: jsonapi_user
+name: jsonapi_user
+description: 'Grants access to the JSON:API user role.'
+grant_types:
+  authorization_code:
+    status: false
+    description: ''
+  refresh_token:
+    status: false
+    description: ''
+  client_credentials:
+    status: true
+    description: ''
+umbrella: false
+parent: _none
+granularity: role
+permission: ''
+role: json_api_user
