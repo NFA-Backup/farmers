@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.offer_license.documents
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_ref
@@ -32,6 +33,7 @@ content:
     weight: 100
     region: content
 hidden:
+  documents: true
   field_area_number: true
   field_area_serial_number: true
   field_block_ref: true

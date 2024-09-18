@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.offer_license.documents
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_ref
@@ -21,12 +22,20 @@ dependencies:
   module:
     - datetime
     - datetime_range
+    - file
     - serial
 id: node.offer_license.default
 targetEntityType: node
 bundle: offer_license
 mode: default
 content:
+  documents:
+    type: file_generic
+    weight: 26
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
   field_area_serial_number:
     type: serial_default_widget
     weight: 12
