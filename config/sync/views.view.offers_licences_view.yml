@@ -664,7 +664,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: numeric
+          plugin_id: entity_target_id
           default_action: default
           exception:
             value: all
@@ -690,6 +690,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+          target_entity_type_id: node
       filters:
         status:
           id: status
@@ -1658,7 +1659,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Download Links'
+          label: Documents
           exclude: false
           alter:
             alter_text: false
@@ -1702,7 +1703,7 @@ display:
           click_sort_column: target_id
           type: file_default
           settings:
-            use_description_as_link_text: true
+            use_description_as_link_text: false
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1711,7 +1712,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: '<br>   '
           field_api_classes: false
       defaults:
         fields: false
