@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.offer_license.documents
     - field.field.node.offer_license.field_area_number
     - field.field.node.offer_license.field_area_serial_number
     - field.field.node.offer_license.field_block_ref
@@ -21,6 +22,7 @@ dependencies:
   module:
     - datetime
     - datetime_range
+    - file
     - serial
     - user
 id: node.offer_license.default
@@ -28,6 +30,14 @@ targetEntityType: node
 bundle: offer_license
 mode: default
 content:
+  documents:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
   field_area_number:
     type: string
     label: above

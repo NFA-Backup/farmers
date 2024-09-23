@@ -1,0 +1,27 @@
+uuid: 9dd699b1-56b8-4c9a-8529-5b11b9dd30e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.documents
+    - node.type.offer_license
+  module:
+    - file
+id: node.offer_license.documents
+field_name: documents
+entity_type: node
+bundle: offer_license
+label: Documents
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file
