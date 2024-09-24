@@ -316,7 +316,8 @@ display:
           content: '{{ edit_node }}'
           tokenize: true
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2781,7 +2782,7 @@ display:
           entity_field: title
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: 'Coming soon!!'
@@ -3002,10 +3003,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          view: accounts_tab
-          display: block_2
+          view: accounts_tab_payments_report
+          display: payments_report
           arguments: '{{ raw_fields.nid }}'
       defaults:
+        cache: true
         title: false
         css_class: false
         fields: false

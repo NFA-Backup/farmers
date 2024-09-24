@@ -181,7 +181,7 @@
             if (filtered_name === filtered_id.slice(1)) {
               hideElement();
               $(filtered_id).parents('.views-row').fadeIn('slow');
-              $(filtered_id).parents('.view-display-id-block_2').fadeIn('slow');
+              $(filtered_id).parents('.view-accounts-tab-payments-report').fadeIn('slow');
               $('.account-list-subtabs a').removeClass('is-active');
               tempElem.addClass('is-active');
             }
@@ -193,7 +193,7 @@
               hideElement();
               let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
               $('#' + elemToHide).parents('.views-row').fadeIn('slow');
-              $('#' + elemToHide).parents('.view-display-id-block_2').fadeIn('slow');
+              $('#' + elemToHide).parents('.view-accounts-tab-payments-report').fadeIn('slow');
               $('.views-field-field-itemise-charges').hide();
               $('.account-list-subtabs a').removeClass('is-active');
               $(this).addClass('is-active');
@@ -246,7 +246,7 @@
   // Default hide all content, then show accordingly.
   function hideElement() {
     $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
-    $('.account-tab-view .view-content .views-row .field-content .view-display-id-block_2').hide();
+    $('.account-tab-view .view-content .views-row .field-content .view-accounts-tab-payments-report').hide();
     $('.views-field-field-itemise-charges').hide();
   }
 }(jQuery));

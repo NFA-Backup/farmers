@@ -1,31 +1,35 @@
-uuid: bd65a4ad-3045-4e7d-8594-3d40c25b7df6
+uuid: a37d8347-6bb9-49a5-bc51-df2552537291
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_amount
     - field.storage.node.field_area_number
     - field.storage.node.field_central_forest_reserve
-    - field.storage.node.field_invoice_date
-    - field.storage.node.field_invoice_number
+    - field.storage.node.field_date_of_nfa_receipt
     - field.storage.node.field_licence_id_ref
     - field.storage.node.field_license_date
-    - field.storage.node.field_license_id
+    - field.storage.node.field_nfa_receipt_number
     - field.storage.node.field_offer_date
     - field.storage.node.field_overall_area
-    - field.storage.node.field_purpose
-    - field.storage.node.field_receipt_number
+    - field.storage.node.field_payment_amount
+    - field.storage.node.field_payment_type
+    - field.storage.node.field_ura_prn
+    - field.storage.node.field_ura_prn_date
+    - node.type.fee_payment_nfa
     - node.type.offer_license
-    - node.type.payment
+    - taxonomy.vocabulary.payment_type
   module:
+    - csv_serialization
     - datetime
     - datetime_range
     - node
-    - options
+    - rest
+    - serialization
+    - taxonomy
     - user
-    - views_field_view
-id: accounts_tab
-label: 'Accounts tab - offer/license'
+    - views_data_export
+id: accounts_tab_payments_report
+label: 'Accounts tab - payments report'
 module: views
 description: 'Accounts tab'
 tag: ''
@@ -814,26 +818,26 @@ display:
         - 'config:field.storage.node.field_license_date'
         - 'config:field.storage.node.field_offer_date'
         - 'config:field.storage.node.field_overall_area'
-  block_1:
-    id: block_1
-    display_title: 'Offers/Licences account view'
-    display_plugin: block
-    position: 1
+  data_export_1:
+    id: data_export_1
+    display_title: 'Payments data export'
+    display_plugin: data_export
+    position: 4
     display_options:
       fields:
-        field_area_number_1:
-          id: field_area_number_1
-          table: node__field_area_number
-          field: field_area_number
+        field_nfa_receipt_number:
+          id: field_nfa_receipt_number
+          table: node__field_nfa_receipt_number
+          field: field_nfa_receipt_number
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: ''
+          label: 'NFA Receipt Number'
           exclude: false
           alter:
-            alter_text: true
-            text: "<li class=\"account-list-tabs hidden\">\r\n<a href=\"#\">{{ field_area_number_1 }}</a>\r\n</li>"
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -862,10 +866,10 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -884,80 +888,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_offer_date:
-          id: field_offer_date
-          table: node__field_offer_date
-          field: field_offer_date
+        field_date_of_nfa_receipt:
+          id: field_date_of_nfa_receipt
+          table: node__field_date_of_nfa_receipt
+          field: field_date_of_nfa_receipt
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Letter offer date'
+          label: 'NFA receipt date'
           exclude: false
           alter:
             alter_text: false
@@ -990,7 +929,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1013,15 +952,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_area_number:
-          id: field_area_number
-          table: node__field_area_number
-          field: field_area_number
+        field_ura_prn_date:
+          id: field_ura_prn_date
+          table: node__field_ura_prn_date
+          field: field_ura_prn_date
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Area ID'
+          label: 'URA PRN date'
           exclude: false
           alter:
             alter_text: false
@@ -1054,7 +993,71 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_ura_prn:
+          id: field_ura_prn
+          table: node__field_ura_prn
+          field: field_ura_prn
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'URA PRN'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1076,15 +1079,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_license_id:
-          id: field_license_id
-          table: node__field_license_id
-          field: field_license_id
+        field_payment_type:
+          id: field_payment_type
+          table: node__field_payment_type
+          field: field_payment_type
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'License Number'
+          label: 'Payment type'
           exclude: false
           alter:
             alter_text: false
@@ -1117,7 +1120,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1125,11 +1128,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1139,15 +1142,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_overall_area:
-          id: field_overall_area
-          table: node__field_overall_area
-          field: field_overall_area
+        field_payment_amount:
+          id: field_payment_amount
+          table: node__field_payment_amount
+          field: field_payment_amount
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Total area allocated'
+          label: 'Payment amount'
           exclude: false
           alter:
             alter_text: false
@@ -1180,7 +1183,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1205,411 +1208,122 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_license_date:
-          id: field_license_date
-          table: node__field_license_date
-          field: field_license_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'License starts'
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_license_date__value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: daterange_default
-          settings:
-            timezone_override: ''
-            format_type: medium
-            separator: '-'
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_license_date_1:
-          id: field_license_date_1
-          table: node__field_license_date
-          field: field_license_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'License ends'
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_license_date_1__end_value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: daterange_default
-          settings:
-            timezone_override: ''
-            format_type: medium
-            separator: '-'
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_central_forest_reserve:
-          id: field_central_forest_reserve
-          table: node__field_central_forest_reserve
-          field: field_central_forest_reserve
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Central Forest Reserve'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        nid:
-          id: nid
+      filters:
+        status:
+          id: status
           table: node_field_data
-          field: nid
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: nid
-          plugin_id: field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_purpose:
-          id: field_purpose
-          table: node__field_purpose
-          field: field_purpose
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: '0'
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        view:
-          id: view
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: view
-          label: 'Itemised charges'
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: div
-          element_wrapper_class: 'views-field views-field-field-itemise-charges'
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          view: charges_listing
-          display: default
-          arguments: '{{ raw_fields.nid }}'
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            fee_payment_nfa: fee_payment_nfa
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
       defaults:
-        css_class: false
         fields: false
-      css_class: view-label-data
+        filters: false
+        filter_groups: false
       display_description: ''
       display_extenders:
         ajax_history: {  }
+      path: tree-farmer-overview/accounts/export
+      displays:
+        default: '0'
+        payments_report: payments_report
+      filename: farmer-payments-export.csv
+      automatic_download: true
+      redirect_path: /tree-farmer-overview/accounts
+      export_method: batch
+      export_batch_size: 1000
+      store_in_public_file_directory: null
+      custom_redirect_path: true
+      redirect_to_display: none
+      include_query_params: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - request_format
         - url
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_area_number'
-        - 'config:field.storage.node.field_central_forest_reserve'
-        - 'config:field.storage.node.field_license_date'
-        - 'config:field.storage.node.field_license_id'
-        - 'config:field.storage.node.field_offer_date'
-        - 'config:field.storage.node.field_overall_area'
-        - 'config:field.storage.node.field_purpose'
-  block_3:
-    id: block_3
-    display_title: 'Invoices report account view - deprecated'
+        - 'config:field.storage.node.field_date_of_nfa_receipt'
+        - 'config:field.storage.node.field_nfa_receipt_number'
+        - 'config:field.storage.node.field_payment_amount'
+        - 'config:field.storage.node.field_payment_type'
+        - 'config:field.storage.node.field_ura_prn'
+        - 'config:field.storage.node.field_ura_prn_date'
+  payments_report:
+    id: payments_report
+    display_title: 'Payments report account view'
     display_plugin: block
     position: 1
     display_options:
-      enabled: false
       title: 'Payments report'
       fields:
         title:
@@ -1677,15 +1391,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_invoice_date:
-          id: field_invoice_date
-          table: node__field_invoice_date
-          field: field_invoice_date
-          relationship: field_invoice
+        field_nfa_receipt_number:
+          id: field_nfa_receipt_number
+          table: node__field_nfa_receipt_number
+          field: field_nfa_receipt_number
+          relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Date
+          label: 'NFA Receipt Number'
           exclude: false
           alter:
             alter_text: false
@@ -1718,7 +1432,70 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_date_of_nfa_receipt:
+          id: field_date_of_nfa_receipt
+          table: node__field_date_of_nfa_receipt
+          field: field_date_of_nfa_receipt
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'NFA receipt date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1741,78 +1518,79 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_invoice_number:
-          id: field_invoice_number
-          table: node__field_invoice_number
-          field: field_invoice_number
-          relationship: field_invoice
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Invoice number'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_receipt_number:
-          id: field_receipt_number
-          table: node__field_receipt_number
-          field: field_receipt_number
+        field_ura_prn_date:
+          id: field_ura_prn_date
+          table: node__field_ura_prn_date
+          field: field_ura_prn_date
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Receipt number'
+          label: 'URA PRN date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_ura_prn:
+          id: field_ura_prn
+          table: node__field_ura_prn
+          field: field_ura_prn
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'URA PRN'
           exclude: false
           alter:
             alter_text: false
@@ -1867,15 +1645,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_amount:
-          id: field_amount
-          table: node__field_amount
-          field: field_amount
-          relationship: field_invoice
+        field_payment_amount:
+          id: field_payment_amount
+          table: node__field_payment_amount
+          field: field_payment_amount
+          relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Amount
+          label: 'Payment amount'
           exclude: false
           alter:
             alter_text: false
@@ -1908,7 +1686,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1919,11 +1697,74 @@ display:
           click_sort_column: value
           type: number_decimal
           settings:
-            thousand_separator: ''
+            thousand_separator: ','
             decimal_separator: .
             scale: 2
             prefix_suffix: true
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_payment_type:
+          id: field_payment_type
+          table: node__field_payment_type
+          field: field_payment_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Payment type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1957,6 +1798,21 @@ display:
             value: 'No result found.'
             format: basic_html
           tokenize: false
+      sorts:
+        field_date_of_nfa_receipt_value:
+          id: field_date_of_nfa_receipt_value
+          table: node__field_date_of_nfa_receipt
+          field: field_date_of_nfa_receipt_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       filters:
         type:
           id: type
@@ -1970,7 +1826,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            payment: payment
+            fee_payment_nfa: fee_payment_nfa
           group: 1
           exposed: false
           expose:
@@ -2040,11 +1896,11 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_invoice_date_value:
-          id: field_invoice_date_value
-          table: node__field_invoice_date
-          field: field_invoice_date_value
-          relationship: field_invoice
+        field_date_of_nfa_receipt_value:
+          id: field_date_of_nfa_receipt_value
+          table: node__field_date_of_nfa_receipt
+          field: field_date_of_nfa_receipt_value
+          relationship: none
           group_type: group
           admin_label: ''
           plugin_id: datetime
@@ -2057,14 +1913,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_invoice_date_value_op
-            label: 'Start date'
+            operator_id: field_date_of_nfa_receipt_value_op
+            label: 'NFA receipt start date'
             description: ''
             use_operator: false
-            operator: field_invoice_date_value_op
+            operator: field_date_of_nfa_receipt_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: start_date
+            identifier: start
             required: false
             remember: false
             multiple: false
@@ -2072,80 +1928,18 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: MM/DD/YY
-          is_grouped: false
-          group_info:
-            label: Date
-            description: ''
-            identifier: field_invoice_date_value
-            optional: false
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: ''
-                operator: '='
-                value:
-                  min: ''
-                  max: ''
-                  value: ''
-                  type: date
-              2:
-                title: ''
-                operator: '='
-                value:
-                  min: ''
-                  max: ''
-                  value: ''
-                  type: date
-              3:
-                title: ''
-                operator: '='
-                value:
-                  min: ''
-                  max: ''
-                  value: ''
-                  type: date
-        field_invoice_date_value_1:
-          id: field_invoice_date_value_1
-          table: node__field_invoice_date
-          field: field_invoice_date_value
-          relationship: field_invoice
-          group_type: group
-          admin_label: ''
-          plugin_id: datetime
-          operator: '<='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_invoice_date_value_1_op
-            label: 'End date'
-            description: ''
-            use_operator: false
-            operator: field_invoice_date_value_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: end_date
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: MM/DD/YY
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              range_power_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
+              hq_user: '0'
+              hq_power_user: '0'
+              power_admin: '0'
+            min_placeholder: null
+            max_placeholder: null
+            placeholder: null
           is_grouped: false
           group_info:
             label: ''
@@ -2158,29 +1952,31 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_invoice_details_value:
-          id: field_invoice_details_value
-          table: node__field_invoice_details
-          field: field_invoice_details_value
-          relationship: field_invoice
+        field_date_of_nfa_receipt_value_1:
+          id: field_date_of_nfa_receipt_value_1
+          table: node__field_date_of_nfa_receipt
+          field: field_date_of_nfa_receipt_value
+          relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: list_field
-          operator: or
+          plugin_id: datetime
+          operator: '<='
           value:
-            1: '1'
-            2: '2'
+            min: ''
+            max: ''
+            value: ''
+            type: date
           group: 1
           exposed: true
           expose:
-            operator_id: field_invoice_details_value_op
-            label: 'Invoice for'
+            operator_id: field_date_of_nfa_receipt_value_1_op
+            label: 'NFA receipt end date'
             description: ''
             use_operator: false
-            operator: field_invoice_details_value_op
+            operator: field_date_of_nfa_receipt_value_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_invoice_details_value
+            identifier: end
             required: false
             remember: false
             multiple: false
@@ -2190,6 +1986,65 @@ display:
               administrator: '0'
               nfa_staff: '0'
               not_staff: '0'
+              range_user: '0'
+              range_power_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
+              hq_user: '0'
+              hq_power_user: '0'
+              power_admin: '0'
+            min_placeholder: null
+            max_placeholder: null
+            placeholder: null
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_payment_type_target_id:
+          id: field_payment_type_target_id
+          table: node__field_payment_type
+          field: field_payment_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_payment_type_target_id_op
+            label: 'Payment type'
+            description: ''
+            use_operator: false
+            operator: field_payment_type_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              nfa_staff: '0'
+              not_staff: '0'
+              range_user: '0'
+              range_power_user: '0'
+              sector_user: '0'
+              sector_power_user: '0'
+              hq_user: '0'
+              hq_power_user: '0'
+              power_admin: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2204,6 +2059,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
+          vid: payment_type
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -2280,19 +2140,11 @@ display:
         row: false
         relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
         header: false
-      relationships:
-        field_invoice:
-          id: field_invoice
-          table: node__field_invoice
-          field: field_invoice
-          relationship: none
-          group_type: group
-          admin_label: 'field_invoice: Content'
-          plugin_id: standard
-          required: true
+      relationships: {  }
       css_class: view-label-data
       use_ajax: true
       display_description: ''
@@ -2320,7 +2172,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_amount'
-        - 'config:field.storage.node.field_invoice_date'
-        - 'config:field.storage.node.field_invoice_number'
-        - 'config:field.storage.node.field_receipt_number'
+        - 'config:field.storage.node.field_date_of_nfa_receipt'
+        - 'config:field.storage.node.field_nfa_receipt_number'
+        - 'config:field.storage.node.field_payment_amount'
+        - 'config:field.storage.node.field_payment_type'
+        - 'config:field.storage.node.field_ura_prn'
+        - 'config:field.storage.node.field_ura_prn_date'
