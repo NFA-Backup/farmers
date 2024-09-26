@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.fee_payment_nfa.field_nfa_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
     - field.field.node.fee_payment_nfa.field_payment_amount
+    - field.field.node.fee_payment_nfa.field_payment_amount_new
     - field.field.node.fee_payment_nfa.field_payment_type
     - field.field.node.fee_payment_nfa.field_ura_prn
     - field.field.node.fee_payment_nfa.field_ura_prn_date
@@ -32,6 +33,7 @@ hidden:
   field_nfa_receipt_number: true
   field_offer_id_ref: true
   field_payment_amount: true
+  field_payment_amount_new: true
   field_payment_type: true
   field_ura_prn: true
   field_ura_prn_date: true
