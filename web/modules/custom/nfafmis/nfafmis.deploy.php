@@ -917,3 +917,25 @@ function nfafmis_deploy_010_cfr_global_ids(&$sandbox) {
     }
   }
 }
+
+/**
+ * Update new Payment amount field with data from obsolete Payment amount field.
+ */
+function nfafmis_deploy_011_update_payment_amount(&$sandbox = NULL) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $storage = $entity_type_manager->getStorage('node');
+  $ids = $storage
+    ->getQuery()
+    ->condition('type', ['fee_payment_nfa'], 'IN')
+    ->accessCheck(FALSE)
+    ->execute();
+  foreach (Node::loadMultiple($ids) as $node) {
+    if ($node->hasField('field_payment_amount')) {
+      $payment_amount = $node->get('field_payment_amount')->value;
+      if ($payment_amount) {
+        $node->set('field_payment_amount_new', $payment_amount);
+        $node->save();
+      }
+    }
+  }
+}

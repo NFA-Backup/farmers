@@ -113,3 +113,31 @@
   align-self: center;
 }
 
+[dir="ltr"] .views-field-field-payment-amount-new {
+  text-align: right;
+}
+
+[dir="rtl"] .views-field-field-payment-amount-new {
+  text-align: left;
+}
+
+[dir="ltr"] .text-start {
+  text-align: left;
+}
+
+[dir="rtl"] .text-start {
+  text-align: right;
+}
+
+[dir="ltr"] .text-end {
+  text-align: right;
+}
+
+[dir="rtl"] .text-end {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
