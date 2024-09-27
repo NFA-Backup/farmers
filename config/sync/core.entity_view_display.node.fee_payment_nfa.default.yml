@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.fee_payment_nfa.field_nfa_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
     - field.field.node.fee_payment_nfa.field_payment_amount
+    - field.field.node.fee_payment_nfa.field_payment_amount_new
     - field.field.node.fee_payment_nfa.field_payment_type
     - field.field.node.fee_payment_nfa.field_ura_prn
     - field.field.node.fee_payment_nfa.field_ura_prn_date
@@ -28,7 +29,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_farmer_name_ref:
     type: entity_reference_label
@@ -44,7 +45,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: 7
     region: content
   field_offer_id_ref:
     type: entity_reference_label
@@ -54,7 +55,7 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_payment_amount:
+  field_payment_amount_new:
     type: number_decimal
     label: above
     settings:
@@ -63,7 +64,7 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_payment_type:
     type: entity_reference_label
@@ -71,7 +72,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_ura_prn:
     type: string
@@ -79,7 +80,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_ura_prn_date:
     type: datetime_default
@@ -88,12 +89,13 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 9
+    weight: 8
     region: content
 hidden:
+  field_payment_amount: true
   field_ura_prn_scan: true

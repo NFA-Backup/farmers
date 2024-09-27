@@ -1,0 +1,23 @@
+uuid: 246e9c51-5057-4846-a4be-bdbecaca76bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_amount_new
+    - node.type.fee_payment_nfa
+id: node.fee_payment_nfa.field_payment_amount_new
+field_name: field_payment_amount_new
+entity_type: node
+bundle: fee_payment_nfa
+label: 'Payment amount'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: UGX
+  suffix: ''
+field_type: float

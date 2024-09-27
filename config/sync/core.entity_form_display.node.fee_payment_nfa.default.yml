@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.fee_payment_nfa.field_nfa_receipt_number
     - field.field.node.fee_payment_nfa.field_offer_id_ref
     - field.field.node.fee_payment_nfa.field_payment_amount
+    - field.field.node.fee_payment_nfa.field_payment_amount_new
     - field.field.node.fee_payment_nfa.field_payment_type
     - field.field.node.fee_payment_nfa.field_ura_prn
     - field.field.node.fee_payment_nfa.field_ura_prn_date
@@ -22,7 +23,7 @@ mode: default
 content:
   field_date_of_nfa_receipt:
     type: datetime_default
-    weight: 7
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -38,7 +39,7 @@ content:
     third_party_settings: {  }
   field_nfa_receipt_number:
     type: string_textfield
-    weight: 8
+    weight: 6
     region: content
     settings:
       size: 60
@@ -54,22 +55,22 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_payment_amount:
+  field_payment_amount_new:
     type: number
-    weight: 4
+    weight: 7
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_payment_type:
     type: options_select
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   field_ura_prn:
     type: string_textfield
-    weight: 6
+    weight: 4
     region: content
     settings:
       size: 60
@@ -77,12 +78,13 @@ content:
     third_party_settings: {  }
   field_ura_prn_date:
     type: datetime_default
-    weight: 5
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
+  field_payment_amount: true
   field_ura_prn_scan: true
   path: true
   promote: true
