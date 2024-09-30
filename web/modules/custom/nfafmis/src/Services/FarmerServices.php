@@ -183,7 +183,7 @@ class FarmerServices {
         $data_array[$key]['nfa_receipt_number'] = $payment->get('field_nfa_receipt_number')->value;
         $data_array[$key]['ura_prn_date'] = $payment->get('field_ura_prn_date')->value;
         $data_array[$key]['ura_prn'] = $payment->get('field_ura_prn')->value;
-        $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount')->value;
+        $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount_new')->value;
         $data_array[$key]['nid'] = $payment->id();
         $total_paid[substr($payment->get('field_date_of_nfa_receipt')->value, 0, 4)] = $data_array[$key]['payment_amount'];
       }
