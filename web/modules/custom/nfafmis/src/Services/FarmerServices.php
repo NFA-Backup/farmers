@@ -175,9 +175,11 @@ class FarmerServices {
       ->accessCheck()
       ->execute();
     if (!empty($payment_nids)) {
+      $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
       $nids = array_values($payment_nids);
       $payments = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
       foreach ($payments as $key => $payment) {
+        $data_array[$key]['area_title'] = $area->getTitle();
         $data_array[$key]['payment_type'] = $payment->get('field_payment_type')->entity->getName();
         $data_array[$key]['nfa_receipt_date'] = $payment->get('field_date_of_nfa_receipt')->value;
         $data_array[$key]['nfa_receipt_number'] = $payment->get('field_nfa_receipt_number')->value;
