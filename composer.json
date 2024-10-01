@@ -169,6 +169,9 @@
       },
       "drupal/gin": {
         "3432512: Missing once dependencies on sticky and gin_accent libraries": "https://git.drupalcode.org/project/gin/-/merge_requests/396.diff"
+      },
+      "drupal/views_field_view": {
+        "3201100: Don't use view render() method": "https://www.drupal.org/files/issues/2021-03-02/3201100-2_0.patch"
       }
     }
   },
