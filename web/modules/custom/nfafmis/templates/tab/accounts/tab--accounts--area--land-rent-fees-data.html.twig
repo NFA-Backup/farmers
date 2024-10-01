@@ -41,6 +41,7 @@
         <table class="table table-hover table-striped">
           <thead>
           <tr>
+            <th>Offer/License</th>
             <th>NFA receipt date</th>
             <th>NFA receipt number</th>
             <th>URA PRN date</th>
@@ -58,6 +59,7 @@
           {# if empty table #}
           {% for fee_payment in data.fee_payments.data %}
             <tr>
+              <td>{{ fee_payment.area_title}}</td>
               <td>{{ fee_payment.nfa_receipt_date}}</td>
               <td>{{ fee_payment.nfa_receipt_number}}</td>
               <td>{{ fee_payment.ura_prn_date }}</td>
