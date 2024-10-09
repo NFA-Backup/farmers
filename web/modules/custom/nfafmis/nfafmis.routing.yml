@@ -12,3 +12,10 @@ nfafmis.settings:
     _title: 'Settings'
   requirements:
     _permission: 'administer fmis settings'
+nfafmis.farmer_accounts_page:
+  path: '/tree-farmer-overview/accounts'
+  defaults:
+    _controller: '\Drupal\nfafmis\Controller\FarmerAccountsPageController::content'
+    _title: 'Accounts'
+  requirements:
+    _permission: 'access content'

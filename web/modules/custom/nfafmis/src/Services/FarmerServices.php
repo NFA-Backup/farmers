@@ -2,10 +2,11 @@
 
 namespace Drupal\nfafmis\Services;
 
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Session\AccountProxy;
-use Drupal\Core\Entity\EntityTypeManager;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class FarmerServices.
@@ -46,29 +47,45 @@ class FarmerServices {
   /**
    * NFA Fee payments data.
    *
-   * @array
+   * @var array
    */
   protected $nfaFeePayments;
+
+  /**
+   * The request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
 
   /**
    * Constructs a new FarmerServices object.
    *
    * @param \Drupal\Core\Session\AccountProxy $current_user
+   *   The current user.
    * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Core\Render\Renderer $renderer
+   *   The renderer.
    * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
+   *   The file URL generator.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
    */
   public function __construct(
     AccountProxy $current_user,
     EntityTypeManager $entity_type_manager,
     Renderer $renderer,
-    FileUrlGeneratorInterface $file_url_generator
+    FileUrlGeneratorInterface $file_url_generator,
+    RequestStack $request_stack,
   ) {
     $this->currentUser = $current_user;
     $this->renderer = $renderer;
     $this->entityTypeManager = $entity_type_manager;
     $this->fileUrlGenerator = $file_url_generator;
     $this->nfaFeePayments = [];
+    $this->requestStack = $request_stack;
+
   }
 
   /**
@@ -175,15 +192,17 @@ class FarmerServices {
       ->accessCheck()
       ->execute();
     if (!empty($payment_nids)) {
+      $area = $this->entityTypeManager->getStorage('node')->load($offer_licence_id);
       $nids = array_values($payment_nids);
       $payments = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
       foreach ($payments as $key => $payment) {
+        $data_array[$key]['area_title'] = $area->getTitle();
         $data_array[$key]['payment_type'] = $payment->get('field_payment_type')->entity->getName();
         $data_array[$key]['nfa_receipt_date'] = $payment->get('field_date_of_nfa_receipt')->value;
         $data_array[$key]['nfa_receipt_number'] = $payment->get('field_nfa_receipt_number')->value;
         $data_array[$key]['ura_prn_date'] = $payment->get('field_ura_prn_date')->value;
         $data_array[$key]['ura_prn'] = $payment->get('field_ura_prn')->value;
-        $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount')->value;
+        $data_array[$key]['payment_amount'] = $payment->get('field_payment_amount_new')->value;
         $data_array[$key]['nid'] = $payment->id();
         $total_paid[substr($payment->get('field_date_of_nfa_receipt')->value, 0, 4)] = $data_array[$key]['payment_amount'];
       }
@@ -1324,8 +1343,8 @@ class FarmerServices {
    *
    * Note payment history data should be added in historical order.
    *
-   * @param $offer_licence_id
-   *   The area id for which arears need to find.
+   * @param int $offer_licence_id
+   *   The area id for which arrears need to find.
    *
    * @return int|null
    *
@@ -1347,6 +1366,27 @@ class FarmerServices {
       return $historical_payments->get('field_arrears')->value;
     }
     return 'starting_entry';
+  }
+
+  /**
+   * Get the farmer ID from the title query parameter.
+   *
+   * @return int|null
+   *   The farmer ID or NULL if not found.
+   */
+  public function getFarmerIdFromTitle() {
+    $title = $this->requestStack->getCurrentRequest()->query->get('title');
+    if ($title) {
+      $query = $this->entityTypeManager->getStorage('node')->getQuery();
+      $nids = $query->condition('type', 'farmer_details')
+        ->condition('title', $title)
+        ->accessCheck(TRUE)
+        ->execute();
+      if (!empty($nids)) {
+        return reset($nids);
+      }
+    }
+    return NULL;
   }
 
 }
