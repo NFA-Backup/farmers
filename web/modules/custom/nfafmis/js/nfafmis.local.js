@@ -191,9 +191,9 @@
           $(tempElem).click(function() {
             if (!$(this).hasClass('is-active')) {
               hideElement();
-              let elemToHide = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
-              $('#' + elemToHide).parents('.views-row').fadeIn('slow');
-              $('#' + elemToHide).parents('.view-accounts-tab-payments-report').fadeIn('slow');
+              let elemToShow = $(this).text().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
+              $('#' + elemToShow).parents('.views-row').fadeIn('slow');
+              $('#' + elemToShow).parents('.view-accounts-tab-payments-report').fadeIn('slow');
               $('.views-field-field-itemise-charges').hide();
               $('.account-list-subtabs a').removeClass('is-active');
               $(this).addClass('is-active');
@@ -245,6 +245,8 @@
 
   // Default hide all content, then show accordingly.
   function hideElement() {
+    $('.account-tab-view .view-accounts-tab .views-row').hide();
+    $('.account-tab-view .view-accounts-tab-payments-report').hide();
     $('.account-tab-view .view-content .views-row .field-content .views-row').hide();
     $('.account-tab-view .view-content .views-row .field-content .view-accounts-tab-payments-report').hide();
     $('.views-field-field-itemise-charges').hide();
