@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -200,8 +201,13 @@ class FarmerServices {
           $file = $receipt->entity;
           if ($file) {
             $file_uri = $file->getFileUri();
+            $file_name = $file->getFilename();
             $file_download_uri = $this->fileUrlGenerator->generateAbsoluteString($file_uri);
-            $data_array[$key]['payment_receipt'] = $file_download_uri;
+            $data_array[$key]['payment_receipt'] = [
+              '#type' => 'link',
+              '#title' => $file_name,
+              '#url' => Url::fromUri($file_download_uri, ['attributes' => ['target' => '_blank']]),
+            ];
           }
         }
         $data_array[$key]['area_title'] = $area->getTitle();
