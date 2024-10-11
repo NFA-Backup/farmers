@@ -6,6 +6,7 @@
  */
 
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -25,7 +26,7 @@ function nfafmis_views_data_alter(array &$data) {
   // A map showing the farmer's land allocations.
   $data['views']['nfafmis_map'] = [
     'title' => t('Farmer Map'),
-    'help' => t('A map showing the farmer\'s land allocations'),
+    'help' => t("A map showing the farmer's land allocations"),
     'field' => [
       'id' => 'nfafmis_farmer_map',
     ],
@@ -33,16 +34,16 @@ function nfafmis_views_data_alter(array &$data) {
 
   // Filter to limit lists of terms to those that are in the user's assigned
   // management unit.
-  $data['taxonomy_term_field_data']['user_management_unit'] = array(
-    'title' => t('Limit to current user\'s Range or Sector'),
-    'help' => t('Filter the view to the currently logged in user\'s assigned range or sector.'),
+  $data['taxonomy_term_field_data']['user_management_unit'] = [
+    'title' => t("Limit to current user's Range or Sector"),
+    'help' => t("Filter the view to the currently logged in user's assigned range or sector."),
     'group' => t('Taxonomy term'),
     'filter' => [
       'id' => 'nfafmis_user_range_sector',
       'type' => 'yes-no',
     ],
 
-  );
+  ];
 }
 
 /**
@@ -63,20 +64,19 @@ function nfafmis_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
 
 /**
  * Implements hook_views_pre_render().
- *
- * @param \Drupal\views\ViewExecutable $view
  */
 function nfafmis_views_pre_render(ViewExecutable $view) {
   // @todo Refactor this as a custom views filter.
   if ($view->id() == 'fmis_reports' && ($view->current_display == 'farmers_full' || $view->current_display == 'farmers_full_export')) {
     // The farmer report view has a relationship to content with an entity
-    // reference to the farmer node, i.e. content types with field_farmer_name_ref
-    // field. There are multiple content types with that field but we only want to
-    // include results where the referencing node is an Offer/License. We cannot
-    // simply add a filter to the view to filter by content type because
-    // doing that limits the results to farmers that have Offer/License nodes.
-    // We need to show all farmers, those with Offer/License and those without.
-    // So here we remove results where the related entity is not an Offer/License.
+    // reference to the farmer node, i.e. content types with
+    // field_farmer_name_ref field. There are multiple content types with that
+    // field, but we only want to include results where the referencing node is
+    // an Offer/License. We cannot simply add a filter to the view to filter by
+    // content type because doing that limits the results to farmers that have
+    // Offer/License nodes. We need to show all farmers, those with
+    // Offer/License and those without.
+    // Here we remove results where the related entity is not an Offer/License.
     foreach ($view->result as $key => $row) {
       if (!empty($row->_relationship_entities)) {
         if (isset($row->_relationship_entities['reverse__node__field_farmer_name_ref']) && $row->_relationship_entities['reverse__node__field_farmer_name_ref']->bundle() != 'offer_license') {
@@ -87,5 +87,14 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_views_data_export_row_alter().
+ */
+function nfafmis_views_data_export_row_alter(&$row, ResultRow $result, ViewExecutable $view) {
+  if ($view->id() === 'accounts_tab_payments_report' && $view->current_display === 'data_export_1' && !empty($row['copy_of_receipt'])) {
+    $row['copy_of_receipt'] = \Drupal::request()->getSchemeAndHttpHost() . $row['copy_of_receipt'];
   }
 }
