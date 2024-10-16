@@ -12,7 +12,7 @@ field_name: copy_of_receipt
 entity_type: node
 bundle: fee_payment_nfa
 label: 'Copy of receipt'
-description: ''
+description: '<strong>This field is disabled when adding a new payment. To upload a receipt first add and save the payment. Then select the payment in the payments list and edit it.</strong> '
 required: false
 translatable: false
 default_value: {  }
