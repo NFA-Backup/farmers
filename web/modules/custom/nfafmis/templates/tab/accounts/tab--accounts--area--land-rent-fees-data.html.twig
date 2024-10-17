@@ -48,6 +48,7 @@
             <th>URA PRN</th>
             <th>Payment type</th>
             <th>Payment amount</th>
+            <th>Payment receipt</th>
             <th></th>
           </tr>
           </thead>
@@ -66,6 +67,7 @@
               <td>{{ fee_payment.ura_prn }}</td>
               <td>{{ fee_payment.payment_type}}</td>
               <td class="text-end">UGX {{ fee_payment.payment_amount |number_format(0, '.', ',')}}</td>
+              <td>{{ fee_payment.payment_receipt}}</td>
               <td>
                 <a class="use-ajax" data-dialog-options="{&quot;width&quot;:880}"  data-dialog-type="dialog" data-dialog-renderer="off_canvas" href="/node/{{ fee_payment.nid }}/edit?destination=/tree-farmer-overview/accounts%3Ftitle%3D{{title_query_param}}">Edit</a>
               </td>

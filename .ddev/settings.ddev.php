@@ -32,3 +32,5 @@ $settings['hash_salt'] = 'mqKjfUpmdjUbAorfMBPNiBtbMPsSiLdcNHUpHqSvHWJHpgsPdMziHC
 // Don't use Symfony's APCLoader. ddev includes APCu; Composer's APCu loader has
 // better performance.
 $settings['class_loader_auto_detect'] = FALSE;
+
+$settings['file_private_path'] = '../private';

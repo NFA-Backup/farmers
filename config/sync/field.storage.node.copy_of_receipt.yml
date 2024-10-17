@@ -1,12 +1,12 @@
-uuid: e4b497a9-ad82-4f6d-b561-5858c8e75192
+uuid: b74e7eb8-8ed5-43dd-9eac-716ec7c164a0
 langcode: en
 status: true
 dependencies:
   module:
     - file
     - node
-id: node.field_ura_prn_scan
-field_name: field_ura_prn_scan
+id: node.copy_of_receipt
+field_name: copy_of_receipt
 entity_type: node
 type: file
 settings:
