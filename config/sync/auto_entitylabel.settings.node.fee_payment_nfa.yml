@@ -1,6 +1,9 @@
 status: 1
 pattern: 'Fee payment NFA for [node:field_farmer_name_ref]'
 escape: false
+preserve_titles: false
+save: true
+chunk: 50
 dependencies:
   config:
     - node.type.fee_payment_nfa

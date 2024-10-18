@@ -97,4 +97,7 @@ function nfafmis_views_data_export_row_alter(&$row, ResultRow $result, ViewExecu
   if ($view->id() === 'accounts_tab_payments_report' && $view->current_display === 'data_export_1' && !empty($row['copy_of_receipt'])) {
     $row['copy_of_receipt'] = \Drupal::request()->getSchemeAndHttpHost() . $row['copy_of_receipt'];
   }
+  if ($view->id() === 'fmis_reports' && $view->current_display === 'data_export_4' && !empty($row['copy_of_receipt'])) {
+    $row['copy_of_receipt'] = \Drupal::request()->getSchemeAndHttpHost() . $row['copy_of_receipt'];
+  }
 }
