@@ -109,9 +109,12 @@
 }
 
 .view-fmis-reports {
-  .views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
-    margin-block: 0;
-    align-self: center;
+  &.view-display-id-farmers_full,
+  &.view-display-id-farmers_contacts {
+    .views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
+      margin-block: 0;
+      align-self: center;
+    }
   }
 }
 

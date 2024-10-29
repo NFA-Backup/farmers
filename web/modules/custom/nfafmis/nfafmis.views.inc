@@ -6,7 +6,6 @@
  */
 
 use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -87,14 +86,5 @@ function nfafmis_views_pre_render(ViewExecutable $view) {
         }
       }
     }
-  }
-}
-
-/**
- * Implements hook_views_data_export_row_alter().
- */
-function nfafmis_views_data_export_row_alter(&$row, ResultRow $result, ViewExecutable $view) {
-  if ($view->id() === 'accounts_tab_payments_report' && $view->current_display === 'data_export_1' && !empty($row['copy_of_receipt'])) {
-    $row['copy_of_receipt'] = \Drupal::request()->getSchemeAndHttpHost() . $row['copy_of_receipt'];
   }
 }

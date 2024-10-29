@@ -108,7 +108,7 @@
   margin-top: 0;
 }
 
-.view-fmis-reports .views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
+.view-fmis-reports.view-display-id-farmers_full .views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions, .view-fmis-reports.view-display-id-farmers_contacts .views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
   margin-block: 0;
   align-self: center;
 }
