@@ -163,7 +163,8 @@
         "2698425-175: Do not reimport existing entities": "https://www.drupal.org/files/issues/2022-07-29/default_content-fix-uuid-duplicate-entry-2698425.patch"
       },
       "drupal/environment_indicator": {
-        "3362940: Improve visibility when using Gin vertical and modern horizontal toolbars": "https://git.drupalcode.org/project/environment_indicator/-/merge_requests/22.diff"
+          "3487202: Gin vertical toolbar submenu's overlap": "https://www.drupal.org/files/issues/2024-12-03/3487202-gin-vertical-toolbar-9.patch",
+          "3362940: Improve visibility when using Gin vertical and modern horizontal toolbars": "patches/3362940-local.patch"
       },
       "drupal/yearonly": {
         "3172745: Provide default year options": "https://www.drupal.org/files/issues/2024-07-01/yearonly-default-options-3172745-14.patch"

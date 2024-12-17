@@ -1,0 +1,51 @@
+diff --git a/css/environment_indicator.css b/css/environment_indicator.css
+index 3225722..21f82e5 100644
+--- a/css/environment_indicator.css
++++ b/css/environment_indicator.css
+@@ -103,4 +103,13 @@
+ 
+ .gin--vertical-toolbar[data-toolbar-menu="open"] .toolbar-menu-administration > .toolbar-menu > .menu-item .toolbar-menu {
+   margin-inline-start: calc(var(--gin-toolbar-width, var(--ginToolbarWidth)) - 4px);
+-}
+\ No newline at end of file
++}
++
++@media (min-width: 61em) {
++  .gin-secondary-toolbar .toolbar-secondary .toolbar-bar .toolbar-tab .toolbar-item.toolbar-icon-environment {
++    border-radius: var(--gin-border-s);
++  }
++  .gin-secondary-toolbar .toolbar-secondary .toolbar-bar .toolbar-tab:hover .toolbar-item.toolbar-icon-environment {
++    border-radius: var(--gin-border-s) var(--gin-border-s) 0 0;
++  }
++}
+diff --git a/src/ToolbarHandler.php b/src/ToolbarHandler.php
+index 953e12c..43fa769 100644
+--- a/src/ToolbarHandler.php
++++ b/src/ToolbarHandler.php
+@@ -152,6 +152,7 @@ class ToolbarHandler {
+     if ($this->hasAccessActiveEnvironment() && $this->externalIntegration('toolbar')) {
+ 
+       $title = $this->getTitle();
++      $environment = $this->activeEnvironment;
+ 
+       $items['environment_indicator'] += [
+         '#type' => 'toolbar_item',
+@@ -163,6 +164,7 @@ class ToolbarHandler {
+           '#attributes' => [
+             'title' => $this->t('Environments'),
+             'class' => ['toolbar-icon', 'toolbar-icon-environment'],
++            'style' => 'color: ' . $environment->get('fg_color') . '; background-color: ' . $environment->get('bg_color') . ';',
+           ],
+           '#access' => !empty($title),
+         ],
+@@ -174,8 +176,8 @@ class ToolbarHandler {
+           'drupalSettings' => [
+             'environmentIndicator' => [
+               'name' => $this->activeEnvironment->get('name') ?: ' ',
+-              'fgColor' => $this->activeEnvironment->get('fg_color'),
+-              'bgColor' => $this->activeEnvironment->get('bg_color'),
++              'fgColor' => $environment->get('fg_color'),
++              'bgColor' => $environment->get('bg_color'),
+               'addFavicon' => $this->config->get('favicon'),
+             ],
+           ],
