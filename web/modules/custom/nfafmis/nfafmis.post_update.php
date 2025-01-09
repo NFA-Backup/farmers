@@ -55,7 +55,7 @@ function nfafmis_post_update_sub_area_planted(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    \Drupal::logger('NFA-FMIS')
+    \Drupal::logger('NFA Farmers')
       ->debug(
         'Copied @progress of @max Sub area planted values.',
         [
@@ -111,7 +111,7 @@ function nfafmis_post_update_offer_license_area_allocated(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    \Drupal::logger('NFA-FMIS')
+    \Drupal::logger('NFA Farmers')
       ->debug(
         'Copied @progress of @max Overall area allocated values.',
         [
@@ -172,7 +172,7 @@ function nfafmis_post_update_account_area_fields(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    \Drupal::logger('NFA-FMIS')
+    \Drupal::logger('NFA Farmers')
       ->debug(
         'Copied @progress of @max Account details area values.',
         [
@@ -301,7 +301,7 @@ function nfafmis_post_update_c(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    \Drupal::logger('NFA-FMIS')
+    \Drupal::logger('NFA Farmers')
       ->debug(
         'Reset date harvested of @progress of @max Sub areas.',
         [

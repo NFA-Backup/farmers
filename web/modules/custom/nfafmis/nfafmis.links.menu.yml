@@ -1,5 +1,5 @@
 nfafmis.admin_index:
-  title: 'NFA-FMIS'
+  title: 'NFA Farmers'
   route_name: nfafmis.admin_index
   parent: system.admin_config
   description: 'Configure settings like annual charges & dates.'
@@ -42,16 +42,16 @@ nfafmis.fee_settings:
 nfafmis.dashboard:
   title: 'Farmers'
   parent: system.admin
-  description: 'NFA FMIS dashboard.'
-  url: 'internal:/tree-farmer-overview'
+  description: 'NFA Farmers dashboard.'
+  url: 'internal:/dashboard/overview'
   weight: -50
 nfafmis.dashboard.reports:
-  title: 'FMIS Reports'
+  title: 'NFA Farmers Reports'
   parent: nfafmis.dashboard
-  description: 'NFA FMIS Reports.'
-  route_name: view.fmis_reports.farmers_full
+  description: 'Farmers Reports.'
+  route_name: nfafmis.dashboard.reports
 nfafmis.dashboard.settings:
-  title: 'FMIS Settings'
+  title: 'NFA Farmers Settings'
   parent: nfafmis.dashboard
-  description: 'FMIS Settings'
+  description: 'NFA Farmers Settings'
   route_name: nfafmis.admin_index

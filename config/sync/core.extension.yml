@@ -20,6 +20,8 @@ module:
   contextual: 0
   csv_serialization: 0
   ctools: 0
+  ctools_views: 0
+  dashboards: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
@@ -86,6 +88,7 @@ module:
   user: 0
   views_ajax_history: 0
   views_autocomplete_filters: 0
+  views_block_filter_block: 0
   views_data_export: 0
   views_field_view: 0
   views_flipped_table: 0

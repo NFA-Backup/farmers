@@ -5,7 +5,7 @@ edit all management unit content:
   title: 'Edit content in all management units'
 
 administer fmis settings:
-  title: 'Administer FMIS settings'
+  title: 'Administer NFA Farmers settings'
 
 view fmis reports:
-  title: 'View NFA FMIS reports'
+  title: 'View NFA Farmers reports'

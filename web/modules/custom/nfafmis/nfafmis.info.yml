@@ -1,5 +1,5 @@
-name: NFA-FMIS
-description: A module for NFA-FMIS custom changes
+name: NFA Farmers
+description: A module for NFA Farmers custom changes
 core_version_requirement: ^9 || ^10
 type: module
-package: NFA-FMIS
+package: NFA Farmers

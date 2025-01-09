@@ -2,3 +2,9 @@ nfa_gin_farmers:
   css:
     theme:
       dist/css/base/nfa_gin_farmers.css: { minified: false }
+
+farmers-dashboard:
+  version: 1.0.0
+  css:
+    theme:
+      dist/css/libraries/views--farmers-dashboard.css: {}

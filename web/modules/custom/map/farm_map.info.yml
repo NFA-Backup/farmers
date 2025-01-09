@@ -1,7 +1,7 @@
-name: NFA-FMIS Map
+name: NFA Farmers Map
 description: Provides map features.
 type: module
-package: NFA-FMIS
+package: NFA Farmers
 core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:block

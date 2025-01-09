@@ -18,8 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Block(
  *   id = "nfafmis_block",
- *   admin_label = @Translation("NFAFMIS block"),
- *   category = @Translation("NFAFMIS"),
+ *   admin_label = @Translation("NFA Farmers block"),
+ *   category = @Translation("NFA Farmers"),
  * )
  */
 class NfafmisBlock extends BlockBase implements ContainerFactoryPluginInterface {

@@ -10,7 +10,7 @@ use Drupal\Core\Block\BlockBase;
  * @Block(
  *   id = "area_map_block",
  *   admin_label = @Translation("Area map block"),
- *   category = @Translation("NFAFMIS"),
+ *   category = @Translation("NFA Farmers"),
  *   context_definitions  = {
  *     "node" = @ContextDefinition("entity:node", label = @Translation("Node"))
  *   }

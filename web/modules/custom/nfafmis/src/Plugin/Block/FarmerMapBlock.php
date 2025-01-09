@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "farmer_map_block",
  *   admin_label = @Translation("Farmer map block"),
- *   category = @Translation("NFAFMIS"),
+ *   category = @Translation("NFA Farmers"),
  * )
  */
 class FarmerMapBlock extends BlockBase implements ContainerFactoryPluginInterface {

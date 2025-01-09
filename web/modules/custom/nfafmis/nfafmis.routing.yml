@@ -2,7 +2,7 @@ nfafmis.admin_index:
   path: '/admin/config/nfafmis'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'NFA-FMIS'
+    _title: 'NFA Farmers'
   requirements:
     _permission: 'administer fmis settings'
 nfafmis.settings:
@@ -17,5 +17,12 @@ nfafmis.farmer_accounts_page:
   defaults:
     _controller: '\Drupal\nfafmis\Controller\FarmerAccountsPageController::content'
     _title: 'Accounts'
+  requirements:
+    _permission: 'access content'
+nfafmis.dashboard.reports:
+  path: '/fmis/reports'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'NFA Farmers Reports'
   requirements:
     _permission: 'access content'

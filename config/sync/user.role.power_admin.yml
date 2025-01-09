@@ -47,7 +47,6 @@ permissions:
   - 'administer contact forms'
   - 'administer farm map'
   - 'administer fmis settings'
-  - 'administer modules'
   - 'administer users'
   - 'create article content'
   - 'create page content'

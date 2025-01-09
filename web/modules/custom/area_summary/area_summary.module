@@ -31,7 +31,7 @@ function area_summary_node_update(EntityInterface $entity) {
     else {
       $farmer = $entity->field_farmer_name_ref->entity;
       if (!$farmer) {
-        Drupal::logger('NFA-FMIS')
+        Drupal::logger('NFA Farmers')
           ->warning('Area with nid @id has no assigned farmer', ['@id' => $entity->id()]);
       }
       $cfr = $entity->field_central_forest_reserve->entity;

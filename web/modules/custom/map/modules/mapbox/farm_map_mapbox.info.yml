@@ -1,7 +1,7 @@
-name: NFA-FMIS Mapbox
-description: Adds Mapbox layers to NFA-FMIS maps.
+name: NFA Farmers Mapbox
+description: Adds Mapbox layers to NFA Farmers maps.
 type: module
-package: NFA-FMIS
+package: NFA Farmers
 core_version_requirement: ^9 || ^10
 dependencies:
   - farm:farm_map

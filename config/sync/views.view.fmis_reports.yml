@@ -57,7 +57,7 @@ dependencies:
     - views_field_view
     - yearonly
 id: fmis_reports
-label: 'FMIS Reports'
+label: 'NFA FARMERS Reports'
 module: views
 description: ''
 tag: ''
@@ -70,7 +70,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'FMIS Reports'
+      title: 'NFA FARMERS Reports'
       fields:
         title:
           id: title
@@ -5884,7 +5884,7 @@ display:
           entity_type: node
           entity_field: uid
           plugin_id: field
-          label: 'FMIS user'
+          label: 'NFA FARMERS user'
           exclude: false
           alter:
             alter_text: false
@@ -6265,7 +6265,7 @@ display:
           exposed: true
           expose:
             operator_id: uid_op
-            label: 'FMIS user'
+            label: 'NFA FARMERS user'
             description: ''
             use_operator: false
             operator: uid_op
@@ -7528,7 +7528,7 @@ display:
           exposed: true
           expose:
             operator_id: uid_op
-            label: 'FMIS user'
+            label: 'NFA FARMERS user'
             description: ''
             use_operator: false
             operator: uid_op
@@ -8841,7 +8841,7 @@ display:
           exposed: true
           expose:
             operator_id: uid_op
-            label: 'FMIS user'
+            label: 'NFA FARMERS user'
             description: ''
             use_operator: false
             operator: uid_op

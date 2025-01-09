@@ -753,6 +753,7 @@ display:
             geofield: field_map
             geolocation: field_map
             wkt: field_map
+            id_field: ''
             name_field: title_2
             description_field: field_purpose
           jsonp_prefix: ''
@@ -1160,6 +1161,7 @@ display:
             geofield: geofield_map
             geolocation: title_1
             wkt: title_1
+            id_field: ''
             name_field: field_block_ref
             description_field: nothing
           jsonp_prefix: ''
@@ -1500,6 +1502,7 @@ display:
             geofield: geofield_map
             geolocation: geofield_map
             wkt: geofield_map
+            id_field: ''
             name_field: field_central_forest_reserve
             description_field: nothing
           jsonp_prefix: ''
@@ -1843,6 +1846,7 @@ display:
             geofield: geofield_map
             geolocation: geofield_map
             wkt: geofield_map
+            id_field: ''
             name_field: name
             description_field: nothing
           jsonp_prefix: ''

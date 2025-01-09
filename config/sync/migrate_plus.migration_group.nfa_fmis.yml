@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: nfa_fmis
-label: NFA-FMIS
+label: 'NFA FARMERS'
 description: 'NFA Farmers migrations'
 source_type: null
 module: null

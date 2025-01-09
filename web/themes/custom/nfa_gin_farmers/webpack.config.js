@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 const isDev = (process.env.NODE_ENV !== 'production');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,6 +15,12 @@ module.exports = {
     // ################################################
     // Base
     'base/nfa_gin_farmers': ['./styles/nfa_gin_farmers.scss'],
+    // Libraries
+    ...glob.sync('./styles/libraries/*.scss').reduce((entries, file) => {
+      const name = path.basename(file, '.scss');
+      entries[`libraries/${name}`] = file;
+      return entries;
+    }, {}),
   },
   output: {
     filename: 'js/[name].js',
@@ -29,21 +36,21 @@ module.exports = {
         exclude: /sprite\.svg$/,
         type: 'javascript/auto',
         use: [{
-            loader: 'file-loader',
-            options: {
-              name: '[path][name].[ext]', //?[contenthash]
-              publicPath: (url, resourcePath, context) => {
-                const relativePath = path.relative(context, resourcePath);
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]', //?[contenthash]
+            publicPath: (url, resourcePath, context) => {
+              const relativePath = path.relative(context, resourcePath);
 
-                // Settings
-                if (resourcePath.includes('media/settings')) {
-                  return `../../${relativePath}`;
-                }
+              // Settings
+              if (resourcePath.includes('media/settings')) {
+                return `../../${relativePath}`;
+              }
 
-                return `../${relativePath}`;
-              },
+              return `../${relativePath}`;
             },
           },
+        },
           {
             loader: 'img-loader',
             options: {

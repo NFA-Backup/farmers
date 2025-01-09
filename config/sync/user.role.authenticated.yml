@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - dashboards.dashboard.overview
     - filter.format.basic_html
   module:
     - comment
     - contact
+    - dashboards
     - environment_indicator
     - file
     - filter
@@ -25,6 +27,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'access toolbar'
+  - 'can view overview dashboard'
   - 'delete own files'
   - 'search content'
   - 'use text format basic_html'

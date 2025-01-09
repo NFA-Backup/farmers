@@ -58,7 +58,7 @@ function nfafmis_deploy_001(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    Drupal::logger('NFA-FMIS')
+    Drupal::logger('NFA Farmers')
       ->debug(
         'Copied @progress of @max date planted values.',
         [
@@ -156,7 +156,7 @@ function nfafmis_deploy_003(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    Drupal::logger('NFA-FMIS')
+    Drupal::logger('NFA Farmers')
       ->debug(
         'Copied @progress of @max block ids.',
         [
@@ -234,7 +234,7 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
     foreach ($area_storage as $area) {
 
       if (!$area->field_farmer_name_ref->entity) {
-        Drupal::logger('NFA-FMIS')
+        Drupal::logger('NFA Farmers')
           ->warning('Area with nid @id has no assigned farmer', ['@id' => $area->id()]);
       }
       $farmer = $area->field_farmer_name_ref->entity;
@@ -272,7 +272,7 @@ function nfafmis_deploy_005(&$sandbox = NULL) {
     // Tell Drupal what percentage of the batch is completed.
     $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
 
-    Drupal::logger('NFA-FMIS')
+    Drupal::logger('NFA Farmers')
       ->debug(
         'Created @progress of @max area_summary records.',
         [

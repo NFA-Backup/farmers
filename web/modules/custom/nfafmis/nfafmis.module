@@ -987,7 +987,7 @@ function nfafmis_node_access_records(NodeInterface $node) {
         $sector = $cfr->sector->entity;
       }
       else {
-        Drupal::logger('NFA-FMIS')
+        Drupal::logger('NFA Farmers')
           ->warning('Sub-area with nid @id has no assigned area', ['@id' => $node->id()]);
       }
     }

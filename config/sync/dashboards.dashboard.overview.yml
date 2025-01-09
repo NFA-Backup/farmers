@@ -1,0 +1,155 @@
+uuid: 15d04bc5-236f-4e7d-b009-bca6d5d0fa38
+langcode: en
+status: true
+dependencies: {  }
+id: overview
+admin_label: Overview
+category: NFA
+frontend: true
+weight: 0
+sections:
+  -
+    layout_id: layout_threecol_section
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      column_widths: 33-34-33
+    components:
+      50b1891a-f022-4b5e-b79d-a7ab51a8e7c4:
+        uuid: 50b1891a-f022-4b5e-b79d-a7ab51a8e7c4
+        region: first
+        configuration:
+          id: 'views_block:farmers_dashboard-total_farmers'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 0
+        additional: {  }
+      7fa0e5bf-4e6f-4f23-98f1-660cf7626e33:
+        uuid: 7fa0e5bf-4e6f-4f23-98f1-660cf7626e33
+        region: second
+        configuration:
+          id: 'views_exposed_filter_block:farmers_dashboard-total_allocated_filtered'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+        weight: 0
+        additional: {  }
+      396d32cf-88f9-4c16-be3d-9dc56f4386bf:
+        uuid: 396d32cf-88f9-4c16-be3d-9dc56f4386bf
+        region: first
+        configuration:
+          id: 'views_block:farmers_dashboard-total_allocated'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 1
+        additional: {  }
+      01904795-d217-43dc-ae3b-6af8a1e847c1:
+        uuid: 01904795-d217-43dc-ae3b-6af8a1e847c1
+        region: first
+        configuration:
+          id: 'views_block:farmers_dashboard-total_planted'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 2
+        additional: {  }
+      9d4c3851-8532-4d91-bca3-a645363eb7e8:
+        uuid: 9d4c3851-8532-4d91-bca3-a645363eb7e8
+        region: first
+        configuration:
+          id: percentage_area_planted_block
+          label: 'Percentage area planted'
+          label_display: visible
+          provider: nfafmis
+          context_mapping: {  }
+        weight: 3
+        additional: {  }
+      baa3e222-32a8-4d3d-abe0-bb0077ecbad9:
+        uuid: baa3e222-32a8-4d3d-abe0-bb0077ecbad9
+        region: first
+        configuration:
+          id: 'views_block:farmers_dashboard-total_planted_by_species'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 4
+        additional: {  }
+      01f36fa4-4b14-4ae1-aa22-2c07414f97b1:
+        uuid: 01f36fa4-4b14-4ae1-aa22-2c07414f97b1
+        region: second
+        configuration:
+          id: 'views_block:farmers_dashboard-total_allocated_filtered'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 1
+        additional: {  }
+      07fe0886-4fdb-4826-91dd-d4e1d4347f83:
+        uuid: 07fe0886-4fdb-4826-91dd-d4e1d4347f83
+        region: second
+        configuration:
+          id: 'views_block:farmers_dashboard-total_planted_filtered'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+          exposed: {  }
+        weight: 2
+        additional: {  }
+      80aeebf7-4c3b-43e2-8efa-901abbd134fc:
+        uuid: 80aeebf7-4c3b-43e2-8efa-901abbd134fc
+        region: third
+        configuration:
+          id: 'system_menu_block:quick-links'
+          label: 'Quick links'
+          label_display: visible
+          provider: system
+          context_mapping: {  }
+          level: 1
+          depth: 0
+          expand_all_items: false
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }
+  -
+    layout_id: layout_3
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      reverse: 0
+    components: {  }
+    third_party_settings: {  }
+  -
+    layout_id: layout_1
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      reverse: 0
+    components: {  }
+    third_party_settings: {  }
