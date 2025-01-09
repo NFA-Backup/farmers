@@ -1,0 +1,24 @@
+.dashboards-container .view-display-id-total_planted_by_species caption {
+  display: none;
+}
+
+.dashboards-container .view-display-id-total_planted_by_species .views-field-field-subarea-planted {
+  min-width: 50%;
+}
+
+[dir="ltr"] .dashboards-container .view-display-id-total_planted_by_species .views-field-field-subarea-planted {
+  text-align: right;
+}
+
+[dir="rtl"] .dashboards-container .view-display-id-total_planted_by_species .views-field-field-subarea-planted {
+  text-align: left;
+}
+
+.dashboards-container .views-exposed-form.views-exposed-form.block-views-exposed-filter-blockfarmers-dashboard-total-allocated-filtered {
+  display: block;
+}
+
+.dashboards-container .views-exposed-form.views-exposed-form.block-views-exposed-filter-blockfarmers-dashboard-total-allocated-filtered form {
+  display: block;
+}
+

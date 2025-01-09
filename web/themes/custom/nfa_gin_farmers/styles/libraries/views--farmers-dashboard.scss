@@ -1,0 +1,20 @@
+.dashboards-container {
+  .view-display-id-total_planted_by_species {
+    caption {
+      display: none;
+    }
+
+    .views-field-field-subarea-planted {
+      text-align: right;
+      min-width: 50%;
+    }
+  }
+
+  .views-exposed-form.views-exposed-form.block-views-exposed-filter-blockfarmers-dashboard-total-allocated-filtered {
+    display: block;
+
+    form {
+      display: block;
+    }
+  }
+}
