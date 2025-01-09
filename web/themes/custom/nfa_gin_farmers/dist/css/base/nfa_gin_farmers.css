@@ -141,3 +141,7 @@
   text-align: center;
 }
 
+a {
+  text-underline-offset: .3rem;
+}
+
