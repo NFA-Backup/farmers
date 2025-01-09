@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: overview
-admin_label: Overview
+admin_label: 'Farmers Overview'
 category: NFA
 frontend: true
 weight: 0
