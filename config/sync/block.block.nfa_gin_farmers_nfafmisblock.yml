@@ -15,7 +15,7 @@ provider: null
 plugin: nfafmis_block
 settings:
   id: nfafmis_block
-  label: 'NFA FARMERS block'
+  label: 'NFA Farmers block'
   label_display: '0'
   provider: nfafmis
 visibility:

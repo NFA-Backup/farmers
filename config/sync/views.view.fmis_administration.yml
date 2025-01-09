@@ -16,7 +16,7 @@ dependencies:
     - taxonomy
     - user
 id: fmis_administration
-label: 'NFA FARMERS administration'
+label: 'NFA Farmers administration'
 module: views
 description: ''
 tag: ''
@@ -29,7 +29,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'NFA FARMERS administration'
+      title: 'NFA Farmers administration'
       fields:
         name:
           id: name
