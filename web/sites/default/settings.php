@@ -824,3 +824,5 @@ if (file_exists($local_settings)) {
 if (file_exists($app_root . '/' . $site_path . '/settings.overrides.php')) {
   include $app_root . '/' . $site_path . '/settings.overrides.php';
 }
+
+$settings['state_cache'] = TRUE;
