@@ -2,7 +2,7 @@ _core:
   default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
 langcode: en
 uuid: cc41562e-d314-40f5-a5b9-15de73703426
-name: 'Forest Management Information System'
+name: 'NFA Tree Farmer Management System'
 mail: ict_support@nfa.go.ug
 slogan: ''
 page:

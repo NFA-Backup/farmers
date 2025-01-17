@@ -15,6 +15,7 @@ module:
   comment: 0
   computed_field: 0
   config: 0
+  config_ignore: 0
   config_split: 0
   contact: 0
   contextual: 0
